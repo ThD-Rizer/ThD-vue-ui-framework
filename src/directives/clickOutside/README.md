@@ -1,0 +1,3 @@
+# ClickOutside directive
+
+TODO
