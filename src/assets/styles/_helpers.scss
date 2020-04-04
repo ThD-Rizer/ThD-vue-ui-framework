@@ -1,0 +1,13 @@
+@import 'variables';
+
+// Grid helpers
+
+@function breakpointMinSize($breakpoint) {
+  $vars: map-get($gridBreakpoints, $breakpoint);
+  @return map-get($vars, 'min') or $breakpoint;
+}
+
+@function breakpointMaxSize($breakpoint) {
+  $vars: map-get($gridBreakpoints, $breakpoint);
+  @return map-get($vars, 'max') or $breakpoint;
+}

@@ -1,0 +1,237 @@
+@import 'variables';
+@import 'helpers';
+
+@mixin clearFix {
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
+@mixin visuallyHidden {
+  &:not(:focus):not(:active) {
+    width: 1px;
+    height: 1px;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+    position: absolute;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+}
+
+@mixin hover {
+  &:not([disabled]):hover {
+    @content;
+  }
+}
+
+@mixin active {
+  &:not([disabled]):active {
+    @content;
+  }
+}
+
+@mixin focus {
+  &:not([disabled]):focus {
+    @content;
+  }
+}
+
+// Grid
+
+@mixin mediaMin($breakpoint) {
+  @media only screen and (min-width: breakpointMinSize($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin mediaMax($breakpoint) {
+  @media only screen and (max-width: breakpointMaxSize($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin mediaBetween($from, $to) {
+  @media only screen and (min-width: breakpointMinSize($from)) and (max-width: breakpointMaxSize($to)) {
+    @content;
+  }
+}
+
+@mixin media($from, $to: false) {
+  @if ($to) {
+    @include mediaBetween($from, $to) { @content; }
+  } @else {
+    @if ($from == $gridBreakpointFirst) {
+      @include mediaMax($from) { @content; }
+    } @else if ($from == $gridBreakpointLast) {
+      @include mediaMin($from) { @content; }
+    } @else {
+      @include mediaBetween($from, $from) { @content; }
+    }
+  }
+}
+
+// Grid;
+
+@mixin genColumn($prefix, $columns) {
+  @for $column from 1 through $columns {
+    .column#{$prefix}-#{$column} {
+      width: percentage($column / $columns);
+    }
+  }
+}
+
+@mixin resetList {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style: none;
+  list-style-position: outside;
+}
+
+@mixin resetButton {
+  background: 0 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+@mixin hideText {
+  text-indent: 150%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin wordBreak {
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  word-break: break-all;
+}
+
+@mixin fontGradient($from, $to, $direction) {
+  background: -webkit-linear-gradient($direction, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin backgroundLinearGradient($from, $to, $fallback: mix($from, $to), $angel: 90deg) {
+  background: $fallback;
+  background: linear-gradient($angel, $from 0%, $to 100%);
+}
+
+@mixin borderX($left, $right: $left) {
+  border-left: $left;
+  border-right: $right;
+}
+
+@mixin borderY($top, $bottom: $top) {
+  border-top: $top;
+  border-bottom: $bottom;
+}
+
+@mixin paddingX($left, $right: $left) {
+  padding-left: $left;
+  padding-right: $right;
+}
+
+@mixin paddingY($top, $bottom: $top) {
+  padding-top: $top;
+  padding-bottom: $bottom;
+}
+
+@mixin marginX($left, $right: $left) {
+  margin-left: $left;
+  margin-right: $right;
+}
+
+@mixin marginY($top, $bottom: $top) {
+  margin-top: $top;
+  margin-bottom: $bottom;
+}
+
+// Задает позиционирование по всем сторонам
+// Поведение аналогично margin и padding
+@mixin positionAll($args...) {
+  $top: false;
+  $right: false;
+  $bottom: false;
+  $left: false;
+
+  @if (length($args) == 1) {
+    $top: nth($args, 1);
+  }
+  @if (length($args) > 1) {
+    $right: nth($args, 2);
+  } @else {
+    $right: nth($args, 1);
+  }
+  @if (length($args) > 2) {
+    $bottom: nth($args, 3);
+  } @else {
+    $bottom: nth($args, 1);
+  }
+  @if (length($args) == 4) {
+    $left: nth($args, 4);
+  } @else if (length($args) > 1) {
+    $left: nth($args, 2);
+  } @else {
+    $left: nth($args, 1);
+  }
+
+
+  @if ($top != false) {
+    top: $top;
+  }
+  @if ($right != false) {
+    right: $right;
+  }
+  @if ($bottom != false) {
+    bottom: $bottom;
+  }
+  @if ($left != false) {
+    left: $left;
+  }
+}
+
+// Задает позиционирование по выбранным сторонам
+@mixin positionSet($args...) {
+  @if (nth($args, 1) != false) {
+    top: nth($args, 1);
+  }
+  @if (length($args) >= 2 and nth($args, 2) != false) {
+    right: nth($args, 2);
+  }
+  @if (length($args) >= 3 and nth($args, 3) != false) {
+    bottom: nth($args, 3);
+  }
+  @if (length($args) == 4 and nth($args, 4) != false) {
+    left: nth($args, 4);
+  }
+}
+
+@mixin positionX($left, $right: $left) {
+  left: $left;
+  right: $right;
+}
+
+@mixin positionY($top, $bottom: $top) {
+  top: $top;
+  bottom: $bottom;
+}
+
+// ========== Project mixins:
+@mixin gradientBrand {
+  @include backgroundLinearGradient($colorDanger, $colorBrandBlue, $colorBrandBlue);
+}
+
+@mixin textGradientBrand {
+  @include gradientBrand;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

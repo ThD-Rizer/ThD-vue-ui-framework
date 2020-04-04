@@ -1,0 +1,66 @@
+{
+  "name": "thd-vue-ui-framework",
+  "version": "0.1.0",
+  "description": "UI framework for Vue.js",
+  "author": "ThD.Rizer <thd.rizer@gmail.com>",
+  "scripts": {
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit",
+    "build": "npm run build:icons && npm run build:lib",
+    "build:docs": "vue-cli-service build src/docs.js",
+    "build:icons": "node build/icons.js",
+    "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js",
+    "build:publish": "npm run build && npm publish",
+    "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
+    "dev": "vue-cli-service serve --port 1221 ./src/docs.js"
+  },
+  "main": "dist/ui.umd.js",
+  "module": "dist/ui.common.js",
+  "files": [
+    "dist/",
+    "src/",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "body-scroll-lock": "^2.6.4",
+    "date-fns": "^2.10.0",
+    "normalize.scss": "^0.1.0",
+    "popper.js": "^1.16.1",
+    "validatorjs": "^3.18.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.2.3",
+    "@vue/cli-plugin-eslint": "^4.2.3",
+    "@vue/cli-plugin-router": "^4.2.3",
+    "@vue/cli-service": "^4.2.3",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "core-js": "^3.6.4",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "lint-staged": "^9.4.3",
+    "sass": "^1.26.2",
+    "sass-loader": "^8.0.2",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.6",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.42.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "license": "ISC",
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "repository": {
+    "url": "git@gitlab.com:thd.rizer_projects/personal/thd-vue-ui-framework.git",
+    "type": "git"
+  }
+}
