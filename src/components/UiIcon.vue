@@ -1,5 +1,5 @@
 <script>
-  import icons from '@/assets/icons';
+  import icons from '@/icons';
   import { propValidator } from '@/utils/helpers';
 
   const tagValidator = propValidator('tag', ['span', 'i']);

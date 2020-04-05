@@ -1,4 +1,4 @@
-import FrameworkError from '../../utils/errors';
+import { FrameworkError } from '@/utils/errors';
 
 /**
  * @return {HTMLBodyElement}

@@ -1,7 +1,7 @@
 <script>
   import { generateHash, propValidator } from '@/utils/helpers';
   import testable from '@/mixins/testable';
-  import { UiIcon } from '@/components/ui';
+  import { UiIcon } from '@/components';
 
   const typeValidator = propValidator('type', ['text', 'password']);
 

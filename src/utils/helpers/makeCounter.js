@@ -46,7 +46,9 @@ export default function makeCounter(value = 0) {
      */
     reset(newValue = value) {
       if (!isNumber(newValue)) {
-        throw new Error(`Invalid type for argument "newValue", expected "number" got "${typeof newValue}"`);
+        throw new Error(
+          `Invalid type for argument "newValue", expected "number" got "${typeof newValue}"`,
+        );
       }
 
       count = newValue;

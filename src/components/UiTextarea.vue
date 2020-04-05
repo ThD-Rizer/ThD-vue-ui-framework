@@ -1,6 +1,6 @@
 <script>
   import testable from '@/mixins/testable';
-  import { generateHash } from '../../utils/helpers';
+  import { generateHash } from '@/utils/helpers';
 
   export default {
     name: 'UiTextarea',

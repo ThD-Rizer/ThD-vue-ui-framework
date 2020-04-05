@@ -1,6 +1,6 @@
 import {
   // BlackholeAlreadyRegistered,
-  BlackholeNotRegistered,
+  BlackholeNotRegisteredError,
   // ElementAlreadyTransportedIntoBlackhole,
   // BlackholeElementNotFound,
 } from './errors';
@@ -14,7 +14,7 @@ const targets = new Map();
 export const mount = (target, el) => {
   if (document) {
     if (!targets.has(target)) {
-      throw new BlackholeNotRegistered(target);
+      throw new BlackholeNotRegisteredError(target);
     }
 
     const elements = targets.get(target);
@@ -41,7 +41,7 @@ export const mount = (target, el) => {
 export const unmount = (target, el) => {
   if (document) {
     if (!targets.has(target)) {
-      throw new BlackholeNotRegistered(target);
+      throw new BlackholeNotRegisteredError(target);
     }
 
     const elements = targets.get(target);
@@ -73,7 +73,7 @@ export const register = (name) => {
  */
 export const unregister = (name) => {
   if (!targets.has(name)) {
-    throw new BlackholeNotRegistered(name);
+    throw new BlackholeNotRegisteredError(name);
   }
 
   targets.get(name).forEach((el) => unmount(name, el));

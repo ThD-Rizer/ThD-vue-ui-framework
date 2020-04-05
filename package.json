@@ -5,14 +5,10 @@
   "author": "ThD.Rizer <thd.rizer@gmail.com>",
   "scripts": {
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit",
     "build": "npm run build:icons && npm run build:lib",
-    "build:docs": "vue-cli-service build src/docs.js",
     "build:icons": "node build/icons.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js",
-    "build:publish": "npm run build && npm publish",
-    "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
-    "dev": "vue-cli-service serve --port 1221 ./src/docs.js"
+    "build:report": "vue-cli-service build --target lib ./src/lib.js --report"
   },
   "main": "dist/ui.umd.js",
   "module": "dist/ui.common.js",
@@ -23,31 +19,30 @@
     "README.md"
   ],
   "dependencies": {
-    "body-scroll-lock": "^2.6.4",
-    "date-fns": "^2.10.0",
-    "normalize.scss": "^0.1.0",
-    "popper.js": "^1.16.1",
-    "validatorjs": "^3.18.0"
+    "body-scroll-lock": "3.0.1",
+    "normalize.scss": "0.1.0",
+    "vuejs-datepicker": "1.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.2.3",
-    "@vue/cli-plugin-eslint": "^4.2.3",
-    "@vue/cli-plugin-router": "^4.2.3",
-    "@vue/cli-service": "^4.2.3",
-    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "7.9.0",
+    "@babel/plugin-proposal-pipeline-operator": "7.8.3",
+    "@vue/cli-plugin-babel": "4.3.0",
+    "@vue/cli-plugin-eslint": "4.3.0",
+    "@vue/cli-service": "4.3.0",
+    "@vue/eslint-config-airbnb": "5.0.2",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
-    "core-js": "^3.6.4",
-    "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-vue": "^6.1.2",
-    "lint-staged": "^9.4.3",
-    "sass": "^1.26.2",
-    "sass-loader": "^8.0.2",
-    "vue": "^2.6.10",
-    "vue-router": "^3.1.6",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.42.0"
+    "babel-eslint": "10.1.0",
+    "eslint": "6.8.0",
+    "eslint-import-resolver-webpack": "0.12.1",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-vue": "6.2.2",
+    "lint-staged": "10.1.1",
+    "sass": "1.26.3",
+    "sass-loader": "8.0.2",
+    "vue": "2.6.11",
+    "vue-template-compiler": "2.6.11",
+    "webpack": "4.42.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

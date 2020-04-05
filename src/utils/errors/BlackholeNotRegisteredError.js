@@ -6,8 +6,8 @@ import FrameworkError from './FrameworkError';
  *
  * @param {String} name
  */
-export default function BlackholeNotRegistered(name) {
+export default function BlackholeNotRegisteredError(name) {
   FrameworkError.call(this, `Blackhole with name "${name}" not registered`);
 }
 
-extend(FrameworkError, BlackholeNotRegistered);
+extend(FrameworkError, BlackholeNotRegisteredError);

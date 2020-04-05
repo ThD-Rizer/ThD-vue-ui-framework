@@ -1,5 +1,5 @@
-import FrameworkError from '../../utils/errors';
-import { qaAttributeName } from '../../utils/constants';
+import { FrameworkError } from '@/utils/errors';
+import { QA_ATTRIBUTE_NAME } from '@/constants';
 
 export default {
   name: 'qa',
@@ -17,14 +17,14 @@ export default {
     }
 
     if (!hasModifiers) {
-      el.setAttribute(qaAttributeName, value);
+      el.setAttribute(QA_ATTRIBUTE_NAME, value);
 
       return;
     }
 
     Object.keys(modifiers).forEach((key) => {
       el.setAttribute(
-        `${qaAttributeName}-${key}`,
+        `${QA_ATTRIBUTE_NAME}-${key}`,
         typeof value === 'undefined'
           ? ''
           : value,
@@ -41,7 +41,7 @@ export default {
     }
 
     Object.keys(el.attributes)
-      .filter((attr) => attr.startsWith(qaAttributeName))
+      .filter((attr) => attr.startsWith(QA_ATTRIBUTE_NAME))
       .forEach((attr) => el.removeAttribute(attr));
   },
 };
