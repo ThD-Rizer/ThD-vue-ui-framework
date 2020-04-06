@@ -8,6 +8,7 @@
     "build": "npm run build:icons && npm run build:lib",
     "build:icons": "node build/icons.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js",
+    "build:publish": "npm run build && npm publish",
     "build:report": "vue-cli-service build --target lib ./src/lib.js --report"
   },
   "main": "dist/ui.umd.js",
@@ -53,6 +54,9 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "publishConfig": {
+    "registry": "http://npm.thd-dev.ru/"
   },
   "repository": {
     "url": "git@gitlab.com:thd.rizer_projects/personal/thd-vue-ui-framework.git",
