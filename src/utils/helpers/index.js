@@ -8,4 +8,5 @@ export { default as makeCounter } from './makeCounter';
 export { default as generateHash } from './generateHash';
 export { default as kebabToPascal } from './kebabToPascal';
 export { default as kebabToCamel } from './kebabToCamel';
+export { default as pascalToKebab } from './pascalToKebab';
 export { default as propValidator } from './propValidator';

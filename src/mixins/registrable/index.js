@@ -1,7 +1,7 @@
 import { ComponentInjectionError } from '@/utils/errors';
 
 /**
- * Inject factory
+ * Фабрика иньекции
  *
  * @param {string} namespace
  * @param {string?} child
@@ -28,7 +28,7 @@ export const inject = (namespace, child, parent) => {
 };
 
 /**
- * Provide factory
+ * Фабрика провайдера
  *
  * @param {string} namespace
  * @returns {{ provide(): object, methods: { unregister: null, register: null } }}

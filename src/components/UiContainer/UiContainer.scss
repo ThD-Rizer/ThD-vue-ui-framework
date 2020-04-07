@@ -1,35 +1,4 @@
-<script>
-  import { propValidator } from '@/utils/helpers';
-
-  const tagValidator = propValidator('tag', ['div', 'section', 'header', 'footer']);
-
-  export default {
-    name: 'UiContainer',
-    props: {
-      tag: {
-        type: String,
-        default: 'div',
-        ...tagValidator,
-      },
-      fluid: {
-        type: Boolean,
-        default: false,
-      },
-    },
-    render(h) {
-      const { $style } = this;
-
-      return h(this.tag, {
-        class: {
-          [$style.root]: true,
-          [$style.isFluid]: this.fluid,
-        },
-      }, this.$slots.default);
-    },
-  };
-</script>
-
-<style lang="scss" module>
+:local {
   .root {
     width: calc(100% - 30px);
     padding-left: 15px;
@@ -62,4 +31,4 @@
       }
     }
   }
-</style>
+}

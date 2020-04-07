@@ -25,6 +25,8 @@ module.exports = {
         code: 100,
         tabWidth: 2,
         comments: Infinity,
+        ignoreRegExpLiterals: true,
+        ignoreTemplateLiterals: true,
       },
     ],
     'vue/component-name-in-template-casing': ['error', 'PascalCase', {

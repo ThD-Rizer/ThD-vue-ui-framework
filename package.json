@@ -1,15 +1,15 @@
 {
-  "name": "thd-vue-ui-framework",
+  "name": "@thd/vue-ui-framework",
   "version": "0.1.0",
   "description": "UI framework for Vue.js",
   "author": "ThD.Rizer <thd.rizer@gmail.com>",
   "scripts": {
     "lint": "vue-cli-service lint",
     "build": "npm run build:icons && npm run build:lib",
-    "build:icons": "node build/icons.js",
+    "build:icons": "node build/icons/index.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js",
-    "build:publish": "npm run build && npm publish",
-    "build:report": "vue-cli-service build --target lib ./src/lib.js --report"
+    "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
+    "build:publish": "npm run build && npm publish"
   },
   "main": "dist/ui.umd.js",
   "module": "dist/ui.common.js",

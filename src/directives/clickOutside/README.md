@@ -1,3 +1,3 @@
 # ClickOutside directive
 
-TODO
+@TODO: Добавить описание

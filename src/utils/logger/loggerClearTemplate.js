@@ -1,9 +1,9 @@
 /**
  * Remove auxiliary code spaces in template strings
  * @see original function https://habr.com/ru/post/280928/
- * @param {string|string[]} strings
+ * @param {String|Array<String>} strings
  * @param {*} expressions
- * @returns {string}
+ * @returns {String}
  */
 export default function loggerClearTemplate(strings, ...expressions) {
   /**

@@ -1,6 +1,6 @@
 /**
- * Minimal Webpack config to supply to Eslint.
- * This is not actually used by Nuxt but instead mirrors the resolve and loader rules.
+ * Минимальная конфигурация Webpack для поставки в Eslint.
+ * На самом деле это не используется в Nuxt, но вместо этого содержит правила разрешения и загрузки.
  */
 
 const { aliases } = require('./configHelpers.js');

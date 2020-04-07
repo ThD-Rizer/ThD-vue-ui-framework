@@ -6,7 +6,7 @@
   export default {
     name: 'UiOverlay',
     mixins: [
-      RegistrableInject('appContainer', 'uiOverlay', 'uiApp'),
+      RegistrableInject('appContainer', 'UiOverlay', 'UiApp'),
       // Toggleable,
     ],
     computed: {

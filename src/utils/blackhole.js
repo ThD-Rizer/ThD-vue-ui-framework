@@ -8,7 +8,7 @@ import {
 const targets = new Map();
 
 /**
- * @param {string} target
+ * @param {String} target
  * @param {HTMLElement} el
  */
 export const mount = (target, el) => {
@@ -35,7 +35,7 @@ export const mount = (target, el) => {
 };
 
 /**
- * @param {string} target
+ * @param {String} target
  * @param {HTMLElement} el
  */
 export const unmount = (target, el) => {
@@ -58,7 +58,7 @@ export const unmount = (target, el) => {
 };
 
 /**
- * @param {string} name
+ * @param {String} name
  */
 export const register = (name) => {
   if (targets.has(name)) {
@@ -69,7 +69,7 @@ export const register = (name) => {
 };
 
 /**
- * @param {string} name
+ * @param {String} name
  */
 export const unregister = (name) => {
   if (!targets.has(name)) {
@@ -81,6 +81,6 @@ export const unregister = (name) => {
 };
 
 /**
- * @returns {string[]}
+ * @returns {Array<String>}
  */
 export const all = () => [...targets.keys()];

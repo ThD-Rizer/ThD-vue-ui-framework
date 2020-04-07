@@ -2,11 +2,11 @@ import packageJson from '@root/package.json';
 import { FrameworkError } from '@/utils/errors';
 
 /**
- * Register new Framework plugin
+ * Регистрация нового плагина фреймворка
  *
- * @param {uiFramework} instance Framework instance
- * @param {string} name Plugin name
- * @param {function} plugin Plugin constructor function
+ * @param {UiFramework} instance
+ * @param {String} name Название плагина
+ * @param {Function} plugin Функция конструктора плагина
  */
 // function registerPlugin(instance, name, plugin) {
 //   const pluginName = name.startsWith('$') ? name : `$${name}`;
@@ -22,12 +22,12 @@ import { FrameworkError } from '@/utils/errors';
 // }
 
 /**
- * Framework
+ * UI фреймворк
  *
  * @param {Array} plugins
  * @constructor
  */
-export default function uiFramework(plugins) {
+export default function UiFramework(plugins) {
   if (!Array.isArray(plugins)) {
     throw new FrameworkError('Invalid plugins given');
   }
@@ -37,10 +37,10 @@ export default function uiFramework(plugins) {
 }
 
 /**
- * Register instance of uiApp component
+ * Регистрация экземпляра компонента UiApp
  *
  * @param {Vue} app
  */
-uiFramework.prototype.setAppContainer = function setAppContainer(app) {
+UiFramework.prototype.setAppContainer = function setAppContainer(app) {
   this.$appContainer = app;
 };

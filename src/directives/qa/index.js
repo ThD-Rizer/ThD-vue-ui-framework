@@ -1,47 +1,43 @@
-import { FrameworkError } from '@/utils/errors';
 import { QA_ATTRIBUTE_NAME } from '@/constants';
+import { FrameworkError } from '@/utils/errors';
 
 export default {
   name: 'qa',
+
   /**
-   * @param {HTMLElement} el
-   * @param {string | boolean | number} value
+   * @param {HTMLElement} element
+   * @param {String | Boolean | Number} value
    * @param {Object} modifiers
    */
-  bind(el, { value, modifiers }) {
+  bind(element, { value, modifiers }) {
     const hasModifiers = !!Object.values(modifiers).length;
 
-    //  eslint-disable-next-line max-len
     if (!['string', 'number', 'boolean'].includes(typeof value) && !hasModifiers) {
       throw new FrameworkError('Invalid value given for "qa" directive');
     }
 
     if (!hasModifiers) {
-      el.setAttribute(QA_ATTRIBUTE_NAME, value);
+      element.setAttribute(QA_ATTRIBUTE_NAME, value);
 
       return;
     }
 
     Object.keys(modifiers).forEach((key) => {
-      el.setAttribute(
-        `${QA_ATTRIBUTE_NAME}-${key}`,
-        typeof value === 'undefined'
-          ? ''
-          : value,
-      );
+      const val = (typeof value === 'undefined') ? '' : value;
+
+      element.setAttribute(`${QA_ATTRIBUTE_NAME}-${key}`, val);
     });
   },
-  /**
-   * @param {HTMLElement} el
-   */
-  unbind(el) {
-    // Node type COMMENT
-    if (el.nodeType === 8) {
-      return;
-    }
 
-    Object.keys(el.attributes)
-      .filter((attr) => attr.startsWith(QA_ATTRIBUTE_NAME))
-      .forEach((attr) => el.removeAttribute(attr));
+  /**
+   * @param {HTMLElement} element
+   */
+  unbind(element) {
+    // Node type COMMENT
+    if (element.nodeType === 8) return;
+
+    Object.keys(element.attributes)
+      .filter((attribute) => attribute.startsWith(QA_ATTRIBUTE_NAME))
+      .forEach((attribute) => element.removeAttribute(attribute));
   },
 };

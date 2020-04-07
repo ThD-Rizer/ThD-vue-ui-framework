@@ -12,28 +12,28 @@ function container() {
 }
 
 /**
- * @param {HTMLElement} el
- * @param {number} x
- * @param {number} y
- * @return {boolean}
+ * @param {HTMLElement} element
+ * @param {Number} x
+ * @param {Number} y
+ * @return {Boolean}
  */
-function clickedInEl(el, x, y) {
-  const rect = el.getBoundingClientRect();
+function clickedInElement(element, x, y) {
+  const rect = element.getBoundingClientRect();
 
   return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
 }
 
 /**
- * @param {Event} e
+ * @param {Event} event
  * @param {Array} elements
- * @return {boolean}
+ * @return {Boolean}
  */
-function clickedInEls(e, elements) {
-  const { clientX: x, clientY: y } = e;
+function clickedInElements(event, elements) {
+  const { clientX: x, clientY: y } = event;
 
   // eslint-disable-next-line no-restricted-syntax
-  for (const el of elements) {
-    if (clickedInEl(el, x, y)) {
+  for (const element of elements) {
+    if (clickedInElement(element, x, y)) {
       return true;
     }
   }
@@ -42,50 +42,71 @@ function clickedInEls(e, elements) {
 }
 
 /**
- * @param {Event} e
- * @param {HTMLElement} el
+ * @param {Event} event
+ * @param {HTMLElement} element
  * @param {Object} binding
  */
-function directive(e, el, binding) {
+function directive(event, element, binding) {
   // eslint-disable-next-line no-param-reassign
   binding.args = binding.args || {};
 
+  /**
+   * @TODO: кажется избыточным, проверить можно ли удалить внутреннюю функцию и оставить примитивы
+   */
   const isActive = (binding.args.closeConditional || (() => false));
 
-  if (!e || isActive(e) === false) {
+  if (!event || isActive(event) === false) {
     return;
   }
 
-  if (('isTrusted' in e && !e.isTrusted) || ('pointerType' in e && !e.pointerType)) {
+  if (
+    ('isTrusted' in event && !event.isTrusted)
+    || ('pointerType' in event && !event.pointerType)
+  ) {
     return;
   }
 
+  /**
+   * @TODO: кажется избыточным, проверить можно ли удалить внутреннюю функцию и оставить примитивы
+   */
   const elements = (binding.args.include || (() => []))();
 
-  elements.push(el);
-  binding.value(e);
+  elements.push(element);
+  binding.value(event);
 
-  // eslint-disable-next-line no-unused-expressions
-  !clickedInEls(e, elements) && isActive(e) && binding.value(e);
+  if (!clickedInElements(event, elements) && isActive(event)) {
+    binding.value(event);
+  }
 }
 
 export default {
-  name: 'click-outside',
-  inserted(el, binding) {
-    const onClick = (e) => directive(e, el, binding);
+  name: 'clickOutside',
+
+  /**
+   * @param {HTMLElement} element
+   * @param {Object} binding
+   */
+  inserted(element, binding) {
+    const onClick = (event) => directive(event, element, binding);
 
     container().addEventListener('mousedown', onClick, true);
 
-    // eslint-disable-next-line no-param-reassign,no-underscore-dangle
-    el._clickOutside = onClick;
+    // eslint-disable-next-line no-param-reassign, no-underscore-dangle
+    element._clickOutside = onClick;
   },
-  unbind(el) {
+
+  /**
+   * @param {HTMLElement} element
+   */
+  unbind(element) {
     const app = container();
 
-    // eslint-disable-next-line no-param-reassign,no-underscore-dangle,no-unused-expressions
-    app && app.removeEventListener('mousedown', el._clickOutside, true);
+    if (app) {
+      // eslint-disable-next-line no-underscore-dangle
+      app.removeEventListener('mousedown', element._clickOutside, true);
+    }
 
-    // eslint-disable-next-line no-param-reassign,no-underscore-dangle
-    delete el._clickOutside;
+    // eslint-disable-next-line no-param-reassign, no-underscore-dangle
+    delete element._clickOutside;
   },
 };

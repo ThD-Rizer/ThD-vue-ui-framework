@@ -5,7 +5,7 @@ import FrameworkError from './FrameworkError';
  * Throws when function options is not value
  *
  * @param {String} option
- * @param {String[]?} allowedValues
+ * @param {Array<String>?} allowedValues
  * @constructor
  */
 export default function InvalidOptionValueError(option, allowedValues = []) {

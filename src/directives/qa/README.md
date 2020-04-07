@@ -1,17 +1,17 @@
-# QA directive
+# QA директива
 
-This directive adds special HTML attributes for QA testing.
+Эта директива добавляет специальные атрибуты HTML для QA тестирования.
 
-> :warning: Don't use this directive on Framework components which have `qa` property,
-> because the `qa` property do the same.
+> :warning: не используйте эту директиву для компонентов фреймворка, которые имеют свойство `qa`,
+> потому что свойство `qa` делает то же самое.
 
-## Example
+## Пример
 
 ```vue
-<ui-checkbox v-qa="'checkbox'" v-qa.checked="true" v-qa.test />
+<UiCheckbox v-qa="'checkbox'" v-qa.checked="true" v-qa.test />
 ```
 
-In DOM it looks like:
+В DOM это выглядит так:
 
 ```html
 <div data-qa="checkbox" data-qa-checked="true" data-qa-test>
