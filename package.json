@@ -9,7 +9,7 @@
     "build:icons": "node build/icons/index.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js",
     "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
-    "build:publish": "npm run build && npm publish"
+    "build:publish": "npm run lint && npm run build && npm publish"
   },
   "main": "dist/ui.umd.js",
   "module": "dist/ui.common.js",

@@ -5,6 +5,8 @@ import { pascalToKebab } from '@/utils/helpers';
  * @param {Object} component
  */
 const install = (Vue, component) => {
+  if (!component) return;
+
   const kebabName = pascalToKebab(component.name);
 
   Vue.component(component.name, component);

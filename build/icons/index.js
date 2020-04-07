@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const inputPath = '../src/icons';
+const inputPath = '../../src/icons';
 const outputFile = `${inputPath}/index.js`;
 const inputFileExt = '.svg';
 const resolve = (...args) => path.resolve(__dirname, ...args);
