@@ -5,11 +5,12 @@ import { pascalToKebab } from '@/utils/helpers';
  * @param {Object} component
  */
 const install = (Vue, component) => {
-  if (!component) return;
+  if (!component || !component.name) return;
 
-  const kebabName = pascalToKebab(component.name);
+  const camelName = component.name;
+  const kebabName = pascalToKebab(camelName);
 
-  Vue.component(component.name, component);
+  Vue.component(camelName, component);
   Vue.component(kebabName, component);
 };
 
