@@ -1,0 +1,8 @@
+{
+  "*.{js,vue}": [
+    "vue-cli-service lint"
+  ],
+  "*": [
+    "git add"
+  ]
+}

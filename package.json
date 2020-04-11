@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "vue-cli-service lint",
     "build": "npm run build:icons && npm run build:lib",
-    "build:demo": "vue-cli-service build demo/index.js",
+    "build:demo": "vue-cli-service build ./demo/index.js",
     "build:icons": "node build/icons/index.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js",
     "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
@@ -24,9 +24,9 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "7.8.3",
     "@babel/plugin-proposal-optional-chaining": "7.9.0",
     "@babel/plugin-proposal-pipeline-operator": "7.8.3",
-    "@vue/cli-plugin-babel": "4.3.0",
-    "@vue/cli-plugin-eslint": "4.3.0",
-    "@vue/cli-service": "4.3.0",
+    "@vue/cli-plugin-babel": "4.3.1",
+    "@vue/cli-plugin-eslint": "4.3.1",
+    "@vue/cli-service": "4.3.1",
     "@vue/eslint-config-airbnb": "5.0.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.1.0",
@@ -34,22 +34,14 @@
     "eslint-import-resolver-webpack": "0.12.1",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-vue": "6.2.2",
-    "lint-staged": "10.1.1",
+    "husky": "4.2.5",
+    "lint-staged": "10.1.3",
     "sass": "1.26.3",
     "sass-loader": "8.0.2",
     "vue": "2.6.11",
     "vue-router": "3.1.6",
     "vue-template-compiler": "2.6.11",
     "webpack": "4.42.1"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
   },
   "publishConfig": {
     "registry": "http://npm.thd-dev.ru/"
