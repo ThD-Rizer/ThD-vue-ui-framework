@@ -3,22 +3,18 @@
   "version": "0.1.0",
   "description": "UI framework for Vue.js",
   "author": "ThD.Rizer <thd.rizer@gmail.com>",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "lint": "vue-cli-service lint",
     "build": "npm run build:icons && npm run build:lib",
+    "build:demo": "vue-cli-service build demo/index.js",
     "build:icons": "node build/icons/index.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js",
     "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
-    "build:publish": "npm run lint && npm run build && npm publish"
+    "build:publish": "npm run lint && npm run build && npm publish",
+    "dev": "vue-cli-service serve --port 1221 ./src/docs.js"
   },
-  "main": "dist/ui.umd.js",
-  "module": "dist/ui.common.js",
-  "files": [
-    "dist/",
-    "src/",
-    "package.json",
-    "README.md"
-  ],
   "dependencies": {
     "body-scroll-lock": "3.0.1",
     "normalize.scss": "0.1.0",
@@ -42,13 +38,13 @@
     "sass": "1.26.3",
     "sass-loader": "8.0.2",
     "vue": "2.6.11",
+    "vue-router": "3.1.6",
     "vue-template-compiler": "2.6.11",
     "webpack": "4.42.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-  "license": "ISC",
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint",
@@ -58,6 +54,14 @@
   "publishConfig": {
     "registry": "http://npm.thd-dev.ru/"
   },
+  "files": [
+    "dist/",
+    "src/",
+    "package.json",
+    "README.md"
+  ],
+  "main": "dist/ui.umd.js",
+  "module": "dist/ui.common.js",
   "repository": {
     "url": "git@gitlab.com:thd.rizer_projects/personal/thd-vue-ui-framework.git",
     "type": "git"
