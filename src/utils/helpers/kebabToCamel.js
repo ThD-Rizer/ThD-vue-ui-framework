@@ -1,22 +1,26 @@
+import { InvalidTypeError } from '@/utils/errors';
+import { isString } from '@/utils/inspect';
+
 /**
- * Format string from kebab case to camel case
+ * Format string from `kebab-case` to `camelCase`
  *
- * @param {String} kebab
+ * @param {String} str
  * @returns {String}
  */
-export default function kebabToCamel(kebab) {
-  /**
-   * @TODO: add validations
-   */
+export default function kebabToCamel(str) {
+  if (!isString(str)) {
+    throw new InvalidTypeError(str, 'str', 'String');
+  }
 
-  return Object.entries(kebab.split('-'))
-    .reduce((acc, [index, part]) => {
-      if (Number(index) === 0) {
-        return acc + part.toLocaleLowerCase();
-      }
+  const chars = str.split('-');
 
-      const firstLetter = part.charAt(0).toLocaleUpperCase();
+  return chars.reduce((acc, part, index) => {
+    const lower = part.toLocaleLowerCase();
+    const firstLetter = lower.charAt(0).toLocaleUpperCase();
+    const char = (index > 0)
+      ? firstLetter + lower.substr(1)
+      : lower;
 
-      return acc + firstLetter + part.substr(1).toLocaleLowerCase();
-    }, '');
+    return acc + char;
+  }, '');
 }

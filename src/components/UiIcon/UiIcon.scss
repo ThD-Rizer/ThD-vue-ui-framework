@@ -1,0 +1,17 @@
+.root {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  flex-shrink: 0;
+  backface-visibility: hidden;
+
+  &:not(.colorDisabled) svg {
+    fill: currentColor;
+  }
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}

@@ -1,13 +1,16 @@
-import { extend } from './utils';
+import { isArray } from '@/utils/inspect';
 
 /**
  * Base error
- *
- * @param {String | Array} message
- * @constructor
  */
-export default function FrameworkError(message) {
-  this.message = `[UI Framework] ${Array.isArray(message) ? message.join('. ') : message}`;
-}
+export default class FrameworkError extends Error {
+  /**
+   * @param {String | Array<String>} messages
+   */
+  constructor(messages) {
+    const message = isArray(messages) ? messages.join('. ') : messages;
 
-extend(Error, FrameworkError);
+    super(`[UI Framework] ${message}`);
+    this.name = this.constructor.name;
+  }
+}

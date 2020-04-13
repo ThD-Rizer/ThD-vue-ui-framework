@@ -5,9 +5,11 @@ const logger = new Logger({
 });
 
 /**
+ * Vue property validator
+ *
  * @param {String} name
  * @param {Array} options
- * @returns {Object}
+ * @returns {{ validator: Function }}
  */
 export default function propValidator(name, options) {
   return {

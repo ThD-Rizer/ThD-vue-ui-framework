@@ -31,13 +31,8 @@ $gridMaxWidth: (
   'xl': 1140px,
 );
 
-// Transition settings
-$primaryTransition: all .3s cubic-bezier(.25, .8, .5, 1);
-
-$transitionDuration: 0.3s !default;
-$transitionTimeFunction: ease-in-out !default;
-$transition: $transitionDuration $transitionTimeFunction !default;
-
+// Typography
+$fontSize: 16px;
 $fontFamily: 'Montserrat', 'system', sans-serif;
 
 // Color settings
@@ -67,3 +62,14 @@ $colorGrayDark: #343a40;
 $colorBlack: #333333;
 
 $colorBrandBlue: #4397ee;
+
+// Transition settings
+$primaryTransition: all .3s cubic-bezier(.25, .8, .5, 1);
+
+$transitionDuration: 0.3s !default;
+$transitionTimeFunction: ease-in-out !default;
+$transition: $transitionDuration $transitionTimeFunction !default;
+
+// ...
+$spacerSize: 4px !default;
+$spacerMaxValue: 20 !default;

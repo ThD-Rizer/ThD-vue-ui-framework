@@ -1,12 +1,15 @@
+import { InvalidTypeError } from '@/utils/errors';
 import { isNumber } from '@/utils/inspect';
 
 /**
+ * Counter factory
+ *
  * @param {Number} value
  * @returns {Object}
  */
 export default function makeCounter(value = 0) {
   if (!isNumber(value)) {
-    throw new Error(`Invalid type for argument "value", expected "number" got "${typeof value}"`);
+    throw new InvalidTypeError(value, 'value', 'Number');
   }
 
   let count = value;
@@ -18,7 +21,7 @@ export default function makeCounter(value = 0) {
      */
     increase(step = 1) {
       if (!isNumber(step)) {
-        throw new Error(`Invalid type for argument "step", expected "number" got "${typeof step}"`);
+        throw new InvalidTypeError(step, 'step', 'Number');
       }
 
       count += step;
@@ -32,7 +35,7 @@ export default function makeCounter(value = 0) {
      */
     decrease(step = 1) {
       if (!isNumber(step)) {
-        throw new Error(`Invalid type for argument "step", expected "number" got "${typeof step}"`);
+        throw new InvalidTypeError(step, 'step', 'Number');
       }
 
       count -= step;
@@ -46,9 +49,7 @@ export default function makeCounter(value = 0) {
      */
     reset(newValue = value) {
       if (!isNumber(newValue)) {
-        throw new Error(
-          `Invalid type for argument "newValue", expected "number" got "${typeof newValue}"`,
-        );
+        throw new InvalidTypeError(newValue, 'newValue', 'Number');
       }
 
       count = newValue;

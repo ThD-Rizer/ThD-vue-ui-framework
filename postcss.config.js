@@ -1,5 +1,9 @@
+/* eslint-disable global-require */
+
 module.exports = {
-  plugins: {
-    autoprefixer: {},
-  },
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-flexbugs-fixes'),
+    require('postcss-modules-local-by-default'),
+  ],
 };

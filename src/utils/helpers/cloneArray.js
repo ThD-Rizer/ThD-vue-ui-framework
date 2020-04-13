@@ -1,3 +1,4 @@
+import { InvalidTypeError } from '@/utils/errors';
 import { isArray } from '@/utils/inspect';
 
 /**
@@ -8,7 +9,7 @@ import { isArray } from '@/utils/inspect';
  */
 export default function cloneArray(array) {
   if (!isArray(array)) {
-    throw new Error(`Invalid type for argument "array", expected "array" got "${typeof array}"`);
+    throw new InvalidTypeError(array, 'array', 'Array');
   }
 
   return [].concat(array);

@@ -3,10 +3,19 @@
 // export { default as shuffle } from 'lodash.shuffle';
 // export { default as throttle } from 'lodash.throttle';
 
+export { default as asyncDelay } from './asyncDelay';
 export { default as cloneArray } from './cloneArray';
-export { default as makeCounter } from './makeCounter';
 export { default as generateHash } from './generateHash';
-export { default as kebabToPascal } from './kebabToPascal';
 export { default as kebabToCamel } from './kebabToCamel';
+export { default as kebabToPascal } from './kebabToPascal';
+export { default as leadingZero } from './leadingZero';
+export { default as makeCounter } from './makeCounter';
+export { default as padStart } from './padStart';
 export { default as pascalToKebab } from './pascalToKebab';
+export { default as percentOfInteger } from './percentOfInteger';
 export { default as propValidator } from './propValidator';
+export { default as randomArrayElement } from './randomArrayElement';
+export { default as randomInteger } from './randomInteger';
+export { default as trimLeft } from './trimLeft';
+export { default as trimRight } from './trimRight';
+export { default as trimSlotText } from './trimSlotText';

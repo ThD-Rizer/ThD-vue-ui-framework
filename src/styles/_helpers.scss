@@ -1,5 +1,19 @@
 @import 'variables';
 
+// Get size in pixels and recalculate it to rems
+@function rem($size) {
+  @return $size / $fontSize * 1rem;
+}
+
+// Calculate spacer
+@function spacer($size: 1, $inPixels: false) {
+  @if ($inPixels == true) {
+    @return $spacerSize * $size;
+  }
+
+  @return rem($spacerSize * $size);
+}
+
 // Grid helpers
 
 @function breakpointMinSize($breakpoint) {

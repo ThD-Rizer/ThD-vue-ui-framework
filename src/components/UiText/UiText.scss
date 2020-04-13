@@ -1,0 +1,61 @@
+@mixin safeZone($top, $bottom) {
+  padding-top: spacer($top);
+  padding-bottom: spacer($bottom);
+  margin-bottom: spacer(4);
+}
+
+:local {
+  .h1, .h2, .h3 {
+    margin-top: 0;
+    font-weight: 700;
+    @include safeZone(2, 3);
+  }
+
+  .h1 {
+    font-size: rem(24px);
+    line-height: rem(28px);
+  }
+
+  .h2 {
+    font-size: rem(20px);
+    line-height: rem(24px);
+
+  }
+
+  .h3 {
+    font-size: rem(16px);
+    line-height: rem(20px);
+  }
+
+  .text {
+    line-height: rem(20px);
+
+    @include safeZone(2, 3);
+  }
+
+  .thin {
+    font-weight: 100;
+  }
+
+  .light {
+    font-weight: 300;
+  }
+
+  .normal {
+    font-weight: 400;
+  }
+
+  .medium {
+    font-weight: 500;
+  }
+
+  .bold {
+    font-weight: 700;
+  }
+
+  //@each $key, $value in $colors {
+  //  .color-#{$key} {
+  //    color: $value;
+  //  }
+  //}
+}

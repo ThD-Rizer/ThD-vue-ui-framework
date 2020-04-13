@@ -1,6 +1,7 @@
 export { default as isArray } from './isArray';
 export { default as isBoolean } from './isBoolean';
 export { default as isFunction } from './isFunction';
+export { default as isNaN } from './isNaN';
 export { default as isNil } from './isNil';
 export { default as isNull } from './isNull';
 export { default as isNumber } from './isNumber';

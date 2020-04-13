@@ -1,21 +1,20 @@
-import { extend } from './utils';
 import FrameworkError from './FrameworkError';
 
 /**
  * Throws when function options is not value
- *
- * @param {String} option
- * @param {Array<String>?} allowedValues
- * @constructor
  */
-export default function InvalidOptionValueError(option, allowedValues = []) {
-  const messages = [`Invalid value given for option "${option}"`];
+export default class InvalidOptionValueError extends FrameworkError {
+  /**
+   * @param {String} option
+   * @param {Array<String>?} allowedValues
+   */
+  constructor(option, allowedValues = []) {
+    const messages = [`Invalid value given for option "${option}"`];
 
-  if (allowedValues.length) {
-    messages.push(`Allowed values: ${allowedValues.join(', ')}`);
+    if (allowedValues.length) {
+      messages.push(`Allowed values: ${allowedValues.join(', ')}`);
+    }
+
+    super(messages);
   }
-
-  FrameworkError.call(this, messages);
 }
-
-extend(FrameworkError, InvalidOptionValueError);

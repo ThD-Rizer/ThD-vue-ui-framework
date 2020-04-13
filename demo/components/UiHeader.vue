@@ -1,18 +1,29 @@
 <template>
   <header :class="$style.header">
-    <UiTabs :value="$route.path">
-      <UiContainer>
-        <UiTab
-          v-for="(item, index) in menu"
-          :key="index"
-          :name="item.path"
-          :to="item.path"
-          native
-        >
-          {{ item.title }}
-        </UiTab>
-      </UiContainer>
-    </UiTabs>
+    <UiContainer>
+      <UiLink
+        v-for="(item, index) in menu"
+        :key="index"
+        :to="item.path"
+        :native="true"
+      >
+        {{ item.text }}
+      </UiLink>
+    </UiContainer>
+
+    <!--<UiTabs :value="$route.path">-->
+    <!--  <UiContainer>-->
+    <!--    <UiTab-->
+    <!--      v-for="(item, index) in menu"-->
+    <!--      :key="index"-->
+    <!--      :name="item.path"-->
+    <!--      :to="item.path"-->
+    <!--      native-->
+    <!--    >-->
+    <!--      {{ item.title }}-->
+    <!--    </UiTab>-->
+    <!--  </UiContainer>-->
+    <!--</UiTabs>-->
   </header>
 </template>
 

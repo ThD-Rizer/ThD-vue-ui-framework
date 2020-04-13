@@ -1,4 +1,7 @@
-export { default as FrameworkError } from './FrameworkError';
+import FrameworkError from './FrameworkError';
+
 export { default as ComponentInjectionError } from './ComponentInjectionError';
 export { default as InvalidOptionValueError } from './InvalidOptionValueError';
 export { default as InvalidTypeError } from './InvalidTypeError';
+
+export default FrameworkError;

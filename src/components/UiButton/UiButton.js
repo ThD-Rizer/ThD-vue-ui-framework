@@ -1,5 +1,6 @@
-import { propValidator } from '@/utils/helpers';
+import { trimSlotText, propValidator } from '@/utils/helpers';
 import routable from '@/mixins/routable';
+
 import $style from './UiButton.scss';
 
 const tagValidator = propValidator('tag', ['button', 'a', 'div']);
@@ -145,11 +146,11 @@ export default {
       return this.$createElement(tag, data, childNodes);
     },
     genDefaultSlot() {
-      const { default: defaultSlot } = this.$scopedSlots;
+      const defaultSlot = this.$scopedSlots.default;
 
       if (!defaultSlot) return null;
 
-      return defaultSlot();
+      return trimSlotText(defaultSlot());
     },
     genIconSlot() {
       const { icon } = this.$scopedSlots;

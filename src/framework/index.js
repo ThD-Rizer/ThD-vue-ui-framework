@@ -1,5 +1,5 @@
 import packageJson from '@root/package.json';
-import { FrameworkError } from '@/utils/errors';
+import FrameworkError from '@/utils/errors';
 
 /**
  * Регистрация нового плагина фреймворка

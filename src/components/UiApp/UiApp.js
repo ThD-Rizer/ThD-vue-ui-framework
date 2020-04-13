@@ -1,4 +1,4 @@
-import { FrameworkError } from '@/utils/errors';
+import FrameworkError from '@/utils/errors';
 import { provide as RegistrableProvide } from '@/mixins/registrable';
 
 const containers = {

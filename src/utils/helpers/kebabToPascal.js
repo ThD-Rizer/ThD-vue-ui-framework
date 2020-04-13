@@ -1,17 +1,23 @@
+import { InvalidTypeError } from '@/utils/errors';
+import { isString } from '@/utils/inspect';
+
 /**
- * Format string from kebab case to pascal case
+ * Format string from `kebab-case` to `PascalCase`
  *
- * @param {String} kebab
+ * @param {String} str
  * @returns {String}
  */
-export default function kebabToPascal(kebab) {
-  /**
-   * @TODO: add validations
-   */
+export default function kebabToPascal(str) {
+  if (!isString(str)) {
+    throw new InvalidTypeError(str, 'str', 'String');
+  }
 
-  return kebab.split('-').reduce((acc, part) => {
-    const firstLetter = part.charAt(0).toLocaleUpperCase();
+  const chars = str.split('-');
 
-    return acc + firstLetter + part.substr(1).toLocaleLowerCase();
+  return chars.reduce((acc, part) => {
+    const lower = part.toLocaleLowerCase();
+    const firstLetter = lower.charAt(0).toLocaleUpperCase();
+
+    return acc + firstLetter + lower.substr(1);
   }, '');
 }

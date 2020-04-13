@@ -1,3 +1,4 @@
+import { InvalidTypeError } from '@/utils/errors';
 import { isNumber } from '@/utils/inspect';
 
 /**
@@ -8,7 +9,7 @@ import { isNumber } from '@/utils/inspect';
  */
 export default function generateHash(length = 8) {
   if (!isNumber(length)) {
-    throw new Error(`Invalid type for argument "length", expected "number" got "${typeof length}"`);
+    throw new InvalidTypeError(length, 'length', 'Number');
   }
 
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

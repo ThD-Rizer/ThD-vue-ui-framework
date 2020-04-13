@@ -1,0 +1,18 @@
+.root {
+  border-bottom: 1px solid currentColor;
+  color: $colorPrimary;
+  text-decoration: none;
+  transition: $transition;
+  cursor: pointer;
+
+  &.isPseudo {}
+
+  &.isDisabled {}
+
+  &.isActive {}
+}
+
+.isPseudo {
+  border-bottom-style: dashed;
+}
+

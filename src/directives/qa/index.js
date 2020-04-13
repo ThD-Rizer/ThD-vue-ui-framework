@@ -1,5 +1,5 @@
 import { QA_ATTRIBUTE_NAME } from '@/constants';
-import { FrameworkError } from '@/utils/errors';
+import FrameworkError from '@/utils/errors';
 
 export default {
   name: 'qa',

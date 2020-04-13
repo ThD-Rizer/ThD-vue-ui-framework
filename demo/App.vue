@@ -5,10 +5,9 @@
     <UiContainer>
       <UiText
         tag="div"
-        color="dusty-gray"
         weight="medium"
       >
-        Framework version {{ version }}
+        UI Framework version {{ version }}
       </UiText>
 
       <UiText type="h1">
@@ -22,17 +21,17 @@
 
 <script>
   import packageJson from '@root/package.json';
-  import routes from '@root/demo/router/routes';
+  import routes from './router/routes';
 
-  import uiHeader from '@root/demo/components/UiHeader';
+  import UiHeader from './components/UiHeader';
 
   export default {
-    name: 'DocsApplication',
+    name: 'DemoApplication',
     components: {
-      uiHeader,
+      UiHeader,
     },
     data: () => ({
-      routes: routes.slice(1),
+      routes,
       version: packageJson.version,
     }),
     computed: {

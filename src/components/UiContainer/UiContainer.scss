@@ -1,34 +1,32 @@
-:local {
-  .root {
-    width: calc(100% - 30px);
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    box-sizing: content-box;
+.root {
+  width: calc(100% - 30px);
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: content-box;
 
-    &.isFluid {
-      max-width: map-get($gridMaxWidth, 'xl');
+  &.isFluid {
+    max-width: map-get($gridMaxWidth, 'xl');
+  }
+
+  &:not(.isFluid) {
+    max-width: calc(100% - 15px);
+
+    @include mediaMin('sm') {
+      max-width: map-get($gridMaxWidth, 'sm');
     }
 
-    &:not(.isFluid) {
-      max-width: calc(100% - 15px);
+    @include mediaMin('md') {
+      max-width: map-get($gridMaxWidth, 'md');
+    }
 
-      @include mediaMin('sm') {
-        max-width: map-get($gridMaxWidth, 'sm');
-      }
+    @include mediaMin('lg') {
+      max-width: map-get($gridMaxWidth, 'lg');
+    }
 
-      @include mediaMin('md') {
-        max-width: map-get($gridMaxWidth, 'md');
-      }
-
-      @include mediaMin('lg') {
-        max-width: map-get($gridMaxWidth, 'lg');
-      }
-
-      @include mediaMin('xl') {
-        max-width: map-get($gridMaxWidth, 'xl');
-      }
+    @include mediaMin('xl') {
+      max-width: map-get($gridMaxWidth, 'xl');
     }
   }
 }
