@@ -5,6 +5,10 @@
   transition: $transition;
   cursor: pointer;
 
+  @include hover {
+    border-bottom-color: transparent;
+  }
+
   &.isPseudo {}
 
   &.isDisabled {}
@@ -15,4 +19,3 @@
 .isPseudo {
   border-bottom-style: dashed;
 }
-

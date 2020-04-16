@@ -1,14 +1,10 @@
 <template>
   <UiApp>
-    <UiHeader :menu="routes" />
-
     <UiContainer>
-      <UiText
-        tag="div"
-        weight="medium"
-      >
-        UI Framework version {{ version }}
-      </UiText>
+      <UiHeader
+        :version="version"
+        :menu="routes"
+      />
 
       <UiText type="h1">
         {{ title }}

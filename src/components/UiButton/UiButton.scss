@@ -8,10 +8,6 @@
 
   &.isActive {
     background-color: darken($backgroundColor, 15%);
-
-    @include hover {
-      background-color: darken($backgroundColor, 25%);
-    }
   }
 }
 
@@ -40,18 +36,18 @@
   }
 
   &.sizeSmall {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: rem(10px);
+    line-height: rem(12px);
   }
 
   &.sizeNormal {
-    font-size: 13px;
-    line-height: 16px;
+    font-size: rem(13px);
+    line-height: rem(16px);
   }
 
   &.sizeLarge {
-    font-size: 16px;
-    line-height: 18px;
+    font-size: rem(16px);
+    line-height: rem(18px);
   }
 
   &.isRound {
@@ -64,6 +60,11 @@
 
   &.isSquared {
     border-radius: 0;
+  }
+
+  &.hasIcon {
+    width: 40px;
+    height: 40px;
   }
 
   &.isDisabled {
@@ -87,18 +88,19 @@
   }
 }
 
-$paddingXSmall: 8px;
-$paddingYSmall: 15px;
-$paddingXNormal: 12px;
-$paddingYNormal: 20px;
-$paddingXLarge: 16px;
-$paddingYLarge: 30px;
+$paddingXSmall: spacer(2);
+$paddingYSmall: spacer(4);
+$paddingXNormal: spacer(3);
+$paddingYNormal: spacer(5);
+$paddingXLarge: spacer(4);
+$paddingYLarge: spacer(8);
 
 .inner {
   display: flex;
   align-items: center;
   flex: 1 0 auto;
   width: inherit;
+  height: inherit;
   border-radius: inherit;
   color: inherit;
   position: relative;
@@ -129,19 +131,19 @@ $paddingYLarge: 30px;
     padding: $paddingXLarge;
   }
 
-  .textAlignLeft & {
+  .contentAlignLeft & {
     justify-content: flex-start;
   }
 
-  .textAlignCenter & {
+  .contentAlignCenter & {
     justify-content: center;
   }
 
-  .textAlignRight & {
+  .contentAlignRight & {
     justify-content: flex-end;
   }
 
-  .textAlignJustify & {
+  .contentAlignJustify & {
     justify-content: space-between;
   }
 }

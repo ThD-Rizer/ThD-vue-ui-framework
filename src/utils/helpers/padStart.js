@@ -1,8 +1,9 @@
 import padStart from 'lodash.padstart';
 
 /**
- * @param string
- * @param length
- * @param chars
+ * @param {String} string
+ * @param {Number} length
+ * @param {String} chars
+ * @returns {String}
  */
 export default padStart;

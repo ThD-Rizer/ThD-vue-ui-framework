@@ -15,11 +15,10 @@ export default function kebabToCamel(str) {
   const chars = str.split('-');
 
   return chars.reduce((acc, part, index) => {
-    const lower = part.toLocaleLowerCase();
-    const firstLetter = lower.charAt(0).toLocaleUpperCase();
+    const firstLetter = part.charAt(0).toLocaleUpperCase();
     const char = (index > 0)
-      ? firstLetter + lower.substr(1)
-      : lower;
+      ? firstLetter + part.substr(1)
+      : part;
 
     return acc + char;
   }, '');

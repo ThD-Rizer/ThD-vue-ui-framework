@@ -1,16 +1,14 @@
 <template>
-  <div :class="$style.section">
-    <!--<UiText-->
-    <!--  v-if="title"-->
-    <!--  type="h2"-->
-    <!--&gt;-->
-    <!--  {{ title }}-->
-    <!--</UiText>-->
-
-    {{ title }}
+  <section :class="$style.root">
+    <UiText
+      v-if="title"
+      type="h2"
+    >
+      {{ title }}
+    </UiText>
 
     <slot />
-  </div>
+  </section>
 </template>
 
 <script>
@@ -26,9 +24,7 @@
 </script>
 
 <style lang="scss" module>
-  // @import '../../styles/helpers';
-
-  .section:not(:last-child) {
-    // margin-bottom: spacer(8);
+  .root:not(:last-child) {
+    margin-bottom: spacer(8);
   }
 </style>

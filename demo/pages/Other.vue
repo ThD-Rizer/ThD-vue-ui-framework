@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <UiMain>
     Other
-  </main>
+  </UiMain>
 </template>
 
 <script>

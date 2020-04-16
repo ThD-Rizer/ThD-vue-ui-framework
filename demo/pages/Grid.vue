@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <UiMain>
     Grid
-  </main>
+  </UiMain>
 </template>
 
 <script>

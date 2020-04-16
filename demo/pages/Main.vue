@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <UiMain>
     Hello
-  </main>
+  </UiMain>
 </template>
 
 <script>

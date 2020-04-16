@@ -3,14 +3,14 @@ import { pascalToKebab } from '@/utils/helpers';
 const page = (component) => ({
   path: `/${pascalToKebab(component)}`,
   component: () => import(`@root/demo/pages/${component}.vue`),
-  text: component,
+  title: component,
 });
 
 export default [
   {
     path: '/',
     component: () => import('@root/demo/pages/Main.vue'),
-    text: 'Main',
+    title: 'Main',
   },
   page('Typography'),
   page('Buttons'),

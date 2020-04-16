@@ -1,10 +1,10 @@
 <template>
-  <main>
+  <UiMain>
     <UiInput
       label="Label"
       value="test"
     />
-  </main>
+  </UiMain>
 </template>
 
 <script>

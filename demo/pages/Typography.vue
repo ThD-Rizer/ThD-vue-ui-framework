@@ -1,12 +1,9 @@
 <template>
-  <main>
+  <UiMain>
     <UiText
       type="h1"
       weight="normal"
     >
-      Headline/H1
-    </UiText>
-    <UiText type="h0">
       Headline/H0
     </UiText>
     <UiText type="h1">
@@ -74,7 +71,7 @@
         Pseudo Link
       </UiLink>
     </p>
-  </main>
+  </UiMain>
 </template>
 
 <script>

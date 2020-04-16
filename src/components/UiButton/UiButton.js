@@ -1,7 +1,10 @@
-import { trimSlotText, propValidator } from '@/utils/helpers';
+import { trimSlotText, propValidator, kebabToCamel } from '@/utils/helpers';
 import routable from '@/mixins/routable';
+import { factoryStylable } from '@/mixins/stylable';
 
-import $style from './UiButton.scss';
+import defaultStyles from './UiButton.scss';
+
+const stylable = factoryStylable(defaultStyles);
 
 const tagValidator = propValidator('tag', ['button', 'a', 'div']);
 const typeValidator = propValidator('type', ['button', 'submit', 'reset']);
@@ -19,12 +22,13 @@ const themeValidator = propValidator('theme', [
   'background-brand',
   'outline-brand',
 ]);
-const textAlignValidator = propValidator('textAlign', ['left', 'center', 'right', 'justify']);
+const contentAlignValidator = propValidator('contentAlign', ['left', 'center', 'right', 'justify']);
 
 export default {
   name: 'UiButton',
   mixins: [
     routable,
+    stylable,
   ],
   props: {
     tag: {
@@ -48,7 +52,7 @@ export default {
     },
     theme: {
       type: String,
-      default: null,
+      default: 'secondary',
       ...themeValidator,
     },
     fluid: {
@@ -71,6 +75,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    hasIcon: {
+      type: Boolean,
+      default: false,
+    },
     active: {
       type: Boolean,
       default: false,
@@ -79,64 +87,43 @@ export default {
       type: Boolean,
       default: false,
     },
-    textAlign: {
+    contentAlign: {
       type: String,
       default: 'center',
-      ...textAlignValidator,
-    },
-    innerStyle: {
-      type: [Object, String],
-      default: null,
+      ...contentAlignValidator,
     },
   },
+
   computed: {
     attributes() {
-      return (this.tag === 'button')
-        ? { type: this.type }
-        : null;
-    },
-    hasIcon() {
-      return this.$scopedSlots.icon;
+      if (this.tag !== 'button') return null;
+      return { type: this.type };
     },
     classesRoot() {
       const {
         size,
         theme,
         flat,
-        textAlign,
+        contentAlign,
       } = this;
       return {
-        [$style.root]: true,
-        [$style.isDisabled]: this.disabled,
-        [$style.isFluid]: this.fluid,
-        [$style.isRound]: this.round,
-        [$style.isCircle]: this.circle,
-        [$style.isSquared]: this.squared,
-        [$style.isFlat]: flat,
-        [$style.hasIcon]: this.hasIcon,
-        [$style.isDepressed]: (this.depressed && !flat),
-        [$style.isActive]: this.active,
-        [$style.sizeSmall]: size === 'small',
-        [$style.sizeNormal]: size === 'normal',
-        [$style.sizeLarge]: size === 'large',
-        [$style.themePrimary]: theme === 'primary',
-        [$style.themeSecondary]: theme === 'secondary',
-        [$style.themeSuccess]: theme === 'success',
-        [$style.themeDanger]: theme === 'danger',
-        [$style.themeWarning]: theme === 'warning',
-        [$style.themeInfo]: theme === 'info',
-        [$style.themeLight]: theme === 'light',
-        [$style.themeDark]: theme === 'dark',
-        [$style.themeSilent]: theme === 'silent',
-        [$style.themeBackgroundBrand]: theme === 'background-brand',
-        [$style.themeOutlineBrand]: theme === 'outline-brand',
-        [$style.textAlignLeft]: textAlign === 'left',
-        [$style.textAlignCenter]: textAlign === 'center',
-        [$style.textAlignRight]: textAlign === 'right',
-        [$style.textAlignJustify]: textAlign === 'justify',
+        [this.styles.root]: true,
+        [this.styles.isFluid]: this.fluid,
+        [this.styles.isRound]: this.round,
+        [this.styles.isCircle]: this.circle,
+        [this.styles.isSquared]: this.squared,
+        [this.styles.isFlat]: flat,
+        [this.styles.isDepressed]: (this.depressed && !flat),
+        [this.styles.isActive]: this.active,
+        [this.styles.hasIcon]: this.hasIcon,
+        [this.styles.isDisabled]: this.disabled,
+        [this.styles[kebabToCamel(`size-${size}`)]]: size,
+        [this.styles[kebabToCamel(`theme-${theme}`)]]: theme,
+        [this.styles[kebabToCamel(`contentAlign-${contentAlign}`)]]: contentAlign,
       };
     },
   },
+
   methods: {
     genRoot(childNodes = []) {
       const { tag, data } = this.generateRouterLink(this.classesRoot);
@@ -152,27 +139,19 @@ export default {
 
       return trimSlotText(defaultSlot());
     },
-    genIconSlot() {
-      const { icon } = this.$scopedSlots;
-
-      if (!icon) return null;
-
-      return icon();
-    },
-    genContent() {
-      const defaultSlot = this.genDefaultSlot();
-
-      if (!this.hasIcon && !defaultSlot) return null;
-
+    genContent(childNodes = []) {
       return this.$createElement('span', {
-        class: $style.inner,
-        style: this.innerStyle,
-      }, this.genIconSlot() || defaultSlot);
+        class: this.styles.inner,
+      }, childNodes);
     },
   },
+
   render() {
+    console.log('styles:', this.styles);
     return this.genRoot([
-      this.genContent(),
+      this.genContent([
+        this.genDefaultSlot(),
+      ]),
     ]);
   },
 };
