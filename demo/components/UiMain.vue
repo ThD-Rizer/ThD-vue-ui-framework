@@ -1,6 +1,6 @@
 <template>
   <main :class="$style.root">
-    <slot />
+    <slot name="default" />
   </main>
 </template>
 

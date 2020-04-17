@@ -19,8 +19,6 @@ const themeValidator = propValidator('theme', [
   'light',
   'dark',
   'silent',
-  'background-brand',
-  'outline-brand',
 ]);
 const contentAlignValidator = propValidator('contentAlign', ['left', 'center', 'right', 'justify']);
 

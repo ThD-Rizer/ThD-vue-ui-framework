@@ -15,7 +15,7 @@ export default {
       type: String,
       default: 'div',
     },
-    name: {
+    id: {
       type: String,
       default: 'app',
     },
@@ -43,7 +43,7 @@ export default {
     genRoot(childNodes = []) {
       return this.$createElement(this.tag, {
         attrs: {
-          id: this.name,
+          id: this.id,
         },
       }, childNodes);
     },

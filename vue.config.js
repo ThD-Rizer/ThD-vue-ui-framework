@@ -12,7 +12,7 @@ module.exports = {
     requireModuleExtension: false,
     loaderOptions: {
       scss: {
-        prependData: '@import "@/styles/global.scss";',
+        prependData: '@import "@/styles/_global.scss";',
       },
       css: {
         modules: {

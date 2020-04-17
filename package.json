@@ -1,9 +1,8 @@
 {
   "name": "@thd/vue-ui-framework",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "UI framework for Vue.js",
   "author": "ThD.Rizer <thd.rizer@gmail.com>",
-  "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "lint": "vue-cli-service lint",

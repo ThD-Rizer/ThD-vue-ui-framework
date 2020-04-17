@@ -1,4 +1,4 @@
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodyScrollLock.es6';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodyScrollLock';
 import { inject as RegistrableInject } from '@/mixins/registrable';
 // import Toggleable from '@/mixins/toggleable';
 

@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'helpers';
+//@import './variables.scss';
+//@import './helpers.scss';
 
 @mixin clearFix {
   &::after {
@@ -184,7 +184,6 @@
     $left: nth($args, 1);
   }
 
-
   @if ($top != false) {
     top: $top;
   }
@@ -226,6 +225,7 @@
 }
 
 // ========== Project mixins:
+/*
 @mixin gradientBrand {
   @include backgroundLinearGradient($colorDanger, $colorBrandBlue, $colorBrandBlue);
 }
@@ -235,3 +235,4 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+*/

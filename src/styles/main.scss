@@ -6,7 +6,6 @@
 body {
   -moz-osx-font-smoothing: grayscale; /* 1 */
   -webkit-font-smoothing: antialiased; /* 1 */
-  background-color: darken($colorWhite, 5%);
   font-family: $fontFamily;
   font-size: $fontSize;
   line-height: 1.5;
@@ -18,16 +17,4 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-#appMain {
-  flex-basis: 100%;
 }

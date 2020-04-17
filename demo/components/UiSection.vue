@@ -7,7 +7,7 @@
       {{ title }}
     </UiText>
 
-    <slot />
+    <slot name="default" />
   </section>
 </template>
 
