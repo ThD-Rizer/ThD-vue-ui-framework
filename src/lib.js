@@ -1,14 +1,19 @@
-import install from '@/plugins/install';
+import {
+  frameworkPlugin,
+  componentsPlugin,
+  directivesPlugin,
+  installPlugin,
+} from '@/install';
 
-export { default as FrameworkPlugin } from '@/plugins/framework';
-export { default as ComponentsPlugin } from '@/plugins/components';
-export { default as DirectivesPlugin } from '@/plugins/directives';
+export { frameworkPlugin };
+export { componentsPlugin };
+export { directivesPlugin };
 
 export * from '@/components';
 export * from '@/directives';
 
-export default install;
+export default installPlugin;
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(install);
+  window.Vue.use(installPlugin);
 }

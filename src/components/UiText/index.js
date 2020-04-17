@@ -1,5 +1,5 @@
-import { generatePlugin } from '@/utils/components';
+import { factoryPlugin } from '@/utils/components';
 
 import UiText from './UiText';
 
-export default generatePlugin(UiText);
+export default factoryPlugin(UiText);

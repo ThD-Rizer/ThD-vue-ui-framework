@@ -2,7 +2,7 @@
   <UiMain>
     <p>
       <UiButton
-        :themeStyles="themeStyles"
+        :customStyles="customStyles"
         :resetDefaultStyles="resetDefaultStyles"
         @click="themeTest"
       >
@@ -16,23 +16,40 @@
   export default {
     name: 'Testing',
     data: () => ({
-      themeStyles: null,
+      isChecked: false,
+      customStyles: null,
       resetDefaultStyles: null,
     }),
     methods: {
       themeTest() {
-        this.themeStyles = {
-          root: this.$style.buttonCustom,
+        const root = [
+          this.$style.buttonCustomBackground,
+          this.$style.buttonCustomRadius,
+        ];
+        const inner = this.$style.buttonInnerCustom;
+
+        this.customStyles = {
+          root: !this.isChecked ? root : '',
+          inner: !this.isChecked ? inner : '',
         };
         this.resetDefaultStyles = null;
+        this.isChecked = !this.isChecked;
       },
     },
   };
 </script>
 
 <style lang="scss" module>
-  .buttonCustom {
-    background-color: $colorGray;
+  .buttonCustomBackground {
+    background-color: $colorDark;
+  }
+
+  .buttonCustomRadius {
+    border-radius: 0;
+  }
+
+  .buttonInnerCustom {
+    font-size: 10px;
     color: $colorDanger;
   }
 </style>

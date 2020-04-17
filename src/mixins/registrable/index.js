@@ -1,11 +1,11 @@
 import { ComponentInjectionError } from '@/utils/errors';
 
 /**
- * Фабрика иньекции
+ * Фабрика инъекции
  *
- * @param {string} namespace
- * @param {string?} child
- * @param {string?} parent
+ * @param {String} namespace
+ * @param {String} [child]
+ * @param {String} [parent]
  * @returns {{ inject: {} }}
  */
 export const inject = (namespace, child, parent) => {
@@ -30,8 +30,8 @@ export const inject = (namespace, child, parent) => {
 /**
  * Фабрика провайдера
  *
- * @param {string} namespace
- * @returns {{ provide(): object, methods: { unregister: null, register: null } }}
+ * @param {String} namespace
+ * @returns {{ provide(): Object, methods: { unregister: null, register: null } }}
  */
 export const provide = (namespace) => ({
   methods: {

@@ -5,7 +5,7 @@ import { isArray } from '@/utils/inspect';
  */
 export default class FrameworkError extends Error {
   /**
-   * @param {String | Array<String>} messages
+   * @param {String | String[]} messages
    */
   constructor(messages) {
     const message = isArray(messages) ? messages.join('. ') : messages;

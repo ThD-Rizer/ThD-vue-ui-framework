@@ -8,7 +8,7 @@ import isObjectLike from '@/utils/inspect/isObjectLike';
  * classified as numbers, use the `Number.isFinite` method.
  *
  * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a number, else `false`.
+ * @returns {Boolean} Returns `true` if `value` is a number, else `false`.
  * @see isInteger, toInteger, toNumber
  * @example
  *

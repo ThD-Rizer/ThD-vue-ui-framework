@@ -3,7 +3,7 @@
  *
  * @private
  * @param {*} value The value to query.
- * @returns {string} Returns the `toStringTag`.
+ * @returns {String} Returns the `toStringTag`.
  */
 export default function getTag(value) {
   if (value === undefined) {

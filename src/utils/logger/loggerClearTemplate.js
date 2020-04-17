@@ -6,7 +6,7 @@ import { isString, isArray } from '@/utils/inspect';
  *
  * @see original function https://habr.com/ru/post/280928/
  *
- * @param {String | Array<String>} strings
+ * @param {String | String[]} strings
  * @param {*} expressions
  * @returns {String}
  */
@@ -15,7 +15,7 @@ export default function loggerClearTemplate(strings, ...expressions) {
   const isValidArray = (isArray(strings) && strings.length && strings.every(isString));
 
   if (!isValidBase || !isValidArray) {
-    throw new InvalidTypeError(strings, 'strings', 'String | Array<String>');
+    throw new InvalidTypeError(strings, 'strings', 'String | String[]');
   }
 
   const match = strings[0].match(/\n+( *)/);

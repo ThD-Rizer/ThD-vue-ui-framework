@@ -147,7 +147,6 @@ export default {
   },
 
   render() {
-    console.log('styles:', this.styles);
     return this.genRoot([
       this.genContent([
         this.genDefaultSlot(),

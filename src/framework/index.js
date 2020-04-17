@@ -1,25 +1,6 @@
+import { InvalidTypeError } from '@/utils/errors';
+import { isArray } from '@/utils/inspect';
 import packageJson from '@root/package.json';
-import FrameworkError from '@/utils/errors';
-
-/**
- * Регистрация нового плагина фреймворка
- *
- * @param {UiFramework} instance
- * @param {String} name Название плагина
- * @param {Function} plugin Функция конструктора плагина
- */
-// function registerPlugin(instance, name, plugin) {
-//   const pluginName = name.startsWith('$') ? name : `$${name}`;
-//
-//   if (pluginName in instance) {
-//     throw new FrameworkError(
-//       `Plugin with name "${pluginName}" has registered in Framework instance already`,
-//     );
-//   }
-//
-//   // eslint-disable-next-line no-param-reassign, new-cap
-//   instance[pluginName] = new plugin(instance);
-// }
 
 /**
  * UI фреймворк
@@ -27,9 +8,9 @@ import FrameworkError from '@/utils/errors';
  * @param {Array} plugins
  * @constructor
  */
-export default function UiFramework(plugins) {
-  if (!Array.isArray(plugins)) {
-    throw new FrameworkError('Invalid plugins given');
+function UiFramework(plugins) {
+  if (!isArray(plugins)) {
+    throw new InvalidTypeError(plugins, 'plugins', 'Array');
   }
 
   this.$version = packageJson.version;
@@ -44,3 +25,5 @@ export default function UiFramework(plugins) {
 UiFramework.prototype.setAppContainer = function setAppContainer(app) {
   this.$appContainer = app;
 };
+
+export default UiFramework;

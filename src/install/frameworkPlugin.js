@@ -1,7 +1,7 @@
 import FrameworkError from '@/utils/errors';
 import Framework from '@/framework';
 
-export default {
+const frameworkPlugin = {
   installed: false,
   install(Vue, plugins = []) {
     if (this.installed) return;
@@ -16,3 +16,5 @@ export default {
     this.installed = true;
   },
 };
+
+export default frameworkPlugin;

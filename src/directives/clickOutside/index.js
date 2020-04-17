@@ -1,7 +1,7 @@
 import FrameworkError from '@/utils/errors';
 
 /**
- * @return {HTMLBodyElement}
+ * @returns {HTMLBodyElement}
  */
 function container() {
   if (!document) {
@@ -15,7 +15,7 @@ function container() {
  * @param {HTMLElement} element
  * @param {Number} x
  * @param {Number} y
- * @return {Boolean}
+ * @returns {Boolean}
  */
 function clickedInElement(element, x, y) {
   const rect = element.getBoundingClientRect();
@@ -26,7 +26,7 @@ function clickedInElement(element, x, y) {
 /**
  * @param {Event} event
  * @param {Array} elements
- * @return {Boolean}
+ * @returns {Boolean}
  */
 function clickedInElements(event, elements) {
   const { clientX: x, clientY: y } = event;

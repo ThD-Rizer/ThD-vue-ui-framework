@@ -1,6 +1,6 @@
-import frameworkPlugin from './framework';
-import registerComponentsPlugin from './components';
-import registerDirectivesPlugin from './directives';
+import frameworkPlugin from './frameworkPlugin';
+import componentsPlugin from './componentsPlugin';
+import directivesPlugin from './directivesPlugin';
 import './globalStyles';
 
 const defaultOptions = {
@@ -8,7 +8,7 @@ const defaultOptions = {
   directives: null,
 };
 
-export default {
+const installPlugin = {
   installed: false,
   install(Vue, options = {}) {
     if (this.installed) return;
@@ -16,9 +16,11 @@ export default {
     const opts = { ...defaultOptions, ...options };
 
     Vue.use(frameworkPlugin, opts.plugins);
-    Vue.use(registerComponentsPlugin, opts.components);
-    Vue.use(registerDirectivesPlugin, opts.directives);
+    Vue.use(componentsPlugin, opts.components);
+    Vue.use(directivesPlugin, opts.directives);
 
     this.installed = true;
   },
 };
+
+export default installPlugin;

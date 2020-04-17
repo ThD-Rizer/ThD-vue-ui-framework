@@ -1,19 +1,33 @@
+import { isString, isArray } from '@/utils/inspect';
+import { InvalidTypeError } from '@/utils/errors';
+
 /**
- * @param {Object} left
- * @param {Object} right
- * @return {Object}
+ * Производит слияние стилей
+ *
+ * @param {Object<String>} left
+ * @param {Object<String | String[]>} [right]
+ * @returns {Object<String>}
  */
-export default function mergeStyles(left, right) {
+export default function mergeStyles(left, right = null) {
   if (!right) return left;
 
-  const result = { ...left };
-  const listsRight = Object.keys(right);
+  const styles = { ...left };
 
-  for (let i = 0; i < listsRight.length; i += 1) {
-    const nameStyle = listsRight[i];
+  Object.entries(right).forEach(([styleName, value]) => {
+    const isValid = (
+      isString(value)
+      || (isArray(value) && value.every(isString))
+    );
+    if (!isValid) {
+      throw new InvalidTypeError(value, 'value', 'String | String[]');
+    }
 
-    result[nameStyle] = result[nameStyle] ? `${result[nameStyle]} ${right[nameStyle]}` : right[nameStyle];
-  }
+    const classes = isArray(value) ? value.join(' ') : value;
 
-  return result;
+    styles[styleName] = styles[styleName]
+      ? `${styles[styleName]} ${classes}`
+      : classes;
+  });
+
+  return styles;
 }

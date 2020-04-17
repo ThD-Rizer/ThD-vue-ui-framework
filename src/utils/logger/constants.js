@@ -28,7 +28,7 @@ export const METHODS_MAP = Object.freeze({
 });
 
 /**
- * @type {Array<String>}
+ * @type {String[]}
  */
 export const DEFAULT_STYLES = [
   'border-radius: 3px;',

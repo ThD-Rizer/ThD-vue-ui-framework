@@ -2,7 +2,7 @@
  * Checks if `value` is `undefined`
  *
  * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+ * @returns {Boolean} Returns `true` if `value` is `undefined`, else `false`.
  * @example
  *
  * isUndefined(void 0);

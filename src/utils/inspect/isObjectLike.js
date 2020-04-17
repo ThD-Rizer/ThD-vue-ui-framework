@@ -3,7 +3,7 @@
  * and has a `typeof` result of "object".
  *
  * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @returns {Boolean} Returns `true` if `value` is object-like, else `false`.
  * @example
  *
  * isObjectLike({})

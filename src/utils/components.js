@@ -1,30 +1,50 @@
+import { isPlainObject } from '@/utils/inspect';
 import { pascalToKebab } from '@/utils/helpers';
 
 /**
  * @param {Object<Vue>} Vue
  * @param {Object} component
+ * @returns {void}
  */
-const install = (Vue, component) => {
+function install(Vue, component) {
   if (!component || !component.name) return;
 
-  const camelName = component.name;
-  const kebabName = pascalToKebab(camelName);
+  const pascalName = component.name;
+  const kebabName = pascalToKebab(pascalName);
 
-  Vue.component(camelName, component);
+  Vue.component(pascalName, component);
   Vue.component(kebabName, component);
-};
+}
 
 /**
- * Generate plugin for component
+ * Фабрика плагина для компонента
  *
  * @param {Object} component
- * @param {Array<Object>} additionalComponents
+ * @param {Object[]} [additionalComponents]
  * @returns {Object}
  */
-export const generatePlugin = (component, additionalComponents = []) => ({
+export const factoryPlugin = (component, additionalComponents = []) => ({
   ...component,
-  install(Vue) {
+  install(Vue, options = null) {
+    const styleOptions = options?.styleOptions;
+
+    if (isPlainObject(styleOptions)) {
+      const { data } = component;
+      const {
+        installedStyles = null,
+        resetDefaultStyles = false,
+      } = styleOptions;
+
+      // eslint-disable-next-line no-param-reassign
+      component.data = () => ({
+        ...data && data(),
+        installedStyles,
+        installedResetDefaultStyles: resetDefaultStyles,
+      });
+    }
+
     install(Vue, component);
+
     additionalComponents.forEach((additionalComponent) => {
       install(Vue, additionalComponent);
     });

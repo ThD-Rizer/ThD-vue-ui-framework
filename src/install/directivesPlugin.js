@@ -1,6 +1,6 @@
 import * as directives from '@/directives';
 
-export default {
+const directivesPlugin = {
   installed: false,
   install(Vue) {
     if (this.installed) return;
@@ -12,3 +12,5 @@ export default {
     this.installed = true;
   },
 };
+
+export default directivesPlugin;

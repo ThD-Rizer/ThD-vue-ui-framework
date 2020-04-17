@@ -6,7 +6,7 @@ import FrameworkError from './FrameworkError';
 export default class InvalidOptionValueError extends FrameworkError {
   /**
    * @param {String} option
-   * @param {Array<String>?} allowedValues
+   * @param {String[]} [allowedValues]
    */
   constructor(option, allowedValues = []) {
     const messages = [`Invalid value given for option "${option}"`];

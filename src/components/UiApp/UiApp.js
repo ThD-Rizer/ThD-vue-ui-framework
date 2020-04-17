@@ -27,7 +27,9 @@ export default {
   },
   methods: {
     register(el, container) {
-      if (!(container in this.$refs)) {
+      const isValid = (container in this.$refs);
+
+      if (!isValid) {
         throw new FrameworkError(`Container "${container}" does not exists`);
       }
 
