@@ -6,12 +6,12 @@
   "license": "UNLICENSED",
   "scripts": {
     "lint": "vue-cli-service lint",
-    "build": "npm run build:icons && npm run build:lib",
+    "build": "yarn build:icons && yarn build:lib",
     "build:icons": "node build/icons/index.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js",
     "build:demo": "vue-cli-service build ./demo/index.js",
     "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
-    "build:publish": "npm run lint && npm run build && npm publish",
+    "build:publish": "yarn lint && yarn build && yarn publish",
     "dev": "vue-cli-service serve --port 5000 ./demo/index.js"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 import frameworkPlugin from './frameworkPlugin';
 import componentsPlugin from './componentsPlugin';
 import directivesPlugin from './directivesPlugin';
-import './globalStyles';
+// import './globalStyles';
 
 const defaultOptions = {
   components: null,

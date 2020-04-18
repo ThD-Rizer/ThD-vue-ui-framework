@@ -3,7 +3,6 @@ import {
   componentsPlugin,
   directivesPlugin,
   installPlugin,
-  frameworkResources,
 } from '@/install';
 
 export { frameworkPlugin };
@@ -12,8 +11,6 @@ export { directivesPlugin };
 
 export * from '@/components';
 export * from '@/directives';
-
-export { frameworkResources };
 
 export default installPlugin;
 

@@ -1,4 +1,4 @@
-# @thd/vue-ui-framework (v0.7.0)
+# @thd/vue-ui-framework (v0.8.0)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
 
@@ -35,8 +35,16 @@
 
 #### NPM
 
-Прежде всего, вам нужно добавить файл `.npmrc` в корневой каталог вашего проекта.
+Прежде всего, вам нужно добавить файл `.yarnrc` в корневой каталог вашего проекта.
 Откройте этот файл и вставьте в него следующее содержимое:
+
+```ini
+registry ${VERDACCIO_REGISTRY}
+strict-ssl false
+email ${VERDACCIO_EMAIL}
+```
+
+или `.npmrc`
 
 ```ini
 registry = ${VERDACCIO_REGISTRY}
@@ -50,12 +58,12 @@ email = ${VERDACCIO_EMAIL}
 
 #### Добавление пакета в зависимости 
 
-Добавьте `@thd/vue-ui-framework` в файл `package.json` и запустите `npm i` или `yarn` в своем терминале:
+Добавьте `@thd/vue-ui-framework` в файл `package.json` и запустите `yarn` или `npm i` в своем терминале:
 
 ```json
 {
   "dependencies": {
-    "@thd/vue-ui-framework": "^0.7.0"
+    "@thd/vue-ui-framework": "^0.8.0"
   }
 }
 ```
@@ -63,9 +71,9 @@ email = ${VERDACCIO_EMAIL}
 Или запустите команду ниже в вашем терминале:
 
 ```bash
-$ npm i @thd/vue-ui-framework
-# или
 $ yarn add @thd/vue-ui-framework
+# или
+$ npm i @thd/vue-ui-framework
 ```
 
 ## Использование
@@ -74,14 +82,12 @@ $ yarn add @thd/vue-ui-framework
 
 ```js
 import '@thd/vue-ui-framework/dist/ui.css';
-import '@thd/vue-ui-framework/src/styles/_fonts.scss';
 ```
 
 Или импортируйте его в свои стили:
 
 ```css
 @import '@thd/vue-ui-framework/dist/ui.css';
-@import '@thd/vue-ui-framework/src/styles/_fonts.scss';
 ```
 
 Теперь вам нужно зарегистрировать библиотеку. Вот 2 способа, как вы можете сделать это.

@@ -1,6 +1,8 @@
 @mixin theme($backgroundColor, $color: false) {
   background-color: $backgroundColor;
-  color: $color;
+  @if $color {
+    color: $color;
+  }
 
   @include hover {
     background-color: darken($backgroundColor, 15%);
