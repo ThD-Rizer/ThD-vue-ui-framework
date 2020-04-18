@@ -1,6 +1,3 @@
-/**
- * @TODO: проверить, а надо ли это вообще
- */
 import 'normalize.scss/normalize.scss';
 
 // import '@/styles/_variables.scss';

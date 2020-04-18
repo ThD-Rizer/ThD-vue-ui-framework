@@ -1,5 +1,3 @@
-//@import './variables.scss';
-
 // Get size in pixels and recalculate it to rems
 @function rem($size) {
   @return $size / $fontSize * 1rem;

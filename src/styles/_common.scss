@@ -1,20 +1,22 @@
 @import './fonts.scss';
 
-/**
- * 1. сглаживание шрифтов на Mac OS
- */
-body {
-  -moz-osx-font-smoothing: grayscale; /* 1 */
-  -webkit-font-smoothing: antialiased; /* 1 */
-  font-family: $fontFamily;
-  font-size: $fontSize;
-  line-height: 1.5;
-  color: $colorDark;
-  overflow-y: scroll;
-}
+:global {
+  /**
+   * 1. сглаживание шрифтов на Mac OS
+   */
+  body {
+    -moz-osx-font-smoothing: grayscale; /* 1 */
+    -webkit-font-smoothing: antialiased; /* 1 */
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    line-height: 1.5;
+    color: $colorDark;
+    overflow-y: scroll;
+  }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 }
