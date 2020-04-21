@@ -1,5 +1,5 @@
-import { factoryPlugin } from '@/utils/components';
+import factoryComponentPlugin from '@/utils/factoryComponentPlugin';
 
 import UiOverlay from './UiOverlay';
 
-export default factoryPlugin(UiOverlay);
+export default factoryComponentPlugin(UiOverlay);

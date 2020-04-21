@@ -1,5 +1,5 @@
-import { factoryPlugin } from '@/utils/components';
+import factoryComponentPlugin from '@/utils/factoryComponentPlugin';
 
 import UiInput from './UiInput';
 
-export default factoryPlugin(UiInput);
+export default factoryComponentPlugin(UiInput);

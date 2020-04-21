@@ -4,13 +4,15 @@ import {
   directivesPlugin,
   installPlugin,
 } from '@/install';
+import * as components from '@/components';
+import * as directives from '@/directives';
 
 export { frameworkPlugin };
 export { componentsPlugin };
 export { directivesPlugin };
 
-export * from '@/components';
-export * from '@/directives';
+export { components };
+export { directives };
 
 export default installPlugin;
 

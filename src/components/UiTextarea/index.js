@@ -1,5 +1,5 @@
-import { factoryPlugin } from '@/utils/components';
+import factoryComponentPlugin from '@/utils/factoryComponentPlugin';
 
 import UiTextarea from './UiTextarea';
 
-export default factoryPlugin(UiTextarea);
+export default factoryComponentPlugin(UiTextarea);

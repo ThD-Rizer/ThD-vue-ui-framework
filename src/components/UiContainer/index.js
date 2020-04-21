@@ -1,5 +1,5 @@
-import { factoryPlugin } from '@/utils/components';
+import factoryComponentPlugin from '@/utils/factoryComponentPlugin';
 
 import UiContainer from './UiContainer';
 
-export default factoryPlugin(UiContainer);
+export default factoryComponentPlugin(UiContainer);

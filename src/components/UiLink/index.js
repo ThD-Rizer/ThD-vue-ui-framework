@@ -1,5 +1,5 @@
-import { factoryPlugin } from '@/utils/components';
+import factoryComponentPlugin from '@/utils/factoryComponentPlugin';
 
 import UiLink from './UiLink';
 
-export default factoryPlugin(UiLink);
+export default factoryComponentPlugin(UiLink);

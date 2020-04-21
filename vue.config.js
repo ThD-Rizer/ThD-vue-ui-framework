@@ -1,5 +1,10 @@
 const { aliases } = require('./configHelpers.js');
 
+const isProduction = process.env.NODE_ENV === 'production';
+const localIdentName = isProduction
+  ? '[hash:base64:8]'
+  : '[name]__[local]_[hash:base64:8]';
+
 module.exports = {
   configureWebpack: {
     resolve: {
@@ -20,9 +25,7 @@ module.exports = {
       },
       css: {
         modules: {
-          localIdentName: (process.env.NODE_ENV === 'production')
-            ? '[hash:base64:16]'
-            : '[name].[local].[hash:base64:8]',
+          localIdentName,
         },
       },
     },

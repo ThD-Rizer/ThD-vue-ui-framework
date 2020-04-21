@@ -31,9 +31,11 @@ export const factoryStylable = (defaultStyles = null) => ({
       type: Object,
       default: null,
     },
+
     /**
      * Флаг сброса стандартных стилей.
      * Не сбрасывает стили, установленные из `installedStyles`.
+     * @type {Boolean}
      */
     resetDefaultStyles: {
       type: Boolean,
@@ -48,12 +50,14 @@ export const factoryStylable = (defaultStyles = null) => ({
      * @type {Object}
      */
     installedStyles: null,
+
     /**
      * Флаг сброса стандартных стилей.
      * Устанавливается как инъекция при инициализации фреймворка
      * @type {Boolean}
      */
     installedResetDefaultStyles: false,
+
     /**
      * Стили блоков компонента.
      * Устанавливается автоматически при инициализации/обновлении компонента.

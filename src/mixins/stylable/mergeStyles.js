@@ -1,5 +1,4 @@
 import { isString, isArray } from '@/utils/inspect';
-import { InvalidTypeError } from '@/utils/errors';
 
 /**
  * Производит слияние стилей
@@ -19,7 +18,7 @@ export default function mergeStyles(left, right = null) {
       || (isArray(value) && value.every(isString))
     );
     if (!isValid) {
-      throw new InvalidTypeError(value, 'value', 'String | String[]');
+      return;
     }
 
     const classes = isArray(value) ? value.join(' ') : value;
