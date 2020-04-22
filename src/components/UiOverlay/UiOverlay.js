@@ -2,7 +2,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodySc
 import { inject as RegistrableInject } from '@/mixins/registrable';
 // import Toggleable from '@/mixins/toggleable';
 
-import $style from './UiOverlay.scss';
+import styles from './UiOverlay.scss';
 
 export default {
   name: 'UiOverlay',
@@ -13,8 +13,8 @@ export default {
   computed: {
     classesRoot() {
       return {
-        [$style.root]: true,
-        [$style.isOpened]: this.opened,
+        [styles.root]: true,
+        [styles.isOpened]: this.opened,
       };
     },
   },

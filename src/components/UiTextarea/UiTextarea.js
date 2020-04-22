@@ -1,7 +1,7 @@
 import { generateHash } from '@/utils/helpers';
 import testable from '@/mixins/testable';
 
-import $style from './UiTextarea.scss';
+import styles from './UiTextarea.scss';
 
 export default {
   name: 'UiTextarea',
@@ -60,8 +60,8 @@ export default {
     genRoot(childNodes = []) {
       return this.$createElement('div', {
         class: {
-          [$style.isDisabled]: this.disabled,
-          [$style.hasLabel]: this.label,
+          [styles.isDisabled]: this.disabled,
+          [styles.hasLabel]: this.label,
         },
       }, childNodes);
     },
@@ -70,7 +70,7 @@ export default {
       if (!this.label) return null;
 
       return this.$createElement('label', {
-        class: $style.label,
+        class: styles.label,
         attrs: {
           for: this.uniqueId,
         },
@@ -79,7 +79,7 @@ export default {
 
     genTextarea() {
       return this.$createElement('textarea', {
-        class: $style.textarea,
+        class: styles.textarea,
         attrs: {
           id: this.uniqueId,
           name: this.name,

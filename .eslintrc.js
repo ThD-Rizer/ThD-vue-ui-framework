@@ -1,10 +1,10 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
   env: {
     node: true,
+  },
+  parserOptions: {
+    parser: 'babel-eslint',
   },
   extends: [
     'plugin:vue/recommended',

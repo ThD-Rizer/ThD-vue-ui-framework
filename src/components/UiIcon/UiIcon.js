@@ -1,7 +1,7 @@
 import icons from '@/icons';
 import { propValidator } from '@/utils/helpers';
 
-import $style from './UiIcon.scss';
+import styles from './UiIcon.scss';
 
 const tagValidator = propValidator('tag', ['span', 'i']);
 const nameValidator = propValidator('name', Object.keys(icons || {}));
@@ -30,8 +30,8 @@ export default {
     },
     classesRoot() {
       return {
-        [$style.root]: true,
-        [$style.colorDisabled]: this.colorDisabled,
+        [styles.root]: true,
+        [styles.colorDisabled]: this.colorDisabled,
       };
     },
   },

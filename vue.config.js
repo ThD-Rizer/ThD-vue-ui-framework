@@ -1,9 +1,9 @@
 const { aliases } = require('./configHelpers.js');
 
-const isProduction = process.env.NODE_ENV === 'production';
-const localIdentName = isProduction
-  ? '[hash:base64:8]'
-  : '[name]__[local]_[hash:base64:8]';
+const isDevelopment = process.env.NODE_ENV === 'development';
+const localIdentName = isDevelopment
+  ? '[name]__[local]--[hash:base64:8]'
+  : '[hash:base64:8]';
 
 module.exports = {
   configureWebpack: {

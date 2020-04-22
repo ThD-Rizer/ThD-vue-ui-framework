@@ -7,11 +7,17 @@ import App from './App';
 import UiMain from './components/UiMain';
 import UiSection from './components/UiSection';
 
-import uiStyles from './uiStyles';
+import UiButtonStyles from './styles/UiButton.scss';
+
+console.log('UiButtonStyles:', UiButtonStyles);
 
 Vue.use(UI, {
   components: {
-    styles: uiStyles,
+    styles: {
+      UiButton: {
+        installedStyles: UiButtonStyles,
+      },
+    },
   },
 });
 Vue.component(UiMain.name, UiMain);

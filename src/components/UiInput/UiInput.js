@@ -3,7 +3,7 @@ import testable from '@/mixins/testable';
 
 import UiIcon from '../UiIcon';
 
-import $style from './UiInput.scss';
+import styles from './UiInput.scss';
 
 const typeValidator = propValidator('type', ['text', 'password']);
 
@@ -88,12 +88,12 @@ export default {
     genRoot(childNodes = []) {
       return this.$createElement('div', {
         class: {
-          [$style.root]: true,
-          [$style.hasIconBefore]: this.iconBefore,
-          [$style.hasLabel]: this.label,
-          [$style.isFilled]: this.value,
-          [$style.isFocused]: this.focused,
-          [$style.isDisabled]: this.disabled,
+          [styles.root]: true,
+          [styles.hasIconBefore]: this.iconBefore,
+          [styles.hasLabel]: this.label,
+          [styles.isFilled]: this.value,
+          [styles.isFocused]: this.focused,
+          [styles.isDisabled]: this.disabled,
         },
       }, childNodes);
     },
@@ -103,8 +103,8 @@ export default {
 
       return this.$createElement('label', {
         class: {
-          [$style.label]: true,
-          [$style.labelActive]: this.value || this.focused,
+          [styles.label]: true,
+          [styles.labelActive]: this.value || this.focused,
         },
         attrs: {
           for: this.uniqueId,
@@ -114,7 +114,7 @@ export default {
 
     genContainer(childNodes = []) {
       return this.$createElement('div', {
-        class: $style.container,
+        class: styles.container,
       }, childNodes);
     },
 
@@ -126,7 +126,7 @@ export default {
       });
 
       return this.$createElement('label', {
-        class: $style.iconBefore,
+        class: styles.iconBefore,
         attrs: {
           for: this.uniqueId,
         },
@@ -135,7 +135,7 @@ export default {
 
     genInput() {
       return this.$createElement('input', {
-        class: $style.input,
+        class: styles.input,
         attrs: {
           id: this.uniqueId,
           type: this.type,

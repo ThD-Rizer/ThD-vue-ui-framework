@@ -40,6 +40,6 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
   // @import '../styles/fonts';
 </style>

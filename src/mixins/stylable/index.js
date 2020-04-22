@@ -1,3 +1,4 @@
+import { isPlainObject } from '@/utils/inspect';
 import { isEqual } from '@/utils/helpers';
 import mergeStyles from './mergeStyles';
 
@@ -33,8 +34,7 @@ export const factoryStylable = (defaultStyles = null) => ({
     },
 
     /**
-     * Флаг сброса стандартных стилей.
-     * Не сбрасывает стили, установленные из `installedStyles`.
+     * Флаг сброса стандартных стилей
      * @type {Boolean}
      */
     resetDefaultStyles: {
@@ -45,18 +45,16 @@ export const factoryStylable = (defaultStyles = null) => ({
 
   data: () => ({
     /**
-     * Кастомные стили.
-     * Устанавливается как инъекция при инициализации фреймворка.
+     * Настройки компонента.
+     * Устанавливаются как инъекция при инициализации фреймворка.
      * @type {Object}
+     * @property {Object} installedStyles Кастомные стили
+     * @property {Boolean} installedResetDefaultStyles Флаг сброса стандартных стилей
      */
-    installedStyles: null,
-
-    /**
-     * Флаг сброса стандартных стилей.
-     * Устанавливается как инъекция при инициализации фреймворка
-     * @type {Boolean}
-     */
-    installedResetDefaultStyles: false,
+    installedOptions: {
+      installedStyles: null,
+      installedResetDefaultStyles: false,
+    },
 
     /**
      * Стили блоков компонента.
@@ -97,10 +95,10 @@ export const factoryStylable = (defaultStyles = null) => ({
      * @param {Boolean} resetDefaultStyles
      */
     setStyles(customStyles, resetDefaultStyles) {
-      const { installedStyles, installedResetDefaultStyles } = this;
+      const { installedStyles, installedResetDefaultStyles } = this.installedOptions;
       let styles = defaultStyles;
 
-      if (installedStyles) {
+      if (isPlainObject(installedStyles)) {
         styles = installedResetDefaultStyles
           ? installedStyles
           : mergeStyles(styles, installedStyles);

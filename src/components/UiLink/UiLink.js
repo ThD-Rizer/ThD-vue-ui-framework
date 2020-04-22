@@ -1,7 +1,7 @@
 import { trimSlotText } from '@/utils/helpers';
 import routable from '@/mixins/routable';
 
-import $style from './UiLink.scss';
+import styles from './UiLink.scss';
 
 export default {
   name: 'UiLink',
@@ -19,19 +19,19 @@ export default {
     },
     activeClass: {
       type: String,
-      default: $style.isActive,
+      default: styles.isActive,
     },
     exactActiveClass: {
       type: String,
-      default: $style.isActive,
+      default: styles.isActive,
     },
   },
   computed: {
     classesRoot() {
       return {
-        [$style.root]: true,
-        [$style.isPseudo]: this.pseudo,
-        [$style.isDisabled]: this.disabled,
+        [styles.root]: true,
+        [styles.isPseudo]: this.pseudo,
+        [styles.isDisabled]: this.disabled,
         [this.activeClass]: this.active,
       };
     },

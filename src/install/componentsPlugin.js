@@ -1,24 +1,27 @@
 import * as components from '@/components';
 
+/**
+ * Вернуть подготовленные настройки компонента, переданные при его инсталляции
+ *
+ * @param {Object} component
+ * @param {Object} options
+ * @returns {{ styleOptions?: Object }}
+ */
+function getComponentOptions(component, options) {
+  const styleOptions = options?.styles?.[component.name];
+
+  return {
+    ...styleOptions && { styleOptions },
+  };
+}
+
 const componentsPlugin = {
   installed: false,
   install(Vue, options = null) {
     if (this.installed) return;
 
-    /**
-     * @param {Object} component
-     * @returns {{ styleOptions?: Object }}
-     */
-    const getComponentOptions = (component) => {
-      const styleOptions = options?.styles?.[component.name];
-
-      return {
-        ...styleOptions && { styleOptions },
-      };
-    };
-
     Object.values(components).forEach((component) => {
-      const componentOptions = getComponentOptions(component);
+      const componentOptions = getComponentOptions(component, options);
 
       Vue.use(component, componentOptions);
     });

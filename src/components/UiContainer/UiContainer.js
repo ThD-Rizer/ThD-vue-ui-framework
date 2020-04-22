@@ -1,6 +1,6 @@
 import { propValidator } from '@/utils/helpers';
 
-import $style from './UiContainer.scss';
+import styles from './UiContainer.scss';
 
 const tagValidator = propValidator('tag', ['div', 'section', 'header', 'footer']);
 
@@ -21,8 +21,8 @@ export default {
     genRoot(childNodes = []) {
       return this.$createElement(this.tag, {
         class: {
-          [$style.root]: true,
-          [$style.isFluid]: this.fluid,
+          [styles.root]: true,
+          [styles.isFluid]: this.fluid,
         },
       }, childNodes);
     },

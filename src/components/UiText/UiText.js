@@ -1,7 +1,7 @@
 import { propValidator, trimSlotText } from '@/utils/helpers';
 import testable from '@/mixins/testable';
 
-import $style from './UiText.scss';
+import styles from './UiText.scss';
 
 const TAGS_FOR_TYPES = Object.freeze({
   h1: 'h1',
@@ -56,9 +56,9 @@ export default {
         color,
       } = this;
       return {
-        [$style[type]]: true,
-        [$style[weight]]: !!weight,
-        [$style[`color-${color}`]]: !!color,
+        [styles[type]]: true,
+        [styles[weight]]: !!weight,
+        [styles[`color-${color}`]]: !!color,
       };
     },
   },
