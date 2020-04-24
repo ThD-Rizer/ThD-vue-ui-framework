@@ -3,24 +3,44 @@ import routable from '@/mixins/routable';
 import { factoryStylable } from '@/mixins/stylable';
 
 import defaultStyles from './UiButton.scss';
+import themePrimaryStyles from './UiButton.themePrimary.scss';
+import themeSecondaryStyles from './UiButton.themeSecondary.scss';
+import themeSuccessStyles from './UiButton.themeSuccess.scss';
+import themeDangerStyles from './UiButton.themeDanger.scss';
+import themeWarningStyles from './UiButton.themeWarning.scss';
+import themeInfoStyles from './UiButton.themeInfo.scss';
+import themeLightStyles from './UiButton.themeLight.scss';
+import themeDarkStyles from './UiButton.themeDark.scss';
+import themeSilentStyles from './UiButton.themeSilent.scss';
 
-const stylable = factoryStylable(defaultStyles);
+const themesStyles = {
+  primary: themePrimaryStyles,
+  secondary: themeSecondaryStyles,
+  success: themeSuccessStyles,
+  danger: themeDangerStyles,
+  warning: themeWarningStyles,
+  info: themeInfoStyles,
+  light: themeLightStyles,
+  dark: themeDarkStyles,
+  silent: themeSilentStyles,
+};
+const defaultTheme = 'secondary';
 
 const tagValidator = propValidator('tag', ['button', 'a', 'div']);
 const typeValidator = propValidator('type', ['button', 'submit', 'reset']);
 const sizeValidator = propValidator('size', ['small', 'normal', 'large']);
-const themeValidator = propValidator('theme', [
-  'primary',
-  'secondary',
-  'success',
-  'danger',
-  'warning',
-  'info',
-  'light',
-  'dark',
-  'silent',
+const contentAlignValidator = propValidator('contentAlign', [
+  'left',
+  'center',
+  'right',
+  'justify',
 ]);
-const contentAlignValidator = propValidator('contentAlign', ['left', 'center', 'right', 'justify']);
+
+const stylable = factoryStylable({
+  defaultStyles,
+  themesStyles,
+  defaultTheme,
+});
 
 export default {
   name: 'UiButton',
@@ -47,11 +67,6 @@ export default {
       type: String,
       default: 'normal',
       ...sizeValidator,
-    },
-    theme: {
-      type: String,
-      default: 'secondary',
-      ...themeValidator,
     },
     fluid: {
       type: Boolean,
@@ -100,7 +115,6 @@ export default {
     classesRoot() {
       const {
         size,
-        theme,
         flat,
         contentAlign,
       } = this;
@@ -116,7 +130,6 @@ export default {
         [this.styles.hasIcon]: this.hasIcon,
         [this.styles.isDisabled]: this.disabled,
         [this.styles[kebabToCamel(`size-${size}`)]]: size,
-        [this.styles[kebabToCamel(`theme-${theme}`)]]: theme,
         [this.styles[kebabToCamel(`contentAlign-${contentAlign}`)]]: contentAlign,
       };
     },

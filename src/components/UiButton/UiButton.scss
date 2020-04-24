@@ -1,18 +1,3 @@
-@mixin theme($backgroundColor, $color: false) {
-  background-color: $backgroundColor;
-  @if $color {
-    color: $color;
-  }
-
-  @include hover {
-    background-color: darken($backgroundColor, 15%);
-  }
-
-  &.isActive {
-    background-color: darken($backgroundColor, 15%);
-  }
-}
-
 .root {
   @include resetButton;
   display: inline-flex;
@@ -78,7 +63,7 @@
     z-index: 1;
   }
 
-  &:not(.isDepressed):not(.isFlat):not(.themeSilent) {
+  &:not(.isDepressed):not(.isFlat) {
     box-shadow: 0 1px 8px 0 transparent;
 
     @include hover {
@@ -149,86 +134,3 @@ $paddingYLarge: spacer(8);
     justify-content: space-between;
   }
 }
-
-.themePrimary {
-  @include theme($colorPrimary, $colorWhite);
-}
-
-.themeSecondary {
-  @include theme($colorSecondary, $colorWhite);
-}
-
-.themeSuccess {
-  @include theme($colorSuccess, $colorWhite);
-}
-
-.themeDanger {
-  @include theme($colorDanger, $colorWhite);
-}
-
-.themeWarning {
-  @include theme($colorWarning);
-}
-
-.themeInfo {
-  @include theme($colorInfo, $colorWhite);
-}
-
-.themeLight {
-  @include theme($colorLight);
-}
-
-.themeDark {
-  @include theme($colorDark, $colorWhite);
-}
-
-.themeSilent {
-  cursor: default !important;
-
-  & .inner {
-    width: auto;
-  }
-}
-
-/*
-.themeBackgroundBrand,
-.themeOutlineBrand {
-  &::before {
-    content: '';
-    display: block;
-    @include gradientBrand;
-    border-radius: inherit;
-    position: absolute;
-    @include positionAll(0);
-  }
-
-  &.isDisabled::before {
-    opacity: .5;
-    filter: grayscale(1);
-  }
-}
-
-.themeBackgroundBrand {
-  & .inner {
-    color: $colorWhite;
-  }
-}
-
-.themeOutlineBrand {
-  & .inner {
-    width: auto;
-    background-color: $colorWhite;
-    border-radius: 2px;
-    padding: 10px;
-    margin: 2px;
-  }
-
-  &.sizeSmall .inner {
-    padding: 6px;
-  }
-
-  &.sizeLarge .inner {
-    padding: 14px;
-  }
-}
-*/

@@ -1,0 +1,12 @@
+.root {
+  background-color: $colorDark;
+  color: $colorWhite;
+
+  @include hover {
+    background-color: darken($colorDark, 15%);
+  }
+
+  &.isActive {
+    background-color: darken($colorDark, 15%);
+  }
+}

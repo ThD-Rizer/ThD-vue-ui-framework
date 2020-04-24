@@ -2,8 +2,8 @@
   <UiMain>
     <p>
       <UiButton
+        :theme="theme"
         :customStyles="customStyles"
-        :resetDefaultStyles="resetDefaultStyles"
         @click="themeTest"
       >
         Button dynamic stylable
@@ -17,8 +17,8 @@
     name: 'Testing',
     data: () => ({
       isChecked: false,
+      theme: 'secondary',
       customStyles: null,
-      resetDefaultStyles: null,
     }),
     methods: {
       themeTest() {
@@ -28,11 +28,16 @@
         ];
         const inner = this.$style.buttonInnerCustom;
 
-        this.customStyles = {
-          root: !this.isChecked ? root : '',
-          inner: !this.isChecked ? inner : '',
-        };
-        this.resetDefaultStyles = null;
+        if (!this.isChecked) {
+          this.theme = 'primary';
+          this.customStyles = {
+            root,
+            inner,
+          };
+        } else {
+          this.theme = 'secondary';
+          this.customStyles = null;
+        }
         this.isChecked = !this.isChecked;
       },
     },
@@ -41,7 +46,7 @@
 
 <style lang="scss" module>
   .buttonCustomBackground {
-    background-color: $colorDark;
+    border-color: $colorDark;
   }
 
   .buttonCustomRadius {
@@ -50,6 +55,6 @@
 
   .buttonInnerCustom {
     font-size: 10px;
-    color: $colorDanger;
+    color: $colorWhite;
   }
 </style>

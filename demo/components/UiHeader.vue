@@ -7,7 +7,7 @@
       UI Framework version {{ version }}
     </UiText>
 
-    <div>
+    <div :class="$style.menu">
       <UiLink
         v-for="(item, index) in menu"
         :key="index"
@@ -18,20 +18,6 @@
         {{ item.title }}
       </UiLink>
     </div>
-
-    <!--<UiTabs :value="$route.path">-->
-    <!--  <UiContainer>-->
-    <!--    <UiTab-->
-    <!--      v-for="(item, index) in menu"-->
-    <!--      :key="index"-->
-    <!--      :name="item.path"-->
-    <!--      :to="item.path"-->
-    <!--      native-->
-    <!--    >-->
-    <!--      {{ item.title }}-->
-    <!--    </UiTab>-->
-    <!--  </UiContainer>-->
-    <!--</UiTabs>-->
   </header>
 </template>
 
@@ -54,13 +40,21 @@
 <style lang="scss" module>
   .header {
     border-bottom: 1px solid $colorGrayLight;
-    @include paddingY(spacer(5));
+    padding-top: spacer(5);
+    padding-bottom: spacer(3);
     margin-bottom: spacer(5);
   }
 
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .link {
-    &:not(:first-child) {
-      margin-left: spacer(5);
+    margin-bottom: spacer(2);
+
+    &:not(:last-child) {
+      margin-right: spacer(5);
     }
   }
 </style>

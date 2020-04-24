@@ -1,114 +1,167 @@
-import { isPlainObject } from '@/utils/inspect';
-import { isEqual } from '@/utils/helpers';
+import { InvalidTypeError } from '@/utils/errors';
+import { isString, isPlainObject } from '@/utils/inspect';
+import { isEqual, propValidator } from '@/utils/helpers';
 import mergeStyles from './mergeStyles';
+
+/**
+ * @type {Object}
+ */
+const defaultOptions = {
+  /**
+   * @type {Object}
+   */
+  defaultStyles: null,
+  /**
+   * @type {Object}
+   */
+  themesStyles: null,
+  /**
+   * @type {String}
+   */
+  defaultTheme: null,
+};
 
 /**
  * Фабрика миксина для стилизуемых компонентов.
  * Добавляет функционал, позволяющий частично, либо полностью изменить стандартные стили компонента.
  *
- * Темизация предполагает несколько уровней переопределения:
- * 1) defaultStyles - базовые стили компонента из библиотеки компонентов фреймворка;
- * 2) installedStyles - кастомные стили, добавленные как инъекция при установке компонента;
- * 3) customStyles - кастомные стили, переданные через свойства компонента при его использовании,
- * можно заменять на горячую.
- *
- * @param {Object} [defaultStyles]
+ * @param {Object} [options]
  * @return {Object}
  */
-export const factoryStylable = (defaultStyles = null) => ({
-  props: {
-    /**
-     * Кастомные стили
-     *
-     * @type {Object}
-     * @property {String | String[]}
-     * @example
-     * {
-     *   root: 'className1',
-     *   inner: ['className2', 'className3'],
-     * }
-     */
-    customStyles: {
-      type: Object,
-      default: null,
+export const factoryStylable = (options = null) => {
+  const {
+    defaultStyles,
+    themesStyles,
+    defaultTheme,
+  } = { ...defaultOptions, ...options };
+
+  if (!isPlainObject(defaultStyles)) {
+    throw new InvalidTypeError(defaultStyles, 'defaultStyles', 'Object');
+  }
+  if (!isPlainObject(themesStyles)) {
+    throw new InvalidTypeError(themesStyles, 'themesStyles', 'Object');
+  }
+  if (!isString(defaultTheme)) {
+    throw new InvalidTypeError(defaultTheme, 'defaultTheme', 'String');
+  }
+
+  const allowedThemes = Object.keys(themesStyles);
+  const themeValidator = propValidator('theme', allowedThemes);
+
+  return {
+    props: {
+      /**
+       * Название темы.
+       * Стили темы располагаются в одноименном с компонентом файле стилей с постфиксом названия темы.
+       */
+      theme: {
+        type: String,
+        default: defaultTheme,
+        ...themeValidator,
+      },
+
+      /**
+       * Кастомные стили
+       *
+       * @property {String | String[]}
+       * @example
+       * {
+       *   root: 'className1',
+       *   inner: ['className2', 'className3'],
+       * }
+       */
+      customStyles: {
+        type: Object,
+        default: null,
+      },
+
+      /**
+       * Флаг сброса стандартных стилей
+       */
+      resetDefaultStyles: {
+        type: Boolean,
+        default: false,
+      },
     },
 
-    /**
-     * Флаг сброса стандартных стилей
-     * @type {Boolean}
-     */
-    resetDefaultStyles: {
-      type: Boolean,
-      default: false,
+    data: () => ({
+      /**
+       * Настройки компонента.
+       * Устанавливаются как инъекция при инициализации фреймворка.
+       * @type {Object}
+       * @property {Object} installedStyles Кастомные стили
+       * @property {Object} installedThemesStyles Кастомные темы
+       * @property {Boolean} installedResetDefaultStyles Флаг сброса стандартных стилей
+       */
+      installedOptions: {
+        installedStyles: null,
+        installedThemesStyles: null,
+        installedResetDefaultStyles: false,
+      },
+
+      /**
+       * Стили блоков компонента.
+       * Устанавливается автоматически при инициализации/обновлении компонента.
+       * @type {Object}
+       */
+      styles: null,
+    }),
+
+    computed: {
+      isUpdateStyles() {
+        return {
+          customStyles: this.customStyles,
+          resetDefaultStyles: this.resetDefaultStyles,
+        };
+      },
     },
-  },
 
-  data: () => ({
-    /**
-     * Настройки компонента.
-     * Устанавливаются как инъекция при инициализации фреймворка.
-     * @type {Object}
-     * @property {Object} installedStyles Кастомные стили
-     * @property {Boolean} installedResetDefaultStyles Флаг сброса стандартных стилей
-     */
-    installedOptions: {
-      installedStyles: null,
-      installedResetDefaultStyles: false,
+    watch: {
+      isUpdateStyles: {
+        handler({ customStyles, resetDefaultStyles }, oldProps) {
+          if (
+            isEqual(customStyles, oldProps?.customStyles)
+            && resetDefaultStyles !== oldProps?.resetDefaultStyles
+          ) {
+            return;
+          }
+
+          this.setStyles(customStyles, resetDefaultStyles);
+        },
+        immediate: true,
+      },
     },
 
-    /**
-     * Стили блоков компонента.
-     * Устанавливается автоматически при инициализации/обновлении компонента.
-     * @type {Object}
-     */
-    styles: null,
-  }),
+    methods: {
+      /**
+       * @param {Object} customStyles
+       * @param {Boolean} resetDefaultStyles
+       */
+      setStyles(customStyles, resetDefaultStyles) {
+        const { theme } = this;
+        const {
+          installedStyles,
+          installedThemesStyles,
+          installedResetDefaultStyles,
+        } = this.installedOptions;
+        const installedThemeStyles = installedThemesStyles?.[theme];
+        let styles = mergeStyles(defaultStyles, themesStyles?.[theme]);
 
-  computed: {
-    isUpdateStyles() {
-      return {
-        customStyles: this.customStyles,
-        resetDefaultStyles: this.resetDefaultStyles,
-      };
-    },
-  },
-
-  watch: {
-    isUpdateStyles: {
-      handler({ customStyles, resetDefaultStyles }, oldProps) {
-        if (
-          isEqual(customStyles, oldProps?.customStyles)
-          && resetDefaultStyles !== oldProps?.resetDefaultStyles
-        ) {
-          return;
+        if (isPlainObject(installedStyles)) {
+          if (installedResetDefaultStyles) {
+            styles = mergeStyles(installedStyles, installedThemeStyles);
+          } else {
+            styles = mergeStyles(styles, installedStyles);
+            styles = mergeStyles(styles, installedThemeStyles);
+          }
         }
 
-        this.setStyles(customStyles, resetDefaultStyles);
+        styles = resetDefaultStyles
+          ? customStyles
+          : mergeStyles(styles, customStyles);
+
+        this.styles = styles;
       },
-      immediate: true,
     },
-  },
-
-  methods: {
-    /**
-     * @param {Object} customStyles
-     * @param {Boolean} resetDefaultStyles
-     */
-    setStyles(customStyles, resetDefaultStyles) {
-      const { installedStyles, installedResetDefaultStyles } = this.installedOptions;
-      let styles = defaultStyles;
-
-      if (isPlainObject(installedStyles)) {
-        styles = installedResetDefaultStyles
-          ? installedStyles
-          : mergeStyles(styles, installedStyles);
-      }
-
-      styles = resetDefaultStyles
-        ? customStyles
-        : mergeStyles(styles, customStyles);
-
-      this.styles = styles;
-    },
-  },
-});
+  };
+};

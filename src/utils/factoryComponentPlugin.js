@@ -1,4 +1,5 @@
-import { isPlainObject } from '@/utils/inspect';
+import { InvalidTypeError } from '@/utils/errors';
+import { isNull, isBoolean, isPlainObject } from '@/utils/inspect';
 import { pascalToKebab } from '@/utils/helpers';
 
 const isEmptyObject = (object) => !Object.values(object).length;
@@ -35,14 +36,26 @@ function injectInstalledOptions(component, options) {
     const { data = null } = component;
     const {
       installedStyles = null,
+      installedThemesStyles = null,
       resetDefaultStyles = false,
     } = styleOptions;
+
+    if (!isPlainObject(installedStyles) && !isNull(installedStyles)) {
+      throw new InvalidTypeError(installedStyles, 'installedStyles', 'Object');
+    }
+    if (!isPlainObject(installedThemesStyles) && !isNull(installedThemesStyles)) {
+      throw new InvalidTypeError(installedThemesStyles, 'installedThemesStyles', 'Object');
+    }
+    if (!isBoolean(resetDefaultStyles)) {
+      throw new InvalidTypeError(resetDefaultStyles, 'resetDefaultStyles', 'Object');
+    }
 
     // eslint-disable-next-line no-param-reassign
     component.data = () => ({
       ...data && data(),
       installedOptions: {
         installedStyles,
+        installedThemesStyles,
         installedResetDefaultStyles: resetDefaultStyles,
       },
     });
