@@ -46,7 +46,7 @@
 
 <style lang="scss" module>
   .buttonCustomBackground {
-    border-color: $colorDark;
+    border-color: color('outerSpace');
   }
 
   .buttonCustomRadius {
@@ -55,6 +55,6 @@
 
   .buttonInnerCustom {
     font-size: 10px;
-    color: $colorWhite;
+    color: color('white');
   }
 </style>

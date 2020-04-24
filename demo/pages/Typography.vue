@@ -45,7 +45,7 @@
     </UiText>
     <UiText
       tag="div"
-      color="dusty-gray"
+      color="dustyGray"
     >
       Dusty gray text
     </UiText>

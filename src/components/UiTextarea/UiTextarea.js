@@ -1,13 +1,9 @@
 import { generateHash } from '@/utils/helpers';
-import testable from '@/mixins/testable';
 
 import styles from './UiTextarea.scss';
 
 export default {
   name: 'UiTextarea',
-  mixins: [
-    testable,
-  ],
   model: {
     prop: 'value',
     event: 'input',

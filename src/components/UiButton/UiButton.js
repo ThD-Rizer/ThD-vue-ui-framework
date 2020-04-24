@@ -1,4 +1,4 @@
-import { trimSlotText, propValidator, kebabToCamel } from '@/utils/helpers';
+import { trimSlotText, propValidator } from '@/utils/helpers';
 import routable from '@/mixins/routable';
 import { factoryStylable } from '@/mixins/stylable';
 
@@ -129,8 +129,8 @@ export default {
         [this.styles.isActive]: this.active,
         [this.styles.hasIcon]: this.hasIcon,
         [this.styles.isDisabled]: this.disabled,
-        [this.styles[kebabToCamel(`size-${size}`)]]: size,
-        [this.styles[kebabToCamel(`contentAlign-${contentAlign}`)]]: contentAlign,
+        [this.styles[`size_${size}`]]: size,
+        [this.styles[`contentAlign_${contentAlign}`]]: contentAlign,
       };
     },
   },

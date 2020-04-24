@@ -9,8 +9,6 @@ import UiSection from './components/UiSection';
 
 import UiButtonStyles from './styles/UiButton.scss';
 
-console.log('UiButtonStyles:', UiButtonStyles);
-
 Vue.use(UI, {
   components: {
     styles: {

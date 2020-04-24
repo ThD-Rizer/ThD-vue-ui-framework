@@ -1,0 +1,11 @@
+// Экспорт scss переменных для использования в js скриптах
+:export {
+  gridBreakpointFirst: unquote($gridBreakpointFirst);
+  gridBreakpointLast: unquote($gridBreakpointLast);
+  //gridBreakpoints: $gridBreakpoints;
+  //gridMaxWidths: $gridMaxWidths;
+
+  @each $key, $value in $colors {
+    #{'colors-' + $key}: $value;
+  }
+}

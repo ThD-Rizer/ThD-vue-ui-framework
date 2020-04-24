@@ -39,7 +39,7 @@
 
 <style lang="scss" module>
   .header {
-    border-bottom: 1px solid $colorGrayLight;
+    border-bottom: 1px solid color('heather');
     padding-top: spacer(5);
     padding-bottom: spacer(3);
     margin-bottom: spacer(5);

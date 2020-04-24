@@ -1,3 +1,0 @@
-# Testable mixin
-
-TODO

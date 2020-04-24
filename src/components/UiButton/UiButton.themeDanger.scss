@@ -1,12 +1,12 @@
 .root {
-  background-color: $colorDanger;
-  color: $colorWhite;
+  background-color: color('persianRed');
+  color: color('white');
 
   @include hover {
-    background-color: darken($colorDanger, 15%);
+    background-color: darken(color('persianRed'), 15%);
   }
 
   &.isActive {
-    background-color: darken($colorDanger, 15%);
+    background-color: darken(color('persianRed'), 15%);
   }
 }

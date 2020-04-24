@@ -1,5 +1,4 @@
 import { generateHash, propValidator } from '@/utils/helpers';
-import testable from '@/mixins/testable';
 
 import UiIcon from '../UiIcon';
 
@@ -9,9 +8,6 @@ const typeValidator = propValidator('type', ['text', 'password']);
 
 export default {
   name: 'UiInput',
-  mixins: [
-    testable,
-  ],
   model: {
     prop: 'value',
     event: 'input',

@@ -6,7 +6,7 @@
   flex: 0 0 auto;
   border-radius: 4px;
   font-weight: 500;
-  color: $colorBlack;
+  color: color('mineShaft');
   text-align: center;
   text-decoration: none;
   transition: $primaryTransition;
@@ -22,17 +22,17 @@
     @include marginX(0);
   }
 
-  &.sizeSmall {
+  &.size_small {
     font-size: rem(10px);
     line-height: rem(12px);
   }
 
-  &.sizeNormal {
+  &.size_normal {
     font-size: rem(13px);
     line-height: rem(16px);
   }
 
-  &.sizeLarge {
+  &.size_large {
     font-size: rem(16px);
     line-height: rem(18px);
   }
@@ -94,43 +94,43 @@ $paddingYLarge: spacer(8);
   white-space: nowrap;
   box-sizing: border-box;
 
-  .sizeSmall:not(.hasIcon) & {
+  .size_small:not(.hasIcon) & {
     padding: $paddingXSmall $paddingYSmall;
   }
 
-  .sizeNormal:not(.hasIcon) & {
+  .size_normal:not(.hasIcon) & {
     padding: $paddingXNormal $paddingYNormal;
   }
 
-  .sizeLarge:not(.hasIcon) & {
+  .size_large:not(.hasIcon) & {
     padding: $paddingXLarge $paddingYLarge;
   }
 
-  .sizeSmall.hasIcon & {
+  .size_small.hasIcon & {
     padding: $paddingXSmall;
   }
 
-  .sizeNormal.hasIcon & {
+  .size_normal.hasIcon & {
     padding: $paddingXNormal;
   }
 
-  .sizeLarge.hasIcon & {
+  .size_large.hasIcon & {
     padding: $paddingXLarge;
   }
 
-  .contentAlignLeft & {
+  .contentAlign_left & {
     justify-content: flex-start;
   }
 
-  .contentAlignCenter & {
+  .contentAlign_center & {
     justify-content: center;
   }
 
-  .contentAlignRight & {
+  .contentAlign_right & {
     justify-content: flex-end;
   }
 
-  .contentAlignJustify & {
+  .contentAlign_justify & {
     justify-content: space-between;
   }
 }

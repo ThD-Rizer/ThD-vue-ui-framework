@@ -7,26 +7,26 @@
   box-sizing: content-box;
 
   &.isFluid {
-    max-width: map-get($gridMaxWidth, 'xl');
+    max-width: map-get($gridMaxWidths, 'xl');
   }
 
   &:not(.isFluid) {
     max-width: calc(100% - 15px);
 
     @include mediaMin('sm') {
-      max-width: map-get($gridMaxWidth, 'sm');
+      max-width: map-get($gridMaxWidths, 'sm');
     }
 
     @include mediaMin('md') {
-      max-width: map-get($gridMaxWidth, 'md');
+      max-width: map-get($gridMaxWidths, 'md');
     }
 
     @include mediaMin('lg') {
-      max-width: map-get($gridMaxWidth, 'lg');
+      max-width: map-get($gridMaxWidths, 'lg');
     }
 
     @include mediaMin('xl') {
-      max-width: map-get($gridMaxWidth, 'xl');
+      max-width: map-get($gridMaxWidths, 'xl');
     }
   }
 }

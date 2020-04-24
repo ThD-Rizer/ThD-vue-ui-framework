@@ -23,45 +23,41 @@ $gridBreakpoints: (
     'max': 9999px,
   ),
 );
-$gridMaxWidth: (
+$gridMaxWidths: (
   'xs': auto,
   'sm': 540px,
   'md': 720px,
   'lg': 960px,
   'xl': 1140px,
 );
+$spacerSize: 4px !default;
+$spacerMaxValue: 20 !default;
 
 // Typography
 $fontSize: 16px;
 $fontFamily: 'Montserrat', 'system', sans-serif;
 
 // Color settings
-$colorPrimary: #007bff;
-$colorSecondary: #6c757d;
-$colorSuccess: #28a745;
-$colorInfo: #17a2b8;
-$colorWarning: #ffc107;
-$colorDanger: #dc3545;
-$colorLight: #f8f9fa;
-$colorDark: #343a40;
-
-$colorBlue: #007bff;
-$colorIndigo: #6610f2;
-$colorPurple: #6f42c1;
-$colorPink: #e83e8c;
-$colorRed: #dc3545;
-$colorOrange: #fd7e14;
-$colorYellow: #ffc107;
-$colorGreen: #28a745;
-$colorTeal: #20c997;
-$colorCyan: #17a2b8;
-$colorWhite: #fff;
-$colorGrayLight: #b2c1cd;
-$colorGray: #6c757d;
-$colorGrayDark: #343a40;
-$colorBlack: #333333;
-
-$colorBrandBlue: #4397ee;
+$colors: (
+  'azureRadiance': #007bff,
+  'electricViolet': #6610f2,
+  'fuchsiaBlue': #6f42c1,
+  'cerise': #e83e8c,
+  'persianRed': #cd412d,
+  'ecstasy': #fd7e14,
+  'amber': #ffc107,
+  'eucalyptus': #28a745,
+  'mountainMeadow': #20c997,
+  'easternBlue': #17a2b8,
+  'white': #ffffff,
+  'athensGray': #f8f9fa,
+  'heather': #b2c1cd,
+  'dustyGray': #999999,
+  'paleSky': #6c757d,
+  'outerSpace': #343a40,
+  'mineShaft': #333333,
+  'black': #000000,
+);
 
 // Transition settings
 $primaryTransition: all .3s cubic-bezier(.25, .8, .5, 1);
@@ -69,7 +65,3 @@ $primaryTransition: all .3s cubic-bezier(.25, .8, .5, 1);
 $transitionDuration: 0.3s !default;
 $transitionTimeFunction: ease-in-out !default;
 $transition: $transitionDuration $transitionTimeFunction !default;
-
-// ...
-$spacerSize: 4px !default;
-$spacerMaxValue: 20 !default;

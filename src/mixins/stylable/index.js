@@ -6,7 +6,7 @@ import mergeStyles from './mergeStyles';
 /**
  * @type {Object}
  */
-const defaultOptions = {
+const DEFAULT_OPTIONS = {
   /**
    * @type {Object}
    */
@@ -33,7 +33,7 @@ export const factoryStylable = (options = null) => {
     defaultStyles,
     themesStyles,
     defaultTheme,
-  } = { ...defaultOptions, ...options };
+  } = { ...DEFAULT_OPTIONS, ...options };
 
   if (!isPlainObject(defaultStyles)) {
     throw new InvalidTypeError(defaultStyles, 'defaultStyles', 'Object');

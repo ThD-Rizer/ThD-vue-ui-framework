@@ -52,8 +52,8 @@
   font-weight: 700;
 }
 
-//@each $key, $value in $colors {
-//  .color-#{$key} {
-//    color: $value;
-//  }
-//}
+@each $key, $value in $colors {
+  .color_#{$key} {
+    color: $value;
+  }
+}

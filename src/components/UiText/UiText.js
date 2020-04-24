@@ -1,17 +1,17 @@
 import { propValidator, trimSlotText } from '@/utils/helpers';
-import testable from '@/mixins/testable';
+import { getScssVariablesMap } from '@/utils/styles';
 
 import styles from './UiText.scss';
 
-const TAGS_FOR_TYPES = Object.freeze({
+const TAGS_FOR_TYPES = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
   text: 'span',
-});
-const typeValidator = {
-  validator: (value) => Object.keys(TAGS_FOR_TYPES).includes(value),
 };
+const COLORS = getScssVariablesMap('colors');
+
+const typeValidator = propValidator('type', Object.keys(TAGS_FOR_TYPES));
 const weightValidator = propValidator('weight', [
   'thin',
   'light',
@@ -19,12 +19,10 @@ const weightValidator = propValidator('weight', [
   'medium',
   'bold',
 ]);
+const colorValidator = propValidator('color', Object.keys(COLORS));
 
 export default {
   name: 'UiText',
-  mixins: [
-    testable,
-  ],
   props: {
     tag: {
       type: String,
@@ -43,6 +41,7 @@ export default {
     color: {
       type: String,
       default: null,
+      ...colorValidator,
     },
   },
   computed: {
@@ -58,7 +57,7 @@ export default {
       return {
         [styles[type]]: true,
         [styles[weight]]: !!weight,
-        [styles[`color-${color}`]]: !!color,
+        [styles[`color_${color}`]]: !!color,
       };
     },
   },
