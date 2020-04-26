@@ -12,6 +12,7 @@ export default {
     prop: 'value',
     event: 'input',
   },
+
   props: {
     id: {
       type: [String, Number],
@@ -47,13 +48,26 @@ export default {
       default: null,
     },
   },
+
   data: () => ({
     uniqueId: null,
     focused: false,
+    localValue: null,
   }),
+
+  watch: {
+    value: {
+      handler(payload) {
+        this.localValue = payload;
+      },
+      immediate: true,
+    },
+  },
+
   mounted() {
     this.uniqueId = this.id || `input-${generateHash()}`;
   },
+
   methods: {
     handleFocus(event) {
       if (this.disabled) return;
@@ -81,13 +95,17 @@ export default {
       this.$emit('change', event.target.value);
     },
 
+    clear() {
+      this.localValue = '';
+    },
+
     genRoot(childNodes = []) {
       return this.$createElement('div', {
         class: {
           [styles.root]: true,
           [styles.hasIconBefore]: this.iconBefore,
           [styles.hasLabel]: this.label,
-          [styles.isFilled]: this.value,
+          [styles.isFilled]: this.localValue,
           [styles.isFocused]: this.focused,
           [styles.isDisabled]: this.disabled,
         },
@@ -100,7 +118,7 @@ export default {
       return this.$createElement('label', {
         class: {
           [styles.label]: true,
-          [styles.labelActive]: this.value || this.focused,
+          [styles.labelActive]: this.localValue || this.focused,
         },
         attrs: {
           for: this.uniqueId,
@@ -131,11 +149,12 @@ export default {
 
     genInput() {
       return this.$createElement('input', {
+        ref: 'input',
         class: styles.input,
         attrs: {
           id: this.uniqueId,
           type: this.type,
-          value: this.value,
+          value: this.localValue,
           name: this.name,
           required: this.required,
           disabled: this.disabled,
@@ -151,15 +170,21 @@ export default {
     },
 
     genButtonClear() {
+      if (!this.localValue) return null;
+
       const icon = this.$createElement(UiIcon, {
         props: { name: 'cross' },
       });
 
       return this.$createElement('button', {
-        //
+        class: styles.buttonClear,
+        on: {
+          click: this.clear,
+        },
       }, [icon]);
     },
   },
+
   render() {
     return this.genRoot([
       this.genContainer([

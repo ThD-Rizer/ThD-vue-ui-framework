@@ -94,3 +94,22 @@ $colorTheme: color('easternBlue');
     padding-left: $size + 10px;
   }
 }
+
+.buttonClear {
+  @include resetButton;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: $transition;
+
+  @include hover {
+    opacity: .5;
+    transform: rotate(180deg);
+  }
+}
