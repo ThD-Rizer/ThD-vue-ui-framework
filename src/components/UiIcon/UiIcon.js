@@ -1,6 +1,5 @@
 import icons from '@/icons';
 import { propValidator } from '@/utils/helpers';
-
 import styles from './UiIcon.scss';
 
 const tagValidator = propValidator('tag', ['span', 'i']);

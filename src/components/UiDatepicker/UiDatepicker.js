@@ -16,13 +16,13 @@ export default {
     },
   },
   computed: {
-    internalLanguage() {
+    localLanguage() {
       return LOCALES?.[this.language];
     },
   },
   methods: {
     getRoot(childNodes = []) {
-      const language = this.internalLanguage || null;
+      const language = this.localLanguage || null;
 
       return this.$createElement(Datepicker, {
         props: {

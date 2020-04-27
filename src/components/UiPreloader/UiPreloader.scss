@@ -1,0 +1,25 @@
+@mixin positionedStyles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.root {
+  &.isBackground {
+    background-color: color('white');
+  }
+
+  &.isFullBlock {
+    @include positionedStyles;
+    position: absolute;
+  }
+
+  &.isFullScreen {
+    @include positionedStyles;
+    position: fixed;
+  }
+}

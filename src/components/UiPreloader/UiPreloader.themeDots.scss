@@ -1,0 +1,55 @@
+$baseSize: 10px;
+$color: color('easternBlue');
+$lightenColor: rgba($color, .2);
+$pulseDuration: 1s;
+
+@keyframes pulse {
+  50% {
+    background-color: $color;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $baseSize * 4;
+  height: $baseSize * 4;
+}
+
+.indicator {
+  width: $baseSize;
+  height: $baseSize;
+  position: relative;
+
+  &:not(:last-child) {
+    margin-right: $baseSize / 2;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: $baseSize;
+    height: $baseSize;
+    background-color: $lightenColor;
+    border-radius: 50%;
+    animation: pulse $pulseDuration infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0) scale(.5);
+  }
+
+  &:not(:first-child):not(:last-child) {
+    &::before {
+      animation-delay: ($pulseDuration / 3);
+    }
+  }
+
+  &:last-child {
+    &::before {
+      animation-delay: ($pulseDuration / 1.5);
+    }
+  }
+}

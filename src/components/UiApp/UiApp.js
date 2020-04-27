@@ -52,10 +52,10 @@ export default {
     },
     genContainer([name, id]) {
       return this.$createElement('div', {
-        ref: name,
         attrs: {
           id,
         },
+        ref: name,
       });
     },
   },

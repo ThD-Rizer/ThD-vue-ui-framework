@@ -1,12 +1,9 @@
 import Vue from 'vue';
 import UI from '@/lib';
-
 import router from './router';
 import App from './App';
-
 import UiMain from './components/UiMain';
 import UiSection from './components/UiSection';
-
 import UiButtonStyles from './styles/UiButton.scss';
 
 Vue.use(UI, {

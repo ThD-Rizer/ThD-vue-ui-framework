@@ -1,7 +1,6 @@
 import { trimSlotText, propValidator } from '@/utils/helpers';
 import routable from '@/mixins/routable';
 import { factoryStylable } from '@/mixins/stylable';
-
 import defaultStyles from './UiButton.scss';
 import themePrimaryStyles from './UiButton.themePrimary.scss';
 import themeSecondaryStyles from './UiButton.themeSecondary.scss';

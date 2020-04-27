@@ -1,11 +1,86 @@
 <template>
   <UiMain>
-    Other
+    <UiSection>
+      <UiButton @click="switchSuspense">
+        Switch suspense
+      </UiButton>
+
+      <p>
+        suspenseState: "{{ suspenseState }}"
+      </p>
+    </UiSection>
+
+    <UiSection title="Suspense default slots">
+      <UiSuspense :state="suspenseState" />
+    </UiSection>
+
+    <UiSection title="Suspense custom slots">
+      <UiSuspense :state="suspenseState">
+        <template #default>
+          <span>#default</span>
+        </template>
+        <template #error>
+          <span>#error</span>
+        </template>
+        <template #fallback>
+          <span>#fallback</span>
+        </template>
+        <template #preloader>
+          <UiPreloader
+            :fullBlock="true"
+            background="rgba(0, 0, 0, .1)"
+            theme="pulse"
+          />
+        </template>
+      </UiSuspense>
+    </UiSection>
+
+    <UiSection title="Suspense failed usage">
+      <UiSuspense :state="suspenseState">
+        #default
+        <template #error>
+          #error
+        </template>
+        <template #preloader>
+          <UiPreloader theme="dots" />
+        </template>
+      </UiSuspense>
+    </UiSection>
   </UiMain>
 </template>
 
 <script>
+  import { STATE_TYPES } from '@/components/UiSuspense';
+
   export default {
     name: 'Other',
+    data: () => ({
+      suspenseState: null,
+    }),
+    methods: {
+      switchSuspense() {
+        switch (this.suspenseState) {
+          case STATE_TYPES.PENDING:
+            this.suspenseState = STATE_TYPES.FAIL;
+            break;
+
+          case STATE_TYPES.FAIL:
+            this.suspenseState = STATE_TYPES.EMPTY;
+            break;
+
+          case STATE_TYPES.EMPTY:
+            this.suspenseState = STATE_TYPES.SUCCESS;
+            break;
+
+          case STATE_TYPES.SUCCESS:
+            this.suspenseState = null;
+            break;
+
+          case null:
+          default:
+            this.suspenseState = STATE_TYPES.PENDING;
+        }
+      },
+    },
   };
 </script>

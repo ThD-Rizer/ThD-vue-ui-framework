@@ -1,7 +1,5 @@
 import { generateHash, propValidator } from '@/utils/helpers';
-
-import UiIcon from '../UiIcon';
-
+import UiIcon from '@/components/UiIcon';
 import styles from './UiInput.scss';
 
 const typeValidator = propValidator('type', ['text', 'password']);
@@ -149,7 +147,6 @@ export default {
 
     genInput() {
       return this.$createElement('input', {
-        ref: 'input',
         class: styles.input,
         attrs: {
           id: this.uniqueId,
@@ -166,6 +163,7 @@ export default {
           input: this.handleInput,
           change: this.handleChange,
         },
+        ref: 'input',
       });
     },
 

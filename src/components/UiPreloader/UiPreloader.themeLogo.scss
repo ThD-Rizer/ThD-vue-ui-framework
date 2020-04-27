@@ -1,0 +1,69 @@
+$baseSize: 48px;
+$offset: $baseSize / 2;
+$color: color('easternBlue');
+$rotateDuration: 1.2s;
+$pulseDuration: 2s;
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .3;
+    transform: scale(.7);
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $baseSize;
+  height: $baseSize;
+  position: relative;
+}
+
+.circle {
+  width: $baseSize;
+  height: $baseSize;
+  border-radius: 50%;
+  margin-left: -$offset;
+  margin-top: -$offset;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  box-shadow: inset 0 0 0 1px rgba($color, .1);
+}
+
+.indicator {
+  width: $baseSize / 2;
+  height: $baseSize;
+  -webkit-mask-image: -webkit-linear-gradient(top, #000000, rgba(0, 0, 0, 0));
+  margin-left: -$offset;
+  margin-top: -$offset;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: $offset $offset;
+  animation: rotate $rotateDuration infinite linear;
+  overflow: hidden;
+}
+
+.indicatorLine {
+  width: $baseSize;
+  height: $baseSize;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba($color, .7);
+}
+
+.logo {
+  font-size: 24px;
+  color: $color;
+  animation: pulse $pulseDuration infinite linear;
+}

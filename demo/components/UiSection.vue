@@ -24,6 +24,10 @@
 </script>
 
 <style lang="scss" module>
+  .root {
+    position: relative;
+  }
+
   .root:not(:last-child) {
     margin-bottom: spacer(8);
   }

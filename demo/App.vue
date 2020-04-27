@@ -18,7 +18,6 @@
 <script>
   import packageJson from '@root/package.json';
   import routes from './router/routes';
-
   import UiHeader from './components/UiHeader';
 
   export default {
@@ -39,7 +38,3 @@
     },
   };
 </script>
-
-<style lang="scss" module>
-  // @import '../styles/fonts';
-</style>

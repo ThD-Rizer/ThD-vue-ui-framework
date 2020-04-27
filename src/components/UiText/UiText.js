@@ -1,6 +1,5 @@
 import { propValidator, trimSlotText } from '@/utils/helpers';
 import { getScssVariablesMap } from '@/utils/styles';
-
 import styles from './UiText.scss';
 
 const TAGS_FOR_TYPES = {
@@ -45,7 +44,7 @@ export default {
     },
   },
   computed: {
-    internalTag() {
+    localTag() {
       return this.tag || TAGS_FOR_TYPES[this.type];
     },
     rootClasses() {
@@ -63,7 +62,7 @@ export default {
   },
   methods: {
     genRoot(childNodes = []) {
-      return this.$createElement(this.internalTag, {
+      return this.$createElement(this.localTag, {
         class: this.rootClasses,
         attrs: this.qaAttributes,
       }, childNodes);

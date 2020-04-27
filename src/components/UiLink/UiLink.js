@@ -1,6 +1,5 @@
 import { trimSlotText } from '@/utils/helpers';
 import routable from '@/mixins/routable';
-
 import styles from './UiLink.scss';
 
 export default {

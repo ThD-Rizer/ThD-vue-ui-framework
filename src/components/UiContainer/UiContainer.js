@@ -1,5 +1,4 @@
 import { propValidator } from '@/utils/helpers';
-
 import styles from './UiContainer.scss';
 
 const tagValidator = propValidator('tag', ['div', 'section', 'header', 'footer']);
