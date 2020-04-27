@@ -1,4 +1,3 @@
-
 import UiPreloader from '@/components/UiPreloader';
 import { STATE_TYPES } from './constants';
 
