@@ -16,6 +16,7 @@ export { default as percentOfInteger } from './percentOfInteger';
 export { default as propValidator } from './propValidator';
 export { default as randomArrayElement } from './randomArrayElement';
 export { default as randomInteger } from './randomInteger';
+export { default as scrollTo } from './scrollTo';
 export { default as trimLeft } from './trimLeft';
 export { default as trimRight } from './trimRight';
 export { default as trimSlotText } from './trimSlotText';

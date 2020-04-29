@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: 'Testing',
+    name: 'TestingPage',
     data: () => ({
       isChecked: false,
       theme: 'secondary',

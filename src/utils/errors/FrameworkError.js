@@ -1,7 +1,7 @@
 import { isArray } from '@/utils/inspect';
 
 /**
- * Base error
+ * Ошибка
  */
 export default class FrameworkError extends Error {
   /**

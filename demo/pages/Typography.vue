@@ -76,6 +76,6 @@
 
 <script>
   export default {
-    name: 'Typography',
+    name: 'TypographyPage',
   };
 </script>

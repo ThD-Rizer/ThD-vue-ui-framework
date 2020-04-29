@@ -6,6 +6,15 @@
   }
 }
 
+@mixin flexMinHeightFix($value: 'inherit') {
+  &::after {
+    content: '';
+    display: block;
+    min-height: $value;
+    font-size: 0;
+  }
+}
+
 @mixin visuallyHidden {
   &:not(:focus):not(:active) {
     width: 1px;

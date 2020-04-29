@@ -1,7 +1,7 @@
 import FrameworkError from './FrameworkError';
 
 /**
- * Throws when function options is not value
+ * Ошибка неверного значения параметра
  */
 export default class InvalidOptionValueError extends FrameworkError {
   /**

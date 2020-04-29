@@ -1,7 +1,7 @@
 import FrameworkError from './FrameworkError';
 
 /**
- * Throws when child component used not inside of provider
+ * Бросать, когда дочерний компонент используется не внутри провайдера
  */
 export default class ComponentInjectionError extends FrameworkError {
   /**

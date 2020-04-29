@@ -1,16 +1,15 @@
 .root {
-  background-color: rgba(color('mineShaft'), .5);
+  background-color: rgba(color('black'), .7);
   min-height: 100vh;
-  opacity: 0;
-  pointer-events: none;
-  transition: $transition;
-  overflow-y: auto;
   position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  @include positionAll(0);
   z-index: 1;
+  opacity: 0;
+  overflow-y: auto;
+  transition: $transition;
+  pointer-events: none;
+
+  @include flexMinHeightFix;
 
   &.isOpened {
     opacity: 1;

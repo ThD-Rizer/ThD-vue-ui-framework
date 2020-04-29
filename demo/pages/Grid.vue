@@ -6,6 +6,6 @@
 
 <script>
   export default {
-    name: 'Grid',
+    name: 'GridPage',
   };
 </script>

@@ -1,13 +1,17 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodyScrollLock';
-import { inject as RegistrableInject } from '@/mixins/registrable';
-// import Toggleable from '@/mixins/toggleable';
+import { scrollTo } from '@/utils/helpers';
+import { registrableInject } from '@/mixins/registrable';
+import { factoryToggleable } from '@/mixins/toggleable';
 import styles from './UiOverlay.scss';
+
+const registrableInjector = registrableInject('appContainer', 'UiOverlay', 'UiApp');
+const toggleable = factoryToggleable();
 
 export default {
   name: 'UiOverlay',
   mixins: [
-    RegistrableInject('appContainer', 'UiOverlay', 'UiApp'),
-    // Toggleable,
+    registrableInjector,
+    toggleable,
   ],
   computed: {
     classesRoot() {
@@ -18,7 +22,9 @@ export default {
     },
   },
   watch: {
-    opened: 'toggleScroll',
+    opened(payload) {
+      this.toggleScroll(payload);
+    },
   },
   mounted() {
     if (this.appContainer) {
@@ -37,7 +43,7 @@ export default {
   methods: {
     toggleScroll(opened) {
       if (opened) {
-        this.$el.scrollTo(0, 0);
+        scrollTo(this.$el, 0, 0);
       }
       if (opened) {
         this.lockScroll();
@@ -45,21 +51,32 @@ export default {
         this.unlockScroll();
       }
     },
+
     lockScroll() {
       disableBodyScroll(this.$el);
     },
+
     unlockScroll() {
       enableBodyScroll(this.$el);
     },
+
     genRoot(childNodes = []) {
-      this.$createElement('div', {
-        class: this.classes,
+      return this.$createElement('div', {
+        class: this.classesRoot,
       }, childNodes);
+    },
+
+    genDefaultSlot() {
+      const defaultSlot = this.$scopedSlots.default;
+
+      if (!defaultSlot) return null;
+
+      return defaultSlot();
     },
   },
   render() {
     return this.genRoot([
-      this.$slots.default,
+      this.genDefaultSlot(),
     ]);
   },
 };

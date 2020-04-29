@@ -1,3 +1,3 @@
-# Routable mixin
+# Toggleable mixin
 
 @TODO: Добавить описание

@@ -1,7 +1,7 @@
 import FrameworkError from './FrameworkError';
 
 /**
- * Invalid type error
+ * Ошибка неверного типа
  */
 export default class InvalidTypeError extends FrameworkError {
   /**

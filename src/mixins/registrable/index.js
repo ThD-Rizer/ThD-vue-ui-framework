@@ -6,17 +6,21 @@ import { ComponentInjectionError } from '@/utils/errors';
  * @param {String} namespace
  * @param {String} [child]
  * @param {String} [parent]
- * @returns {{ inject: {} }}
+ * @returns {{ inject: Object }}
  */
-export const inject = (namespace, child, parent) => {
-  const implementation = child && parent ? {
-    register: () => {
-      throw new ComponentInjectionError(parent, child);
-    },
-    unregister: () => {
-      throw new ComponentInjectionError(parent, child);
-    },
-  } : null;
+export const registrableInject = (namespace, child, parent) => {
+  let implementation = null;
+
+  if (child && parent) {
+    implementation = {
+      register: () => {
+        throw new ComponentInjectionError(parent, child);
+      },
+      unregister: () => {
+        throw new ComponentInjectionError(parent, child);
+      },
+    };
+  }
 
   return {
     inject: {
@@ -29,11 +33,10 @@ export const inject = (namespace, child, parent) => {
 
 /**
  * Фабрика провайдера
- *
  * @param {String} namespace
- * @returns {{ provide(): Object, methods: { unregister: null, register: null } }}
+ * @return {{ methods: Object, provide: Function }}
  */
-export const provide = (namespace) => ({
+export const registrableProvide = (namespace) => ({
   methods: {
     register: null,
     unregister: null,
@@ -49,6 +52,6 @@ export const provide = (namespace) => ({
 });
 
 export default {
-  inject,
-  provide,
+  registrableInject,
+  registrableProvide,
 };

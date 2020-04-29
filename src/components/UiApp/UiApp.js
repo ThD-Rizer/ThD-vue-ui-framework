@@ -1,14 +1,16 @@
 import FrameworkError from '@/utils/errors';
-import { provide as RegistrableProvide } from '@/mixins/registrable';
+import { registrableProvide } from '@/mixins/registrable';
 
 const containers = {
   modals: 'bmP69q486LMGsVpUnTyGC93ydKRG1vkf',
 };
 
+const registrableProvider = registrableProvide('appContainer');
+
 export default {
   name: 'UiApp',
   mixins: [
-    RegistrableProvide('appContainer'),
+    registrableProvider,
   ],
   props: {
     tag: {
@@ -35,11 +37,13 @@ export default {
 
       this.$refs[container].appendChild(el);
     },
+
     unregister(el, container) {
       if (this.$refs[container].contains(el)) {
         el.remove();
       }
     },
+
     genRoot(childNodes = []) {
       return this.$createElement(this.tag, {
         attrs: {
@@ -47,10 +51,22 @@ export default {
         },
       }, childNodes);
     },
-    genContainers() {
-      return Object.entries(containers).map(this.genContainer);
+
+    genDefaultSlot() {
+      const defaultSlot = this.$scopedSlots.default;
+
+      if (!defaultSlot) return null;
+
+      return defaultSlot();
     },
-    genContainer([name, id]) {
+
+    genContainers() {
+      return Object.entries(containers).map(([name, id]) => (
+        this.genContainer(name, id)
+      ));
+    },
+
+    genContainer(name, id) {
       return this.$createElement('div', {
         attrs: {
           id,
@@ -61,7 +77,7 @@ export default {
   },
   render() {
     return this.genRoot([
-      this.$slots.default,
+      this.genDefaultSlot(),
       this.genContainers(),
     ]);
   },

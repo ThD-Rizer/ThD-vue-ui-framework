@@ -17,6 +17,7 @@ export default [
   page('Forms'),
   // page('Tables'),
   page('Grid'),
+  page('Modals'),
   page('Other'),
   page('Testing'),
 ];

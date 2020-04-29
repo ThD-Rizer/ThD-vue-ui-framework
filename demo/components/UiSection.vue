@@ -25,10 +25,12 @@
 
 <style lang="scss" module>
   .root {
+    border-bottom: 1px dashed rgba(color('azureRadiance'), .3);
+    padding-bottom: 20px;
     position: relative;
   }
 
   .root:not(:last-child) {
-    margin-bottom: spacer(8);
+    margin-bottom: spacer(6);
   }
 </style>
