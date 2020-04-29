@@ -31,8 +31,10 @@
 }
 
 @mixin hover {
-  &:not([disabled]):hover {
-    @content;
+  @media (hover: hover) {
+    &:not([disabled]):hover {
+      @content;
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-# @thd/vue-ui-framework (v0.15.0)
+# @thd/vue-ui-framework (v0.15.1)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
 
@@ -66,7 +66,7 @@ email = ${VERDACCIO_EMAIL}
 ```json
 {
   "dependencies": {
-    "@thd/vue-ui-framework": "^0.15.0"
+    "@thd/vue-ui-framework": "^0.15.1"
   }
 }
 ```
