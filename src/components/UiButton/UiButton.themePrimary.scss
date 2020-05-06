@@ -1,12 +1,12 @@
 .root {
-  background-color: color('azureRadiance');
-  color: color('white');
+  background-color: $colorAzureRadiance;
+  color: $colorWhite;
 
   @include hover {
-    background-color: darken(color('azureRadiance'), 15%);
+    background-color: darken($colorAzureRadiance, 15%);
   }
 
   &.isActive {
-    background-color: darken(color('azureRadiance'), 15%);
+    background-color: darken($colorAzureRadiance, 15%);
   }
 }

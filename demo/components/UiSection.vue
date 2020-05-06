@@ -25,7 +25,7 @@
 
 <style lang="scss" module>
   .root {
-    border-bottom: 1px dashed rgba(color('azureRadiance'), .3);
+    border-bottom: 1px dashed rgba($colorAzureRadiance, .3);
     padding-bottom: 20px;
     position: relative;
   }

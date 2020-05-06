@@ -13,10 +13,17 @@ export default {
     registrableInjector,
     toggleable,
   ],
+  props: {
+    active: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     classesRoot() {
       return {
         [styles.root]: true,
+        [styles.isActive]: this.active,
         [styles.isOpened]: this.opened,
       };
     },
@@ -44,8 +51,6 @@ export default {
     toggleScroll(opened) {
       if (opened) {
         scrollTo(this.$el, 0, 0);
-      }
-      if (opened) {
         this.lockScroll();
       } else {
         this.unlockScroll();
@@ -63,6 +68,7 @@ export default {
     genRoot(childNodes = []) {
       return this.$createElement('div', {
         class: this.classesRoot,
+        on: { ...this.$listeners },
       }, childNodes);
     },
 

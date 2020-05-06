@@ -1,6 +1,6 @@
 $baseSize: 48px;
 $offset: $baseSize / 2;
-$color: color('easternBlue');
+$color: $colorEasternBlue;
 $rotateDuration: 1.2s;
 $pulseDuration: 2s;
 
@@ -44,7 +44,7 @@ $pulseDuration: 2s;
 .indicator {
   width: $baseSize / 2;
   height: $baseSize;
-  -webkit-mask-image: -webkit-linear-gradient(top, #000000, rgba(0, 0, 0, 0));
+  -webkit-mask-image: -webkit-linear-gradient(top, $colorBlack, rgba($colorBlack, 0));
   margin-left: -$offset;
   margin-top: -$offset;
   position: absolute;

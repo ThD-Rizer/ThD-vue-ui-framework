@@ -1,0 +1,37 @@
+.root {
+  width: 400px;
+  max-width: calc(100vw - 56px);
+  background-color: $colorWhite;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+  transition: .4s $transitionStandTiming;
+  transition-property: transform;
+  will-change: transform, box-shadow;
+
+  @include mediaMax('xs') {
+    width: 320px;
+  }
+
+  &.isLeft {
+    right: auto;
+    left: 0;
+    transform: translate3D(-100%, 0, 0);
+  }
+
+  &.isRight {
+    right: 0;
+    left: auto;
+    transform: translate3D(100%, 0, 0);
+  }
+
+  &.isActive,
+  &.isOpened {
+    transform: translate3D(0, 0, 0);
+    transition-timing-function: $transitionDefaultTiming;
+    @include elevation(16);
+  }
+}

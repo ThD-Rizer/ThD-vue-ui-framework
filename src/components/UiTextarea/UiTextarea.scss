@@ -14,10 +14,10 @@
   @include resetButton;
   width: 100%;
   min-height: 100px;
-  border-bottom: 1px solid color('white');
+  border-bottom: 1px solid $colorWhite;
   padding: 10px;
   line-height: 1.5;
-  color: color('white');
+  color: $colorWhite;
   box-sizing: border-box;
   resize: vertical;
 }

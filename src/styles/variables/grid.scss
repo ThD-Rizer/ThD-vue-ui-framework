@@ -1,0 +1,34 @@
+// Grid settings
+$gridBreakpointFirst: 'xs';
+$gridBreakpointLast: 'xl';
+$gridBreakpoints: (
+  'xs': (
+    'min': 0px,
+    'max': 575px,
+  ),
+  'sm': (
+    'min': 576px,
+    'max': 767px,
+  ),
+  'md': (
+    'min': 768px,
+    'max': 991px,
+  ),
+  'lg': (
+    'min': 992px,
+    'max': 1199px,
+  ),
+  'xl': (
+    'min': 1200px,
+    'max': 9999px,
+  ),
+);
+$gridMaxWidths: (
+  'xs': auto,
+  'sm': 540px,
+  'md': 720px,
+  'lg': 960px,
+  'xl': 1140px,
+);
+$spacerSize: 4px !default;
+$spacerMaxValue: 20 !default;

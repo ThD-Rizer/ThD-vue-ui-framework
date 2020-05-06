@@ -1,12 +1,12 @@
 .root {
-  background-color: color('outerSpace');
-  color: color('white');
+  background-color: $colorOuterSpace;
+  color: $colorWhite;
 
   @include hover {
-    background-color: darken(color('outerSpace'), 15%);
+    background-color: darken($colorOuterSpace, 15%);
   }
 
   &.isActive {
-    background-color: darken(color('outerSpace'), 15%);
+    background-color: darken($colorOuterSpace, 15%);
   }
 }

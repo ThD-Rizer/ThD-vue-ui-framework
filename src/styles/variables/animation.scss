@@ -1,0 +1,24 @@
+// Переход по умолчанию, используемый, когда элемент видим с начала анимации
+$transitionDefaultTiming: cubic-bezier(.4, 0, .2, 1);
+$transitionDefaultDuration: .3s;
+$transitionDefault: $transitionDefaultDuration $transitionDefaultTiming;
+
+// Переход ввода, используемый, когда элемент не виден на экране с начала анимации и становится видимым
+$transitionEnterTiming: cubic-bezier(0, 0, .2, 1);
+$transitionEnterDuration: .3s;
+$transitionEnter: $transitionEnterDuration $transitionEnterTiming;
+
+// Переход, используемый, когда элемент виден на экране с начала анимации и становится невидимым
+$transitionLeaveTiming: cubic-bezier(.4, .0, 1, 1);
+$transitionLeaveDuration: .3s;
+$transitionLeave: $transitionLeaveDuration $transitionLeaveTiming;
+
+// Переход, используемый при ускорении элемента, например, движения снизу вверх
+$transitionStandTiming: cubic-bezier(.25, .8, .25, 1);
+$transitionStandDuration: .3s;
+$transitionStand: $transitionStandDuration $transitionStandTiming;
+
+// Выходной переход, используемый, когда элемент собирается замедляться, как движения сверху вниз
+$transitionDropTiming: cubic-bezier(.55, 0, .55, .2);
+$transitionDropDuration: .3s;
+$transitionDrop: $transitionDropDuration $transitionDropTiming;

@@ -9,7 +9,7 @@ body {
   font-family: $fontFamily;
   font-size: $fontSize;
   line-height: 1.5;
-  color: color('outerSpace');
+  color: $colorOuterSpace;
   overflow-y: scroll;
 }
 

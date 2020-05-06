@@ -10,7 +10,7 @@
 
 .root {
   &.isBackground {
-    background-color: color('white');
+    background-color: $colorWhite;
   }
 
   &.isFullBlock {

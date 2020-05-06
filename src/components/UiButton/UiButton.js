@@ -25,9 +25,21 @@ const themesStyles = {
 };
 const defaultTheme = 'secondary';
 
-const tagValidator = propValidator('tag', ['button', 'a', 'div']);
-const typeValidator = propValidator('type', ['button', 'submit', 'reset']);
-const sizeValidator = propValidator('size', ['small', 'normal', 'large']);
+const tagValidator = propValidator('tag', [
+  'button',
+  'a',
+  'div',
+]);
+const typeValidator = propValidator('type', [
+  'button',
+  'submit',
+  'reset',
+]);
+const sizeValidator = propValidator('size', [
+  'small',
+  'normal',
+  'large',
+]);
 const contentAlignValidator = propValidator('contentAlign', [
   'left',
   'center',

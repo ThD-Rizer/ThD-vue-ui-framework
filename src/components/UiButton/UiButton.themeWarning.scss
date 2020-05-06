@@ -1,12 +1,12 @@
 .root {
-  background-color: color('amber');
-  color: color('mineShaft');
+  background-color: $colorAmber;
+  color: $colorMineShaft;
 
   @include hover {
-    background-color: darken(color('amber'), 15%);
+    background-color: darken($colorAmber, 15%);
   }
 
   &.isActive {
-    background-color: darken(color('amber'), 15%);
+    background-color: darken($colorAmber, 15%);
   }
 }

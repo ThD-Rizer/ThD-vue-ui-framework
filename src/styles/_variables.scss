@@ -1,67 +1,8 @@
-// Grid settings
-$gridBreakpointFirst: 'xs';
-$gridBreakpointLast: 'xl';
-$gridBreakpoints: (
-  'xs': (
-    'min': 0px,
-    'max': 575px,
-  ),
-  'sm': (
-    'min': 576px,
-    'max': 767px,
-  ),
-  'md': (
-    'min': 768px,
-    'max': 991px,
-  ),
-  'lg': (
-    'min': 992px,
-    'max': 1199px,
-  ),
-  'xl': (
-    'min': 1200px,
-    'max': 9999px,
-  ),
-);
-$gridMaxWidths: (
-  'xs': auto,
-  'sm': 540px,
-  'md': 720px,
-  'lg': 960px,
-  'xl': 1140px,
-);
-$spacerSize: 4px !default;
-$spacerMaxValue: 20 !default;
+@import './variables/colors.scss';
+@import './variables/elevation.scss';
+@import './variables/animation.scss';
+@import './variables/grid.scss';
 
 // Typography
 $fontSize: 16px;
 $fontFamily: 'Montserrat', 'system', sans-serif;
-
-// Color settings
-$colors: (
-  'azureRadiance': #007bff,
-  'electricViolet': #6610f2,
-  'fuchsiaBlue': #6f42c1,
-  'cerise': #e83e8c,
-  'persianRed': #cd412d,
-  'ecstasy': #fd7e14,
-  'amber': #ffc107,
-  'eucalyptus': #28a745,
-  'mountainMeadow': #20c997,
-  'easternBlue': #17a2b8,
-  'white': #ffffff,
-  'athensGray': #f8f9fa,
-  'heather': #b2c1cd,
-  'dustyGray': #999999,
-  'paleSky': #6c757d,
-  'outerSpace': #343a40,
-  'mineShaft': #333333,
-  'black': #000000,
-);
-
-// Transition settings
-$primaryTransition: all .3s cubic-bezier(.25, .8, .5, 1);
-
-$transitionDuration: 0.3s !default;
-$transitionTimeFunction: ease-in-out !default;
-$transition: $transitionDuration $transitionTimeFunction !default;
