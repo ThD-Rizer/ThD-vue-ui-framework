@@ -1,4 +1,4 @@
-@mixin elevation($zValue, $color: $colorBlack, $opacityMode: 'normal') {
+@mixin elevation($zValue, $color: $colorBlack, $opacityMode: 'soft') {
   @if type-of($zValue) != number or not unitless($zValue) {
     @error "$zValue must be a unitless number";
   }

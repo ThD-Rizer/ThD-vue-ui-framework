@@ -32,6 +32,6 @@
   &.isOpened {
     transform: translate3D(0, 0, 0);
     transition-timing-function: $transitionDefaultTiming;
-    @include elevation(16);
+    @include elevation(16, $opacityMode: 'normal');
   }
 }
