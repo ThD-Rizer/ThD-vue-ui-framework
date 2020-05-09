@@ -1,6 +1,15 @@
-$elevationUmbraColor: rgba(#000, .2);
-$elevationPenumbraColor: rgba(#000, .14);
-$elevationAmbientColor: rgba(#000, .12);
+$opacityUmbraModes: (
+  soft: .1,
+  normal: .2,
+);
+$opacityPenumbraModes: (
+  soft: .07,
+  normal: .14,
+);
+$opacityAmbientModes: (
+  soft: .05,
+  normal: .12,
+);
 
 $elevationUmbra: (
   0: "0 0 0 0",

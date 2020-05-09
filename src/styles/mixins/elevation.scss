@@ -1,14 +1,20 @@
-@mixin elevation($zValue) {
+@mixin elevation($zValue, $color: $colorBlack, $opacityMode: 'normal') {
   @if type-of($zValue) != number or not unitless($zValue) {
     @error "$zValue must be a unitless number";
   }
-
   @if $zValue < 0 or $zValue > 24 {
     @error "$zValue must be between 0 and 24";
   }
+  @if $opacityMode != 'soft' and $opacityMode != 'normal' {
+    @error "$opacityMode must be 'soft' or 'normal'";
+  }
+
+  $umbraColor: rgba($color, map-get($opacityUmbraModes, $opacityMode));
+  $penumbraColor: rgba($color, map-get($opacityPenumbraModes, $opacityMode));
+  $ambientColor: rgba($color, map-get($opacityAmbientModes, $opacityMode));
 
   box-shadow:
-    #{map-get($elevationUmbra, $zValue)} $elevationUmbraColor,
-    #{map-get($elevationPenumbra, $zValue)} $elevationPenumbraColor,
-    #{map-get($elevationAmbient, $zValue)} $elevationAmbientColor;
+    #{map-get($elevationUmbra, $zValue)} $umbraColor,
+    #{map-get($elevationPenumbra, $zValue)} $penumbraColor,
+    #{map-get($elevationAmbient, $zValue)} $ambientColor;
 }

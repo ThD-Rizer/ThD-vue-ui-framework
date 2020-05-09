@@ -55,6 +55,16 @@
         </template>
       </UiSuspense>
     </UiSection>
+
+    <UiSection title="Elevation cards">
+      <article
+        v-for="index in 12"
+        :key="index"
+        :class="[$style.elevationCard, $style[`elevationCard_mode_${index}`]]"
+      >
+        Elevation card {{ index }}
+      </article>
+    </UiSection>
   </UiMain>
 </template>
 
@@ -97,5 +107,16 @@
 <style lang="scss" module>
   .section {
     min-height: 200px;
+  }
+
+  .elevationCard {
+    padding: spacer(2);
+    margin-bottom: spacer(8);
+
+    @for $i from 0 through 12 {
+      &_mode_#{$i} {
+        @include elevation($i, $opacityMode: 'soft');
+      }
+    }
   }
 </style>
