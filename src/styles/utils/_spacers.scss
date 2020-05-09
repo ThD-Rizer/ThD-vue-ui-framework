@@ -1,0 +1,83 @@
+@mixin helpers($size, $breakpoint: '') {
+  .m#{$breakpoint}-#{$size} {
+    margin: spacer($size);
+  }
+
+  .mt#{$breakpoint}-#{$size} {
+    margin-top: spacer($size);
+  }
+
+  .mb#{$breakpoint}-#{$size} {
+    margin-bottom: spacer($size);
+  }
+
+  .ml#{$breakpoint}-#{$size} {
+    margin-left: spacer($size);
+  }
+
+  .mr#{$breakpoint}-#{$size} {
+    margin-right: spacer($size);
+  }
+
+  .mx#{$breakpoint}-#{$size} {
+    margin-left: spacer($size);
+    margin-right: spacer($size);
+  }
+
+  .my#{$breakpoint}-#{$size} {
+    margin-top: spacer($size);
+    margin-bottom: spacer($size);
+  }
+}
+
+@mixin auto($breakpoint: '') {
+  .m#{$breakpoint}-auto {
+    margin: auto !important;
+  }
+
+  .mt#{$breakpoint}-auto {
+    margin-top: auto !important;
+  }
+
+  .mb#{$breakpoint}-auto {
+    margin-bottom: auto !important;
+  }
+
+  .ml#{$breakpoint}-auto {
+    margin-left: auto !important;
+  }
+
+  .mr#{$breakpoint}-auto {
+    margin-right: auto !important;
+  }
+
+  .mx#{$breakpoint}-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .my#{$breakpoint}-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+}
+
+:global {
+  @for $i from 0 through $spacerMaxValue {
+    @include helpers($i);
+
+    @each $breakpoint, $widths in $gridBreakpoints {
+      @include mediaMin($breakpoint) {
+        @include helpers($i, '-#{$breakpoint}');
+      }
+    }
+  }
+
+  @include auto;
+
+  @each $breakpoint, $widths in $gridBreakpoints {
+    @include mediaMin($breakpoint) {
+      @include auto('-#{$breakpoint}');
+    }
+  }
+}

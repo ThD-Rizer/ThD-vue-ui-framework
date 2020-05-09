@@ -15,7 +15,7 @@ export default [
   page('Typography'),
   page('Buttons'),
   page('Forms'),
-  // page('Tables'),
+  page('Tables'),
   page('Grid'),
   page('Modals'),
   page('Other'),

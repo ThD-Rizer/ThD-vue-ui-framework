@@ -116,6 +116,10 @@ export default {
       default: 'center',
       ...contentAlignValidator,
     },
+    empty: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -154,6 +158,16 @@ export default {
 
       return this.$createElement(tag, data, childNodes);
     },
+    genInner(childNodes = []) {
+      return this.$createElement('span', {
+        class: this.styles.inner,
+      }, childNodes);
+    },
+    genEmptyInner() {
+      return this.$createElement('span', {
+        class: this.styles.emptyInner,
+      }, '.');
+    },
     genDefaultSlot() {
       const defaultSlot = this.$scopedSlots.default;
 
@@ -161,17 +175,16 @@ export default {
 
       return trimSlotText(defaultSlot());
     },
-    genContent(childNodes = []) {
-      return this.$createElement('span', {
-        class: this.styles.inner,
-      }, childNodes);
-    },
   },
 
   render() {
+    const content = this.empty
+      ? this.genEmptyInner()
+      : this.genDefaultSlot();
+
     return this.genRoot([
-      this.genContent([
-        this.genDefaultSlot(),
+      this.genInner([
+        content,
       ]),
     ]);
   },

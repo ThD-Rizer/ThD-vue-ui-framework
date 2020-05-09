@@ -1,10 +1,11 @@
 <template>
   <header :class="$style.header">
     <UiText
-      tag="div"
-      weight="medium"
+      :block="true"
+      color="paleSky"
+      class="mb-4"
     >
-      UI Framework version {{ version }}
+      UI Framework <sup>v{{ version }}</sup>
     </UiText>
 
     <div :class="$style.menu">

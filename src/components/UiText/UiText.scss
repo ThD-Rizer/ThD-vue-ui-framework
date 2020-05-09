@@ -1,59 +1,74 @@
-@mixin safeZone() {
-  padding-top: spacer(2);
-  padding-bottom: spacer(2);
-  margin-bottom: spacer(4);
+.isBlock {
+  display: block;
 }
 
-.h1, .h2, .h3 {
-  margin-top: 0;
-  font-weight: 700;
-  @include safeZone;
+.type {
+  &_h1,
+  &_h2,
+  &_h3,
+  &_h4,
+  &_h5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+
+  &_h1 {
+    font-size: rem(32px);
+    line-height: rem(36px);
+  }
+
+  &_h2 {
+    font-size: rem(28px);
+    line-height: rem(32px);
+  }
+
+  &_h3 {
+    font-size: rem(24px);
+    line-height: rem(28px);
+  }
+
+  &_h4 {
+    font-size: rem(20px);
+    line-height: rem(24px);
+  }
+
+  &_h5 {
+    font-size: rem(16px);
+    line-height: rem(20px);
+  }
+
+  &_text {
+    line-height: rem(20px);
+  }
 }
 
-.h1 {
-  font-size: rem(24px);
-  line-height: rem(28px);
+.weight {
+  &_thin {
+    font-weight: 100;
+  }
+
+  &_light {
+    font-weight: 300;
+  }
+
+  &_regular {
+    font-weight: 400;
+  }
+
+  &_medium {
+    font-weight: 500;
+  }
+
+  &_bold {
+    font-weight: 700;
+  }
 }
 
-.h2 {
-  font-size: rem(20px);
-  line-height: rem(24px);
-
-}
-
-.h3 {
-  font-size: rem(16px);
-  line-height: rem(20px);
-}
-
-.text {
-  line-height: rem(20px);
-
-  @include safeZone;
-}
-
-.thin {
-  font-weight: 100;
-}
-
-.light {
-  font-weight: 300;
-}
-
-.normal {
-  font-weight: 400;
-}
-
-.medium {
-  font-weight: 500;
-}
-
-.bold {
-  font-weight: 700;
-}
-
-@each $key, $value in $colors {
-  .color_#{$key} {
-    color: $value;
+.color {
+  @each $key, $value in $colors {
+    &_#{$key} {
+      color: $value;
+    }
   }
 }

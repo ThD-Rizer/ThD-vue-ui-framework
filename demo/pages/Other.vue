@@ -10,11 +10,17 @@
       </p>
     </UiSection>
 
-    <UiSection title="Suspense default slots">
+    <UiSection
+      :class="$style.section"
+      title="Suspense default slots"
+    >
       <UiSuspense :state="suspenseState" />
     </UiSection>
 
-    <UiSection title="Suspense custom slots">
+    <UiSection
+      :class="$style.section"
+      title="Suspense custom slots"
+    >
       <UiSuspense :state="suspenseState">
         <template #default>
           <span>#default</span>
@@ -35,7 +41,10 @@
       </UiSuspense>
     </UiSection>
 
-    <UiSection title="Suspense failed usage">
+    <UiSection
+      :class="$style.section"
+      title="Suspense failed usage"
+    >
       <UiSuspense :state="suspenseState">
         #default
         <template #error>
@@ -84,3 +93,9 @@
     },
   };
 </script>
+
+<style lang="scss" module>
+  .section {
+    min-height: 200px;
+  }
+</style>

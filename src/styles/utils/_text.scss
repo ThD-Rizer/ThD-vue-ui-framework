@@ -1,0 +1,55 @@
+@mixin helpers($breakpoint: '') {
+  .t-center#{$breakpoint} {
+    text-align: center !important;
+  }
+
+  .t-right#{$breakpoint} {
+    text-align: right !important;
+  }
+
+  .t-left#{$breakpoint} {
+    text-align: left !important;
+  }
+
+  .t-upper#{$breakpoint} {
+    text-transform: uppercase !important;
+  }
+
+  .t-lower#{$breakpoint} {
+    text-transform: lowercase !important;
+  }
+
+  .t-normal#{$breakpoint} {
+    text-transform: none !important;
+  }
+
+  .t-thin#{$breakpoint} {
+    font-weight: 100 !important;
+  }
+
+  .t-light#{$breakpoint} {
+    font-weight: 300 !important;
+  }
+
+  .t-regular#{$breakpoint} {
+    font-weight: 400 !important;
+  }
+
+  .t-medium#{$breakpoint} {
+    font-weight: 500 !important;
+  }
+
+  .t-bold#{$breakpoint} {
+    font-weight: 700 !important;
+  }
+}
+
+:global {
+  @include helpers;
+
+  @each $breakpoint, $widths in $gridBreakpoints {
+    @include mediaMin($breakpoint) {
+      @include helpers('-#{$breakpoint}');
+    }
+  }
+}

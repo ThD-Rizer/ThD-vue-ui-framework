@@ -17,6 +17,12 @@
   }
 }
 
+@mixin hiddenText {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 @mixin visuallyHidden {
   &:not(:focus):not(:active) {
     width: 1px;

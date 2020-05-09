@@ -6,6 +6,8 @@ const TAGS_FOR_TYPES = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
   text: 'span',
 };
 const COLORS = getScssVariablesMap('colors');
@@ -14,7 +16,7 @@ const typeValidator = propValidator('type', Object.keys(TAGS_FOR_TYPES));
 const weightValidator = propValidator('weight', [
   'thin',
   'light',
-  'normal',
+  'regular',
   'medium',
   'bold',
 ]);
@@ -26,6 +28,10 @@ export default {
     tag: {
       type: String,
       default: null,
+    },
+    block: {
+      type: Boolean,
+      default: false,
     },
     type: {
       type: String,
@@ -54,8 +60,9 @@ export default {
         color,
       } = this;
       return {
-        [styles[type]]: true,
-        [styles[weight]]: !!weight,
+        [styles.isBlock]: this.block,
+        [styles[`type_${type}`]]: true,
+        [styles[`weight_${weight}`]]: !!weight,
         [styles[`color_${color}`]]: !!color,
       };
     },
@@ -64,7 +71,6 @@ export default {
     genRoot(childNodes = []) {
       return this.$createElement(this.localTag, {
         class: this.rootClasses,
-        attrs: this.qaAttributes,
       }, childNodes);
     },
     genDefaultSlot() {

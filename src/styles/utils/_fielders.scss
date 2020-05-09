@@ -1,0 +1,43 @@
+@mixin helpers($size, $breakpoint: '') {
+  .p#{$breakpoint}-#{$size} {
+    padding: spacer($size);
+  }
+
+  .pt#{$breakpoint}-#{$size} {
+    padding-top: spacer($size);
+  }
+
+  .pb#{$breakpoint}-#{$size} {
+    padding-bottom: spacer($size);
+  }
+
+  .pl#{$breakpoint}-#{$size} {
+    padding-left: spacer($size);
+  }
+
+  .pr#{$breakpoint}-#{$size} {
+    padding-right: spacer($size);
+  }
+
+  .px#{$breakpoint}-#{$size} {
+    padding-left: spacer($size);
+    padding-right: spacer($size);
+  }
+
+  .py#{$breakpoint}-#{$size} {
+    padding-top: spacer($size);
+    padding-bottom: spacer($size);
+  }
+}
+
+:global {
+  @for $i from 0 through $spacerMaxValue {
+    @include helpers($i);
+
+    @each $breakpoint, $widths in $gridBreakpoints {
+      @include mediaMin($breakpoint) {
+        @include helpers($i, '-#{$breakpoint}');
+      }
+    }
+  }
+}

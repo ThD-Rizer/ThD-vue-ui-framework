@@ -1,7 +1,7 @@
 <template>
   <UiMain>
     <UiSection title="Empty button">
-      <UiButton />
+      <UiButton :empty="true" />
     </UiSection>
 
     <UiSection title="Default button">
@@ -85,7 +85,7 @@
         contentAlign="justify"
       >
         Button
-        <UiIcon name="cross" />
+        <UiIcon name="user" />
       </UiButton>
     </UiSection>
   </UiMain>
