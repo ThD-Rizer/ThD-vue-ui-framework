@@ -1,0 +1,52 @@
+@mixin breakpoint($name) {
+  &.#{$name} {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+
+    &content {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
+      max-width: none;
+    }
+  }
+
+  @for $i from 1 through $gridColumns {
+    &.#{$name}#{$i} {
+      flex-basis: 100% / $gridColumns * $i;
+      max-width: 100% / $gridColumns * $i;
+    }
+  }
+
+  @for $i from 0 through $gridColumns {
+    &.#{$name}#{$i}offset {
+      margin-left: 100% / $gridColumns * $i;
+
+      &-right {
+        margin-right: 100% / $gridColumns * $i;
+      }
+    }
+  }
+}
+
+.root {
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  padding-right: $halfGutterWidth;
+  padding-left: $halfGutterWidth;
+
+  @include breakpoint('xs');
+
+  @each $breakpoint, $widths in $gridBreakpoints {
+    @include mediaMin($breakpoint) {
+      @include breakpoint($breakpoint);
+    }
+  }
+
+  &.isReverse {
+    flex-direction: column-reverse;
+  }
+}

@@ -1,0 +1,32 @@
+.root {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: $gutterCompensation;
+  margin-left: $gutterCompensation;
+  //margin-right: gridGutterCompensation('xs');
+  //margin-left: gridGutterCompensation('xs');
+
+  //& > [data-column] {
+  //  padding-right: gridHalfGutter('xs');
+  //  padding-left: gridHalfGutter('xs');
+  //}
+  //
+  //@each $breakpoint, $value in $gridBreakpoints {
+  //  @include mediaMin($breakpoint) {
+  //    margin-right: gridGutterCompensation($breakpoint);
+  //    margin-left: gridGutterCompensation($breakpoint);
+  //
+  //    & > [data-column] {
+  //      padding-right: gridHalfGutter($breakpoint);
+  //      padding-left: gridHalfGutter($breakpoint);
+  //    }
+  //  }
+  //}
+
+  &.isReverse {
+    flex-direction: row-reverse;
+  }
+}

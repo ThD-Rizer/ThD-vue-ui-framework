@@ -1,0 +1,5 @@
+@import '../flex';
+
+:global {
+  @include flexHelpers('f-');
+}

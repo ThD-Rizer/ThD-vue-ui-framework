@@ -1,4 +1,7 @@
 @import './mixins/elevation.scss';
+@import './mixins/grid.scss';
+@import './mixins/position.scss';
+@import './mixins/reset.scss';
 
 @mixin clearFix {
   &::after {
@@ -17,7 +20,7 @@
   }
 }
 
-@mixin hiddenText {
+@mixin hideText {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -39,6 +42,9 @@
 }
 
 @mixin hover {
+  // Media query `hover` исключает применение стилей на тач устройствах
+  // Это сделано для исключения "залипших" стилей при клике, сброс которых возможен только
+  // при клике вне элемента, что может негативно повлиять на UX
   @media (hover: hover) {
     &:not([disabled]):hover {
       @content;
@@ -56,72 +62,6 @@
   &:not([disabled]):focus {
     @content;
   }
-}
-
-// Grid
-
-@mixin mediaMin($breakpoint) {
-  @media only screen and (min-width: breakpointMinSize($breakpoint)) {
-    @content;
-  }
-}
-
-@mixin mediaMax($breakpoint) {
-  @media only screen and (max-width: breakpointMaxSize($breakpoint)) {
-    @content;
-  }
-}
-
-@mixin mediaBetween($from, $to) {
-  @media only screen and (min-width: breakpointMinSize($from)) and (max-width: breakpointMaxSize($to)) {
-    @content;
-  }
-}
-
-@mixin media($from, $to: false) {
-  @if ($to) {
-    @include mediaBetween($from, $to) { @content; }
-  } @else {
-    @if ($from == $gridBreakpointFirst) {
-      @include mediaMax($from) { @content; }
-    } @else if ($from == $gridBreakpointLast) {
-      @include mediaMin($from) { @content; }
-    } @else {
-      @include mediaBetween($from, $from) { @content; }
-    }
-  }
-}
-
-// Grid;
-
-@mixin genColumn($prefix, $columns) {
-  @for $column from 1 through $columns {
-    .column#{$prefix}-#{$column} {
-      width: percentage($column / $columns);
-    }
-  }
-}
-
-@mixin resetList {
-  margin: 0;
-  padding: 0;
-  text-indent: 0;
-  list-style: none;
-  list-style-position: outside;
-}
-
-@mixin resetButton {
-  background: 0 0;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  outline: none;
-}
-
-@mixin hideText {
-  text-indent: 150%;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 @mixin wordBreak {
@@ -172,71 +112,3 @@
   margin-bottom: $bottom;
 }
 
-// Задает позиционирование по всем сторонам
-// Поведение аналогично margin и padding
-@mixin positionAll($args...) {
-  $top: false;
-  $right: false;
-  $bottom: false;
-  $left: false;
-
-  @if (length($args) == 1) {
-    $top: nth($args, 1);
-  }
-  @if (length($args) > 1) {
-    $right: nth($args, 2);
-  } @else {
-    $right: nth($args, 1);
-  }
-  @if (length($args) > 2) {
-    $bottom: nth($args, 3);
-  } @else {
-    $bottom: nth($args, 1);
-  }
-  @if (length($args) == 4) {
-    $left: nth($args, 4);
-  } @else if (length($args) > 1) {
-    $left: nth($args, 2);
-  } @else {
-    $left: nth($args, 1);
-  }
-
-  @if ($top != false) {
-    top: $top;
-  }
-  @if ($right != false) {
-    right: $right;
-  }
-  @if ($bottom != false) {
-    bottom: $bottom;
-  }
-  @if ($left != false) {
-    left: $left;
-  }
-}
-
-// Задает позиционирование по выбранным сторонам
-@mixin positionSet($args...) {
-  @if (nth($args, 1) != false) {
-    top: nth($args, 1);
-  }
-  @if (length($args) >= 2 and nth($args, 2) != false) {
-    right: nth($args, 2);
-  }
-  @if (length($args) >= 3 and nth($args, 3) != false) {
-    bottom: nth($args, 3);
-  }
-  @if (length($args) == 4 and nth($args, 4) != false) {
-    left: nth($args, 4);
-  }
-}
-
-@mixin positionX($left, $right: $left) {
-  left: $left;
-  right: $right;
-}
-
-@mixin positionY($top, $bottom: $top) {
-  top: $top;
-  bottom: $bottom;
-}

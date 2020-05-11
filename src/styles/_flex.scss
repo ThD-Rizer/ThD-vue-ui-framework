@@ -1,0 +1,80 @@
+@mixin helpers($prefix: '', $breakpoint: '') {
+  .#{$prefix}start#{$breakpoint} {
+    justify-content: flex-start !important;
+    text-align: left;
+  }
+
+  .#{$prefix}center#{$breakpoint} {
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  .#{$prefix}end#{$breakpoint} {
+    justify-content: flex-end !important;
+    text-align: right;
+  }
+
+  .#{$prefix}self-start#{$breakpoint} {
+    align-self: start !important;
+  }
+
+  .#{$prefix}self-end#{$breakpoint} {
+    align-self: end !important;
+  }
+
+  .#{$prefix}top#{$breakpoint} {
+    align-items: flex-start !important;
+  }
+
+  .#{$prefix}middle#{$breakpoint} {
+    align-items: center !important;
+  }
+
+  .#{$prefix}bottom#{$breakpoint} {
+    align-items: flex-end !important;
+  }
+
+  .#{$prefix}around#{$breakpoint} {
+    justify-content: space-around !important;
+  }
+
+  .#{$prefix}between#{$breakpoint} {
+    justify-content: space-between !important;
+  }
+
+  .#{$prefix}first#{$breakpoint} {
+    order: -1 !important;
+  }
+
+  .#{$prefix}last#{$breakpoint} {
+    order: 1 !important;
+  }
+
+  @for $i from 0 through 20 {
+    .#{$prefix}order#{$breakpoint}-#{$i} {
+      order: $i !important;
+    }
+  }
+
+  .#{$prefix}row#{$breakpoint} {
+    flex-direction: row !important;
+  }
+
+  .#{$prefix}column#{$breakpoint} {
+    flex-direction: column !important;
+  }
+}
+
+@mixin flexHelpers($prefix: '') {
+  @include helpers($prefix);
+
+  @each $name, $widths in $gridBreakpoints {
+    $size: nth($widths, 1);
+
+    @include mediaMin($name) {
+      @include helpers($prefix, '-#{$name}');
+    }
+  }
+}
+
+@include flexHelpers;

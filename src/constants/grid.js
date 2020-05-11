@@ -1,25 +1,34 @@
+import { getScssVariablesMap } from '@/utils/styles';
+
+/**
+ * @example
+ * Возвращает объект с точками останова, содержащими границы диапазона
+ * {
+ *   xs: {
+ *     min: '0px',
+ *     max: '575px',
+ *   },
+ *   ...
+ * }
+ * @returns {Object}
+ */
+function getPrependBreakpoints() {
+  const grid = getScssVariablesMap('grid');
+
+  return Object.entries(grid).reduce((acc, [key, value]) => {
+    const [, breakpoint, range] = key.match(/(\w+)-(\w+)/);
+
+    return {
+      ...acc,
+      [breakpoint]: {
+        ...acc[breakpoint],
+        [range]: value,
+      },
+    };
+  }, {});
+}
+
 /**
  * @type {Readonly<Object>}
  */
-export const breakpoints = Object.freeze({
-  xs: {
-    min: 0,
-    max: 575,
-  },
-  sm: {
-    min: 576,
-    max: 767,
-  },
-  md: {
-    min: 768,
-    max: 991,
-  },
-  lg: {
-    min: 992,
-    max: 1199,
-  },
-  xl: {
-    min: 1200,
-    max: 9999,
-  },
-});
+export const BREAKPOINTS = Object.freeze(getPrependBreakpoints());

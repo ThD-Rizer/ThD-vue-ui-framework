@@ -5,6 +5,12 @@
   //gridBreakpoints: $gridBreakpoints;
   //gridMaxWidths: $gridMaxWidths;
 
+  @each $breakpoint, $breakpointValue in $gridBreakpoints {
+    @each $key, $value in $breakpointValue {
+      #{'grid-' + $breakpoint + '-' + $key}: $value;
+    }
+  }
+
   @each $key, $value in $colors {
     #{'colors-' + $key}: $value;
   }

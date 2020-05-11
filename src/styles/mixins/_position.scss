@@ -1,0 +1,68 @@
+// Задает позиционирование по всем сторонам
+// Поведение аналогично margin и padding
+@mixin positionAll($args...) {
+  $top: false;
+  $right: false;
+  $bottom: false;
+  $left: false;
+
+  @if (length($args) == 1) {
+    $top: nth($args, 1);
+  }
+  @if (length($args) > 1) {
+    $right: nth($args, 2);
+  } @else {
+    $right: nth($args, 1);
+  }
+  @if (length($args) > 2) {
+    $bottom: nth($args, 3);
+  } @else {
+    $bottom: nth($args, 1);
+  }
+  @if (length($args) == 4) {
+    $left: nth($args, 4);
+  } @else if (length($args) > 1) {
+    $left: nth($args, 2);
+  } @else {
+    $left: nth($args, 1);
+  }
+
+  @if ($top != false) {
+    top: $top;
+  }
+  @if ($right != false) {
+    right: $right;
+  }
+  @if ($bottom != false) {
+    bottom: $bottom;
+  }
+  @if ($left != false) {
+    left: $left;
+  }
+}
+
+// Задает позиционирование по выбранным сторонам
+@mixin positionSet($args...) {
+  @if (nth($args, 1) != false) {
+    top: nth($args, 1);
+  }
+  @if (length($args) >= 2 and nth($args, 2) != false) {
+    right: nth($args, 2);
+  }
+  @if (length($args) >= 3 and nth($args, 3) != false) {
+    bottom: nth($args, 3);
+  }
+  @if (length($args) == 4 and nth($args, 4) != false) {
+    left: nth($args, 4);
+  }
+}
+
+@mixin positionX($left, $right: $left) {
+  left: $left;
+  right: $right;
+}
+
+@mixin positionY($top, $bottom: $top) {
+  top: $top;
+  bottom: $bottom;
+}

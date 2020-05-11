@@ -1,37 +1,104 @@
 <template>
   <UiMain>
     <UiSection title="Empty button">
-      <UiButton :empty="true" />
+      <UiRow>
+        <UiCol>
+          <UiButton :empty="true" />
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            :round="true"
+          />
+        </UiCol>
+      </UiRow>
     </UiSection>
 
-    <UiSection title="Default button">
-      <UiButton>
-        Button
-      </UiButton>
+    <UiSection title="Buttons styles">
+      <UiRow>
+        <UiCol>
+          <UiButton>
+            Default
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton :round="true">
+            Round
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton :squared="true">
+            Squared
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton :flat="true">
+            Flat
+          </UiButton>
+        </UiCol>
+      </UiRow>
     </UiSection>
 
-    <UiSection title="Round button">
-      <UiButton :round="true">
-        Button
-      </UiButton>
-    </UiSection>
+    <UiSection title="Buttons themes">
+      <UiRow>
+        <UiCol>
+          <UiButton theme="primary">
+            Primary
+          </UiButton>
+        </UiCol>
 
-    <UiSection title="Squared button">
-      <UiButton :squared="true">
-        Button
-      </UiButton>
-    </UiSection>
+        <UiCol>
+          <UiButton theme="secondary">
+            Secondary
+          </UiButton>
+        </UiCol>
 
-    <UiSection title="Flat button">
-      <UiButton :flat="true">
-        Button
-      </UiButton>
-    </UiSection>
+        <UiCol>
+          <UiButton theme="info">
+            Info
+          </UiButton>
+        </UiCol>
 
-    <UiSection title="Depressed button">
-      <UiButton :depressed="true">
-        Button
-      </UiButton>
+        <UiCol>
+          <UiButton theme="warning">
+            Warning
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton theme="success">
+            Success
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton theme="danger">
+            Danger
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton theme="dark">
+            Dark
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton theme="light">
+            Light
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton theme="silent">
+            Silent
+          </UiButton>
+        </UiCol>
+      </UiRow>
     </UiSection>
 
     <UiSection title="Active button">

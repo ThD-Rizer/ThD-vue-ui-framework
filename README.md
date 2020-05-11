@@ -1,4 +1,4 @@
-# @thd/vue-ui-framework (v0.17.2)
+# @thd/vue-ui-framework (v0.18.0)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
 
@@ -13,6 +13,8 @@
 3. Компоненты
    * Сетка
      * [UiContainer](./src/components/UiContainer/README.md)
+     * [UiRow](./src/components/UiRow/README.md)
+     * [UiCol](./src/components/UiCol/README.md)
    * Типография
      * [UiIcon](./src/components/UiIcon/README.md)
      * [UiLink](./src/components/UiLink/README.md)
@@ -66,7 +68,7 @@ email = ${VERDACCIO_EMAIL}
 ```json
 {
   "dependencies": {
-    "@thd/vue-ui-framework": "^0.17.2"
+    "@thd/vue-ui-framework": "^0.18.0"
   }
 }
 ```

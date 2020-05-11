@@ -1,5 +1,5 @@
 import { propValidator, trimSlotText } from '@/utils/helpers';
-import { getScssVariablesMap } from '@/utils/styles';
+import { COLORS } from '@/constants/styles';
 import styles from './UiText.scss';
 
 const TAGS_FOR_TYPES = {
@@ -10,7 +10,6 @@ const TAGS_FOR_TYPES = {
   h5: 'h5',
   text: 'span',
 };
-const COLORS = getScssVariablesMap('colors');
 
 const typeValidator = propValidator('type', Object.keys(TAGS_FOR_TYPES));
 const weightValidator = propValidator('weight', [

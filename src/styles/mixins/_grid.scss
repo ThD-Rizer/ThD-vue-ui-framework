@@ -1,0 +1,31 @@
+@mixin mediaMin($breakpoint) {
+  @media only screen and (min-width: breakpointMinSize($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin mediaMax($breakpoint) {
+  @media only screen and (max-width: breakpointMaxSize($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin mediaBetween($from, $to) {
+  @media only screen and (min-width: breakpointMinSize($from)) and (max-width: breakpointMaxSize($to)) {
+    @content;
+  }
+}
+
+@mixin media($from, $to: false) {
+  @if ($to) {
+    @include mediaBetween($from, $to) { @content; }
+  } @else {
+    @if ($from == $gridBreakpointFirst) {
+      @include mediaMax($from) { @content; }
+    } @else if ($from == $gridBreakpointLast) {
+      @include mediaMin($from) { @content; }
+    } @else {
+      @include mediaBetween($from, $from) { @content; }
+    }
+  }
+}

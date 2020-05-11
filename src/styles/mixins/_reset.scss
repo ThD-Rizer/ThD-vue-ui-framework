@@ -1,0 +1,15 @@
+@mixin resetList {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style: none;
+  list-style-position: outside;
+}
+
+@mixin resetButton {
+  background: 0 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  outline: none;
+}

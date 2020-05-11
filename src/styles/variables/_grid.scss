@@ -1,6 +1,4 @@
-// Grid settings
-$gridBreakpointFirst: 'xs';
-$gridBreakpointLast: 'xl';
+$gridColumns: 12 !default;
 $gridBreakpoints: (
   'xs': (
     'min': 0px,
@@ -23,6 +21,9 @@ $gridBreakpoints: (
     'max': 9999px,
   ),
 );
+$gridBreakpointFirst: 'xs';
+$gridBreakpointLast: 'xl';
+
 $gridMaxWidths: (
   'xs': auto,
   'sm': 540px,
@@ -30,5 +31,11 @@ $gridMaxWidths: (
   'lg': 960px,
   'xl': 1140px,
 );
+
+$gridGutterWidth: 32px !default;
+$gutterCompensation: $gridGutterWidth / 2 * -1;
+$halfGutterWidth: $gridGutterWidth / 2;
+$gridMaxGutterAmount: 10 !default;
+
 $spacerSize: 4px !default;
 $spacerMaxValue: 20 !default;

@@ -135,6 +135,6 @@ $paddingYLarge: spacer(8);
 }
 
 .emptyInner {
-  @include hiddenText;
+  @include hideText;
   width: 0;
 }

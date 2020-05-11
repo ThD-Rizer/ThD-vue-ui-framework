@@ -18,6 +18,8 @@ export { default as UiTextarea } from './UiTextarea';
 
 // Grid
 export { default as UiContainer } from './UiContainer';
+export { default as UiRow } from './UiRow';
+export { default as UiCol } from './UiCol';
 
 // Other
 export { default as UiApp } from './UiApp';
