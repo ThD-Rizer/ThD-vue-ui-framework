@@ -34,7 +34,7 @@ export const registrableInject = (namespace, child, parent) => {
 /**
  * Фабрика провайдера
  * @param {String} namespace
- * @return {{ methods: Object, provide: Function }}
+ * @returns {{ methods: Object, provide: Function }}
  */
 export const registrableProvide = (namespace) => ({
   methods: {

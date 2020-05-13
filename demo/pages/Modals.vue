@@ -8,7 +8,10 @@
       <p>showOverlay: {{ showOverlay }}</p>
 
       <UiOverlay v-model="showOverlay">
-        <UiContainer :class="$style.overlayContainer">
+        <UiContainer
+          :fluid="true"
+          :class="$style.overlayContainer"
+        >
           <p>
             Overlay content
           </p>
@@ -30,7 +33,7 @@
         v-model="showNavigation"
         :swipeable="true"
       >
-        <div :class="$style.drawerNavigation">
+        <div class="p-5">
           <UiText type="h2">
             Left navigation
           </UiText>
@@ -60,7 +63,7 @@
         v-model="showNavigationRight"
         :right="true"
       >
-        <div :class="$style.drawerNavigation">
+        <div class="p-5">
           <UiText type="h2">
             Right navigation
           </UiText>
@@ -113,9 +116,5 @@
 
   .overlayContainer {
     color: $colorWhite;
-  }
-
-  .drawerNavigation {
-    padding: 20px;
   }
 </style>

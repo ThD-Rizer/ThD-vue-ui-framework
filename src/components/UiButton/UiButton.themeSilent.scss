@@ -1,14 +1,6 @@
 .root {
-  box-shadow: initial;
+  box-shadow: none !important;
   cursor: default !important;
-
-  // @TODO: проверить, возможно это нужно
-  //@include hover {
-  //  box-shadow: initial;
-  //}
-  //@include active {
-  //  box-shadow: initial;
-  //}
 }
 
 .inner {

@@ -14,7 +14,7 @@
   //  padding-left: gridHalfGutter('xs');
   //}
   //
-  //@each $breakpoint, $value in $gridBreakpoints {
+  //@each $breakpoint, $ranges in $gridBreakpoints {
   //  @include mediaMin($breakpoint) {
   //    margin-right: gridGutterCompensation($breakpoint);
   //    margin-left: gridGutterCompensation($breakpoint);

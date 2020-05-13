@@ -66,7 +66,7 @@
   @for $i from 0 through $spacerMaxValue {
     @include helpers($i);
 
-    @each $breakpoint, $widths in $gridBreakpoints {
+    @each $breakpoint, $ranges in $gridBreakpoints {
       @include mediaMin($breakpoint) {
         @include helpers($i, '-#{$breakpoint}');
       }
@@ -75,7 +75,7 @@
 
   @include auto;
 
-  @each $breakpoint, $widths in $gridBreakpoints {
+  @each $breakpoint, $ranges in $gridBreakpoints {
     @include mediaMin($breakpoint) {
       @include auto('-#{$breakpoint}');
     }

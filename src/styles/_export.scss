@@ -5,9 +5,9 @@
   //gridBreakpoints: $gridBreakpoints;
   //gridMaxWidths: $gridMaxWidths;
 
-  @each $breakpoint, $breakpointValue in $gridBreakpoints {
-    @each $key, $value in $breakpointValue {
-      #{'grid-' + $breakpoint + '-' + $key}: $value;
+  @each $breakpoint, $ranges in $gridBreakpoints {
+    @each $range, $value in $ranges {
+      #{'grid-' + $breakpoint + '-' + $range}: $value;
     }
   }
 

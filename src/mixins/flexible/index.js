@@ -1,7 +1,6 @@
+import { BREAKPOINTS } from '@/constants/grid';
 import { isBoolean } from '@/utils/inspect';
 import styles from '@/styles/_flex.scss';
-
-import { BREAKPOINTS } from '@/constants/grid';
 
 const flexPositions = [
   'start',

@@ -6,7 +6,7 @@ const hslSpaceColor = /^(hsl)a?\(\s*((\+|-)?([0-9]+(\.[0-9]+)?(e(\+|-)?[0-9]+)?|
 
 /**
  * @param {String} str
- * @return {Boolean}
+ * @returns {Boolean}
  */
 export default function isValidHSLColor(str) {
   if (!isString(str)) {

@@ -64,6 +64,10 @@
   }
 }
 
+@mixin focusOutline($color: $colorMineShaft, $size: 3px) {
+  box-shadow: 0 0 0 $size rgba($color, .2);
+}
+
 @mixin wordBreak {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;

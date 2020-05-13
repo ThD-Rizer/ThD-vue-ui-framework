@@ -47,7 +47,7 @@
 :global {
   @include helpers;
 
-  @each $breakpoint, $widths in $gridBreakpoints {
+  @each $breakpoint, $ranges in $gridBreakpoints {
     @include mediaMin($breakpoint) {
       @include helpers('-#{$breakpoint}');
     }

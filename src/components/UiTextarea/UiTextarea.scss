@@ -1,8 +1,9 @@
+$colorTheme: $colorEasternBlue;
+
 .root {
   &.isDisabled {
     pointer-events: none;
   }
-  &.hasLabel {}
 }
 
 .label {
@@ -14,10 +15,9 @@
   @include resetButton;
   width: 100%;
   min-height: 100px;
-  border-bottom: 1px solid $colorWhite;
+  border: 1px solid $colorTheme;
   padding: 10px;
-  line-height: 1.5;
-  color: $colorWhite;
+  line-height: rem(24px);
   box-sizing: border-box;
   resize: vertical;
 }

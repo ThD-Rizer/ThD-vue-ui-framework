@@ -1,32 +1,30 @@
 .root {
-  width: calc(100% - 30px);
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  width: calc(100% - #{$gridGutterWidth});
+  @include paddingX($halfGutterWidth);
+  @include marginX(auto);
   box-sizing: content-box;
 
-  &.isFluid {
-    max-width: map-get($gridMaxWidths, 'xl');
-  }
-
   &:not(.isFluid) {
-    max-width: calc(100% - 15px);
+    max-width: calc(100% - #{$gridGutterWidth});
 
     @include mediaMin('sm') {
-      max-width: map-get($gridMaxWidths, 'sm');
+      @include gridMaxWidth('sm');
     }
 
     @include mediaMin('md') {
-      max-width: map-get($gridMaxWidths, 'md');
+      @include gridMaxWidth('md');
     }
 
     @include mediaMin('lg') {
-      max-width: map-get($gridMaxWidths, 'lg');
+      @include gridMaxWidth('lg');
     }
 
     @include mediaMin('xl') {
-      max-width: map-get($gridMaxWidths, 'xl');
+      @include gridMaxWidth('xl');
     }
+  }
+
+  &.isFluid {
+    @include gridMaxWidth('xl');
   }
 }

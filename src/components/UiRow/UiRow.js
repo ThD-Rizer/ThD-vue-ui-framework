@@ -1,5 +1,5 @@
 import { propValidator } from '@/utils/helpers';
-import flexible from '../../mixins/flexible';
+import flexible from '@/mixins/flexible';
 import styles from './UiRow.scss';
 
 /**

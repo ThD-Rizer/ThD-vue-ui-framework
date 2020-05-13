@@ -11,6 +11,7 @@ export { default as kebabToPascal } from './kebabToPascal';
 export { default as leadingZero } from './leadingZero';
 export { default as makeCounter } from './makeCounter';
 export { default as padStart } from './padStart';
+export { default as parseBreakpoints } from './parseBreakpoints';
 export { default as pascalToKebab } from './pascalToKebab';
 export { default as percentOfInteger } from './percentOfInteger';
 export { default as propValidator } from './propValidator';

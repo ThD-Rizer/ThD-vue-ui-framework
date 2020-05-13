@@ -53,6 +53,12 @@ export default {
     localValue: null,
   }),
 
+  computed: {
+    nodeInput() {
+      return this.$refs.input;
+    },
+  },
+
   watch: {
     value: {
       handler(payload) {
@@ -95,6 +101,8 @@ export default {
 
     clear() {
       this.localValue = '';
+      this.nodeInput.value = '';
+      this.$emit('input', '');
     },
 
     genRoot(childNodes = []) {

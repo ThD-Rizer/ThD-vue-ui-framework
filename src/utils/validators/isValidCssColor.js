@@ -8,7 +8,7 @@ const safeColor = /^[a-z]{3,}$/i;
 
 /**
  * @param {String} str
- * @return {Boolean}
+ * @returns {Boolean}
  */
 export default function isValidCssColor(str) {
   if (!isString(str)) {

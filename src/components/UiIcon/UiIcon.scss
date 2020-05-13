@@ -6,13 +6,13 @@
   flex-shrink: 0;
   backface-visibility: hidden;
 
-  &:not(.colorDisabled) svg {
-    fill: currentColor;
-  }
-
   svg {
     display: block;
     width: 1em;
     height: 1em;
+  }
+
+  &:not(.colorDisabled) svg {
+    fill: currentColor;
   }
 }

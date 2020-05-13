@@ -19,15 +19,15 @@
     }
   }
 
-  @for $i from 0 through $gridColumns {
-    &.#{$name}#{$i}offset {
-      margin-left: 100% / $gridColumns * $i;
-
-      &-right {
-        margin-right: 100% / $gridColumns * $i;
-      }
-    }
-  }
+  //@for $i from 0 through $gridColumns {
+  //  &.#{$name}#{$i}offset {
+  //    margin-left: 100% / $gridColumns * $i;
+  //
+  //    &-right {
+  //      margin-right: 100% / $gridColumns * $i;
+  //    }
+  //  }
+  //}
 }
 
 .root {
@@ -40,7 +40,7 @@
 
   @include breakpoint('xs');
 
-  @each $breakpoint, $widths in $gridBreakpoints {
+  @each $breakpoint, $ranges in $gridBreakpoints {
     @include mediaMin($breakpoint) {
       @include breakpoint($breakpoint);
     }

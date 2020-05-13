@@ -3,13 +3,30 @@
     <UiSection title="Empty button">
       <UiRow>
         <UiCol>
-          <UiButton :empty="true" />
+          <UiButton
+            :empty="true"
+            :round="true"
+          />
         </UiCol>
 
         <UiCol>
           <UiButton
             :empty="true"
-            :round="true"
+            size="large"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            size="medium"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            size="small"
           />
         </UiCol>
       </UiRow>
@@ -17,27 +34,43 @@
 
     <UiSection title="Buttons styles">
       <UiRow>
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton>
             Default
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton :round="true">
             Round
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton :squared="true">
             Squared
           </UiButton>
         </UiCol>
+      </UiRow>
+    </UiSection>
+
+    <UiSection title="Buttons sizes">
+      <UiRow>
+        <UiCol>
+          <UiButton size="small">
+            Small
+          </UiButton>
+        </UiCol>
 
         <UiCol>
-          <UiButton :flat="true">
-            Flat
+          <UiButton size="medium">
+            Medium
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton size="large">
+            Large
           </UiButton>
         </UiCol>
       </UiRow>
@@ -45,55 +78,55 @@
 
     <UiSection title="Buttons themes">
       <UiRow>
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="primary">
             Primary
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="secondary">
             Secondary
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="info">
             Info
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="warning">
             Warning
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="success">
             Success
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="danger">
             Danger
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="dark">
             Dark
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="light">
             Light
           </UiButton>
         </UiCol>
 
-        <UiCol>
+        <UiCol class="mb-4">
           <UiButton theme="silent">
             Silent
           </UiButton>
@@ -114,12 +147,35 @@
     </UiSection>
 
     <UiSection title="Button with icon">
-      <UiButton
-        :circle="true"
-        :hasIcon="true"
-      >
-        <UiIcon name="user" />
-      </UiButton>
+      <UiRow>
+        <UiCol>
+          <UiButton
+            :hasIcon="true"
+            size="small"
+          >
+            <UiIcon name="plus" />
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :circle="true"
+            :hasIcon="true"
+          >
+            <UiIcon name="cross" />
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :squared="true"
+            :hasIcon="true"
+            size="large"
+          >
+            <UiIcon name="hamburger" />
+          </UiButton>
+        </UiCol>
+      </UiRow>
     </UiSection>
 
     <UiSection title="Fluid button">

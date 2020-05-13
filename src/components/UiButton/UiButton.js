@@ -37,7 +37,7 @@ const typeValidator = propValidator('type', [
 ]);
 const sizeValidator = propValidator('size', [
   'small',
-  'normal',
+  'medium',
   'large',
 ]);
 const contentAlignValidator = propValidator('contentAlign', [
@@ -76,7 +76,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'normal',
+      default: 'medium',
       ...sizeValidator,
     },
     fluid: {
@@ -95,19 +95,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    flat: {
-      type: Boolean,
-      default: false,
-    },
     hasIcon: {
       type: Boolean,
       default: false,
     },
     active: {
-      type: Boolean,
-      default: false,
-    },
-    depressed: {
       type: Boolean,
       default: false,
     },
@@ -128,22 +120,17 @@ export default {
       return { type: this.type };
     },
     classesRoot() {
-      const {
-        size,
-        flat,
-        contentAlign,
-      } = this;
+      const { size, contentAlign } = this;
       return {
         [this.styles.root]: true,
         [this.styles.isFluid]: this.fluid,
         [this.styles.isRound]: this.round,
         [this.styles.isCircle]: this.circle,
         [this.styles.isSquared]: this.squared,
-        [this.styles.isFlat]: flat,
-        [this.styles.isDepressed]: (this.depressed && !flat),
         [this.styles.isActive]: this.active,
         [this.styles.hasIcon]: this.hasIcon,
         [this.styles.isDisabled]: this.disabled,
+        [this.styles.isEmpty]: this.empty,
         [this.styles[`size_${size}`]]: size,
         [this.styles[`contentAlign_${contentAlign}`]]: contentAlign,
       };
@@ -163,11 +150,6 @@ export default {
         class: this.styles.inner,
       }, childNodes);
     },
-    genEmptyInner() {
-      return this.$createElement('span', {
-        class: this.styles.emptyInner,
-      }, '.');
-    },
     genDefaultSlot() {
       const defaultSlot = this.$scopedSlots.default;
 
@@ -178,13 +160,9 @@ export default {
   },
 
   render() {
-    const content = this.empty
-      ? this.genEmptyInner()
-      : this.genDefaultSlot();
-
     return this.genRoot([
       this.genInner([
-        content,
+        this.genDefaultSlot(),
       ]),
     ]);
   },

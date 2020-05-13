@@ -68,11 +68,9 @@
 @mixin flexHelpers($prefix: '') {
   @include helpers($prefix);
 
-  @each $name, $widths in $gridBreakpoints {
-    $size: nth($widths, 1);
-
-    @include mediaMin($name) {
-      @include helpers($prefix, '-#{$name}');
+  @each $breakpoint, $ranges in $gridBreakpoints {
+    @include mediaMin($breakpoint) {
+      @include helpers($prefix, '-#{$breakpoint}');
     }
   }
 }

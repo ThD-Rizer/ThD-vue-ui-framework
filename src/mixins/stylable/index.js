@@ -26,7 +26,7 @@ const DEFAULT_OPTIONS = {
  * Добавляет функционал, позволяющий частично, либо полностью изменить стандартные стили компонента.
  *
  * @param {Object} [options]
- * @return {Object}
+ * @returns {Object}
  */
 export const factoryStylable = (options = null) => {
   const {

@@ -1,5 +1,4 @@
 import { generateHash } from '@/utils/helpers';
-
 import styles from './UiTextarea.scss';
 
 export default {
@@ -83,8 +82,8 @@ export default {
           disabled: this.disabled,
         },
         on: {
-          input: this.inputHandler,
-          change: this.changeHandler,
+          input: this.handleInput,
+          change: this.handleChange,
         },
       }, [this.value]);
     },

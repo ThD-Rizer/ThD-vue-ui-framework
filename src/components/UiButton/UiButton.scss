@@ -14,26 +14,33 @@
   vertical-align: middle;
   user-select: none;
 
-  &.isFluid {
-    display: flex;
-    flex: 1;
-    width: 100%;
-    @include marginX(0);
+  @include hover {
+    z-index: 1;
+  }
+
+  @include focus {
+    @include focusOutline;
   }
 
   &.size_small {
-    font-size: rem(10px);
-    line-height: rem(12px);
-  }
-
-  &.size_normal {
     font-size: rem(13px);
     line-height: rem(16px);
   }
 
-  &.size_large {
+  &.size_medium {
     font-size: rem(16px);
-    line-height: rem(18px);
+    line-height: rem(16px);
+  }
+
+  &.size_large {
+    font-size: rem(18px);
+    line-height: rem(20px);
+  }
+
+  &.isFluid {
+    display: flex;
+    flex: 1;
+    width: 100%;
   }
 
   &.isRound {
@@ -49,35 +56,20 @@
   }
 
   &.hasIcon {
-    width: 40px;
-    height: 40px;
+    min-width: 24px;
+    min-height: 24px;
   }
 
   &.isDisabled {
     color: #cecece;
     pointer-events: none;
   }
-
-  @include hover {
-    z-index: 1;
-  }
-
-  &:not(.isDepressed):not(.isFlat) {
-    box-shadow: 0 1px 8px 0 transparent;
-
-    @include hover {
-      box-shadow: 0 1px 8px 0 rgba(#000, .2);
-    }
-    @include active {
-      box-shadow: 0 1px 8px 0 rgba(#000, .2);
-    }
-  }
 }
 
-$paddingXSmall: spacer(2);
-$paddingYSmall: spacer(4);
-$paddingXNormal: spacer(3);
-$paddingYNormal: spacer(5);
+$paddingXSmall: spacer(1);
+$paddingYSmall: spacer(3);
+$paddingXMedium: spacer(3);
+$paddingYMedium: spacer(5);
 $paddingXLarge: spacer(4);
 $paddingYLarge: spacer(8);
 
@@ -93,15 +85,15 @@ $paddingYLarge: spacer(8);
   white-space: nowrap;
   box-sizing: border-box;
 
-  .size_small:not(.hasIcon) & {
+  .size_small:not(.hasIcon):not(.isEmpty) & {
     padding: $paddingXSmall $paddingYSmall;
   }
 
-  .size_normal:not(.hasIcon) & {
-    padding: $paddingXNormal $paddingYNormal;
+  .size_medium:not(.hasIcon):not(.isEmpty) & {
+    padding: $paddingXMedium $paddingYMedium;
   }
 
-  .size_large:not(.hasIcon) & {
+  .size_large:not(.hasIcon):not(.isEmpty) & {
     padding: $paddingXLarge $paddingYLarge;
   }
 
@@ -109,12 +101,27 @@ $paddingYLarge: spacer(8);
     padding: $paddingXSmall;
   }
 
-  .size_normal.hasIcon & {
-    padding: $paddingXNormal;
+  .size_medium.hasIcon & {
+    padding: $paddingXMedium;
   }
 
   .size_large.hasIcon & {
     padding: $paddingXLarge;
+  }
+
+  .size_small.isEmpty & {
+    min-width: spacer(6);
+    min-height: spacer(6);
+  }
+
+  .size_medium.isEmpty & {
+    min-width: spacer(10);
+    min-height: spacer(10);
+  }
+
+  .size_large.isEmpty & {
+    min-width: spacer(13);
+    min-height: spacer(13);
   }
 
   .contentAlign_left & {
@@ -132,9 +139,4 @@ $paddingYLarge: spacer(8);
   .contentAlign_justify & {
     justify-content: space-between;
   }
-}
-
-.emptyInner {
-  @include hideText;
-  width: 0;
 }

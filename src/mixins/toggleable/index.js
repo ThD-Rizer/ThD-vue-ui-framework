@@ -3,7 +3,7 @@
  *
  * @param {String} prop
  * @param {String} event
- * @return {Object}
+ * @returns {Object}
  */
 export const factoryToggleable = (prop = 'opened', event = 'toggle') => ({
   model: {

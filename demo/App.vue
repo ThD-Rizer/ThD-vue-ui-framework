@@ -1,6 +1,6 @@
 <template>
   <UiApp>
-    <UiContainer>
+    <UiContainer :fluid="true">
       <UiHeader
         :version="version"
         :menu="routes"

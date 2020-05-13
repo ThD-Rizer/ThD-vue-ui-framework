@@ -29,3 +29,7 @@
     }
   }
 }
+
+@mixin gridMaxWidth($breakpoint) {
+  max-width: map-get($gridMaxWidths, $breakpoint);
+}

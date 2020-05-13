@@ -1,7 +1,7 @@
 /**
  * Фабрика миксина для компонентов, которые можно свайпать
  *
- * @return {Object}
+ * @returns {Object}
  */
 export default {
   props: {
