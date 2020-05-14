@@ -1,33 +1,33 @@
 @mixin breakpoint($name) {
-  &.#{$name} {
+  &.#{$name}-fluid {
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
+  }
 
-    &content {
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: auto;
-      max-width: none;
-    }
+  &.#{$name}-content {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    max-width: none;
   }
 
   @for $i from 1 through $gridColumns {
-    &.#{$name}#{$i} {
+    &.#{$name}-#{$i} {
       flex-basis: 100% / $gridColumns * $i;
       max-width: 100% / $gridColumns * $i;
     }
   }
 
-  //@for $i from 0 through $gridColumns {
-  //  &.#{$name}#{$i}offset {
-  //    margin-left: 100% / $gridColumns * $i;
-  //
-  //    &-right {
-  //      margin-right: 100% / $gridColumns * $i;
-  //    }
-  //  }
-  //}
+  @for $i from 0 through $gridColumns {
+    &.#{$name}-#{$i}_offset {
+      margin-left: 100% / $gridColumns * $i;
+    }
+
+    &.#{$name}-#{$i}_offsetRight {
+      margin-right: 100% / $gridColumns * $i;
+    }
+  }
 }
 
 .root {
@@ -40,7 +40,9 @@
 
   @include breakpoint('xs');
 
-  @each $breakpoint, $ranges in $gridBreakpoints {
+  @for $i from 2 through length(map_keys($gridBreakpoints)) {
+    $breakpoint: nth(map_keys($gridBreakpoints), $i);
+
     @include mediaMin($breakpoint) {
       @include breakpoint($breakpoint);
     }

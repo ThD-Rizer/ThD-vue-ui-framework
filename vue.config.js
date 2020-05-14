@@ -18,9 +18,9 @@ module.exports = {
     loaderOptions: {
       scss: {
         prependData: () => (`
-          @import "@/styles/_variables.scss";
-          @import "@/styles/_helpers.scss";
-          @import "@/styles/_mixins.scss";
+          @import "@/styles/variables.scss";
+          @import "@/styles/helpers.scss";
+          @import "@/styles/mixins.scss";
         `),
       },
       css: {

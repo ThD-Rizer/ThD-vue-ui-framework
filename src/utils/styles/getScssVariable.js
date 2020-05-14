@@ -1,4 +1,4 @@
-import variables from '@/styles/_export.scss';
+import variables from '@/styles/export.scss';
 
 /**
  * @param {String} variableKey Имя переменной

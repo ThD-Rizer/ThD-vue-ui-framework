@@ -1,7 +1,7 @@
 import 'normalize.scss/normalize.scss';
 
-// import '@/styles/_variables.scss';
-// import '@/styles/_helpers.scss';
-// import '@/styles/_mixins.scss';
-import '@/styles/_common.scss';
-import '@/styles/_utils.scss';
+// import '@/styles/variables.scss';
+// import '@/styles/helpers.scss';
+// import '@/styles/mixins.scss';
+import '@/styles/common.scss';
+import '@/styles/utils.scss';

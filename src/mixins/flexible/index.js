@@ -1,6 +1,6 @@
 import { BREAKPOINTS } from '@/constants/grid';
 import { isBoolean } from '@/utils/inspect';
-import styles from '@/styles/_flex.scss';
+import styles from '@/styles/flex.scss';
 
 const flexPositions = [
   'start',
@@ -15,13 +15,13 @@ const flexPositions = [
   'last',
 ];
 
-const propsFlexPositions = flexPositions.reduce((acc, key) => {
+const propsFlexPositions = flexPositions.reduce((acc, position) => {
   const breakpoints = Object.keys(BREAKPOINTS)
     .splice(0, 1);
 
   return {
     ...acc,
-    [key]: {
+    [position]: {
       type: [Boolean, String],
       default: false,
       validator: (_) => isBoolean(_) || breakpoints.includes(_),
@@ -35,15 +35,15 @@ export default {
   },
   computed: {
     flexClasses() {
-      return flexPositions.reduce((acc, key) => {
-        const value = this[key];
+      return flexPositions.reduce((acc, position) => {
+        const value = this[position];
         const style = isBoolean(value)
-          ? { [styles[key]]: value }
-          : { [styles[`${key}-${value}`]]: !!value };
+          ? { [styles[position]]: value }
+          : { [styles[`${position}-${value}`]]: !!value };
 
         return {
           ...acc,
-          style,
+          ...style,
         };
       }, {});
     },

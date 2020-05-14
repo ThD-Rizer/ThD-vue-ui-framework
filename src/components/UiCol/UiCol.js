@@ -1,14 +1,11 @@
 import { BREAKPOINTS } from '@/constants/grid';
-import { isBoolean } from '@/utils/inspect';
 import { propValidator, parseBreakpoints } from '@/utils/helpers';
-import flexible from '@/mixins/flexible';
 import styles from './UiCol.scss';
 
-/**
- * @TODO: доделать
- */
-
-const tagValidator = propValidator('tag', ['div', 'section']);
+const tagValidator = propValidator('tag', [
+  'div',
+  'section',
+]);
 
 /**
  * @type {string[]}
@@ -21,24 +18,21 @@ const breakpoints = Object.keys(BREAKPOINTS);
 const breakpointsProps = breakpoints.reduce((acc, breakpoint) => ({
   ...acc,
   [breakpoint]: {
-    type: [Boolean, String, Number],
+    type: [String, Number],
     default: false,
   },
-  // [`${breakpoint}Offset`]: {
-  //   type: [String, Number],
-  //   default: null,
-  // },
-  // [`${breakpoint}OffsetRight`]: {
-  //   type: [String, Number],
-  //   default: null,
-  // },
+  [`${breakpoint}Offset`]: {
+    type: [String, Number],
+    default: null,
+  },
+  [`${breakpoint}OffsetRight`]: {
+    type: [String, Number],
+    default: null,
+  },
 }), {});
 
 export default {
   name: 'UiCol',
-  mixins: [
-    flexible,
-  ],
   props: {
     tag: {
       type: String,
@@ -53,18 +47,52 @@ export default {
       type: [String, Object],
       default: null,
     },
+    offsets: {
+      type: [String, Object],
+      default: null,
+    },
+    offsetsRight: {
+      type: [String, Object],
+      default: null,
+    },
     ...breakpointsProps,
   },
   computed: {
     computedBreakpoints() {
       return parseBreakpoints(this.breakpoints);
     },
+    computedOffsets() {
+      return parseBreakpoints(this.offsets);
+    },
+    computedOffsetsRight() {
+      return parseBreakpoints(this.offsetsRight);
+    },
     classesBreakpoint() {
       return breakpoints.reduce((acc, breakpoint) => {
         const value = this.computedBreakpoints[breakpoint] || this[breakpoint];
-        const key = isBoolean(value)
-          ? styles[breakpoint]
-          : styles[`${breakpoint}${value}`];
+        const key = styles[`${breakpoint}-${value}`];
+
+        return {
+          ...acc,
+          [key]: !!value,
+        };
+      }, {});
+    },
+    offsetClasses() {
+      return breakpoints.reduce((acc, breakpoint) => {
+        const value = this.computedOffsets[breakpoint] || this[`${breakpoint}Offset`];
+        const key = styles[`${breakpoint}-${value}_offset`];
+
+        return {
+          ...acc,
+          [key]: !!value,
+        };
+      }, {});
+    },
+    offsetRightClasses() {
+      return breakpoints.reduce((acc, breakpoint) => {
+        const value = this.computedOffsetsRight[breakpoint] || this[`${breakpoint}OffsetRight`];
+        const key = styles[`${breakpoint}-${value}_offsetRight`];
 
         return {
           ...acc,
@@ -77,7 +105,8 @@ export default {
         [styles.root]: true,
         [styles.isReverse]: this.reverse,
         ...this.classesBreakpoint,
-        ...this.flexClasses,
+        ...this.offsetClasses,
+        ...this.offsetRightClasses,
       };
     },
   },
