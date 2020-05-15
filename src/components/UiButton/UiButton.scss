@@ -18,10 +18,6 @@
     z-index: 1;
   }
 
-  @include focus {
-    @include focusOutline;
-  }
-
   &.size_small {
     font-size: rem(13px);
     line-height: rem(16px);
@@ -51,7 +47,7 @@
     border-radius: 50%;
   }
 
-  &.isSquared {
+  &.isSquare {
     border-radius: 0;
   }
 

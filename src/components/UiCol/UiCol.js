@@ -18,7 +18,7 @@ const breakpoints = Object.keys(BREAKPOINTS);
 const breakpointsProps = breakpoints.reduce((acc, breakpoint) => ({
   ...acc,
   [breakpoint]: {
-    type: [String, Number],
+    type: [String, Number, Boolean],
     default: false,
   },
   [`${breakpoint}Offset`]: {

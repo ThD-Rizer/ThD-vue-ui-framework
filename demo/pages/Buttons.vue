@@ -1,14 +1,7 @@
 <template>
   <UiMain>
-    <UiSection title="Empty button">
+    <UiSection title="Empty">
       <UiRow>
-        <UiCol>
-          <UiButton
-            :empty="true"
-            :round="true"
-          />
-        </UiCol>
-
         <UiCol>
           <UiButton
             :empty="true"
@@ -29,10 +22,34 @@
             size="small"
           />
         </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            :round="true"
+            size="large"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            :round="true"
+            size="medium"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            :round="true"
+            size="small"
+          />
+        </UiCol>
       </UiRow>
     </UiSection>
 
-    <UiSection title="Buttons styles">
+    <UiSection title="Styles">
       <UiRow>
         <UiCol class="mb-4">
           <UiButton>
@@ -47,14 +64,14 @@
         </UiCol>
 
         <UiCol class="mb-4">
-          <UiButton :squared="true">
-            Squared
+          <UiButton :square="true">
+            Square
           </UiButton>
         </UiCol>
       </UiRow>
     </UiSection>
 
-    <UiSection title="Buttons sizes">
+    <UiSection title="Sizes">
       <UiRow>
         <UiCol>
           <UiButton size="small">
@@ -76,7 +93,7 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Buttons themes">
+    <UiSection title="Themes">
       <UiRow>
         <UiCol class="mb-4">
           <UiButton theme="primary">
@@ -131,22 +148,32 @@
             Silent
           </UiButton>
         </UiCol>
+
+        <UiCol class="mb-4">
+          <UiButton theme="link">
+            Link
+          </UiButton>
+        </UiCol>
       </UiRow>
     </UiSection>
 
-    <UiSection title="Active button">
-      <UiButton :active="true">
-        Button
-      </UiButton>
+    <UiSection title="States">
+      <UiRow>
+        <UiCol>
+          <UiButton :active="true">
+            Active
+          </UiButton>
+        </UiCol>
+
+        <UiCol>
+          <UiButton :disabled="true">
+            Disabled
+          </UiButton>
+        </UiCol>
+      </UiRow>
     </UiSection>
 
-    <UiSection title="Disabled button">
-      <UiButton :disabled="true">
-        Button
-      </UiButton>
-    </UiSection>
-
-    <UiSection title="Button with icon">
+    <UiSection title="With icon">
       <UiRow>
         <UiCol>
           <UiButton
@@ -168,7 +195,7 @@
 
         <UiCol>
           <UiButton
-            :squared="true"
+            :square="true"
             :hasIcon="true"
             size="large"
           >
@@ -178,36 +205,36 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Fluid button">
-      <UiButton :fluid="true">
-        Button
+    <UiSection title="Fluid">
+      <UiButton
+        :fluid="true"
+        class="mb-4"
+      >
+        Fluid
       </UiButton>
-    </UiSection>
 
-    <UiSection title="Button content align left">
       <UiButton
         :fluid="true"
         contentAlign="left"
+        class="mb-4"
       >
-        Button
+        Button content align left
       </UiButton>
-    </UiSection>
 
-    <UiSection title="Button content align right">
       <UiButton
         :fluid="true"
         contentAlign="right"
+        class="mb-4"
       >
-        Button
+        Button content align right
       </UiButton>
-    </UiSection>
 
-    <UiSection title="Button content align justify">
       <UiButton
         :fluid="true"
         contentAlign="justify"
+        class="mb-4"
       >
-        Button
+        Button content align justify
         <UiIcon name="user" />
       </UiButton>
     </UiSection>

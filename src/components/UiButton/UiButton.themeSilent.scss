@@ -1,6 +1,9 @@
 .root {
-  box-shadow: none !important;
   cursor: default !important;
+
+  @include focus {
+    @include focusOutline($colorHeather);
+  }
 }
 
 .inner {

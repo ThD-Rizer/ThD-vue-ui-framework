@@ -6,6 +6,10 @@
     background-color: darken($colorAzureRadiance, 15%);
   }
 
+  @include focus {
+    @include focusOutline($colorAzureRadiance);
+  }
+
   &.isActive {
     background-color: darken($colorAzureRadiance, 15%);
   }

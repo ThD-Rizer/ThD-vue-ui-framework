@@ -11,6 +11,7 @@ import themeInfoStyles from './UiButton.themeInfo.scss';
 import themeLightStyles from './UiButton.themeLight.scss';
 import themeDarkStyles from './UiButton.themeDark.scss';
 import themeSilentStyles from './UiButton.themeSilent.scss';
+import themeLinkStyles from './UiButton.themeLink.scss';
 
 const themesStyles = {
   primary: themePrimaryStyles,
@@ -22,6 +23,7 @@ const themesStyles = {
   light: themeLightStyles,
   dark: themeDarkStyles,
   silent: themeSilentStyles,
+  link: themeLinkStyles,
 };
 const defaultTheme = 'secondary';
 
@@ -91,7 +93,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    squared: {
+    square: {
       type: Boolean,
       default: false,
     },
@@ -116,8 +118,13 @@ export default {
 
   computed: {
     attributes() {
-      if (this.tag !== 'button') return null;
-      return { type: this.type };
+      const type = (this.tag === 'button')
+        ? { type: this.type }
+        : null;
+
+      return {
+        ...type,
+      };
     },
     classesRoot() {
       const { size, contentAlign } = this;
@@ -126,7 +133,7 @@ export default {
         [this.styles.isFluid]: this.fluid,
         [this.styles.isRound]: this.round,
         [this.styles.isCircle]: this.circle,
-        [this.styles.isSquared]: this.squared,
+        [this.styles.isSquare]: this.square,
         [this.styles.isActive]: this.active,
         [this.styles.hasIcon]: this.hasIcon,
         [this.styles.isDisabled]: this.disabled,
@@ -145,11 +152,19 @@ export default {
 
       return this.$createElement(tag, data, childNodes);
     },
+
     genInner(childNodes = []) {
       return this.$createElement('span', {
         class: this.styles.inner,
       }, childNodes);
     },
+
+    genLink(childNodes = []) {
+      return this.$createElement('span', {
+        class: this.styles.link,
+      }, childNodes);
+    },
+
     genDefaultSlot() {
       const defaultSlot = this.$scopedSlots.default;
 
@@ -160,9 +175,14 @@ export default {
   },
 
   render() {
+    const slotDefault = this.genDefaultSlot();
+    const content = (this.theme === 'link')
+      ? this.genLink(slotDefault)
+      : slotDefault;
+
     return this.genRoot([
       this.genInner([
-        this.genDefaultSlot(),
+        content,
       ]),
     ]);
   },

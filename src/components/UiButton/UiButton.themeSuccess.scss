@@ -6,6 +6,10 @@
     background-color: darken($colorEucalyptus, 15%);
   }
 
+  @include focus {
+    @include focusOutline($colorEucalyptus);
+  }
+
   &.isActive {
     background-color: darken($colorEucalyptus, 15%);
   }
