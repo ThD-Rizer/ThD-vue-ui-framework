@@ -51,6 +51,16 @@
     border-radius: 0;
   }
 
+  &.square_left {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.square_right {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   &.hasIcon {
     min-width: 24px;
     min-height: 24px;

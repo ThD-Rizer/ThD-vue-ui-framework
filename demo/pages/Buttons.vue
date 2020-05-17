@@ -238,6 +238,32 @@
         <UiIcon name="user" />
       </UiButton>
     </UiSection>
+
+    <UiSection title="Buttons group">
+      <UiButtonGroup>
+        <UiButton
+          v-for="index in 3"
+          :key="index"
+        >
+          Button {{ index }}
+        </UiButton>
+      </UiButtonGroup>
+    </UiSection>
+
+    <UiSection>
+      <UiButtonGroup
+        size="small"
+        theme="info"
+      >
+        <UiButton
+          v-for="index in 3"
+          :key="index"
+          :active="index === 2"
+        >
+          Button {{ index }}
+        </UiButton>
+      </UiButtonGroup>
+    </UiSection>
   </UiMain>
 </template>
 

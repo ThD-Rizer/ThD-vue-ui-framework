@@ -1,4 +1,4 @@
-# @thd/vue-ui-framework (v0.20.0)
+# @thd/vue-ui-framework (v0.21.0)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
 
@@ -27,6 +27,7 @@
    * Прочее
      * [UiApp](./src/components/UiApp/README.md)
      * [UiButton](./src/components/UiButton/README.md)
+     * [UiButtonGroup](./src/components/UiButtonGroup/README.md)
      * [UiDatepicker](./src/components/UiDatepicker/README.md)
      * [UiDrawer](./src/components/UiDrawer/README.md)
      * [UiOverlay](./src/components/UiOverlay/README.md)
@@ -68,7 +69,7 @@ email = ${VERDACCIO_EMAIL}
 ```json
 {
   "dependencies": {
-    "@thd/vue-ui-framework": "^0.20.0"
+    "@thd/vue-ui-framework": "^0.21.0"
   }
 }
 ```

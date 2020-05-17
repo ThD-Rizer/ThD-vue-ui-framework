@@ -17,6 +17,12 @@ Vue.use(UI, {
 });
 Vue.component(UiMain.name, UiMain);
 Vue.component(UiSection.name, UiSection);
+Vue.component('NuxtLink', {
+  functional: true,
+  render(h, { data, children }) {
+    return h('RouterLink', data, children);
+  },
+});
 
 Vue.config.devtools = true;
 

@@ -155,6 +155,16 @@
           Pseudo Link
         </UiLink>
       </div>
+
+      <div class="mb-2">
+        <UiLink
+          :native="true"
+          :disabled="true"
+          to="/buttons"
+        >
+          Disabled link
+        </UiLink>
+      </div>
     </UiSection>
   </UiMain>
 </template>

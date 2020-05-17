@@ -5,6 +5,7 @@ export { default as UiText } from './UiText';
 
 // Buttons
 export { default as UiButton } from './UiButton';
+export { default as UiButtonGroup } from './UiButtonGroup';
 
 // Forms
 export { default as UiInput } from './UiInput';
