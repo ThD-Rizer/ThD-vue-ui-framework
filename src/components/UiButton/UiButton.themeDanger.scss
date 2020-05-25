@@ -13,4 +13,8 @@
   &.isActive {
     background-color: darken($colorPersianRed, 15%);
   }
+
+  &.isDisabled {
+    background-color: lighten($colorPersianRed, 20%);
+  }
 }

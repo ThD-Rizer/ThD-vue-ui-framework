@@ -13,4 +13,9 @@
   &.isActive {
     background-color: darken($colorAmber, 15%);
   }
+
+  &.isDisabled {
+    background-color: lighten($colorAmber, 20%);
+    color: $colorDustyGray;
+  }
 }

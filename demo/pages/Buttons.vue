@@ -95,79 +95,47 @@
 
     <UiSection title="Themes">
       <UiRow>
-        <UiCol class="mb-4">
-          <UiButton theme="primary">
-            Primary
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="secondary">
-            Secondary
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="info">
-            Info
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="warning">
-            Warning
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="success">
-            Success
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="danger">
-            Danger
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="dark">
-            Dark
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="light">
-            Light
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="silent">
-            Silent
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="link">
-            Link
+        <UiCol
+          v-for="theme in themes"
+          :key="theme"
+          class="mb-4"
+        >
+          <UiButton :theme="theme">
+            {{ theme }}
           </UiButton>
         </UiCol>
       </UiRow>
     </UiSection>
 
-    <UiSection title="States">
+    <UiSection title="Active">
       <UiRow>
-        <UiCol>
-          <UiButton :active="true">
-            Active
+        <UiCol
+          v-for="theme in themes"
+          :key="theme"
+          class="mb-4"
+        >
+          <UiButton
+            :active="true"
+            :theme="theme"
+          >
+            {{ theme }}
           </UiButton>
         </UiCol>
+      </UiRow>
+    </UiSection>
 
-        <UiCol>
-          <UiButton :disabled="true">
-            Disabled
+    <UiSection title="Disabled">
+      <UiRow>
+        <UiCol
+          v-for="theme in themes"
+          :key="theme"
+          class="mb-4"
+        >
+          <UiButton
+            :disabled="true"
+            :theme="theme"
+          >
+            {{ theme }}
           </UiButton>
         </UiCol>
       </UiRow>
@@ -270,5 +238,19 @@
 <script>
   export default {
     name: 'ButtonsPage',
+    data: () => ({
+      themes: [
+        'primary',
+        'secondary',
+        'info',
+        'warning',
+        'success',
+        'danger',
+        'dark',
+        'light',
+        'silent',
+        'link',
+      ],
+    }),
   };
 </script>

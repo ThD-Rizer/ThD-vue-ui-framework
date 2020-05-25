@@ -4,6 +4,10 @@
   @include focus {
     @include focusOutline($colorHeather);
   }
+
+  &.isDisabled {
+    color: $colorDustyGray;
+  }
 }
 
 .inner {

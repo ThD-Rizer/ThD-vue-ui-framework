@@ -13,4 +13,8 @@
   &.isActive {
     background-color: darken($colorAzureRadiance, 15%);
   }
+
+  &.isDisabled {
+    background-color: lighten($colorAzureRadiance, 20%);
+  }
 }

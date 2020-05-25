@@ -13,4 +13,8 @@
   &.isActive {
     background-color: darken($colorPaleSky, 15%);
   }
+
+  &.isDisabled {
+    background-color: lighten($colorPaleSky, 20%);
+  }
 }

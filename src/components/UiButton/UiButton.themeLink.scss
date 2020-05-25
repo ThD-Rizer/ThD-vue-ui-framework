@@ -9,4 +9,12 @@
       border-bottom-color: transparent;
     }
   }
+
+  .root.isActive & {
+    border-bottom-color: transparent;
+  }
+
+  .root.isDisabled & {
+    color: lighten($colorAzureRadiance, 30%);
+  }
 }
