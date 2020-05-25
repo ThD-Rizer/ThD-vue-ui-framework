@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '@/utils/errors';
-import { isArray } from '@/utils/inspect';
+import { InvalidTypeError } from '../errors';
+import { isArray } from '../inspect';
 import trimLeft from './trimLeft';
 import trimRight from './trimRight';
 

@@ -1,5 +1,5 @@
-import getTag from '@/utils/inspect/getTag';
-import isObjectLike from '@/utils/inspect/isObjectLike';
+import getTag from './getTag';
+import isObjectLike from './isObjectLike';
 
 /**
  * Checks if `value` is classified as a `Number` primitive or object.

@@ -1,10 +1,10 @@
-import { isString, isPlainObject, isFunction } from '@/utils/inspect';
+import { isString, isPlainObject, isFunction } from '../inspect';
 import {
   DEFAULT_CONFIG,
   LEVELS,
   METHODS_MAP,
   STYLES,
-} from '@/utils/logger/constants';
+} from './constants';
 
 export default class Logger {
   /**

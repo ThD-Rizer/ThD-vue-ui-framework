@@ -1,6 +1,6 @@
 {
   "name": "@thd/vue-ui-framework",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "description": "UI framework for Vue.js",
   "author": "ThD.Rizer <thd.rizer@gmail.com>",
   "license": "UNLICENSED",
@@ -16,8 +16,11 @@
   },
   "dependencies": {
     "body-scroll-lock": "3.0.2",
+    "lodash.clonedeep": "4.5.0",
     "lodash.isequal": "4.5.0",
     "lodash.padstart": "4.6.1",
+    "lodash.shuffle": "4.2.0",
+    "lodash.throttle": "4.1.1",
     "normalize.scss": "0.1.0",
     "vuejs-datepicker": "1.6.2"
   },

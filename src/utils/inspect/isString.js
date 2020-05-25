@@ -1,6 +1,6 @@
-import getTag from '@/utils/inspect/getTag';
-import isArray from '@/utils/inspect/isArray';
-import isObjectLike from '@/utils/inspect/isObjectLike';
+import getTag from './getTag';
+import isArray from './isArray';
+import isObjectLike from './isObjectLike';
 
 /**
  * Checks if `value` is classified as a `String` primitive or object.

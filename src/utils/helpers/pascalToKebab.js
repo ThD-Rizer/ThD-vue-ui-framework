@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '@/utils/errors';
-import { isString } from '@/utils/inspect';
+import { InvalidTypeError } from '../errors';
+import { isString } from '../inspect';
 
 /**
  * Format string from `PascalCase` to `kebab-case`

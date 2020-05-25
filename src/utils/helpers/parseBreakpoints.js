@@ -1,4 +1,4 @@
-import { isUndefined, isNull, isString } from '@/utils/inspect';
+import { isUndefined, isNull, isString } from '../inspect';
 
 /**
  * @param {String | Object | null | undefined} breakpoints
