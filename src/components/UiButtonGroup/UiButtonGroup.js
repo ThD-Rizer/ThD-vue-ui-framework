@@ -31,10 +31,7 @@ export default {
     genButton(button, index, list) {
       const options = button?.componentOptions;
 
-      // eslint-disable-next-line
-      console.log('[UiButtonGroup:genButton] button:', button);
-
-      if (!options) return null;
+      if (!options) return button;
 
       const getProps = () => {
         switch (index) {
@@ -62,9 +59,6 @@ export default {
       const defaultSlot = this.$scopedSlots.default;
 
       if (!defaultSlot) return null;
-
-      // eslint-disable-next-line
-      console.log('[UiButtonGroup:genDefaultSlot] defaultSlot:', defaultSlot());
 
       return defaultSlot().map(this.genButton);
     },

@@ -6,9 +6,13 @@
 
 ## v0.23.4
 
+### Fixed
+
+* `UiButtonGroup` исправлено поведение методов `genDefaultSlot` и `genButton`
+
 ### Changed
 
-* Добавлен debug в метод `genDefaultSlot` компонента `UiButtonGroup`
+* Удален debug в компоненте `UiButtonGroup`
 
 ## v0.23.3
 
