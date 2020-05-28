@@ -16,14 +16,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    activeClass: {
-      type: String,
-      default: styles.isActive,
-    },
-    exactActiveClass: {
-      type: String,
-      default: styles.isActive,
-    },
   },
   computed: {
     classesRoot() {
@@ -31,7 +23,7 @@ export default {
         [styles.root]: true,
         [styles.isPseudo]: this.pseudo,
         [styles.isDisabled]: this.disabled,
-        [this.activeClass]: this.active,
+        [styles.isActive]: this.active,
       };
     },
   },

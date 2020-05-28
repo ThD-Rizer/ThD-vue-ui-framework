@@ -29,6 +29,11 @@ export default {
     },
 
     genButton(button, index, list) {
+      // eslint-disable-next-line
+      console.log('[UiButtonGroup:genButton] button:', button);
+
+      if (!button) return null;
+
       const options = button.componentOptions;
       const getProps = () => {
         switch (index) {
@@ -57,7 +62,7 @@ export default {
 
       if (!defaultSlot) return null;
 
-      return defaultSlot().filter(Boolean).map(this.genButton);
+      return defaultSlot().map(this.genButton);
     },
   },
 

@@ -10,9 +10,10 @@
 
     <div :class="$style.menu">
       <UiLink
-        v-for="(item, index) in menu"
+        v-for="(item, index) in localMenu"
         :key="index"
         :to="item.path"
+        :active="item.active"
         :native="true"
         :class="$style.link"
       >
@@ -33,6 +34,14 @@
       version: {
         type: String,
         default: null,
+      },
+    },
+    computed: {
+      localMenu() {
+        return this.menu.map((item) => ({
+          ...item,
+          active: item.path === this.$route.path,
+        }));
       },
     },
   };
