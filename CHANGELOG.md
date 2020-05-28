@@ -4,6 +4,12 @@
 
 ## Releases
 
+## v0.23.3
+
+### Fixed
+
+* Удалены стили `text-align` у flex утилит
+
 ## v0.23.2
 
 ### Fixed
