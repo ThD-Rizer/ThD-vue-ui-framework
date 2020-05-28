@@ -4,6 +4,12 @@
 
 ## Releases
 
+## v0.23.4
+
+### Changed
+
+* Добавлен debug в метод `genDefaultSlot` компонента `UiButtonGroup`
+
 ## v0.23.3
 
 ### Fixed
