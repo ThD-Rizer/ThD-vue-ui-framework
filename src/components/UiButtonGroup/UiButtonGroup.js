@@ -64,7 +64,7 @@ export default {
       if (!defaultSlot) return null;
 
       // eslint-disable-next-line
-      console.log('[UiButtonGroup:genDefaultSlot] defaultSlot:', defaultSlot);
+      console.log('[UiButtonGroup:genDefaultSlot] defaultSlot:', defaultSlot());
 
       return defaultSlot().map(this.genButton);
     },
