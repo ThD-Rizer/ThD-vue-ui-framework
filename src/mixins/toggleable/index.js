@@ -34,18 +34,24 @@ export const factoryToggleable = (prop = 'opened', event = 'toggle') => ({
   },
   methods: {
     open() {
-      this.isClosed = false;
       this.isOpened = true;
+      this.isClosed = false;
 
-      this.toggle();
+      this.emit();
     },
     close() {
-      this.isClosed = true;
       this.isOpened = false;
+      this.isClosed = true;
 
-      this.toggle();
+      this.emit();
     },
     toggle() {
+      this.isOpened = !this.isOpened;
+      this.isClosed = !this.isClosed;
+
+      this.emit();
+    },
+    emit() {
       this.$emit(event, this.isOpened);
     },
     handleModelChange(value) {

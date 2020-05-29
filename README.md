@@ -1,4 +1,4 @@
-# @thd/vue-ui-framework (v0.23.4)
+# @thd/vue-ui-framework (v0.24.0)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
 
@@ -19,16 +19,18 @@
      * [UiIcon](./src/components/UiIcon/README.md)
      * [UiLink](./src/components/UiLink/README.md)
      * [UiText](./src/components/UiText/README.md)
+   * Кнопки
+     * [UiButton](./src/components/UiButton/README.md)
+     * [UiButtonGroup](./src/components/UiButtonGroup/README.md)
+     * [UiButtonHamburger](./src/components/UiButtonHamburger/README.md)
    * Формы
      * [UiInput](./src/components/UiInput/README.md)
      * [UiTextarea](./src/components/UiTextarea/README.md)
+     * [UiDatepicker](./src/components/UiDatepicker/README.md)
    * Таблицы
      * @TODO
    * Прочее
      * [UiApp](./src/components/UiApp/README.md)
-     * [UiButton](./src/components/UiButton/README.md)
-     * [UiButtonGroup](./src/components/UiButtonGroup/README.md)
-     * [UiDatepicker](./src/components/UiDatepicker/README.md)
      * [UiDrawer](./src/components/UiDrawer/README.md)
      * [UiOverlay](./src/components/UiOverlay/README.md)
      * [UiPreloader](./src/components/UiPreloader/README.md)
@@ -69,7 +71,7 @@ email = ${VERDACCIO_EMAIL}
 ```json
 {
   "dependencies": {
-    "@thd/vue-ui-framework": "^0.23.4"
+    "@thd/vue-ui-framework": "^0.24.0"
   }
 }
 ```

@@ -232,6 +232,35 @@
         </UiButton>
       </UiButtonGroup>
     </UiSection>
+
+    <UiSection title="Button hamburger">
+      <UiRow>
+        <UiCol>
+          <UiButtonHamburger
+            v-model="hamburgerState"
+            :circle="true"
+            size="small"
+            theme="danger"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButtonHamburger
+            v-model="hamburgerState"
+            :circle="true"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButtonHamburger
+            v-model="hamburgerState"
+            :circle="true"
+            size="large"
+            theme="dark"
+          />
+        </UiCol>
+      </UiRow>
+    </UiSection>
   </UiMain>
 </template>
 
@@ -251,6 +280,7 @@
         'silent',
         'link',
       ],
+      hamburgerState: false,
     }),
   };
 </script>

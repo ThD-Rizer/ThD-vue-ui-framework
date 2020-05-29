@@ -4,15 +4,29 @@
 
 ## Releases
 
-## v0.23.4
+## v0.24.0
+
+### Added
+
+* Компонент [UiButtonHamburger](./src/components/UiButtonHamburger/README.md)
+
+### Changed
+
+* Логика метода `toggle` в миксине `toggleable`
 
 ### Fixed
 
-* `UiButtonGroup` исправлено поведение методов `genDefaultSlot` и `genButton`
+* Исключен рендер пустых строк в компоненте `UiButtonGroup`
+
+## v0.23.4
 
 ### Changed
 
 * Удален debug в компоненте `UiButtonGroup`
+
+### Fixed
+
+* `UiButtonGroup` исправлено поведение методов `genDefaultSlot` и `genButton`
 
 ## v0.23.3
 

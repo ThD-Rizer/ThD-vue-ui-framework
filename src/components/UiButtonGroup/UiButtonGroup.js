@@ -31,7 +31,7 @@ export default {
     genButton(button, index, list) {
       const options = button?.componentOptions;
 
-      if (!options) return button;
+      if (!options) return null;
 
       const getProps = () => {
         switch (index) {
