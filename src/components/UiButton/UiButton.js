@@ -44,15 +44,14 @@ export default {
   },
 
   methods: {
-    async handleClick(event) {
-      this.$emit('click', event);
-
+    async handleClick() {
       await asyncDelay(300);
       this.$el.blur();
     },
 
     genRoot(childNodes = []) {
       const { tag, data } = this.generateRouterLink(this.classesRoot);
+      const listenersKey = this.to ? 'nativeOn' : 'on';
 
       return this.$createElement(tag, {
         ...data,
@@ -60,7 +59,8 @@ export default {
           ...data.attrs,
           ...this.attributes,
         },
-        on: {
+        [listenersKey]: {
+          ...data[listenersKey],
           click: this.handleClick,
         },
       }, childNodes);

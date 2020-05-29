@@ -1,6 +1,9 @@
 <template>
   <UiMain>
-    <UiMarkdownViewer :source="changelogMd" />
+    <UiMarkdownViewer
+      :source="changelogMd"
+      :class="$style.markdownViewer"
+    />
   </UiMain>
 </template>
 
@@ -14,3 +17,11 @@
     }),
   };
 </script>
+
+<style lang="scss" module>
+  .markdownViewer {
+    h1:first-child {
+      border-bottom: 0;
+    }
+  }
+</style>
