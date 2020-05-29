@@ -1,11 +1,16 @@
 <template>
   <UiMain>
-    Hello
+    <UiMarkdownViewer :source="changelogMd" />
   </UiMain>
 </template>
 
 <script>
+  import changelogMd from '@root/CHANGELOG.md';
+
   export default {
-    name: 'MainPage',
+    name: 'PageMain',
+    data: () => ({
+      changelogMd,
+    }),
   };
 </script>

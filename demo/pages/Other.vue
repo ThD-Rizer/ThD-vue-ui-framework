@@ -72,7 +72,7 @@
   import { STATE_TYPES } from '@/components/UiSuspense';
 
   export default {
-    name: 'OtherPage',
+    name: 'PageOther',
     data: () => ({
       suspenseState: null,
     }),

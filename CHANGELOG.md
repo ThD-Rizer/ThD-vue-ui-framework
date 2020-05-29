@@ -4,6 +4,15 @@
 
 ## Releases
 
+## v0.25.0
+
+### Added
+
+* Зависимости `vue-markdown`, `raw-loader`
+* Компонент [UiMarkdownViewer](./src/components/UiMarkdownViewer/README.md)
+* Страница `ErrorNotFound` для демо
+* Отображение `CHANGELOG.md` на главной странице в демо
+
 ## v0.24.0
 
 ### Added

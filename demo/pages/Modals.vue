@@ -86,7 +86,7 @@
 
 <script>
   export default {
-    name: 'ModalsPage',
+    name: 'Pageodals',
     data: () => ({
       showOverlay: false,
       showNavigation: false,

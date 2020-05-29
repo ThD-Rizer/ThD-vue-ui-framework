@@ -26,7 +26,7 @@
 
 <script>
   export default {
-    name: 'FormsPage',
+    name: 'PageForms',
     data: () => ({
       inputValue: 'test',
       textareaValue: 'test',

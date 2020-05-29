@@ -26,6 +26,7 @@ export { default as UiTextarea } from './UiTextarea';
 // Other
 export { default as UiApp } from './UiApp';
 export { default as UiDrawer } from './UiDrawer';
+export { default as UiMarkdownViewer } from './UiMarkdownViewer';
 export { default as UiOverlay } from './UiOverlay';
 export { default as UiPreloader } from './UiPreloader';
 export { default as UiSuspense } from './UiSuspense';

@@ -266,7 +266,7 @@
 
 <script>
   export default {
-    name: 'ButtonsPage',
+    name: 'PageButtons',
     data: () => ({
       themes: [
         'primary',

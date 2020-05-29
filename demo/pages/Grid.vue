@@ -193,7 +193,7 @@
 
 <script>
   export default {
-    name: 'GridPage',
+    name: 'PageGrid',
   };
 </script>
 
