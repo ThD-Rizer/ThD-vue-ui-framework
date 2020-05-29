@@ -38,7 +38,7 @@
     },
     computed: {
       localMenu() {
-        return this.menu.map((item) => ({
+        return this.menu.filter(({ name }) => name).map((item) => ({
           ...item,
           active: item.path === this.$route.path,
         }));

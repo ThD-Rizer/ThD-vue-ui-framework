@@ -45,6 +45,7 @@ export default {
 
   methods: {
     async handleClick() {
+      this.click();
       await asyncDelay(300);
       this.$el.blur();
     },

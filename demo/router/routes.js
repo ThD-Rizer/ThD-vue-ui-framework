@@ -25,6 +25,5 @@ export default [
   {
     path: '*',
     component: () => import('@root/demo/pages/ErrorNotFound.vue'),
-    name: 'Error',
   },
 ];
