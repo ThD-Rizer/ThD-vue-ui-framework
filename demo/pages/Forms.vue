@@ -70,7 +70,7 @@
       </UiHeading>
 
       <UiRow class="mb-6">
-        <UiCol xs="4">
+        <UiCol xs="3">
           <UiInput
             v-model="inputValue"
             :clearable="true"
