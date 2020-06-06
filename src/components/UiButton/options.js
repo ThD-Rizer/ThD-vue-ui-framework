@@ -13,7 +13,7 @@ import themeDarkStyles from './UiButton.themeDark.scss';
 import themeSilentStyles from './UiButton.themeSilent.scss';
 import themeLinkStyles from './UiButton.themeLink.scss';
 
-export const themesStyles = {
+const themesStyles = {
   primary: themePrimaryStyles,
   secondary: themeSecondaryStyles,
   success: themeSuccessStyles,
@@ -25,7 +25,7 @@ export const themesStyles = {
   silent: themeSilentStyles,
   link: themeLinkStyles,
 };
-export const defaultTheme = 'secondary';
+const defaultTheme = 'secondary';
 
 export const stylable = factoryStylable({
   defaultStyles,

@@ -8,12 +8,16 @@ export default {
       type: String,
       default: null,
     },
+    toc: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     properties() {
-      const { source } = this;
       return {
-        source,
+        source: this.source,
+        toc: this.toc,
       };
     },
   },

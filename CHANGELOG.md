@@ -4,6 +4,30 @@
 
 ## Releases
 
+## v0.26.0
+
+### Added
+
+* Компонент `UiCheckbox`
+* Хэлпер для получения слотов `getSlot`
+* Свойство `clearable` для активации кнопки очистки в компоненте `UiInput`
+* Свойства `readOnly` и `placeholder` в компоненте `UiInput`
+* Хэш ссылки на заголовки в компоненте `UiMarkdownViewer`
+* Иконки `check` и `cross-thin`
+
+### Changed
+
+* Замена методов `genDefaultSlot` на хэлпер `getSlot` в компонентах `UiApp`, `UiButton`,
+  `UiButtonGroup`, `UiCol`, `UiContainer`, `UiDatepicker`, `UiDrawer`, `UiLink`, `UiOverlay`,
+  `UiRow`, `UiSuspense`, `UiText`
+* Удален сайд-эффект с передачей свойств в дочерние компоненты компонента `UiButtonGroup`
+* Код иконки `cross` заменен на жирную версию
+
+### Fixed
+
+* Передача `value` и флагов `required`, `disabled` в компоненте `UiInput`
+* Стили положения `label` в компоненте `UiInput`
+
 ## v0.25.2
 
 ### Fixed

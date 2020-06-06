@@ -1,6 +1,6 @@
 import Datepicker from 'vuejs-datepicker';
 import { en, ru } from 'vuejs-datepicker/dist/locale';
-import { propValidator } from '@/utils/helpers';
+import { getSlot, propValidator } from '@/utils/helpers';
 
 const LOCALES = { en, ru };
 
@@ -31,17 +31,12 @@ export default {
         },
       }, childNodes);
     },
-    getDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return defaultSlot();
-    },
   },
   render() {
+    const defaultSlot = getSlot(this);
+
     return this.getRoot([
-      this.getDefaultSlot(),
+      defaultSlot,
     ]);
   },
 };

@@ -1,6 +1,10 @@
 <template>
   <UiMain>
-    <UiSection title="Empty">
+    <UiSection>
+      <UiHeading>
+        Empty
+      </UiHeading>
+
       <UiRow>
         <UiCol>
           <UiButton
@@ -49,7 +53,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Styles">
+    <UiSection>
+      <UiHeading>
+        Styles
+      </UiHeading>
+
       <UiRow>
         <UiCol class="mb-4">
           <UiButton>
@@ -71,7 +79,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Sizes">
+    <UiSection>
+      <UiHeading>
+        Sizes
+      </UiHeading>
+
       <UiRow>
         <UiCol>
           <UiButton size="small">
@@ -93,7 +105,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Themes">
+    <UiSection>
+      <UiHeading>
+        Themes
+      </UiHeading>
+
       <UiRow>
         <UiCol
           v-for="theme in themes"
@@ -107,7 +123,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Active">
+    <UiSection>
+      <UiHeading>
+        Active
+      </UiHeading>
+
       <UiRow>
         <UiCol
           v-for="theme in themes"
@@ -124,7 +144,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Disabled">
+    <UiSection>
+      <UiHeading>
+        Disabled
+      </UiHeading>
+
       <UiRow>
         <UiCol
           v-for="theme in themes"
@@ -141,7 +165,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="With icon">
+    <UiSection>
+      <UiHeading>
+        With icon
+      </UiHeading>
+
       <UiRow>
         <UiCol>
           <UiButton
@@ -173,7 +201,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Fluid">
+    <UiSection>
+      <UiHeading>
+        Fluid
+      </UiHeading>
+
       <UiButton
         :fluid="true"
         class="mb-4"
@@ -207,7 +239,11 @@
       </UiButton>
     </UiSection>
 
-    <UiSection title="Buttons group">
+    <UiSection>
+      <UiHeading>
+        Buttons group
+      </UiHeading>
+
       <UiButtonGroup>
         <UiButton
           v-for="index in 3"
@@ -219,21 +255,24 @@
     </UiSection>
 
     <UiSection>
-      <UiButtonGroup
-        size="small"
-        theme="info"
-      >
+      <UiButtonGroup>
         <UiButton
           v-for="index in 3"
           :key="index"
           :active="index === 2"
+          size="small"
+          theme="info"
         >
           Button {{ index }}
         </UiButton>
       </UiButtonGroup>
     </UiSection>
 
-    <UiSection title="Button hamburger">
+    <UiSection>
+      <UiHeading>
+        Button hamburger
+      </UiHeading>
+
       <UiRow>
         <UiCol>
           <UiButtonHamburger

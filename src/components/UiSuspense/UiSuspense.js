@@ -1,3 +1,4 @@
+import { getSlot } from '@/utils/helpers';
 import UiPreloader from '@/components/UiPreloader';
 import { STATE_TYPES } from './constants';
 
@@ -32,61 +33,57 @@ export default {
       }, childNodes);
     },
 
-    genContent() {
-      switch (this.localState) {
-        case STATE_TYPES.SUCCESS:
-          return this.genDefaultSlot();
+    getDefaultSlot() {
+      const defaultSlot = getSlot(this);
 
-        case STATE_TYPES.FAIL:
-          return this.genErrorSlot();
+      if (defaultSlot) return defaultSlot;
 
-        case STATE_TYPES.EMPTY:
-          return this.genFallbackSlot();
-
-        case STATE_TYPES.PENDING:
-        default:
-          return this.genPendingSlot();
-      }
+      return this.$createElement('span', 'Success');
     },
 
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-      const defaultElement = this.$createElement('span', 'Success');
+    getErrorSlot() {
+      const errorSlot = getSlot(this, 'error');
 
-      if (!defaultSlot) return defaultElement;
+      if (errorSlot) return errorSlot;
 
-      return defaultSlot();
+      return this.$createElement('span', 'Error');
     },
 
-    genErrorSlot() {
-      const errorSlot = this.$scopedSlots.error;
-      const defaultElement = this.$createElement('span', 'Error');
+    getFallbackSlot() {
+      const fallbackSlot = getSlot(this, 'fallback');
 
-      if (!errorSlot) return defaultElement;
+      if (fallbackSlot) return fallbackSlot;
 
-      return errorSlot();
+      return this.$createElement('span', 'No data');
     },
 
-    genFallbackSlot() {
-      const fallbackSlot = this.$scopedSlots.fallback;
-      const defaultElement = this.$createElement('span', 'No data');
+    getPendingSlot() {
+      const preloaderSlot = getSlot(this, 'preloader');
 
-      if (!fallbackSlot) return defaultElement;
+      if (preloaderSlot) return preloaderSlot;
 
-      return fallbackSlot();
-    },
-
-    genPendingSlot() {
-      const preloaderSlot = this.$scopedSlots.preloader;
-      const defaultElement = this.$createElement(UiPreloader, {
+      return this.$createElement(UiPreloader, {
         props: {
           fullBlock: true,
         },
       });
+    },
 
-      if (!preloaderSlot) return defaultElement;
+    genContent() {
+      switch (this.localState) {
+        case STATE_TYPES.SUCCESS:
+          return this.getDefaultSlot();
 
-      return preloaderSlot();
+        case STATE_TYPES.FAIL:
+          return this.getErrorSlot();
+
+        case STATE_TYPES.EMPTY:
+          return this.getFallbackSlot();
+
+        case STATE_TYPES.PENDING:
+        default:
+          return this.getPendingSlot();
+      }
     },
   },
   render() {

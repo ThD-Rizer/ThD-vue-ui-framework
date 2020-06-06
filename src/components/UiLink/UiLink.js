@@ -1,4 +1,4 @@
-import { trimSlotText } from '@/utils/helpers';
+import { getSlot, trimSlotText } from '@/utils/helpers';
 import routable from '@/mixins/routable';
 import styles from './UiLink.scss';
 
@@ -33,17 +33,12 @@ export default {
 
       return this.$createElement(tag, data, childNodes);
     },
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return trimSlotText(defaultSlot());
-    },
   },
   render() {
+    const defaultSlot = trimSlotText(getSlot(this));
+
     return this.genRoot([
-      this.genDefaultSlot(),
+      defaultSlot,
     ]);
   },
 };

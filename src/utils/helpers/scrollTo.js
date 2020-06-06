@@ -1,7 +1,7 @@
 /**
  * @param {Element | Node} el
- * @param {number} x
- * @param {number} y
+ * @param {Number} x
+ * @param {Number} y
  */
 export default function scrollTo(el, x, y) {
   if ('scrollTo' in el) {

@@ -1,17 +1,12 @@
-$size: 40px;
-$colorTheme: $colorEasternBlue;
+$iconSize: 40px;
+$themeColor: $colorEasternBlue;
 
 .root {
-  &.hasIconBefore {}
-
   &.hasLabel {
-    padding-top: 20px;
+    padding-top: spacer(3);
   }
 
-  &.isFilled {}
-
-  &.isFocused {}
-
+  &.isReadOnly,
   &.isDisabled {
     pointer-events: none;
   }
@@ -25,11 +20,11 @@ $colorTheme: $colorEasternBlue;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: $size;
-  height: $size;
-  background-color: $colorTheme;
+  width: $iconSize;
+  height: $iconSize;
+  background-color: $themeColor;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: rem(20px);
   color: $colorWhite;
   position: absolute;
   top: 0;
@@ -42,7 +37,7 @@ $colorTheme: $colorEasternBlue;
 }
 
 .label {
-  font-size: 16px;
+  font-size: rem(16px);
   line-height: 1;
   color: $colorPaleSky;
   position: absolute;
@@ -56,27 +51,26 @@ $colorTheme: $colorEasternBlue;
   text-overflow: ellipsis;
 
   .hasIconBefore & {
-    left: $size + 11px;
+    left: $iconSize + 9px;
   }
 
   &.labelActive,
   .input:not([disabled]):focus ~ & {
-    font-size: 13px;
+    font-size: rem(13px);
     color: $colorMineShaft;
-    transform: translate3d(-11px, -30px, 0);
-    pointer-events: none;
+    transform: translate3d(4px, -27px, 0);
 
     .hasIconBefore & {
-      transform: translate3d(-36px, -30px, 0);
+      transform: translate3d(-36px, -27px, 0);
     }
   }
 }
 
 .input {
   width: 100%;
-  height: $size;
+  height: $iconSize;
   background-color: rgba($colorWhite, .75);
-  border: 1px solid $colorTheme;
+  border: 1px solid $themeColor;
   border-radius: 25px;
   padding: 0 10px;
   box-sizing: border-box;
@@ -86,12 +80,21 @@ $colorTheme: $colorEasternBlue;
 
   @include focus {
     background-color: $colorWhite;
-    box-shadow: inset 0 0 8px 0 rgba($colorTheme, .3),
-    0 0 8px 0 rgba($colorTheme, .3);
+    box-shadow: inset 0 0 8px 0 rgba($themeColor, .3),
+    0 0 8px 0 rgba($themeColor, .3);
   }
 
   .hasIconBefore & {
-    padding-left: $size + 10px;
+    padding-left: $iconSize + 8px;
+  }
+
+  .isReadOnly & {
+    background-color: rgba(lighten($colorHeather, 20%), .75);
+  }
+
+  .isDisabled & {
+    background-color: rgba(lighten($colorHeather, 20%), .75);
+    border-color: $colorHeather;
   }
 }
 
@@ -100,8 +103,8 @@ $colorTheme: $colorEasternBlue;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: $iconSize;
+  height: $iconSize;
   border-radius: 50%;
   position: absolute;
   top: 0;
