@@ -10,17 +10,19 @@
       </p>
     </UiSection>
 
-    <UiSection
-      :class="$style.section"
-      title="Suspense default slots"
-    >
+    <UiSection :class="$style.section">
+      <UiHeading>
+        Suspense default slots
+      </UiHeading>
+
       <UiSuspense :state="suspenseState" />
     </UiSection>
 
-    <UiSection
-      :class="$style.section"
-      title="Suspense custom slots"
-    >
+    <UiSection :class="$style.section">
+      <UiHeading>
+        Suspense custom slots
+      </UiHeading>
+
       <UiSuspense :state="suspenseState">
         <template #default>
           <span>#default</span>
@@ -41,10 +43,11 @@
       </UiSuspense>
     </UiSection>
 
-    <UiSection
-      :class="$style.section"
-      title="Suspense failed usage"
-    >
+    <UiSection :class="$style.section">
+      <UiHeading>
+        Suspense failed usage
+      </UiHeading>
+
       <UiSuspense :state="suspenseState">
         #default
         <template #error>
@@ -56,9 +59,13 @@
       </UiSuspense>
     </UiSection>
 
-    <UiSection title="Elevation cards">
+    <UiSection>
+      <UiHeading>
+        Elevation cards
+      </UiHeading>
+
       <article
-        v-for="index in 12"
+        v-for="index in 24"
         :key="index"
         :class="[$style.elevationCard, $style[`elevationCard_mode_${index}`]]"
       >
@@ -72,7 +79,7 @@
   import { STATE_TYPES } from '@/components/UiSuspense';
 
   export default {
-    name: 'OtherPage',
+    name: 'PageOther',
     data: () => ({
       suspenseState: null,
     }),
@@ -113,7 +120,7 @@
     padding: spacer(2);
     margin-bottom: spacer(8);
 
-    @for $i from 0 through 12 {
+    @for $i from 0 through 24 {
       &_mode_#{$i} {
         @include elevation($i, $opacityMode: 'soft');
       }

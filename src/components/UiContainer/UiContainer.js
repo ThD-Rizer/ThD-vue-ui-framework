@@ -1,4 +1,4 @@
-import { propValidator } from '@/utils/helpers';
+import { propValidator, getSlot } from '@/utils/helpers';
 import styles from './UiContainer.scss';
 
 const tagValidator = propValidator('tag', ['div', 'section', 'header', 'footer']);
@@ -25,14 +25,12 @@ export default {
         },
       }, childNodes);
     },
-
-    genSlotDefault() {
-      return this.$slots.default;
-    },
   },
   render() {
+    const defaultSlot = getSlot(this);
+
     return this.genRoot([
-      this.genSlotDefault(),
+      defaultSlot,
     ]);
   },
 };

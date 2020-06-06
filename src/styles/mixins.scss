@@ -26,7 +26,7 @@
   overflow: hidden;
 }
 
-@mixin visuallyHidden {
+@mixin overkill {
   &:not(:focus):not(:active) {
     width: 1px;
     height: 1px;
@@ -39,6 +39,18 @@
     clip: rect(0 0 0 0);
     overflow: hidden;
   }
+}
+
+@mixin visuallyHidden {
+  height: 1px !important;
+  width: 1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden !important;
+  visibility: hidden !important;
 }
 
 @mixin hover {

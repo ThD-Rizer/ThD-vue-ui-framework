@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '@/utils/errors';
-import { isString, isArray } from '@/utils/inspect';
+import { InvalidTypeError } from '../errors';
+import { isString, isArray } from '../inspect';
 
 /**
  * Remove auxiliary code spaces in template strings

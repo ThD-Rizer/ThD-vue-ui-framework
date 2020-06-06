@@ -1,0 +1,20 @@
+.link {
+  border-bottom: 1px solid currentColor;
+  margin-bottom: -1px;
+  color: $colorAzureRadiance;
+  transition: $transitionDefault;
+
+  @media (hover: hover) {
+    .root:not([disabled]):hover & {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .root.isActive & {
+    border-bottom-color: transparent;
+  }
+
+  .root.isDisabled & {
+    color: lighten($colorAzureRadiance, 30%);
+  }
+}

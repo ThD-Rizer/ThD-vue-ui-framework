@@ -33,7 +33,19 @@ export default {
       type: Boolean,
       default: false,
     },
+    readOnly: {
+      type: Boolean,
+      default: false,
+    },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: null,
+    },
+    clearable: {
       type: Boolean,
       default: false,
     },
@@ -113,6 +125,7 @@ export default {
           [styles.hasLabel]: this.label,
           [styles.isFilled]: this.localValue,
           [styles.isFocused]: this.focused,
+          [styles.isReadOnly]: this.readOnly,
           [styles.isDisabled]: this.disabled,
         },
       }, childNodes);
@@ -156,13 +169,17 @@ export default {
     genInput() {
       return this.$createElement('input', {
         class: styles.input,
+        domProps: {
+          value: this.localValue,
+          required: this.required,
+          readonly: this.readOnly,
+          disabled: this.disabled,
+        },
         attrs: {
           id: this.uniqueId,
           type: this.type,
-          value: this.localValue,
           name: this.name,
-          required: this.required,
-          disabled: this.disabled,
+          placeholder: this.placeholder,
         },
         on: {
           ...this.$listeners,
@@ -197,7 +214,7 @@ export default {
         this.genIconBefore(),
         this.genLabel(),
         this.genInput(),
-        this.genButtonClear(),
+        this.clearable && this.genButtonClear(),
       ]),
     ]);
   },

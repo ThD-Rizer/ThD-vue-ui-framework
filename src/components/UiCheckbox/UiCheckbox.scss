@@ -1,0 +1,76 @@
+$size: 24px;
+$themeColor: $colorEasternBlue;
+
+.root {
+  display: inline-flex;
+
+  &.isFluid {
+    display: flex;
+  }
+
+  &.isReadOnly,
+  &.isDisabled {
+    pointer-events: none;
+  }
+}
+
+.input {
+  @include visuallyHidden;
+}
+
+.checkbox {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $size;
+  height: $size;
+  background-color: rgba($colorWhite, .75);
+  border: 1px solid $themeColor;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  .isReadOnly & {
+    background-color: rgba(lighten($colorHeather, 20%), .75);
+  }
+
+  .isDisabled & {
+    background-color: rgba(lighten($colorHeather, 20%), .75);
+    border-color: $colorHeather;
+  }
+}
+
+.marker {
+  color: $themeColor;
+  opacity: 0;
+  transition-timing-function: $transitionDefaultTiming;
+  transition-duration: .2s;
+  transition-property: color, opacity, transform;
+  transform: scale3d(0.1, 0.1, 0.1);
+
+  .isChecked & {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+  .isDisabled & {
+    color: $colorHeather;
+  }
+}
+
+.marker_check {}
+
+.marker_square {
+  width: $size / 2;
+  height: $size / 2;
+  background-color: currentColor;
+}
+
+.marker_cross {}
+
+.label {
+  padding-left: spacer(3);
+  cursor: pointer;
+  user-select: none;
+}

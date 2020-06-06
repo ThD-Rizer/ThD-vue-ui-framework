@@ -1,4 +1,5 @@
 import FrameworkError from '@/utils/errors';
+import { getSlot } from '@/utils/helpers';
 import { registrableProvide } from '@/mixins/registrable';
 
 const containers = {
@@ -52,14 +53,6 @@ export default {
       }, childNodes);
     },
 
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return defaultSlot();
-    },
-
     genContainers() {
       return Object.entries(containers).map(([name, id]) => (
         this.genContainer(name, id)
@@ -76,8 +69,10 @@ export default {
     },
   },
   render() {
+    const defaultSlot = getSlot(this);
+
     return this.genRoot([
-      this.genDefaultSlot(),
+      defaultSlot,
       this.genContainers(),
     ]);
   },

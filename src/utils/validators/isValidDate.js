@@ -1,4 +1,4 @@
-import { isNaN } from '@/utils/inspect';
+import { isNaN } from '../inspect';
 
 /**
  * @param {*} value

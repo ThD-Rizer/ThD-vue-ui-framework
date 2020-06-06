@@ -1,10 +1,8 @@
-// export { default as cloneDeep } from 'lodash.clonedeep';
-// export { default as shuffle } from 'lodash.shuffle';
-// export { default as throttle } from 'lodash.throttle';
-
 export { default as asyncDelay } from './asyncDelay';
 export { default as cloneArray } from './cloneArray';
+export { default as cloneDeep } from './cloneDeep';
 export { default as generateHash } from './generateHash';
+export { default as getSlot } from './getSlot';
 export { default as isEqual } from './isEqual';
 export { default as kebabToCamel } from './kebabToCamel';
 export { default as kebabToPascal } from './kebabToPascal';
@@ -18,6 +16,8 @@ export { default as propValidator } from './propValidator';
 export { default as randomArrayElement } from './randomArrayElement';
 export { default as randomInteger } from './randomInteger';
 export { default as scrollTo } from './scrollTo';
+export { default as shuffle } from './shuffle';
+export { default as throttle } from './throttle';
 export { default as trimLeft } from './trimLeft';
 export { default as trimRight } from './trimRight';
 export { default as trimSlotText } from './trimSlotText';

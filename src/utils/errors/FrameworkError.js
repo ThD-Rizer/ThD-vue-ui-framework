@@ -1,4 +1,4 @@
-import { isArray } from '@/utils/inspect';
+import { isArray } from '../inspect';
 
 /**
  * Ошибка

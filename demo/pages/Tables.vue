@@ -6,6 +6,6 @@
 
 <script>
   export default {
-    name: 'TablesPage',
+    name: 'PageTables',
   };
 </script>

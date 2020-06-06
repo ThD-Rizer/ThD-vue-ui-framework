@@ -1,6 +1,10 @@
-# @thd/vue-ui-framework (v0.20.0)
+# @thd/vue-ui-framework (v0.26.0)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
+
+## Демо стэнд
+
+[vue-ui-framework.thd-dev.ru](http://vue-ui-framework.thd-dev.ru/)
 
 ## Изменения
 
@@ -19,16 +23,21 @@
      * [UiIcon](./src/components/UiIcon/README.md)
      * [UiLink](./src/components/UiLink/README.md)
      * [UiText](./src/components/UiText/README.md)
+   * Кнопки
+     * [UiButton](./src/components/UiButton/README.md)
+     * [UiButtonGroup](./src/components/UiButtonGroup/README.md)
+     * [UiButtonHamburger](./src/components/UiButtonHamburger/README.md)
    * Формы
      * [UiInput](./src/components/UiInput/README.md)
      * [UiTextarea](./src/components/UiTextarea/README.md)
+     * [UiCheckbox](./src/components/UiCheckbox/README.md)
+     * [UiDatepicker](./src/components/UiDatepicker/README.md)
    * Таблицы
      * @TODO
    * Прочее
      * [UiApp](./src/components/UiApp/README.md)
-     * [UiButton](./src/components/UiButton/README.md)
-     * [UiDatepicker](./src/components/UiDatepicker/README.md)
      * [UiDrawer](./src/components/UiDrawer/README.md)
+     * [UiMarkdownViewer](./src/components/UiMarkdownViewer/README.md)
      * [UiOverlay](./src/components/UiOverlay/README.md)
      * [UiPreloader](./src/components/UiPreloader/README.md)
      * [UiSuspense](./src/components/UiSuspense/README.md)
@@ -38,7 +47,7 @@
 
 ## Установка
 
-#### NPM
+#### Yarn или npm
 
 Прежде всего, вам нужно добавить файл `.yarnrc` в корневой каталог вашего проекта.
 Откройте этот файл и вставьте в него следующее содержимое:
@@ -68,7 +77,7 @@ email = ${VERDACCIO_EMAIL}
 ```json
 {
   "dependencies": {
-    "@thd/vue-ui-framework": "^0.20.0"
+    "@thd/vue-ui-framework": "^0.1.0"
   }
 }
 ```
@@ -93,6 +102,12 @@ import '@thd/vue-ui-framework/dist/ui.css';
 
 ```css
 @import '@thd/vue-ui-framework/dist/ui.css';
+```
+
+CSS Modules:
+
+```css
+@import '~@thd/vue-ui-framework/dist/ui.css';
 ```
 
 Теперь вам нужно зарегистрировать библиотеку. Вот 2 способа, как вы можете сделать это.
@@ -123,11 +138,21 @@ export default {
 
 Чтобы некоторые компоненты работали правильно, вам нужно заключить ваше приложение в компонент [UiApp](./src/components/UiApp/README.md) следующим образом:
 
+Vue.js:
+
 ```vue
 <template>
   <UiApp>
     <RouterView />
-    <!-- или для Nuxt.js: -->
+  </UiApp>
+</template>
+```
+
+Nuxt.js:
+
+```vue
+<template>
+  <UiApp>
     <Nuxt />
   </UiApp>
 </template>
@@ -138,6 +163,7 @@ export default {
 
 Список компонентов, для которых требуется `UiApp`:
 
+* [UiDrawer](./src/components/UiDrawer/README.md)
 * [UiOverlay](./src/components/UiOverlay/README.md)
 
 Прочитайте [документацию](./src/components/UiApp/README.md) по компоненту для получения дополнительной информации.

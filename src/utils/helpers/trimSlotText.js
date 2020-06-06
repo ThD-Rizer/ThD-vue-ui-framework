@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '@/utils/errors';
-import { isArray } from '@/utils/inspect';
+import { InvalidTypeError } from '../errors';
+import { isArray } from '../inspect';
 import trimLeft from './trimLeft';
 import trimRight from './trimRight';
 
@@ -10,6 +10,8 @@ import trimRight from './trimRight';
  * @returns {Array}
  */
 export default function trimSlotText(slotParts) {
+  if (!slotParts) return null;
+
   if (!isArray(slotParts)) {
     throw new InvalidTypeError(slotParts, 'slotParts', 'Array');
   }

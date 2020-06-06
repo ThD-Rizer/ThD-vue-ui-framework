@@ -8,14 +8,18 @@
   @include hover {
     border-bottom-color: transparent;
   }
+}
 
-  &.isPseudo {}
-
-  &.isDisabled {}
-
-  &.isActive {}
+.isActive {
+  border-bottom-color: transparent;
 }
 
 .isPseudo {
   border-bottom-style: dashed;
+}
+
+.isDisabled {
+  color: $colorDustyGray;
+  cursor: default;
+  pointer-events: none;
 }

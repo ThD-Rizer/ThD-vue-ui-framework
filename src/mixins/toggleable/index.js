@@ -1,3 +1,5 @@
+import { isBoolean } from '@/utils/inspect';
+
 /**
  * Фабрика миксина для переключаемых компонентов
  *
@@ -17,43 +19,24 @@ export const factoryToggleable = (prop = 'opened', event = 'toggle') => ({
     },
   },
   data: () => ({
-    isOpened: false,
-    isClosed: true,
+    toggleableState: false,
   }),
   watch: {
     [prop](payload) {
-      this.handleModelChange(payload);
+      this.toggle(payload);
     },
   },
   beforeMount() {
-    if (this[prop]) {
-      this.open();
-    } else {
-      this.close();
-    }
+    this.toggleableState = this[prop];
   },
   methods: {
-    open() {
-      this.isClosed = false;
-      this.isOpened = true;
-
-      this.toggle();
-    },
-    close() {
-      this.isClosed = true;
-      this.isOpened = false;
-
-      this.toggle();
-    },
-    toggle() {
-      this.$emit(event, this.isOpened);
-    },
-    handleModelChange(value) {
-      if (value) {
-        this.open();
+    toggle(state = null) {
+      if (isBoolean(state)) {
+        this.toggleableState = state;
       } else {
-        this.close();
+        this.toggleableState = !this.toggleableState;
       }
+      this.$emit(event, this.toggleableState);
     },
   },
 });
