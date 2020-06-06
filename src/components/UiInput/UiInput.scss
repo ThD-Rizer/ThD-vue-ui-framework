@@ -10,6 +10,10 @@ $themeColor: $colorEasternBlue;
   &.isDisabled {
     pointer-events: none;
   }
+
+  &.isDisabled {
+    cursor: not-allowed;
+  }
 }
 
 .container {
@@ -95,6 +99,7 @@ $themeColor: $colorEasternBlue;
   .isDisabled & {
     background-color: rgba(lighten($colorHeather, 20%), .75);
     border-color: $colorHeather;
+    color: $colorDustyGray;
   }
 }
 

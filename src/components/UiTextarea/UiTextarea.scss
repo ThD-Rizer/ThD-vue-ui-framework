@@ -3,6 +3,7 @@ $themeColor: $colorEasternBlue;
 .root {
   &.isDisabled {
     pointer-events: none;
+    cursor: not-allowed;
   }
 }
 

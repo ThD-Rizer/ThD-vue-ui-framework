@@ -20,6 +20,6 @@
 
 .isDisabled {
   color: $colorDustyGray;
-  cursor: default;
+  cursor: not-allowed;
   pointer-events: none;
 }

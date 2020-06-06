@@ -12,6 +12,10 @@ $themeColor: $colorEasternBlue;
   &.isDisabled {
     pointer-events: none;
   }
+
+  &.isDisabled {
+    cursor: not-allowed;
+  }
 }
 
 .input {
@@ -73,4 +77,8 @@ $themeColor: $colorEasternBlue;
   padding-left: spacer(3);
   cursor: pointer;
   user-select: none;
+
+  .isDisabled & {
+    color: $colorDustyGray;
+  }
 }
