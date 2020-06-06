@@ -10,6 +10,8 @@ import trimRight from './trimRight';
  * @returns {Array}
  */
 export default function trimSlotText(slotParts) {
+  if (!slotParts) return null;
+
   if (!isArray(slotParts)) {
     throw new InvalidTypeError(slotParts, 'slotParts', 'Array');
   }

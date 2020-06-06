@@ -35,7 +35,7 @@ const targetValidator = propValidator('target', ['_blank', '_self', '_parent', '
 /**
  * Default mount tag
  *
- * @type {string}
+ * @type {String}
  */
 const defaultTag = 'a';
 

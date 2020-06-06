@@ -1,6 +1,10 @@
 <template>
   <UiMain>
-    <UiSection title="Headings">
+    <UiSection>
+      <UiHeading>
+        Headings
+      </UiHeading>
+
       <UiText
         type="h1"
         class="mb-4"
@@ -37,7 +41,11 @@
       </UiText>
     </UiSection>
 
-    <UiSection title="Pseudo headings">
+    <UiSection>
+      <UiHeading>
+        Pseudo headings
+      </UiHeading>
+
       <UiText
         tag="div"
         type="h1"
@@ -57,7 +65,11 @@
       </UiText>
     </UiSection>
 
-    <UiSection title="Text weights">
+    <UiSection>
+      <UiHeading>
+        Text weights
+      </UiHeading>
+
       <UiText
         :block="true"
         weight="thin"
@@ -94,7 +106,11 @@
       </UiText>
     </UiSection>
 
-    <UiSection title="Text colors">
+    <UiSection>
+      <UiHeading>
+        Text colors
+      </UiHeading>
+
       <UiText
         :block="true"
         color="azureRadiance"
@@ -131,7 +147,11 @@
       </UiText>
     </UiSection>
 
-    <UiSection title="Links">
+    <UiSection>
+      <UiHeading>
+        Links
+      </UiHeading>
+
       <div class="mb-2">
         <UiLink
           :native="true"

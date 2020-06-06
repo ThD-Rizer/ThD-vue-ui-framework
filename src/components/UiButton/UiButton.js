@@ -1,5 +1,5 @@
 import { isBoolean, isString } from '@/utils/inspect';
-import { trimSlotText, asyncDelay } from '@/utils/helpers';
+import { getSlot, trimSlotText, asyncDelay } from '@/utils/helpers';
 import routable from '@/mixins/routable';
 import {
   stylable,
@@ -78,21 +78,13 @@ export default {
         class: this.styles.link,
       }, childNodes);
     },
-
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return trimSlotText(defaultSlot());
-    },
   },
 
   render() {
-    const slotDefault = this.genDefaultSlot();
+    const defaultSlot = trimSlotText(getSlot(this));
     const content = (this.theme === 'link')
-      ? this.genLink(slotDefault)
-      : slotDefault;
+      ? this.genLink(defaultSlot)
+      : defaultSlot;
 
     return this.genRoot([
       this.genInner([

@@ -1,6 +1,10 @@
 <template>
   <UiMain>
-    <UiSection title="By content">
+    <UiSection>
+      <UiHeading>
+        By content
+      </UiHeading>
+
       <UiRow>
         <UiCol>
           <div :class="[$style.col, 'mb-3']">
@@ -22,7 +26,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Size">
+    <UiSection>
+      <UiHeading>
+        Size
+      </UiHeading>
+
       <UiRow
         v-for="index in 12"
         :key="index"
@@ -106,7 +114,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Offset">
+    <UiSection>
+      <UiHeading>
+        Offset
+      </UiHeading>
+
       <UiRow
         v-for="index in 11"
         :key="index"
@@ -124,7 +136,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Offset right">
+    <UiSection>
+      <UiHeading>
+        Offset right
+      </UiHeading>
+
       <UiRow
         v-for="index in 10"
         :key="index"
@@ -147,7 +163,11 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Fluid">
+    <UiSection>
+      <UiHeading>
+        Fluid
+      </UiHeading>
+
       <UiRow class="mb-3">
         <UiCol xs="fluid">
           <div :class="$style.col">

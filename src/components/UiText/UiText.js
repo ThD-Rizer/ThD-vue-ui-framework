@@ -1,4 +1,4 @@
-import { propValidator, trimSlotText } from '@/utils/helpers';
+import { propValidator, getSlot, trimSlotText } from '@/utils/helpers';
 import { COLORS } from '@/constants/styles';
 import styles from './UiText.scss';
 
@@ -72,17 +72,12 @@ export default {
         class: this.rootClasses,
       }, childNodes);
     },
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return trimSlotText(defaultSlot());
-    },
   },
   render() {
+    const defaultSlot = trimSlotText(getSlot(this));
+
     return this.genRoot([
-      this.genDefaultSlot(),
+      defaultSlot,
     ]);
   },
 };

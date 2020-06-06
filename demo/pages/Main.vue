@@ -3,6 +3,7 @@
     <UiMarkdownViewer
       :source="changelogMd"
       :class="$style.markdownViewer"
+      :toc="true"
     />
   </UiMain>
 </template>

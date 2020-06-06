@@ -52,4 +52,25 @@
       margin-left: -1px;
     }
   }
+
+  a {
+    border-bottom: 1px dashed transparent;
+    color: $colorAzureRadiance;
+    text-decoration: none;
+    transition: $transitionDefault;
+    cursor: pointer;
+
+    @include hover {
+      border-bottom-color: currentColor;
+    }
+  }
+
+  // hack для удаления лишних хэш ссылок
+  :global(h1#changelog),
+  :global(h2#releases),
+  h3 {
+    & > a {
+      display: none;
+    }
+  }
 }

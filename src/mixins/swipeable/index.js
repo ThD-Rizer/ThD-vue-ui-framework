@@ -1,8 +1,3 @@
-/**
- * Фабрика миксина для компонентов, которые можно свайпать
- *
- * @returns {Object}
- */
 export default {
   props: {
     swipeable: {
@@ -32,6 +27,13 @@ export default {
     },
   }),
   computed: {
+    /**
+     * Заглушка, которую необходимо переопределить в компоненте
+     * @returns {HTMLElement}
+     */
+    swipeElement() {
+      return null;
+    },
     getSwipeElement() {
       return this.swipeElement || window;
     },

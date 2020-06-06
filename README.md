@@ -1,6 +1,10 @@
-# @thd/vue-ui-framework (v0.25.2)
+# @thd/vue-ui-framework (v0.26.0)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
+
+## Демо стэнд
+
+[vue-ui-framework.thd-dev.ru](http://vue-ui-framework.thd-dev.ru/)
 
 ## Изменения
 
@@ -26,6 +30,7 @@
    * Формы
      * [UiInput](./src/components/UiInput/README.md)
      * [UiTextarea](./src/components/UiTextarea/README.md)
+     * [UiCheckbox](./src/components/UiCheckbox/README.md)
      * [UiDatepicker](./src/components/UiDatepicker/README.md)
    * Таблицы
      * @TODO
@@ -42,7 +47,7 @@
 
 ## Установка
 
-#### NPM
+#### Yarn или npm
 
 Прежде всего, вам нужно добавить файл `.yarnrc` в корневой каталог вашего проекта.
 Откройте этот файл и вставьте в него следующее содержимое:
@@ -99,6 +104,12 @@ import '@thd/vue-ui-framework/dist/ui.css';
 @import '@thd/vue-ui-framework/dist/ui.css';
 ```
 
+CSS Modules:
+
+```css
+@import '~@thd/vue-ui-framework/dist/ui.css';
+```
+
 Теперь вам нужно зарегистрировать библиотеку. Вот 2 способа, как вы можете сделать это.
 
 #### Регистрация как глобальный плагин
@@ -127,11 +138,21 @@ export default {
 
 Чтобы некоторые компоненты работали правильно, вам нужно заключить ваше приложение в компонент [UiApp](./src/components/UiApp/README.md) следующим образом:
 
+Vue.js:
+
 ```vue
 <template>
   <UiApp>
     <RouterView />
-    <!-- или для Nuxt.js: -->
+  </UiApp>
+</template>
+```
+
+Nuxt.js:
+
+```vue
+<template>
+  <UiApp>
     <Nuxt />
   </UiApp>
 </template>
@@ -142,6 +163,7 @@ export default {
 
 Список компонентов, для которых требуется `UiApp`:
 
+* [UiDrawer](./src/components/UiDrawer/README.md)
 * [UiOverlay](./src/components/UiOverlay/README.md)
 
 Прочитайте [документацию](./src/components/UiApp/README.md) по компоненту для получения дополнительной информации.

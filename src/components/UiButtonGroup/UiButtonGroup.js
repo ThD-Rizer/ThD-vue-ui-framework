@@ -1,25 +1,10 @@
-import {
-  props,
-  defaultTheme,
-} from '@/components/UiButton/options';
+import { getSlot } from '@/utils/helpers';
 import styles from './UiButtonGroup.scss';
 
 export default {
   name: 'UiButtonGroup',
   props: {
-    ...props,
-    theme: {
-      type: String,
-      default: defaultTheme,
-    },
-  },
-  computed: {
-    properties() {
-      return Object.keys(this.$props).reduce((acc, key) => ({
-        ...acc,
-        [key]: this[key],
-      }), {});
-    },
+    // @TODO
   },
   methods: {
     genRoot(childNodes = []) {
@@ -28,8 +13,8 @@ export default {
       }, childNodes);
     },
 
-    genButton(button, index, list) {
-      const options = button?.componentOptions;
+    genButton(node, index, list) {
+      const options = node?.componentOptions;
 
       if (!options) return null;
 
@@ -45,28 +30,20 @@ export default {
       };
 
       return this.$createElement(options.tag, {
-        ...button.data,
+        ...node.data,
         props: {
-          ...this.properties,
           ...options.propsData,
           ...getProps(),
         },
         on: options.listeners,
       }, options.children);
     },
-
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return defaultSlot().map(this.genButton);
-    },
   },
 
   render() {
-    return this.genRoot([
-      this.genDefaultSlot(),
-    ]);
+    const defaultSlot = getSlot(this) || [];
+    const buttons = defaultSlot.map(this.genButton);
+
+    return this.genRoot(buttons);
   },
 };

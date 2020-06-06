@@ -1,6 +1,6 @@
 import { BREAKPOINTS } from '@/constants/grid';
 import { isNull, isNumber, isNaN } from '@/utils/inspect';
-import { propValidator, parseBreakpoints } from '@/utils/helpers';
+import { propValidator, parseBreakpoints, getSlot } from '@/utils/helpers';
 import styles from './UiRow.scss';
 
 /**
@@ -72,18 +72,12 @@ export default {
         class: this.classesRoot,
       }, childNodes);
     },
-
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return defaultSlot();
-    },
   },
   render() {
+    const defaultSlot = getSlot(this);
+
     return this.genRoot([
-      this.genDefaultSlot(),
+      defaultSlot,
     ]);
   },
 };

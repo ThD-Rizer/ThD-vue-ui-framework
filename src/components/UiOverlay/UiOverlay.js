@@ -1,5 +1,5 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodyScrollLock';
-import { scrollTo } from '@/utils/helpers';
+import { scrollTo, getSlot } from '@/utils/helpers';
 import { registrableInject } from '@/mixins/registrable';
 import { factoryToggleable } from '@/mixins/toggleable';
 import styles from './UiOverlay.scss';
@@ -71,18 +71,12 @@ export default {
         on: { ...this.$listeners },
       }, childNodes);
     },
-
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return defaultSlot();
-    },
   },
   render() {
+    const defaultSlot = getSlot(this);
+
     return this.genRoot([
-      this.genDefaultSlot(),
+      defaultSlot,
     ]);
   },
 };

@@ -1,6 +1,10 @@
 <template>
   <UiMain :class="$style.main">
-    <UiSection title="Overlay">
+    <UiSection>
+      <UiHeading>
+        Overlay
+      </UiHeading>
+
       <UiButton @click="toggleOverlay">
         Toggle
       </UiButton>
@@ -22,7 +26,11 @@
       </UiOverlay>
     </UiSection>
 
-    <UiSection title="Navigation">
+    <UiSection>
+      <UiHeading>
+        Navigation
+      </UiHeading>
+
       <UiButton @click="toggleNavigation">
         Toggle
       </UiButton>
@@ -52,7 +60,11 @@
       </UiDrawer>
     </UiSection>
 
-    <UiSection title="Navigation right">
+    <UiSection>
+      <UiHeading>
+        Navigation right
+      </UiHeading>
+
       <UiButton @click="toggleNavigationRight">
         Toggle
       </UiButton>

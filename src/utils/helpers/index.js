@@ -2,6 +2,7 @@ export { default as asyncDelay } from './asyncDelay';
 export { default as cloneArray } from './cloneArray';
 export { default as cloneDeep } from './cloneDeep';
 export { default as generateHash } from './generateHash';
+export { default as getSlot } from './getSlot';
 export { default as isEqual } from './isEqual';
 export { default as kebabToCamel } from './kebabToCamel';
 export { default as kebabToPascal } from './kebabToPascal';
