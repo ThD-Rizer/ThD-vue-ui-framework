@@ -7,10 +7,11 @@
       />
 
       <UiText
+        v-if="heading"
         type="h1"
         class="mb-8"
       >
-        {{ title }}
+        {{ heading }}
       </UiText>
 
       <RouterView />
@@ -33,10 +34,10 @@
       version: packageJson.version,
     }),
     computed: {
-      title() {
+      heading() {
         const route = this.routes.find(({ path }) => path === this.$route.path);
 
-        return route ? route.title : '';
+        return route?.heading || '';
       },
     },
   };
@@ -45,8 +46,10 @@
 <style lang="scss" module>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
 
-  body {
-    font-family: 'Roboto', sans-serif;
-    color: $colorMineShaft;
+  :global {
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: $colorMineShaft;
+    }
   }
 </style>

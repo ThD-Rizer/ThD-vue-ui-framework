@@ -1,6 +1,6 @@
 <template>
   <UiMain>
-    <p>
+    <div class="f-center">
       <UiButton
         :theme="theme"
         :customStyles="customStyles"
@@ -8,13 +8,13 @@
       >
         Button dynamic stylable
       </UiButton>
-    </p>
+    </div>
   </UiMain>
 </template>
 
 <script>
   export default {
-    name: 'TestingPage',
+    name: 'PageTesting',
     data: () => ({
       isChecked: false,
       theme: 'secondary',

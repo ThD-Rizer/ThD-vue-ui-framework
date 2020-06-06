@@ -6,7 +6,15 @@
     background-color: darken($colorEasternBlue, 15%);
   }
 
+  @include focus {
+    @include focusOutline($colorEasternBlue);
+  }
+
   &.isActive {
     background-color: darken($colorEasternBlue, 15%);
+  }
+
+  &.isDisabled {
+    background-color: lighten($colorEasternBlue, 20%);
   }
 }

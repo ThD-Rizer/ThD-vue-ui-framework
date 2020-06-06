@@ -1,8 +1,8 @@
-import { InvalidTypeError } from '@/utils/errors';
-import { isString } from '@/utils/inspect';
-import isValidHexColor from '@/utils/validators/isValidHexColor';
-import isValidHSLColor from '@/utils/validators/isValidHSLColor';
-import isValidRgbColor from '@/utils/validators/isValidRgbColor';
+import { InvalidTypeError } from '../errors';
+import { isString } from '../inspect';
+import isValidHexColor from './isValidHexColor';
+import isValidHSLColor from './isValidHSLColor';
+import isValidRgbColor from './isValidRgbColor';
 
 const safeColor = /^[a-z]{3,}$/i;
 

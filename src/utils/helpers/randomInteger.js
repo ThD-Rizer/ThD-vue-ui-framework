@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '@/utils/errors';
-import { isNumber } from '@/utils/inspect';
+import { InvalidTypeError } from '../errors';
+import { isNumber } from '../inspect';
 
 /**
  * Генератор случайных чисел

@@ -1,3 +1,4 @@
+import { getSlot } from '@/utils/helpers';
 import { registrableInject } from '@/mixins/registrable';
 import { factoryToggleable } from '@/mixins/toggleable';
 import swipeable from '@/mixins/swipeable';
@@ -59,7 +60,7 @@ export default {
   },
   methods: {
     closeDrawer() {
-      this.close();
+      this.toggle(false);
     },
 
     genRoot(childNodes = []) {
@@ -79,18 +80,12 @@ export default {
         },
       }, childNodes);
     },
-
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return defaultSlot();
-    },
   },
   render() {
+    const defaultSlot = getSlot(this);
+
     return this.genRoot([
-      this.genDefaultSlot(),
+      defaultSlot,
       this.genOverlay(),
     ]);
   },

@@ -1,14 +1,11 @@
 <template>
   <UiMain>
-    <UiSection title="Empty button">
-      <UiRow>
-        <UiCol>
-          <UiButton
-            :empty="true"
-            :round="true"
-          />
-        </UiCol>
+    <UiSection>
+      <UiHeading>
+        Empty
+      </UiHeading>
 
+      <UiRow>
         <UiCol>
           <UiButton
             :empty="true"
@@ -29,10 +26,38 @@
             size="small"
           />
         </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            :round="true"
+            size="large"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            :round="true"
+            size="medium"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButton
+            :empty="true"
+            :round="true"
+            size="small"
+          />
+        </UiCol>
       </UiRow>
     </UiSection>
 
-    <UiSection title="Buttons styles">
+    <UiSection>
+      <UiHeading>
+        Styles
+      </UiHeading>
+
       <UiRow>
         <UiCol class="mb-4">
           <UiButton>
@@ -47,14 +72,18 @@
         </UiCol>
 
         <UiCol class="mb-4">
-          <UiButton :squared="true">
-            Squared
+          <UiButton :square="true">
+            Square
           </UiButton>
         </UiCol>
       </UiRow>
     </UiSection>
 
-    <UiSection title="Buttons sizes">
+    <UiSection>
+      <UiHeading>
+        Sizes
+      </UiHeading>
+
       <UiRow>
         <UiCol>
           <UiButton size="small">
@@ -76,77 +105,71 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Buttons themes">
+    <UiSection>
+      <UiHeading>
+        Themes
+      </UiHeading>
+
       <UiRow>
-        <UiCol class="mb-4">
-          <UiButton theme="primary">
-            Primary
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="secondary">
-            Secondary
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="info">
-            Info
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="warning">
-            Warning
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="success">
-            Success
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="danger">
-            Danger
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="dark">
-            Dark
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="light">
-            Light
-          </UiButton>
-        </UiCol>
-
-        <UiCol class="mb-4">
-          <UiButton theme="silent">
-            Silent
+        <UiCol
+          v-for="theme in themes"
+          :key="theme"
+          class="mb-4"
+        >
+          <UiButton :theme="theme">
+            {{ theme }}
           </UiButton>
         </UiCol>
       </UiRow>
     </UiSection>
 
-    <UiSection title="Active button">
-      <UiButton :active="true">
-        Button
-      </UiButton>
+    <UiSection>
+      <UiHeading>
+        Active
+      </UiHeading>
+
+      <UiRow>
+        <UiCol
+          v-for="theme in themes"
+          :key="theme"
+          class="mb-4"
+        >
+          <UiButton
+            :active="true"
+            :theme="theme"
+          >
+            {{ theme }}
+          </UiButton>
+        </UiCol>
+      </UiRow>
     </UiSection>
 
-    <UiSection title="Disabled button">
-      <UiButton :disabled="true">
-        Button
-      </UiButton>
+    <UiSection>
+      <UiHeading>
+        Disabled
+      </UiHeading>
+
+      <UiRow>
+        <UiCol
+          v-for="theme in themes"
+          :key="theme"
+          class="mb-4"
+        >
+          <UiButton
+            :disabled="true"
+            :theme="theme"
+          >
+            {{ theme }}
+          </UiButton>
+        </UiCol>
+      </UiRow>
     </UiSection>
 
-    <UiSection title="Button with icon">
+    <UiSection>
+      <UiHeading>
+        With icon
+      </UiHeading>
+
       <UiRow>
         <UiCol>
           <UiButton
@@ -168,7 +191,7 @@
 
         <UiCol>
           <UiButton
-            :squared="true"
+            :square="true"
             :hasIcon="true"
             size="large"
           >
@@ -178,44 +201,125 @@
       </UiRow>
     </UiSection>
 
-    <UiSection title="Fluid button">
-      <UiButton :fluid="true">
-        Button
-      </UiButton>
-    </UiSection>
+    <UiSection>
+      <UiHeading>
+        Fluid
+      </UiHeading>
 
-    <UiSection title="Button content align left">
+      <UiButton
+        :fluid="true"
+        class="mb-4"
+      >
+        Fluid
+      </UiButton>
+
       <UiButton
         :fluid="true"
         contentAlign="left"
+        class="mb-4"
       >
-        Button
+        Button content align left
       </UiButton>
-    </UiSection>
 
-    <UiSection title="Button content align right">
       <UiButton
         :fluid="true"
         contentAlign="right"
+        class="mb-4"
       >
-        Button
+        Button content align right
       </UiButton>
-    </UiSection>
 
-    <UiSection title="Button content align justify">
       <UiButton
         :fluid="true"
         contentAlign="justify"
+        class="mb-4"
       >
-        Button
+        Button content align justify
         <UiIcon name="user" />
       </UiButton>
+    </UiSection>
+
+    <UiSection>
+      <UiHeading>
+        Buttons group
+      </UiHeading>
+
+      <UiButtonGroup>
+        <UiButton
+          v-for="index in 3"
+          :key="index"
+        >
+          Button {{ index }}
+        </UiButton>
+      </UiButtonGroup>
+    </UiSection>
+
+    <UiSection>
+      <UiButtonGroup>
+        <UiButton
+          v-for="index in 3"
+          :key="index"
+          :active="index === 2"
+          size="small"
+          theme="info"
+        >
+          Button {{ index }}
+        </UiButton>
+      </UiButtonGroup>
+    </UiSection>
+
+    <UiSection>
+      <UiHeading>
+        Button hamburger
+      </UiHeading>
+
+      <UiRow>
+        <UiCol>
+          <UiButtonHamburger
+            v-model="hamburgerState"
+            :circle="true"
+            size="small"
+            theme="danger"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButtonHamburger
+            v-model="hamburgerState"
+            :circle="true"
+          />
+        </UiCol>
+
+        <UiCol>
+          <UiButtonHamburger
+            v-model="hamburgerState"
+            :circle="true"
+            size="large"
+            theme="dark"
+          />
+        </UiCol>
+      </UiRow>
     </UiSection>
   </UiMain>
 </template>
 
 <script>
   export default {
-    name: 'ButtonsPage',
+    name: 'PageButtons',
+    data: () => ({
+      themes: [
+        'primary',
+        'secondary',
+        'info',
+        'warning',
+        'success',
+        'danger',
+        'dark',
+        'light',
+        'silent',
+        'link',
+      ],
+      hamburgerState: false,
+    }),
   };
 </script>

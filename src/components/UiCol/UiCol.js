@@ -1,5 +1,5 @@
 import { BREAKPOINTS } from '@/constants/grid';
-import { propValidator, parseBreakpoints } from '@/utils/helpers';
+import { propValidator, parseBreakpoints, getSlot } from '@/utils/helpers';
 import styles from './UiCol.scss';
 
 const tagValidator = propValidator('tag', [
@@ -8,17 +8,17 @@ const tagValidator = propValidator('tag', [
 ]);
 
 /**
- * @type {string[]}
+ * @type {String[]}
  */
 const breakpoints = Object.keys(BREAKPOINTS);
 
 /**
- * @type {object}
+ * @type {Object}
  */
 const breakpointsProps = breakpoints.reduce((acc, breakpoint) => ({
   ...acc,
   [breakpoint]: {
-    type: [String, Number],
+    type: [String, Number, Boolean],
     default: false,
   },
   [`${breakpoint}Offset`]: {
@@ -116,18 +116,12 @@ export default {
         class: this.classesRoot,
       }, childNodes);
     },
-
-    genDefaultSlot() {
-      const defaultSlot = this.$scopedSlots.default;
-
-      if (!defaultSlot) return null;
-
-      return defaultSlot();
-    },
   },
   render() {
+    const defaultSlot = getSlot(this);
+
     return this.genRoot([
-      this.genDefaultSlot(),
+      defaultSlot,
     ]);
   },
 };

@@ -1,17 +1,14 @@
 @mixin helpers($prefix: '', $breakpoint: '') {
   .#{$prefix}start#{$breakpoint} {
     justify-content: flex-start !important;
-    text-align: left;
   }
 
   .#{$prefix}center#{$breakpoint} {
     justify-content: center !important;
-    text-align: center;
   }
 
   .#{$prefix}end#{$breakpoint} {
     justify-content: flex-end !important;
-    text-align: right;
   }
 
   .#{$prefix}self-start#{$breakpoint} {

@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '@/utils/errors';
-import { isString } from '@/utils/inspect';
+import { InvalidTypeError } from '../errors';
+import { isString } from '../inspect';
 
 const rgbColor = /^rgb\((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]),\s?){2}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\)$/;
 const rgbaColor = /^rgba\((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]),\s?){3}(0?\.\d|1(\.0)?|0(\.0)?)\)$/;

@@ -1,0 +1,76 @@
+.root {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 700;
+  }
+
+  h1 {
+    border-bottom: 1px solid $colorHeather;
+    font-size: rem(32px);
+    line-height: rem(36px);
+  }
+
+  h2 {
+    border-bottom: 1px solid $colorHeather;
+    font-size: rem(28px);
+    line-height: rem(32px);
+  }
+
+  h3 {
+    font-size: rem(24px);
+    line-height: rem(28px);
+  }
+
+  h4 {
+    font-size: rem(20px);
+    line-height: rem(24px);
+  }
+
+  h5 {
+    font-size: rem(16px);
+    line-height: rem(20px);
+  }
+
+  h1:first-child {
+    margin-top: 0;
+  }
+
+  code {
+    font-style: italic;
+    color: $colorPaleSky;
+
+    &::before {
+      content: '`';
+      margin-right: -1px;
+    }
+
+    &::after {
+      content: '`';
+      margin-left: -1px;
+    }
+  }
+
+  a {
+    border-bottom: 1px dashed transparent;
+    color: $colorAzureRadiance;
+    text-decoration: none;
+    transition: $transitionDefault;
+    cursor: pointer;
+
+    @include hover {
+      border-bottom-color: currentColor;
+    }
+  }
+
+  // hack для удаления лишних хэш ссылок
+  :global(h1#changelog),
+  :global(h2#releases),
+  h3 {
+    & > a {
+      display: none;
+    }
+  }
+}

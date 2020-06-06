@@ -10,13 +10,14 @@
 
     <div :class="$style.menu">
       <UiLink
-        v-for="(item, index) in menu"
+        v-for="(item, index) in localMenu"
         :key="index"
         :to="item.path"
+        :active="item.active"
         :native="true"
         :class="$style.link"
       >
-        {{ item.title }}
+        {{ item.name }}
       </UiLink>
     </div>
   </header>
@@ -35,6 +36,14 @@
         default: null,
       },
     },
+    computed: {
+      localMenu() {
+        return this.menu.filter(({ name }) => name).map((item) => ({
+          ...item,
+          active: item.path === this.$route.path,
+        }));
+      },
+    },
   };
 </script>
 
@@ -43,7 +52,7 @@
     border-bottom: 1px solid $colorHeather;
     padding-top: spacer(5);
     padding-bottom: spacer(3);
-    margin-bottom: spacer(5);
+    margin-bottom: spacer(6);
   }
 
   .menu {

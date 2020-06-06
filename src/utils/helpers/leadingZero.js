@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '@/utils/errors';
-import { isString, isNumber } from '@/utils/inspect';
+import { InvalidTypeError } from '../errors';
+import { isString, isNumber } from '../inspect';
 import padStart from './padStart';
 
 /**

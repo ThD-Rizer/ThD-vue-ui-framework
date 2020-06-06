@@ -7,6 +7,14 @@ const localIdentName = isDevelopment
 
 module.exports = {
   configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.md$/,
+          loader: 'raw-loader',
+        },
+      ],
+    },
     resolve: {
       alias: {
         ...aliases,
