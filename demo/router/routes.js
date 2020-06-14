@@ -20,6 +20,7 @@ export default [
   page('Tables'),
   page('Grid'),
   page('Modals'),
+  page('Icons'),
   page('Other'),
   page('Testing'),
   {
