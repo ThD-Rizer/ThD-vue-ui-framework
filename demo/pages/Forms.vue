@@ -197,20 +197,114 @@
         Fluid
       </UiHeading>
 
-      <UiCheckbox
-        v-model="checkboxValue"
-        :fluid="true"
-        class="mb-2"
-      >
-        Maecenas non nunc eu nunc aliquet faucibus sagittis sed quam
-      </UiCheckbox>
+      <div class="mb-6">
+        <UiCheckbox
+          v-model="checkboxValue"
+          :fluid="true"
+          class="mb-2"
+        >
+          Maecenas non nunc eu nunc aliquet faucibus sagittis sed quam
+        </UiCheckbox>
 
-      <UiCheckbox
-        v-model="checkboxValue"
-        :fluid="true"
+        <UiCheckbox
+          v-model="checkboxValue"
+          :fluid="true"
+        >
+          Nam tempor sit amet eros eu lobortis
+        </UiCheckbox>
+      </div>
+    </UiSection>
+
+    <UiSection>
+      <UiHeading type="h2">
+        Groups
+      </UiHeading>
+
+      <UiHeading type="h3">
+        Horizontal
+      </UiHeading>
+
+      <UiCheckboxGroup
+        direction="horizontal"
+        class="mb-4"
       >
-        Nam tempor sit amet eros eu lobortis
-      </UiCheckbox>
+        <UiCheckbox>
+          Yes
+        </UiCheckbox>
+        <UiCheckbox>
+          No
+        </UiCheckbox>
+        <UiCheckbox>
+          Maybe
+        </UiCheckbox>
+      </UiCheckboxGroup>
+
+      <UiHeading type="h3">
+        Vertical
+      </UiHeading>
+
+      <UiCheckboxGroup direction="vertical">
+        <UiCheckbox>
+          Sed sed pulvinar lorem, ut sagittis magna
+        </UiCheckbox>
+        <UiCheckbox>
+          Orci varius natoque penatibus et magnis
+        </UiCheckbox>
+        <UiCheckbox>
+          Nam facilisis pretium tincidunt
+        </UiCheckbox>
+      </UiCheckboxGroup>
+    </UiSection>
+
+    <UiSection>
+      <UiHeading>
+        Radios
+      </UiHeading>
+
+      <UiRadioGroup
+        direction="horizontal"
+        class="mb-4"
+      >
+        <UiRadio
+          v-model="radioValue"
+          value="yes"
+        >
+          Yes
+        </UiRadio>
+        <UiRadio
+          v-model="radioValue"
+          value="no"
+        >
+          No
+        </UiRadio>
+        <UiRadio
+          v-model="radioValue"
+          value="maybe"
+        >
+          Maybe
+        </UiRadio>
+      </UiRadioGroup>
+
+      <UiRadioGroup direction="vertical">
+        <UiRadio
+          v-model="radioValue"
+          value="yes"
+        >
+          Yes
+        </UiRadio>
+        <UiRadio
+          v-model="radioValue"
+          value="no"
+        >
+          No
+        </UiRadio>
+        <UiRadio
+          v-model="radioValue"
+          value="maybe"
+        >
+          Maybe
+        </UiRadio>
+      </UiRadioGroup>
     </UiSection>
   </UiMain>
 </template>
@@ -222,6 +316,7 @@
       inputValue: 'test',
       textareaValue: 'test',
       checkboxValue: true,
+      radioValue: 'yes',
     }),
   };
 </script>

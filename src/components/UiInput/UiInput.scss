@@ -93,11 +93,11 @@ $themeColor: $colorEasternBlue;
   }
 
   .isReadOnly & {
-    background-color: rgba(lighten($colorHeather, 20%), .75);
+    background-color: rgba(lighten($colorHeather, 15%), .75);
   }
 
   .isDisabled & {
-    background-color: rgba(lighten($colorHeather, 20%), .75);
+    background-color: rgba(lighten($colorHeather, 15%), .75);
     border-color: $colorHeather;
     color: $colorDustyGray;
   }

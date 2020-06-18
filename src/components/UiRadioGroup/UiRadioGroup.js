@@ -1,5 +1,5 @@
 import { getSlot, propValidator } from '@/utils/helpers';
-import styles from './UiButtonGroup.scss';
+import styles from './UiRadioGroup.scss';
 
 const directionValidator = propValidator('direction', [
   'horizontal',
@@ -7,7 +7,7 @@ const directionValidator = propValidator('direction', [
 ]);
 
 export default {
-  name: 'UiButtonGroup',
+  name: 'UiRadioGroup',
   props: {
     direction: {
       type: String,
@@ -24,63 +24,37 @@ export default {
       };
     },
   },
-
   methods: {
     genRoot(childNodes = []) {
       return this.$createElement('div', {
         class: this.classesRoot,
       }, childNodes);
     },
-
-    genButton(node, index, list) {
+    genRadio(node) {
       const options = node?.componentOptions;
 
       if (!options) return null;
-
-      const isHorizontal = this.direction === 'horizontal';
-      const isVertical = this.direction === 'vertical';
-
-      const getProps = () => {
-        let square = true;
-
-        if (isHorizontal && index === 0) {
-          square = 'right';
-        }
-        if (isHorizontal && index === list.length - 1) {
-          square = 'left';
-        }
-        if (isVertical && index === 0) {
-          square = 'bottom';
-        }
-        if (isVertical && index === list.length - 1) {
-          square = 'top';
-        }
-
-        return { square };
-      };
 
       return this.$createElement(options.tag, {
         ...node.data,
         class: [
           node.data?.class,
           node.data?.staticClass,
-          styles.button,
+          styles.radio,
         ],
         props: {
           ...options.propsData,
-          ...getProps(),
         },
         on: options.listeners,
       }, options.children);
     },
   },
-
   render() {
     const defaultSlot = getSlot(this) || [];
-    const buttons = defaultSlot.map(this.genButton);
+    const radios = defaultSlot.map(this.genRadio);
 
     return this.genRoot([
-      buttons,
+      radios,
     ]);
   },
 };

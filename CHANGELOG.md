@@ -6,6 +6,18 @@
 
 ## v0.27.0
 
+### Added
+
+* Компонент `UiCheckboxGroup`
+* Компонент `UiRadio`
+* Компонент `UiRadioGroup`
+* Свойство `direction` в компоненте `UiButtonGroup`
+* Визуальный разделитель между кнопками в компоненте `UiButtonGroup`
+
+### Fixed
+
+* Пробрасывание классов на кнопки в компоненте `UiButtonGroup`
+
 // @TODO: add
 
 ## v0.26.0

@@ -7,14 +7,14 @@
   flex-direction: column;
 }
 
-.button {
+.radio {
   &:not(:last-child) {
     .direction_horizontal & {
-      margin-right: 1px;
+      margin-right: spacer(5);
     }
 
     .direction_vertical & {
-      margin-bottom: 1px;
+      margin-bottom: spacer(2);
     }
   }
 }

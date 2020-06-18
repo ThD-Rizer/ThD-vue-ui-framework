@@ -4,10 +4,6 @@ $themeColor: $colorEasternBlue;
 .root {
   display: inline-flex;
 
-  &.isFluid {
-    display: flex;
-  }
-
   &.isReadOnly,
   &.isDisabled {
     pointer-events: none;
@@ -19,10 +15,10 @@ $themeColor: $colorEasternBlue;
 }
 
 .input {
-  @include visuallyHidden;
+  //@include visuallyHidden;
 }
 
-.checkbox {
+.radio {
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -31,6 +27,7 @@ $themeColor: $colorEasternBlue;
   height: $size;
   background-color: rgba($colorWhite, .75);
   border: 1px solid $themeColor;
+  border-radius: 50%;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -46,7 +43,10 @@ $themeColor: $colorEasternBlue;
 }
 
 .marker {
-  color: $themeColor;
+  width: $size / 2;
+  height: $size / 2;
+  background-color: $themeColor;
+  border-radius: 50%;
   opacity: 0;
   transition-timing-function: $transitionDefaultTiming;
   transition-duration: .2s;
@@ -62,16 +62,6 @@ $themeColor: $colorEasternBlue;
     color: $colorHeather;
   }
 }
-
-.marker_check {}
-
-.marker_square {
-  width: $size / 2;
-  height: $size / 2;
-  background-color: currentColor;
-}
-
-.marker_cross {}
 
 .label {
   padding-left: spacer(3);
