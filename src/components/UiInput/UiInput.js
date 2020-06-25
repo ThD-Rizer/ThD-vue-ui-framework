@@ -6,6 +6,7 @@ const typeValidator = propValidator('type', ['text', 'password']);
 
 export default {
   name: 'UiInput',
+
   model: {
     prop: 'value',
     event: 'input',
@@ -61,8 +62,8 @@ export default {
 
   data: () => ({
     uniqueId: null,
-    focused: false,
     localValue: null,
+    focused: false,
   }),
 
   computed: {
@@ -85,18 +86,18 @@ export default {
   },
 
   methods: {
-    handleFocus(event) {
+    handleFocus() {
       if (this.disabled) return;
 
       this.focused = true;
-      this.$emit('focus', event);
+      this.$emit('focus');
     },
 
-    handleBlur(event) {
+    handleBlur() {
       if (this.disabled) return;
 
       this.focused = false;
-      this.$emit('blur', event);
+      this.$emit('blur');
     },
 
     handleInput(event) {
@@ -121,12 +122,12 @@ export default {
       return this.$createElement('div', {
         class: {
           [styles.root]: true,
-          [styles.hasIconBefore]: this.iconBefore,
-          [styles.hasLabel]: this.label,
           [styles.isFilled]: this.localValue,
-          [styles.isFocused]: this.focused,
           [styles.isReadOnly]: this.readOnly,
           [styles.isDisabled]: this.disabled,
+          [styles.isFocused]: this.focused,
+          [styles.hasIconBefore]: this.iconBefore,
+          [styles.hasLabel]: this.label,
         },
       }, childNodes);
     },
@@ -172,7 +173,6 @@ export default {
         domProps: {
           value: this.localValue,
           required: this.required,
-          readonly: this.readOnly,
           disabled: this.disabled,
         },
         attrs: {
@@ -180,9 +180,9 @@ export default {
           type: this.type,
           name: this.name,
           placeholder: this.placeholder,
+          readonly: this.readOnly,
         },
         on: {
-          ...this.$listeners,
           focus: this.handleFocus,
           blur: this.handleBlur,
           input: this.handleInput,

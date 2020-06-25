@@ -1,9 +1,7 @@
+import { isUndefined, isArray } from '@/utils/inspect';
 import { generateHash, getSlot, propValidator } from '@/utils/helpers';
-import { factoryToggleable } from '@/mixins/toggleable';
 import UiIcon from '@/components/UiIcon';
 import styles from './UiCheckbox.scss';
-
-const toggleable = factoryToggleable('model', 'change');
 
 const iconNameValidator = propValidator('iconName', [
   'check',
@@ -13,16 +11,38 @@ const iconNameValidator = propValidator('iconName', [
 
 export default {
   name: 'UiCheckbox',
-  mixins: [
-    toggleable,
-  ],
+
+  inject: {
+    parentState: {
+      from: 'state',
+      default() {
+        return {};
+      },
+    },
+    classesFromParent: {
+      from: 'classes',
+      default: null,
+    },
+    changeParent: {
+      from: 'changeHandler',
+      default() {
+        return () => {};
+      },
+    },
+  },
+
+  model: {
+    prop: 'model',
+    event: 'change',
+  },
+
   props: {
     model: {
-      type: Boolean,
+      type: [String, Number, Boolean],
       default: undefined,
     },
     value: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       default: undefined,
     },
     name: {
@@ -35,7 +55,7 @@ export default {
     },
     checked: {
       type: Boolean,
-      default: false,
+      default: undefined,
     },
     readOnly: {
       type: Boolean,
@@ -58,12 +78,29 @@ export default {
 
   data: () => ({
     uniqueId: null,
+    localModel: null,
+    focused: false,
   }),
 
   computed: {
-    isChecked() {
-      return this.model;
+    isBooleanState() {
+      return isUndefined(this.value);
     },
+
+    isArrayState() {
+      return isArray(this.model) || isArray(this.parentModel);
+    },
+
+    parentModel() {
+      return this.parentState.model;
+    },
+
+    isChecked() {
+      return this.isBooleanState
+        ? this.localModel
+        : this.localModel === this.value;
+    },
+
     classesRoot() {
       return {
         [styles.root]: true,
@@ -71,15 +108,44 @@ export default {
         [styles.isChecked]: this.isChecked,
         [styles.isReadOnly]: this.readOnly,
         [styles.isDisabled]: this.disabled,
+        [styles.isFocused]: this.focused,
+        ...this.classesFromParent,
       };
     },
   },
 
   watch: {
-    checked(newValue) {
-      if (newValue === this.state) return;
-      this.toggle();
+    checked: {
+      handler(payload) {
+        console.log('[watch] checked:', typeof payload, payload, this.value);
+        if (isUndefined(payload)) return;
+        this.change(this.value);
+      },
+      immediate: true,
     },
+
+    model: {
+      handler(payload) {
+        console.log('[watch] model:', typeof payload, payload);
+        if (isUndefined(payload)) return;
+        this.change(payload);
+      },
+      immediate: true,
+    },
+
+    'parentState.model': {
+      handler(payload) {
+        console.log('[watch] parentState.model:', typeof payload, payload);
+        if (isUndefined(payload)) return;
+        this.change(payload);
+      },
+      immediate: true,
+    },
+  },
+
+  beforeCreate() {
+    const { _uid: uid } = this;
+    console.log('[UiCheckbox]', 'uid:', uid, this);
   },
 
   mounted() {
@@ -87,11 +153,52 @@ export default {
   },
 
   methods: {
+    change(payload) {
+      console.log('[change] payload:', typeof payload, payload);
+
+      if (this.localModel === payload) return;
+
+      this.localModel = payload;
+      this.changeParent(payload);
+      this.$emit('change', payload);
+    },
+
+    handleFocus() {
+      if (this.readOnly || this.disabled) return;
+
+      this.focused = true;
+      this.$emit('focus');
+    },
+
+    handleBlur() {
+      if (this.readOnly || this.disabled) return;
+
+      this.focused = false;
+      this.$emit('blur');
+    },
+
+    handleChange(payload) {
+      if (this.readOnly || this.disabled) return;
+
+      const state = this.isBooleanState
+        ? !this.localModel
+        : payload;
+
+      console.log('[handleChange] payload:', payload);
+      console.log('[handleChange] state:', state);
+
+      this.change(state);
+    },
+
     genRoot(childNodes = []) {
-      return this.$createElement('div', {
+      return this.$createElement('label', {
         class: this.classesRoot,
+        attrs: {
+          for: this.uniqueId,
+        },
       }, childNodes);
     },
+
     genInput() {
       return this.$createElement('input', {
         class: styles.input,
@@ -99,27 +206,28 @@ export default {
           value: this.value,
           required: this.required,
           checked: this.isChecked,
-          readonly: this.readOnly,
           disabled: this.disabled,
         },
         attrs: {
           id: this.uniqueId,
           type: 'checkbox',
-          name: this.name,
+          name: this.name || this.parentState.name,
+          readonly: this.readOnly,
         },
         on: {
-          change: this.toggle,
+          focus: this.handleFocus,
+          blur: this.handleBlur,
+          change: (event) => this.handleChange(event.target.value),
         },
       });
     },
+
     genCheckbox(childNodes = []) {
-      return this.$createElement('label', {
+      return this.$createElement('div', {
         class: styles.checkbox,
-        attrs: {
-          for: this.uniqueId,
-        },
       }, childNodes);
     },
+
     genMarkerIcon(name) {
       return this.$createElement(UiIcon, {
         class: [
@@ -129,14 +237,16 @@ export default {
         props: { name },
       });
     },
+
     genMarkerSquare() {
-      return this.$createElement('div', {
+      return this.$createElement('span', {
         class: [
           styles.marker,
           styles.marker_square,
         ],
       });
     },
+
     genMarker() {
       const { iconName } = this;
       if (iconName === 'square') {
@@ -145,15 +255,14 @@ export default {
 
       return this.genMarkerIcon(iconName);
     },
+
     genLabel(childNodes = []) {
-      return this.$createElement('label', {
+      return this.$createElement('span', {
         class: styles.label,
-        attrs: {
-          for: this.uniqueId,
-        },
       }, childNodes);
     },
   },
+
   render() {
     const defaultSlot = getSlot(this);
 

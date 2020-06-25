@@ -4,14 +4,23 @@
   text-decoration: none;
   transition: $transitionDefault;
   cursor: pointer;
+  outline: none;
 
   @include hover {
     border-bottom-color: transparent;
   }
 }
 
+.isFocused {
+  border-bottom-color: rgba($colorAzureRadiance, .3);
+}
+
 .isActive {
   border-bottom-color: transparent;
+
+  &.isFocused {
+    border-bottom-color: rgba($colorAzureRadiance, .15);
+  }
 }
 
 .isPseudo {

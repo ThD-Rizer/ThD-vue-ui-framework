@@ -38,24 +38,23 @@
 
 <style lang="scss" module>
   .root {
-    background-color: rgba($colorHeather, .1);
-    border-left: 3px solid rgba($colorHeather, .3);
-    padding-left: spacer(4);
+    border-bottom: 0 solid rgba($colorHeather, .5);
+    padding-bottom: spacer(1);
     color: $colorPaleSky;
   }
 
   .type_h1 {
-    @include paddingY(spacer(3));
+    border-bottom-width: 3px;
     margin-bottom: spacer(6);
   }
 
   .type_h2 {
-    @include paddingY(spacer(2));
+    border-bottom-width: 2px;
     margin-bottom: spacer(5);
   }
 
   .type_h3 {
-    @include paddingY(spacer(1));
+    border-bottom-width: 1px;
     margin-bottom: spacer(4);
   }
 </style>

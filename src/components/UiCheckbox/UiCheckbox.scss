@@ -3,23 +3,26 @@ $themeColor: $colorEasternBlue;
 
 .root {
   display: inline-flex;
+  cursor: pointer;
+  user-select: none;
 
   &.isFluid {
     display: flex;
   }
 
-  &.isReadOnly,
-  &.isDisabled {
-    pointer-events: none;
-  }
-
   &.isDisabled {
     cursor: not-allowed;
+    pointer-events: none;
   }
 }
 
 .input {
-  @include visuallyHidden;
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .checkbox {
@@ -33,7 +36,10 @@ $themeColor: $colorEasternBlue;
   border: 1px solid $themeColor;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
+
+  .isFocused & {
+    @include focusedOutline($themeColor);
+  }
 
   .isReadOnly & {
     background-color: rgba(lighten($colorHeather, 15%), .75);
@@ -46,6 +52,7 @@ $themeColor: $colorEasternBlue;
 }
 
 .marker {
+  display: block;
   color: $themeColor;
   opacity: 0;
   transition-timing-function: $transitionDefaultTiming;
@@ -75,8 +82,6 @@ $themeColor: $colorEasternBlue;
 
 .label {
   padding-left: spacer(3);
-  cursor: pointer;
-  user-select: none;
 
   .isDisabled & {
     color: $colorDustyGray;

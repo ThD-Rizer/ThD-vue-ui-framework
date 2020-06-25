@@ -1,7 +1,9 @@
+$colorTheme: $colorAzureRadiance;
+
 .link {
   border-bottom: 1px solid currentColor;
   margin-bottom: -1px;
-  color: $colorAzureRadiance;
+  color: $colorTheme;
   transition: $transitionDefault;
 
   @media (hover: hover) {
@@ -10,11 +12,15 @@
     }
   }
 
+  .root.isFocused & {
+    border-bottom-color: rgba($colorTheme, .3);
+  }
+
   .root.isActive & {
     border-bottom-color: transparent;
   }
 
   .root.isDisabled & {
-    color: lighten($colorAzureRadiance, 30%);
+    color: lighten($colorTheme, 30%);
   }
 }

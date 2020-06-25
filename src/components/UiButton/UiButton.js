@@ -1,5 +1,5 @@
 import { isBoolean, isString } from '@/utils/inspect';
-import { getSlot, trimSlotText, asyncDelay } from '@/utils/helpers';
+import { getSlot, trimSlotText } from '@/utils/helpers';
 import routable from '@/mixins/routable';
 import {
   stylable,
@@ -8,11 +8,17 @@ import {
 
 export default {
   name: 'UiButton',
+
   mixins: [
     routable,
     stylable,
   ],
+
   props,
+
+  data: () => ({
+    focused: false,
+  }),
 
   computed: {
     attributes() {
@@ -24,6 +30,7 @@ export default {
         ...type,
       };
     },
+
     classesRoot() {
       const { size, square, contentAlign } = this;
       return {
@@ -33,21 +40,36 @@ export default {
         [this.styles.isCircle]: this.circle,
         [this.styles.isSquare]: isBoolean(square) && square,
         [this.styles[`square_${square}`]]: isString(square),
-        [this.styles.isActive]: this.active,
         [this.styles.hasIcon]: this.hasIcon,
         [this.styles.isDisabled]: this.disabled,
         [this.styles.isEmpty]: this.empty,
         [this.styles[`size_${size}`]]: size,
         [this.styles[`contentAlign_${contentAlign}`]]: contentAlign,
+        [this.styles.isFocused]: this.focused,
+        [this.styles.isActive]: this.active,
       };
     },
   },
 
   methods: {
-    async handleClick() {
+    handleFocus() {
+      if (this.disabled) return;
+
+      this.focused = true;
+      this.$emit('focus');
+    },
+
+    handleBlur() {
+      if (this.disabled) return;
+
+      this.focused = false;
+      this.$emit('blur');
+    },
+
+    handleClick() {
+      if (this.disabled) return;
+
       this.click();
-      await asyncDelay(300);
-      this.$el.blur();
     },
 
     genRoot(childNodes = []) {
@@ -62,6 +84,8 @@ export default {
         },
         [listenersKey]: {
           ...data[listenersKey],
+          focus: this.handleFocus,
+          blur: this.handleBlur,
           click: this.handleClick,
         },
       }, childNodes);

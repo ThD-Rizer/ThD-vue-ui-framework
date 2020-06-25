@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import UI from '@/lib';
-import router from './router';
-import App from './App';
-import UiMain from './components/UiMain';
-import UiSection from './components/UiSection';
-import UiHeading from './components/UiHeading';
-// import UiButtonStyles from './styles/UiButton.scss';
+import router from '@demo/router';
+import App from '@demo/App';
+import UiMain from '@demo/components/UiMain';
+import UiSection from '@demo/components/UiSection';
+import UiHeading from '@demo/components/UiHeading';
+// import UiButtonStyles from '@demo/styles/UiButton.scss';
 
 Vue.use(UI, {
   // components: {

@@ -1,5 +1,3 @@
-.root {}
-
 .direction_horizontal {}
 
 .direction_vertical {
@@ -8,6 +6,10 @@
 }
 
 .checkbox {
+  .direction_vertical & {
+    align-self: flex-start;
+  }
+
   &:not(:last-child) {
     .direction_horizontal & {
       margin-right: spacer(5);

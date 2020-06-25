@@ -1,20 +1,26 @@
+$colorTheme: $colorPersianRed;
+
 .root {
-  background-color: $colorPersianRed;
+  background-color: $colorTheme;
   color: $colorWhite;
 
   @include hover {
-    background-color: darken($colorPersianRed, 15%);
+    background-color: darken($colorTheme, 15%);
   }
 
-  @include focus {
-    @include focusOutline($colorPersianRed);
+  @include active {
+    background-color: darken($colorTheme, 20%);
+  }
+
+  &.isFocused {
+    @include focusedOutline($colorTheme);
   }
 
   &.isActive {
-    background-color: darken($colorPersianRed, 15%);
+    background-color: darken($colorTheme, 15%);
   }
 
   &.isDisabled {
-    background-color: lighten($colorPersianRed, 20%);
+    background-color: lighten($colorTheme, 20%);
   }
 }

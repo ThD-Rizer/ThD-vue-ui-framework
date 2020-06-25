@@ -1,22 +1,41 @@
 import { generateHash, getSlot } from '@/utils/helpers';
-import { factoryToggleable } from '@/mixins/toggleable';
 import styles from './UiRadio.scss';
-
-const toggleable = factoryToggleable('model', 'change');
 
 export default {
   name: 'UiRadio',
-  mixins: [
-    toggleable,
-  ],
+
+  inject: {
+    parentState: {
+      from: 'state',
+      default() {
+        return {};
+      },
+    },
+    classesFromParent: {
+      from: 'classes',
+      default: null,
+    },
+    changeParent: {
+      from: 'changeHandler',
+      default() {
+        return () => {};
+      },
+    },
+  },
+
+  model: {
+    prop: 'model',
+    event: 'change',
+  },
+
   props: {
     model: {
-      type: [String, Number],
-      default: undefined,
+      type: [String, Number, Boolean],
+      default: null,
     },
     value: {
-      type: [String, Number],
-      default: undefined,
+      type: [String, Number, Boolean],
+      default: null,
     },
     name: {
       type: String,
@@ -42,11 +61,13 @@ export default {
 
   data: () => ({
     uniqueId: null,
+    localModel: null,
+    focused: false,
   }),
 
   computed: {
     isChecked() {
-      return this.model === this.value;
+      return this.localModel === this.value;
     },
     classesRoot() {
       return {
@@ -54,14 +75,32 @@ export default {
         [styles.isChecked]: this.isChecked,
         [styles.isReadOnly]: this.readOnly,
         [styles.isDisabled]: this.disabled,
+        [styles.isFocused]: this.focused,
+        ...this.classesFromParent,
       };
     },
   },
 
   watch: {
-    checked(newValue) {
-      if (newValue === this.state) return;
-      this.toggle();
+    checked: {
+      handler() {
+        this.change(this.value);
+      },
+      immediate: true,
+    },
+
+    model: {
+      handler(payload) {
+        this.setLocalModel(payload);
+      },
+      immediate: true,
+    },
+
+    'parentState.model': {
+      handler(payload) {
+        this.setLocalModel(payload);
+      },
+      immediate: true,
     },
   },
 
@@ -70,11 +109,49 @@ export default {
   },
 
   methods: {
+    change(payload) {
+      if (this.localModel === payload) return;
+
+      this.setLocalModel(payload);
+      this.changeParent(payload);
+      this.$emit('change', payload);
+    },
+
+    setLocalModel(payload) {
+      if (this.localModel === payload) return;
+
+      this.localModel = payload;
+    },
+
+    handleFocus() {
+      if (this.readOnly || this.disabled) return;
+
+      this.focused = true;
+      this.$emit('focus');
+    },
+
+    handleBlur() {
+      if (this.readOnly || this.disabled) return;
+
+      this.focused = false;
+      this.$emit('blur');
+    },
+
+    handleChange(payload) {
+      if (this.readOnly || this.disabled) return;
+
+      this.change(payload);
+    },
+
     genRoot(childNodes = []) {
-      return this.$createElement('div', {
+      return this.$createElement('label', {
         class: this.classesRoot,
+        attrs: {
+          for: this.uniqueId,
+        },
       }, childNodes);
     },
+
     genInput() {
       return this.$createElement('input', {
         class: styles.input,
@@ -82,41 +159,41 @@ export default {
           value: this.value,
           required: this.required,
           checked: this.isChecked,
-          readonly: this.readOnly,
           disabled: this.disabled,
         },
         attrs: {
           id: this.uniqueId,
           type: 'radio',
-          name: this.name,
+          name: this.name || this.parentState.name,
+          readonly: this.readOnly,
         },
         on: {
-          change: this.toggle,
+          focus: this.handleFocus,
+          blur: this.handleBlur,
+          change: (event) => this.handleChange(event.target.value),
         },
       });
     },
+
     genRadio(childNodes = []) {
-      return this.$createElement('label', {
+      return this.$createElement('div', {
         class: styles.radio,
-        attrs: {
-          for: this.uniqueId,
-        },
       }, childNodes);
     },
+
     genMarker() {
-      return this.$createElement('div', {
+      return this.$createElement('span', {
         class: styles.marker,
       });
     },
+
     genLabel(childNodes = []) {
-      return this.$createElement('label', {
+      return this.$createElement('span', {
         class: styles.label,
-        attrs: {
-          for: this.uniqueId,
-        },
       }, childNodes);
     },
   },
+
   render() {
     const defaultSlot = getSlot(this);
 
