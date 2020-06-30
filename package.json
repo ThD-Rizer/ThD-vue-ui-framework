@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "vue-cli-service lint",
     "build": "yarn build:icons && yarn build:lib",
-    "build:icons": "node build/icons/index.js",
+    "build:icons": "node builders/icons/index.js",
     "build:demo": "vue-cli-service build --dest dist-demo ./demo/index.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js && rimraf ./dist/demo.html",
     "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
