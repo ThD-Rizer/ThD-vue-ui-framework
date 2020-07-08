@@ -4,6 +4,12 @@
 
 ## Releases
 
+## v0.26.1
+
+### Added
+
+* Миксин `fontFace`
+
 ## v0.26.0
 
 ### Added
