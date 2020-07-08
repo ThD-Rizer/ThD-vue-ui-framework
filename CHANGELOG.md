@@ -8,7 +8,7 @@
 
 ### Added
 
-* Миксин `fontFace`
+* Scss миксин `fontFace`
 
 ## v0.26.0
 
