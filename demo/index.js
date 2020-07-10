@@ -5,14 +5,14 @@ import App from './App';
 import UiMain from './components/UiMain';
 import UiSection from './components/UiSection';
 import UiHeading from './components/UiHeading';
-// import UiButtonStyles from './styles/UiButton.scss';
+import UiButtonStyles from './styles/UiButton.scss';
 import UiButtonThemeCoolStyles from './styles/UiButton.themeCool.scss';
 
 Vue.use(UI, {
   components: {
     styles: {
       UiButton: {
-        // installedStyles: UiButtonStyles,
+        installedStyles: UiButtonStyles,
         installedThemesStyles: {
           cool: UiButtonThemeCoolStyles,
         },

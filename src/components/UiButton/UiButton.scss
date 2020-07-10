@@ -1,3 +1,10 @@
+$paddingXSmall: spacer(1);
+$paddingYSmall: spacer(3);
+$paddingXMedium: spacer(3);
+$paddingYMedium: spacer(5);
+$paddingXLarge: spacer(4);
+$paddingYLarge: spacer(8);
+
 .root {
   @include resetButton;
   display: inline-flex;
@@ -5,7 +12,7 @@
   align-items: center;
   flex: 0 0 auto;
   border-radius: 4px;
-  font-weight: 500;
+  font-weight: $fontMedium;
   color: $colorMineShaft;
   text-align: center;
   text-decoration: none;
@@ -71,13 +78,6 @@
   }
 }
 
-$paddingXSmall: spacer(1);
-$paddingYSmall: spacer(3);
-$paddingXMedium: spacer(3);
-$paddingYMedium: spacer(5);
-$paddingXLarge: spacer(4);
-$paddingYLarge: spacer(8);
-
 .inner {
   display: flex;
   align-items: center;
@@ -90,16 +90,20 @@ $paddingYLarge: spacer(8);
   white-space: nowrap;
   box-sizing: border-box;
 
-  .size_small:not(.hasIcon):not(.isEmpty) & {
-    padding: $paddingXSmall $paddingYSmall;
+  .contentAlign_left & {
+    justify-content: flex-start;
   }
 
-  .size_medium:not(.hasIcon):not(.isEmpty) & {
-    padding: $paddingXMedium $paddingYMedium;
+  .contentAlign_center & {
+    justify-content: center;
   }
 
-  .size_large:not(.hasIcon):not(.isEmpty) & {
-    padding: $paddingXLarge $paddingYLarge;
+  .contentAlign_right & {
+    justify-content: flex-end;
+  }
+
+  .contentAlign_justify & {
+    justify-content: space-between;
   }
 
   .size_small.hasIcon & {
@@ -129,19 +133,15 @@ $paddingYLarge: spacer(8);
     min-height: spacer(13);
   }
 
-  .contentAlign_left & {
-    justify-content: flex-start;
+  .size_small:not(.hasIcon):not(.isEmpty) & {
+    padding: $paddingXSmall $paddingYSmall;
   }
 
-  .contentAlign_center & {
-    justify-content: center;
+  .size_medium:not(.hasIcon):not(.isEmpty) & {
+    padding: $paddingXMedium $paddingYMedium;
   }
 
-  .contentAlign_right & {
-    justify-content: flex-end;
-  }
-
-  .contentAlign_justify & {
-    justify-content: space-between;
+  .size_large:not(.hasIcon):not(.isEmpty) & {
+    padding: $paddingXLarge $paddingYLarge;
   }
 }

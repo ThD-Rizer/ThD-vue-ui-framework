@@ -248,13 +248,22 @@ Adds `text-transform: none;` to element. Usage example:
 <div class="t-normal-md">Text normalized on md breakpoint and higher</div>
 ```
 
+### `t-thin`
+
+Adds `font-weight: 100;` to element. Usage example:
+
+```html
+<div class="t-thin">Thin text</div>
+<div class="t-thin-md">Thin text on md breakpoint and higher</div>
+```
+
 ### `t-light`
 
 Adds `font-weight: 300;` to element. Usage example:
 
 ```html
-<div class="t-light">Thin text</div>
-<div class="t-light-md">Thin text on md breakpoint and higher</div>
+<div class="t-light">Light text</div>
+<div class="t-light-md">Light text on md breakpoint and higher</div>
 ```
 
 ### `t-regular`
