@@ -1,8 +1,5 @@
+@import './variables/typography.scss';
 @import './variables/colors.scss';
 @import './variables/elevation.scss';
 @import './variables/animation.scss';
 @import './variables/grid.scss';
-
-// Typography
-$fontSize: 16px;
-$fontFamily: 'Montserrat', 'system', sans-serif;

@@ -2,8 +2,9 @@
 @font-face {
   font-family: 'system';
   font-style: normal;
-  font-weight: 400;
-  src: local('.SFNSText-Light'),
+  font-weight: $fontRegular;
+  src:
+    local('.SFNSText-Light'),
     local('.HelveticaNeueDeskInterface-Light'),
     local('.LucidaGrandeUI'),
     local('Ubuntu Light'),

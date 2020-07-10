@@ -1,18 +1,42 @@
 <template>
   <UiMain>
-    <div class="f-center">
-      <UiButton theme="cool">
-        Button cool theme
-      </UiButton>
+    <UiRow>
+      <UiCol>
+        <UiButton
+          :theme="theme"
+          :customStyles="customStyles"
+          @click="themeTest"
+        >
+          Button dynamic stylable
+        </UiButton>
+      </UiCol>
+    </UiRow>
 
-      <UiButton
-        :theme="theme"
-        :customStyles="customStyles"
-        @click="themeTest"
-      >
-        Button dynamic stylable
-      </UiButton>
-    </div>
+    <UiRow class="mt-4">
+      <UiCol>
+        <UiButton
+          size="small"
+          theme="cool"
+        >
+          Button cool theme
+        </UiButton>
+      </UiCol>
+
+      <UiCol>
+        <UiButton theme="cool">
+          Button cool theme
+        </UiButton>
+      </UiCol>
+
+      <UiCol>
+        <UiButton
+          size="large"
+          theme="cool"
+        >
+          Button cool theme
+        </UiButton>
+      </UiCol>
+    </UiRow>
   </UiMain>
 </template>
 

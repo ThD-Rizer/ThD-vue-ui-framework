@@ -4,6 +4,13 @@
 
 ## Releases
 
+## v0.26.3
+
+### Added
+
+* Пакет `stylelint` для проверки стилей
+* Переменные для стилей `font-weight` в `typography.scss`
+
 ## v0.26.2
 
 ### Changed

@@ -10,7 +10,7 @@
   &_h5 {
     margin-top: 0;
     margin-bottom: 0;
-    font-weight: 700;
+    font-weight: $fontBold;
   }
 
   &_h1 {
@@ -45,23 +45,23 @@
 
 .weight {
   &_thin {
-    font-weight: 100;
+    font-weight: $fontThin;
   }
 
   &_light {
-    font-weight: 300;
+    font-weight: $fontLight;
   }
 
   &_regular {
-    font-weight: 400;
+    font-weight: $fontRegular;
   }
 
   &_medium {
-    font-weight: 500;
+    font-weight: $fontMedium;
   }
 
   &_bold {
-    font-weight: 700;
+    font-weight: $fontBold;
   }
 }
 
