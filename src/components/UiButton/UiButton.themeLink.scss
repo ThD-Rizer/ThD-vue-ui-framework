@@ -10,11 +10,11 @@
     }
   }
 
-  .root.isActive & {
+  .isActive & {
     border-bottom-color: transparent;
   }
 
-  .root.isDisabled & {
+  .isDisabled & {
     color: lighten($colorAzureRadiance, 30%);
   }
 }

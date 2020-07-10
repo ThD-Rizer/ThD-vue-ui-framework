@@ -37,7 +37,7 @@ function injectInstalledOptions(component, options) {
     const {
       installedStyles = null,
       installedThemesStyles = null,
-      resetDefaultStyles = false,
+      installedResetDefaultStyles = false,
     } = styleOptions;
 
     if (!isPlainObject(installedStyles) && !isNull(installedStyles)) {
@@ -46,8 +46,12 @@ function injectInstalledOptions(component, options) {
     if (!isPlainObject(installedThemesStyles) && !isNull(installedThemesStyles)) {
       throw new InvalidTypeError(installedThemesStyles, 'installedThemesStyles', 'Object');
     }
-    if (!isBoolean(resetDefaultStyles)) {
-      throw new InvalidTypeError(resetDefaultStyles, 'resetDefaultStyles', 'Object');
+    if (!isBoolean(installedResetDefaultStyles)) {
+      throw new InvalidTypeError(
+        installedResetDefaultStyles,
+        'installedResetDefaultStyles',
+        'Object',
+      );
     }
 
     // eslint-disable-next-line no-param-reassign
@@ -56,7 +60,7 @@ function injectInstalledOptions(component, options) {
       installedOptions: {
         installedStyles,
         installedThemesStyles,
-        installedResetDefaultStyles: resetDefaultStyles,
+        installedResetDefaultStyles,
       },
     });
   }

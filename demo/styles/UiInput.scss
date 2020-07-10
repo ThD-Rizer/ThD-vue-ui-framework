@@ -1,13 +1,8 @@
-$height: 40px;
+$height: 56px;
 $iconSize: 32px;
-$themeColor: $colorEasternBlue;
 
 .root {
   width: 100%;
-
-  &.hasLabel {
-    padding-top: spacer(3);
-  }
 
   &.isReadOnly,
   &.isDisabled {
@@ -20,37 +15,21 @@ $themeColor: $colorEasternBlue;
 }
 
 .label {
-  font-size: rem(16px);
+  font-size: rem(15px);
   line-height: 1;
-  color: $colorPaleSky;
-  position: absolute;
-  top: 12px;
-  left: 11px;
-  transition: .2s $transitionStandTiming;
-  transition-property: transform;
+  color: #424e72;
   user-select: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  .hasIconBefore & {
-    left: $iconSize + 9px;
-  }
-
-  &.labelActive,
-  .input:not([disabled]):focus ~ & {
-    font-size: rem(13px);
-    color: $colorMineShaft;
-    transform: translate3d(4px, -27px, 0);
-
-    .hasIconBefore & {
-      transform: translate3d(-36px, -27px, 0);
-    }
-  }
 }
 
 .wrapper {
   position: relative;
+
+  .hasLabel & {
+    margin-top: spacer(1);
+  }
 }
 
 .iconBefore {
@@ -68,12 +47,10 @@ $themeColor: $colorEasternBlue;
   justify-content: center;
   width: $iconSize;
   height: $iconSize;
-  background-color: $themeColor;
-  border-radius: 50%;
   font-size: rem(20px);
-  color: $colorWhite;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
 
   .isFilled &,
   .isFocused & {
@@ -84,20 +61,18 @@ $themeColor: $colorEasternBlue;
 .input {
   width: 100%;
   height: $height;
-  background-color: rgba($colorWhite, .75);
-  border: 1px solid $themeColor;
-  border-radius: 25px;
-  padding: 0 10px;
+  background-color: #f0f4f9;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 spacer(4);
+  color: #48596d;
   box-sizing: border-box;
   outline: none;
   transition: .2s $transitionStandTiming;
   transition-property: background-color, box-shadow;
 
   @include focus {
-    background-color: $colorWhite;
-    box-shadow:
-      inset 0 0 8px 0 rgba($themeColor, .3),
-      0 0 8px 0 rgba($themeColor, .3);
+    box-shadow: inset 0 0 16px 0 rgba(darken(#f0f4f9, 20%), .3);
   }
 
   .textAlign_left & {

@@ -10,3 +10,15 @@ $fontSemiBold: 600;
 $fontBold: 700;
 $fontExtraBold: 800;
 $fontBlack: 900;
+
+$fontWeights: (
+  'thin': $fontThin,
+  'extraLight': $fontExtraLight,
+  'light': $fontLight,
+  'regular': $fontRegular,
+  'medium': $fontMedium,
+  'semiBold': $fontSemiBold,
+  'bold': $fontBold,
+  'extraBold': $fontExtraBold,
+  'black': $fontBlack,
+);

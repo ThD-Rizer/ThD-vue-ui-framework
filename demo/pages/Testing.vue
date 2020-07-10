@@ -37,6 +37,25 @@
         </UiButton>
       </UiCol>
     </UiRow>
+
+    <UiRow class="mt-4">
+      <UiCol xs="6">
+        <UiInput
+          label="Введите мастер-ключ API"
+          placeholder="ex: 999923948743jhjhdsf792734"
+          textAlign="center"
+          class="t-center"
+        />
+      </UiCol>
+
+      <UiCol xs="6">
+        <UiInput
+          :clearable="true"
+          label="Введите мастер-ключ API"
+          placeholder="ex: 999923948743jhjhdsf792734"
+        />
+      </UiCol>
+    </UiRow>
   </UiMain>
 </template>
 
