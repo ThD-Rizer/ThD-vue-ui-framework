@@ -1,6 +1,10 @@
 <template>
   <UiMain>
     <div class="f-center">
+      <UiButton theme="cool">
+        Button cool theme
+      </UiButton>
+
       <UiButton
         :theme="theme"
         :customStyles="customStyles"
