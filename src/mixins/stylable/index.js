@@ -1,6 +1,6 @@
 import { InvalidTypeError } from '@/utils/errors';
 import { isString, isPlainObject } from '@/utils/inspect';
-import { isEqual, propValidator } from '@/utils/helpers';
+import { isEqual } from '@/utils/helpers';
 import mergeStyles from './mergeStyles';
 
 /**
@@ -45,9 +45,6 @@ export const factoryStylable = (options = null) => {
     throw new InvalidTypeError(defaultTheme, 'defaultTheme', 'String');
   }
 
-  const allowedThemes = Object.keys(themesStyles);
-  const themeValidator = propValidator('theme', allowedThemes);
-
   return {
     props: {
       /**
@@ -57,7 +54,6 @@ export const factoryStylable = (options = null) => {
       theme: {
         type: String,
         default: defaultTheme,
-        ...themeValidator,
       },
 
       /**
@@ -118,21 +114,25 @@ export const factoryStylable = (options = null) => {
 
     watch: {
       isUpdateStyles: {
-        handler({ customStyles, resetDefaultStyles }, oldProps) {
-          if (
-            isEqual(customStyles, oldProps?.customStyles)
-            && resetDefaultStyles !== oldProps?.resetDefaultStyles
-          ) {
-            return;
-          }
-
-          this.setStyles(customStyles, resetDefaultStyles);
+        handler(...args) {
+          this.handleUpdateStyles(...args);
         },
         immediate: true,
       },
     },
 
     methods: {
+      handleUpdateStyles(newProps, oldProps) {
+        if (
+          isEqual(newProps.customStyles, oldProps?.customStyles)
+          && newProps.resetDefaultStyles !== oldProps?.resetDefaultStyles
+        ) {
+          return;
+        }
+
+        this.setStyles(newProps.customStyles, newProps.resetDefaultStyles);
+      },
+
       /**
        * @param {Object} customStyles
        * @param {Boolean} resetDefaultStyles
@@ -149,11 +149,14 @@ export const factoryStylable = (options = null) => {
 
         if (isPlainObject(installedStyles)) {
           if (installedResetDefaultStyles) {
-            styles = mergeStyles(installedStyles, installedThemeStyles);
+            styles = installedStyles;
           } else {
             styles = mergeStyles(styles, installedStyles);
-            styles = mergeStyles(styles, installedThemeStyles);
           }
+        }
+
+        if (isPlainObject(installedThemeStyles)) {
+          styles = mergeStyles(styles, installedThemeStyles);
         }
 
         styles = resetDefaultStyles

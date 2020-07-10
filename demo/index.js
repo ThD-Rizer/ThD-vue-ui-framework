@@ -6,15 +6,19 @@ import UiMain from '@demo/components/UiMain';
 import UiSection from '@demo/components/UiSection';
 import UiHeading from '@demo/components/UiHeading';
 // import UiButtonStyles from '@demo/styles/UiButton.scss';
+import UiButtonThemeCoolStyles from '@demo/styles/UiButton.themeCool.scss';
 
 Vue.use(UI, {
-  // components: {
-  //   styles: {
-  //     UiButton: {
-  //       installedStyles: UiButtonStyles,
-  //     },
-  //   },
-  // },
+  components: {
+    styles: {
+      UiButton: {
+        // installedStyles: UiButtonStyles,
+        installedThemesStyles: {
+          cool: UiButtonThemeCoolStyles,
+        },
+      },
+    },
+  },
 });
 Vue.component(UiMain.name, UiMain);
 Vue.component(UiSection.name, UiSection);
