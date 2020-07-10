@@ -1,11 +1,28 @@
 import { generateHash, propValidator } from '@/utils/helpers';
+import { factoryStylable } from '@/mixins/stylable';
 import UiIcon from '@/components/UiIcon';
-import styles from './UiInput.scss';
+import defaultStyles from './UiInput.scss';
 
-const typeValidator = propValidator('type', ['text', 'password']);
+export const stylable = factoryStylable({
+  defaultStyles,
+});
+
+const typeValidator = propValidator('type', [
+  'text',
+  'password',
+]);
+const textAlignValidator = propValidator('textAlign', [
+  'left',
+  'center',
+  'right',
+  'justify',
+]);
 
 export default {
   name: 'UiInput',
+  mixins: [
+    stylable,
+  ],
   model: {
     prop: 'value',
     event: 'input',
@@ -57,6 +74,15 @@ export default {
       type: String,
       default: null,
     },
+    iconAfter: {
+      type: String,
+      default: null,
+    },
+    textAlign: {
+      type: String,
+      default: 'left',
+      ...textAlignValidator,
+    },
   },
 
   data: () => ({
@@ -102,13 +128,15 @@ export default {
     handleInput(event) {
       if (this.disabled) return;
 
-      this.$emit('input', event.target.value);
+      this.localValue = event.target.value;
+      this.$emit('input', this.localValue);
     },
 
     handleChange(event) {
       if (this.disabled) return;
 
-      this.$emit('change', event.target.value);
+      this.localValue = event.target.value;
+      this.$emit('change', this.localValue);
     },
 
     clear() {
@@ -120,14 +148,23 @@ export default {
     genRoot(childNodes = []) {
       return this.$createElement('div', {
         class: {
-          [styles.root]: true,
-          [styles.hasIconBefore]: this.iconBefore,
-          [styles.hasLabel]: this.label,
-          [styles.isFilled]: this.localValue,
-          [styles.isFocused]: this.focused,
-          [styles.isReadOnly]: this.readOnly,
-          [styles.isDisabled]: this.disabled,
+          [this.styles.root]: true,
+          [this.styles.isFilled]: this.localValue,
+          [this.styles.isFocused]: this.focused,
+          [this.styles.isReadOnly]: this.readOnly,
+          [this.styles.isDisabled]: this.disabled,
+          [this.styles.isClearable]: this.clearable,
+          [this.styles.hasLabel]: this.label,
+          [this.styles.hasIconBefore]: this.iconBefore,
+          [this.styles.hasIconAfter]: this.iconAfter,
+          [this.styles[`textAlign_${this.textAlign}`]]: this.textAlign,
         },
+      }, childNodes);
+    },
+
+    genContainer(childNodes = []) {
+      return this.$createElement('div', {
+        class: this.styles.container,
       }, childNodes);
     },
 
@@ -136,8 +173,8 @@ export default {
 
       return this.$createElement('label', {
         class: {
-          [styles.label]: true,
-          [styles.labelActive]: this.localValue || this.focused,
+          [this.styles.label]: true,
+          [this.styles.labelActive]: this.localValue || this.focused,
         },
         attrs: {
           for: this.uniqueId,
@@ -145,9 +182,9 @@ export default {
       }, [this.label]);
     },
 
-    genContainer(childNodes = []) {
+    genWrapper(childNodes = []) {
       return this.$createElement('div', {
-        class: styles.container,
+        class: this.styles.wrapper,
       }, childNodes);
     },
 
@@ -159,7 +196,7 @@ export default {
       });
 
       return this.$createElement('label', {
-        class: styles.iconBefore,
+        class: this.styles.iconBefore,
         attrs: {
           for: this.uniqueId,
         },
@@ -168,7 +205,7 @@ export default {
 
     genInput() {
       return this.$createElement('input', {
-        class: styles.input,
+        class: this.styles.input,
         domProps: {
           value: this.localValue,
           required: this.required,
@@ -192,6 +229,21 @@ export default {
       });
     },
 
+    genIconAfter() {
+      if (!this.iconAfter) return null;
+
+      const icon = this.$createElement(UiIcon, {
+        props: { name: this.iconAfter },
+      });
+
+      return this.$createElement('label', {
+        class: this.styles.iconAfter,
+        attrs: {
+          for: this.uniqueId,
+        },
+      }, [icon]);
+    },
+
     genButtonClear() {
       if (!this.localValue) return null;
 
@@ -200,7 +252,7 @@ export default {
       });
 
       return this.$createElement('button', {
-        class: styles.buttonClear,
+        class: this.styles.buttonClear,
         on: {
           click: this.clear,
         },
@@ -211,10 +263,13 @@ export default {
   render() {
     return this.genRoot([
       this.genContainer([
-        this.genIconBefore(),
         this.genLabel(),
-        this.genInput(),
-        this.clearable && this.genButtonClear(),
+        this.genWrapper([
+          this.genIconBefore(),
+          this.genInput(),
+          this.genIconAfter(),
+          this.clearable && this.genButtonClear(),
+        ]),
       ]),
     ]);
   },

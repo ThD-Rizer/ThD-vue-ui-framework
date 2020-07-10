@@ -1,25 +1,31 @@
 .root {
-  border-bottom: 1px solid currentColor;
   color: $colorAzureRadiance;
   text-decoration: none;
   transition: $transitionDefault;
   cursor: pointer;
 
-  @include hover {
-    border-bottom-color: transparent;
+  &.isDisabled {
+    color: $colorDustyGray;
+    cursor: default;
+    pointer-events: none;
   }
 }
 
-.isActive {
-  border-bottom-color: transparent;
-}
+.inner {
+  border-bottom: 1px solid currentColor;
+  transition: $transitionDefault;
 
-.isPseudo {
-  border-bottom-style: dashed;
-}
+  @media (hover: hover) {
+    .root:not([disabled]):hover & {
+      border-bottom-color: transparent;
+    }
+  }
 
-.isDisabled {
-  color: $colorDustyGray;
-  cursor: default;
-  pointer-events: none;
+  .isActive & {
+    border-bottom-color: transparent;
+  }
+
+  .isPseudo & {
+    border-bottom-style: dashed;
+  }
 }

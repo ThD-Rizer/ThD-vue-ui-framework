@@ -1,6 +1,7 @@
-import { propValidator, getSlot, trimSlotText } from '@/utils/helpers';
 import { COLORS } from '@/constants/styles';
-import styles from './UiText.scss';
+import { propValidator, getSlot, trimSlotText } from '@/utils/helpers';
+import { factoryStylable } from '@/mixins/stylable';
+import defaultStyles from './UiText.scss';
 
 const TAGS_FOR_TYPES = {
   h1: 'h1',
@@ -8,21 +9,33 @@ const TAGS_FOR_TYPES = {
   h3: 'h3',
   h4: 'h4',
   h5: 'h5',
+  h6: 'h6',
   text: 'span',
 };
+
+export const stylable = factoryStylable({
+  defaultStyles,
+});
 
 const typeValidator = propValidator('type', Object.keys(TAGS_FOR_TYPES));
 const weightValidator = propValidator('weight', [
   'thin',
+  'extraLight',
   'light',
   'regular',
   'medium',
+  'semiBold',
   'bold',
+  'extraBold',
+  'black',
 ]);
 const colorValidator = propValidator('color', Object.keys(COLORS));
 
 export default {
   name: 'UiText',
+  mixins: [
+    stylable,
+  ],
   props: {
     tag: {
       type: String,
@@ -59,10 +72,10 @@ export default {
         color,
       } = this;
       return {
-        [styles.isBlock]: this.block,
-        [styles[`type_${type}`]]: true,
-        [styles[`weight_${weight}`]]: !!weight,
-        [styles[`color_${color}`]]: !!color,
+        [this.styles.isBlock]: this.block,
+        [this.styles[`type_${type}`]]: true,
+        [this.styles[`weight_${weight}`]]: !!weight,
+        [this.styles[`color_${color}`]]: !!color,
       };
     },
   },

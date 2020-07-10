@@ -7,6 +7,7 @@ import UiSection from './components/UiSection';
 import UiHeading from './components/UiHeading';
 import UiButtonStyles from './styles/UiButton.scss';
 import UiButtonThemeCoolStyles from './styles/UiButton.themeCool.scss';
+import UiInputStyles from './styles/UiInput.scss';
 
 Vue.use(UI, {
   components: {
@@ -16,6 +17,10 @@ Vue.use(UI, {
         installedThemesStyles: {
           cool: UiButtonThemeCoolStyles,
         },
+      },
+      UiInput: {
+        installedStyles: UiInputStyles,
+        installedResetDefaultStyles: true,
       },
     },
   },

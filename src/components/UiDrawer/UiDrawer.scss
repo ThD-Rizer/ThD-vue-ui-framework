@@ -19,19 +19,20 @@
   &.isLeft {
     right: auto;
     left: 0;
-    transform: translate3D(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
 
   &.isRight {
     right: 0;
     left: auto;
-    transform: translate3D(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
   }
 
   &.isActive,
   &.isOpened {
-    transform: translate3D(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     transition-timing-function: $transitionDefaultTiming;
+
     @include elevation(16, $opacityMode: 'normal');
   }
 }

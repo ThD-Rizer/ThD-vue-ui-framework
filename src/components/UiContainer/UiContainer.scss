@@ -1,8 +1,9 @@
 .root {
   width: calc(100% - #{$gridGutterWidth});
+  box-sizing: content-box;
+
   @include paddingX($halfGutterWidth);
   @include marginX(auto);
-  box-sizing: content-box;
 
   &:not(.isFluid) {
     max-width: calc(100% - #{$gridGutterWidth});
