@@ -70,7 +70,7 @@
 
 ### Changed
 
-* Логика метода `toggle` в оjs миксине `toggleable`
+* Логика метода `toggle` в js миксине `toggleable`
 
 ### Fixed
 
