@@ -4,6 +4,12 @@
 
 ## Releases
 
+## v0.26.2
+
+### Changed
+
+* Удалена валидация свойства `theme` на основе коллекции имен в js миксине `stylable`
+
 ## v0.26.1
 
 ### Added
@@ -64,7 +70,7 @@
 
 ### Changed
 
-* Логика метода `toggle` в миксине `toggleable`
+* Логика метода `toggle` в оjs миксине `toggleable`
 
 ### Fixed
 
