@@ -2,66 +2,52 @@
   display: block;
 }
 
-.type {
-  &_h1,
-  &_h2,
-  &_h3,
-  &_h4,
-  &_h5 {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-weight: 700;
-  }
+.type_h1,
+.type_h2,
+.type_h3,
+.type_h4,
+.type_h5,
+.type_h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: $fontBold;
+}
 
-  &_h1 {
-    font-size: rem(32px);
-    line-height: rem(36px);
-  }
+.type_h1 {
+  font-size: rem(32px);
+  line-height: rem(36px);
+}
 
-  &_h2 {
-    font-size: rem(28px);
-    line-height: rem(32px);
-  }
+.type_h2 {
+  font-size: rem(28px);
+  line-height: rem(32px);
+}
 
-  &_h3 {
-    font-size: rem(24px);
-    line-height: rem(28px);
-  }
+.type_h3 {
+  font-size: rem(24px);
+  line-height: rem(28px);
+}
 
-  &_h4 {
-    font-size: rem(20px);
-    line-height: rem(24px);
-  }
+.type_h4 {
+  font-size: rem(20px);
+  line-height: rem(24px);
+}
 
-  &_h5 {
-    font-size: rem(16px);
-    line-height: rem(20px);
-  }
+.type_h5,
+.type_h6 {
+  font-size: rem(16px);
+  line-height: rem(20px);
+}
 
-  &_text {
-    line-height: rem(20px);
-  }
+.type_text {
+  line-height: rem(20px);
 }
 
 .weight {
-  &_thin {
-    font-weight: 100;
-  }
-
-  &_light {
-    font-weight: 300;
-  }
-
-  &_regular {
-    font-weight: 400;
-  }
-
-  &_medium {
-    font-weight: 500;
-  }
-
-  &_bold {
-    font-weight: 700;
+  @each $key, $value in $fontWeights {
+    &_#{$key} {
+      color: $value;
+    }
   }
 }
 

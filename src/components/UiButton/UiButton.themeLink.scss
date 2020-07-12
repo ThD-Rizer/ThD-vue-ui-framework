@@ -12,15 +12,15 @@ $colorTheme: $colorAzureRadiance;
     }
   }
 
-  .root.isFocused & {
+  .isFocused & {
     border-bottom-color: rgba($colorTheme, .3);
   }
 
-  .root.isActive & {
+  .isActive & {
     border-bottom-color: transparent;
   }
 
-  .root.isDisabled & {
+  .isDisabled & {
     color: lighten($colorTheme, 30%);
   }
 }

@@ -35,13 +35,13 @@ export const factoryStylable = (options = null) => {
     defaultTheme,
   } = { ...DEFAULT_OPTIONS, ...options };
 
-  if (!isPlainObject(defaultStyles)) {
+  if (defaultStyles && !isPlainObject(defaultStyles)) {
     throw new InvalidTypeError(defaultStyles, 'defaultStyles', 'Object');
   }
-  if (!isPlainObject(themesStyles)) {
+  if (themesStyles && !isPlainObject(themesStyles)) {
     throw new InvalidTypeError(themesStyles, 'themesStyles', 'Object');
   }
-  if (!isString(defaultTheme)) {
+  if (defaultTheme && !isString(defaultTheme)) {
     throw new InvalidTypeError(defaultTheme, 'defaultTheme', 'String');
   }
 
@@ -145,17 +145,19 @@ export const factoryStylable = (options = null) => {
           installedResetDefaultStyles,
         } = this.installedOptions;
         const installedThemeStyles = installedThemesStyles?.[theme];
-        let styles = mergeStyles(defaultStyles, themesStyles?.[theme]);
+        let styles = defaultStyles;
 
-        if (isPlainObject(installedStyles)) {
-          if (installedResetDefaultStyles) {
-            styles = installedStyles;
-          } else {
-            styles = mergeStyles(styles, installedStyles);
-          }
+        if (theme) {
+          styles = mergeStyles(styles, themesStyles?.[theme]);
         }
 
-        if (isPlainObject(installedThemeStyles)) {
+        if (isPlainObject(installedStyles)) {
+          styles = installedResetDefaultStyles
+            ? installedStyles
+            : mergeStyles(styles, installedStyles);
+        }
+
+        if (theme && isPlainObject(installedThemeStyles)) {
           styles = mergeStyles(styles, installedThemeStyles);
         }
 

@@ -2,14 +2,15 @@
   min-height: 100vh;
   background-color: rgba($colorBlack, .7);
   position: fixed;
-  @include positionAll(0);
   z-index: 10;
   overflow-y: auto;
   opacity: 0;
   transition: opacity .35s $transitionDefaultTiming;
   will-change: opacity;
   pointer-events: none;
+
   @include flexMinHeightFix;
+  @include positionAll(0);
 
   &.isActive,
   &.isOpened {

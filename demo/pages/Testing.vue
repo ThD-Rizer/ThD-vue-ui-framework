@@ -1,18 +1,61 @@
 <template>
   <UiMain>
-    <div class="f-center">
-      <UiButton theme="cool">
-        Button cool theme
-      </UiButton>
+    <UiRow>
+      <UiCol>
+        <UiButton
+          :theme="theme"
+          :customStyles="customStyles"
+          @click="themeTest"
+        >
+          Button dynamic stylable
+        </UiButton>
+      </UiCol>
+    </UiRow>
 
-      <UiButton
-        :theme="theme"
-        :customStyles="customStyles"
-        @click="themeTest"
-      >
-        Button dynamic stylable
-      </UiButton>
-    </div>
+    <UiRow class="mt-4">
+      <UiCol>
+        <UiButton
+          size="small"
+          theme="cool"
+        >
+          Button cool theme
+        </UiButton>
+      </UiCol>
+
+      <UiCol>
+        <UiButton theme="cool">
+          Button cool theme
+        </UiButton>
+      </UiCol>
+
+      <UiCol>
+        <UiButton
+          size="large"
+          theme="cool"
+        >
+          Button cool theme
+        </UiButton>
+      </UiCol>
+    </UiRow>
+
+    <UiRow class="mt-4">
+      <UiCol xs="6">
+        <UiInput
+          label="Введите мастер-ключ API"
+          placeholder="ex: 999923948743jhjhdsf792734"
+          textAlign="center"
+          class="t-center"
+        />
+      </UiCol>
+
+      <UiCol xs="6">
+        <UiInput
+          :clearable="true"
+          label="Введите мастер-ключ API"
+          placeholder="ex: 999923948743jhjhdsf792734"
+        />
+      </UiCol>
+    </UiRow>
   </UiMain>
 </template>
 

@@ -1,34 +1,40 @@
 .root {
-  border-bottom: 1px solid currentColor;
   color: $colorAzureRadiance;
   text-decoration: none;
   transition: $transitionDefault;
   cursor: pointer;
   outline: none;
 
-  @include hover {
+  &.isDisabled {
+    color: $colorDustyGray;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.inner {
+  border-bottom: 1px solid currentColor;
+  transition: $transitionDefault;
+
+  @media (hover: hover) {
+    .root:not([disabled]):hover & {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .isPseudo & {
+    border-bottom-style: dashed;
+  }
+
+  .isFocused & {
+    border-bottom-color: rgba($colorAzureRadiance, .3);
+  }
+
+  .isActive & {
     border-bottom-color: transparent;
   }
-}
 
-.isFocused {
-  border-bottom-color: rgba($colorAzureRadiance, .3);
-}
-
-.isActive {
-  border-bottom-color: transparent;
-
-  &.isFocused {
+  .isActive.isFocused & {
     border-bottom-color: rgba($colorAzureRadiance, .15);
   }
-}
-
-.isPseudo {
-  border-bottom-style: dashed;
-}
-
-.isDisabled {
-  color: $colorDustyGray;
-  cursor: not-allowed;
-  pointer-events: none;
 }

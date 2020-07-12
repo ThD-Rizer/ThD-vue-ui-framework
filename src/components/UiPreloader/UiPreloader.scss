@@ -15,11 +15,13 @@
 
   &.isFullBlock {
     @include positionedStyles;
+
     position: absolute;
   }
 
   &.isFullScreen {
     @include positionedStyles;
+
     position: fixed;
   }
 }

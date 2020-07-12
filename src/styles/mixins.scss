@@ -87,10 +87,12 @@
 
     font-family: $name;
     src: url('#{$path}.eot');
-    src: local($localName), local('#{$name}-#{$typeface}'),
-    url('#{$path}.eot?#iefix') format('embedded-opentype'),
-    url('#{$path}.woff') format('woff'),
-    url('#{$path}.woff2') format('woff2');
+    src:
+      local($localName),
+      local('#{$name}-#{$typeface}'),
+      url('#{$path}.eot?#iefix') format('embedded-opentype'),
+      url('#{$path}.woff') format('woff'),
+      url('#{$path}.woff2') format('woff2');
     font-weight: $weight;
     font-style: $style;
   }
@@ -143,4 +145,3 @@
   margin-top: $top;
   margin-bottom: $bottom;
 }
-

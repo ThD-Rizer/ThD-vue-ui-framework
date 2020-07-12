@@ -24,23 +24,23 @@
   }
 
   .t-thin#{$breakpoint} {
-    font-weight: 100 !important;
+    font-weight: $fontThin !important;
   }
 
   .t-light#{$breakpoint} {
-    font-weight: 300 !important;
+    font-weight: $fontLight !important;
   }
 
   .t-regular#{$breakpoint} {
-    font-weight: 400 !important;
+    font-weight: $fontRegular !important;
   }
 
   .t-medium#{$breakpoint} {
-    font-weight: 500 !important;
+    font-weight: $fontMedium !important;
   }
 
   .t-bold#{$breakpoint} {
-    font-weight: 700 !important;
+    font-weight: $fontBold !important;
   }
 }
 

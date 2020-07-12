@@ -1,12 +1,18 @@
 import { getSlot, trimSlotText } from '@/utils/helpers';
 import routable from '@/mixins/routable';
-import styles from './UiLink.scss';
+import { factoryStylable } from '@/mixins/stylable';
+import defaultStyles from './UiLink.scss';
+
+export const stylable = factoryStylable({
+  defaultStyles,
+});
 
 export default {
   name: 'UiLink',
 
   mixins: [
     routable,
+    stylable,
   ],
 
   props: {
@@ -27,11 +33,11 @@ export default {
   computed: {
     classesRoot() {
       return {
-        [styles.root]: true,
-        [styles.isPseudo]: this.pseudo,
-        [styles.isDisabled]: this.disabled,
-        [styles.isFocused]: this.focused,
-        [styles.isActive]: this.active,
+        [this.styles.root]: true,
+        [this.styles.isPseudo]: this.pseudo,
+        [this.styles.isDisabled]: this.disabled,
+        [this.styles.isFocused]: this.focused,
+        [this.styles.isActive]: this.active,
       };
     },
   },
@@ -71,13 +77,21 @@ export default {
         },
       }, childNodes);
     },
+
+    genInner(childNodes = []) {
+      return this.$createElement('span', {
+        class: this.styles.inner,
+      }, childNodes);
+    },
   },
 
   render() {
     const defaultSlot = trimSlotText(getSlot(this));
 
     return this.genRoot([
-      defaultSlot,
+      this.genInner([
+        defaultSlot,
+      ]),
     ]);
   },
 };

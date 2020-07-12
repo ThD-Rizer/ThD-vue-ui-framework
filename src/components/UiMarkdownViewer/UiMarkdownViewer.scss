@@ -4,7 +4,7 @@
   h3,
   h4,
   h5 {
-    font-weight: 700;
+    font-weight: $fontBold;
   }
 
   h1 {
@@ -68,9 +68,7 @@
   // hack для удаления лишних хэш ссылок
   :global(h1#changelog),
   :global(h2#releases),
-  h3 {
-    & > a {
-      display: none;
-    }
+  h3 > a {
+    display: none;
   }
 }
