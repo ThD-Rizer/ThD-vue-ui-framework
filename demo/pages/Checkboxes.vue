@@ -160,6 +160,22 @@
 </template>
 
 <script>
+  // const checkboxModel1 = [
+  //   1,
+  //   2,
+  // ];
+  // const checkboxModel2 = [
+  //   'val1',
+  //   'val2',
+  // ];
+  // const checkboxModel3 = {
+  //   val1: true,
+  //   val2: true,
+  // };
+  // const checkboxModel4 = false;
+  // const checkboxModel5 = 'yes';
+  // const checkboxModel6 = 0;
+
   export default {
     name: 'PageCheckboxes',
     data: () => ({

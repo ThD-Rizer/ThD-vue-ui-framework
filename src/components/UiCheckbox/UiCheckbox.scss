@@ -58,7 +58,7 @@ $themeColor: $colorEasternBlue;
   transition-timing-function: $transitionDefaultTiming;
   transition-duration: .2s;
   transition-property: color, opacity, transform;
-  transform: scale3d(0.1, 0.1, 0.1);
+  transform: scale3d(.1, .1, .1);
 
   .isChecked & {
     opacity: 1;
@@ -70,7 +70,9 @@ $themeColor: $colorEasternBlue;
   }
 }
 
-.marker_check {}
+.marker_check {
+  //
+}
 
 .marker_square {
   width: $size / 2;
@@ -78,7 +80,9 @@ $themeColor: $colorEasternBlue;
   background-color: currentColor;
 }
 
-.marker_cross {}
+.marker_cross {
+  //
+}
 
 .label {
   padding-left: spacer(3);

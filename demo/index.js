@@ -5,24 +5,11 @@ import App from '@demo/App';
 import UiMain from '@demo/components/UiMain';
 import UiSection from '@demo/components/UiSection';
 import UiHeading from '@demo/components/UiHeading';
-import UiButtonStyles from '@demo/styles/UiButton.scss';
-import UiButtonThemeCoolStyles from '@demo/styles/UiButton.themeCool.scss';
-import UiInputStyles from '@demo/styles/UiInput.scss';
+// import configUiStyles from '@demo/configUiStyles';
 
 Vue.use(UI, {
   components: {
-    styles: {
-      UiButton: {
-        installedStyles: UiButtonStyles,
-        installedThemesStyles: {
-          cool: UiButtonThemeCoolStyles,
-        },
-      },
-      UiInput: {
-        installedStyles: UiInputStyles,
-        installedResetDefaultStyles: true,
-      },
-    },
+    // styles: configUiStyles,
   },
 });
 Vue.component(UiMain.name, UiMain);

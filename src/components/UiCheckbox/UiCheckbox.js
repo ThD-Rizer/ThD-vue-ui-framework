@@ -1,4 +1,4 @@
-import { isUndefined, isArray } from '@/utils/inspect';
+import { isUndefined, isBoolean, isArray } from '@/utils/inspect';
 import { generateHash, getSlot, propValidator } from '@/utils/helpers';
 import UiIcon from '@/components/UiIcon';
 import styles from './UiCheckbox.scss';
@@ -84,7 +84,8 @@ export default {
 
   computed: {
     isBooleanState() {
-      return isUndefined(this.value);
+      const { value } = this;
+      return isUndefined(value) || isBoolean(value);
     },
 
     isArrayState() {
@@ -143,10 +144,10 @@ export default {
     },
   },
 
-  beforeCreate() {
-    const { _uid: uid } = this;
-    console.log('[UiCheckbox]', 'uid:', uid, this);
-  },
+  // beforeCreate() {
+  //   const { _uid: uid } = this;
+  //   console.log('[UiCheckbox]', 'uid:', uid, this);
+  // },
 
   mounted() {
     this.uniqueId = this.id || `checkbox-${generateHash()}`;

@@ -9,7 +9,7 @@ $colorTheme: #d97dd3;
   }
 
   @include focus {
-    @include focusOutline($colorTheme);
+    @include focusedOutline($colorTheme);
   }
 
   &.isActive {

@@ -1,5 +1,5 @@
 $height: 40px;
-$iconSize: 32px;
+$iconSize: 40px;
 $themeColor: $colorEasternBlue;
 
 .root {
@@ -54,11 +54,11 @@ $themeColor: $colorEasternBlue;
 }
 
 .iconBefore {
-  left: 8px;
+  left: 0;
 }
 
 .iconAfter {
-  right: 8px;
+  right: 0;
 }
 
 .iconBefore,
@@ -74,6 +74,7 @@ $themeColor: $colorEasternBlue;
   color: $colorWhite;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
 
   .isFilled &,
   .isFocused & {
@@ -116,12 +117,15 @@ $themeColor: $colorEasternBlue;
   }
 
   .hasIconBefore & {
-    padding-left: $iconSize + (8px * 2);
+    padding-left: $iconSize + 8px;
   }
 
-  .hasIconAfter &,
+  .hasIconAfter & {
+    padding-right: $iconSize + 8px;
+  }
+
   .isClearable & {
-    padding-right: $iconSize + (8px * 2);
+    padding-right: $iconSize;
   }
 
   .isReadOnly & {
@@ -150,7 +154,7 @@ $themeColor: $colorEasternBlue;
   border-radius: 50%;
   position: absolute;
   top: 50%;
-  right: 8px;
+  right: 0;
   transform: translateY(-50%);
   transition: $transitionDefault;
 
