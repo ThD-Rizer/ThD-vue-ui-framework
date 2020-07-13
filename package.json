@@ -6,16 +6,16 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vue-cli-service serve --port 5000 ./demo/index.js",
+    "lint:js": "vue-cli-service lint",
+    "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
+    "lint": "yarn lint:js && yarn lint:style",
+    "test:unit": "jest --watchAll",
     "build:icons": "node builders/icons/index.js",
     "build:demo": "vue-cli-service build --dest dist-demo ./demo/index.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js && rimraf ./dist/demo.html",
     "build": "yarn build:icons && yarn build:lib",
     "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
-    "build:publish": "yarn lint && yarn build && yarn publish",
-    "lint:js": "vue-cli-service lint",
-    "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
-    "lint": "yarn lint:js && yarn lint:style",
-    "test:unit": "jest --watchAll"
+    "build:publish": "yarn lint && yarn build && yarn publish"
   },
   "dependencies": {
     "body-scroll-lock": "3.0.3",
