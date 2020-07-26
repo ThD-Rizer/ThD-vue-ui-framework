@@ -37,9 +37,13 @@ export default {
     uniqueId: null,
   }),
   mounted() {
-    this.uniqueId = this.id || `input-${generateHash()}`;
+    this.init();
   },
   methods: {
+    init() {
+      this.uniqueId = this.id || `input-${generateHash()}`;
+    },
+
     handleInput(event) {
       if (this.disabled) return;
 

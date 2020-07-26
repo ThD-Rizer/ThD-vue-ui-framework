@@ -52,7 +52,6 @@
         <UiInput
           :clearable="true"
           label="Введите мастер-ключ API"
-          placeholder="ex: 999923948743jhjhdsf792734"
         />
       </UiCol>
     </UiRow>

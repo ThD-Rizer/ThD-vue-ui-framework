@@ -1,27 +1,25 @@
 import { generateHash, getSlot } from '@/utils/helpers';
+import { factoryInjectable } from '@/mixins/injectable';
+import { isNil } from '../../utils/inspect';
 import styles from './UiRadio.scss';
+
+const injectable = factoryInjectable({
+  providerName: 'UiRadioGroup',
+  injectorName: 'UiRadio',
+  injectionData: [
+    { from: 'model', to: 'modelFromParent' },
+    { from: 'name', to: 'nameFromParent' },
+    { from: 'classes', to: 'classesFromParent', default: null },
+    { from: 'changeHandler', to: 'changeParent', default: () => false },
+  ],
+});
 
 export default {
   name: 'UiRadio',
 
-  inject: {
-    parentState: {
-      from: 'state',
-      default() {
-        return {};
-      },
-    },
-    classesFromParent: {
-      from: 'classes',
-      default: null,
-    },
-    changeParent: {
-      from: 'changeHandler',
-      default() {
-        return () => {};
-      },
-    },
-  },
+  mixins: [
+    injectable,
+  ],
 
   model: {
     prop: 'model',
@@ -30,11 +28,11 @@ export default {
 
   props: {
     model: {
-      type: [String, Number, Boolean],
+      type: [Boolean, Number, String],
       default: null,
     },
     value: {
-      type: [String, Number, Boolean],
+      type: [Boolean, Number, String],
       default: null,
     },
     name: {
@@ -61,14 +59,25 @@ export default {
 
   data: () => ({
     uniqueId: null,
-    localModel: null,
+    state: null,
     focused: false,
   }),
 
   computed: {
-    isChecked() {
-      return this.localModel === this.value;
+    localModel() {
+      if (!isNil(this.model)) {
+        return this.model;
+      }
+      if (!isNil(this.modelFromParent)) {
+        return this.modelFromParent;
+      }
+      return undefined;
     },
+
+    isChecked() {
+      return this.state === this.value;
+    },
+
     classesRoot() {
       return {
         [styles.root]: true,
@@ -89,38 +98,35 @@ export default {
       immediate: true,
     },
 
-    model: {
+    localModel: {
       handler(payload) {
-        this.setLocalModel(payload);
-      },
-      immediate: true,
-    },
-
-    'parentState.model': {
-      handler(payload) {
-        this.setLocalModel(payload);
+        this.setState(payload);
       },
       immediate: true,
     },
   },
 
   mounted() {
-    this.uniqueId = this.id || `radio-${generateHash()}`;
+    this.init();
   },
 
   methods: {
-    change(payload) {
-      if (this.localModel === payload) return;
-
-      this.setLocalModel(payload);
-      this.changeParent(payload);
-      this.$emit('change', payload);
+    init() {
+      this.uniqueId = this.id || `radio-${generateHash()}`;
     },
 
-    setLocalModel(payload) {
-      if (this.localModel === payload) return;
+    change(payload) {
+      if (this.state === payload) return;
 
-      this.localModel = payload;
+      this.setState(payload);
+      this.$emit('change', payload);
+      this.changeParent(payload);
+    },
+
+    setState(payload) {
+      if (this.state === payload) return;
+
+      this.state = payload;
     },
 
     handleFocus() {
@@ -144,11 +150,8 @@ export default {
     },
 
     genRoot(childNodes = []) {
-      return this.$createElement('label', {
+      return this.$createElement('div', {
         class: this.classesRoot,
-        attrs: {
-          for: this.uniqueId,
-        },
       }, childNodes);
     },
 
@@ -164,7 +167,7 @@ export default {
         attrs: {
           id: this.uniqueId,
           type: 'radio',
-          name: this.name || this.parentState.name,
+          name: this.name || this.nameFromParent,
           readonly: this.readOnly,
         },
         on: {
@@ -176,8 +179,11 @@ export default {
     },
 
     genRadio(childNodes = []) {
-      return this.$createElement('div', {
+      return this.$createElement('label', {
         class: styles.radio,
+        attrs: {
+          for: this.uniqueId,
+        },
       }, childNodes);
     },
 
@@ -188,8 +194,11 @@ export default {
     },
 
     genLabel(childNodes = []) {
-      return this.$createElement('span', {
+      return this.$createElement('label', {
         class: styles.label,
+        attrs: {
+          for: this.uniqueId,
+        },
       }, childNodes);
     },
   },

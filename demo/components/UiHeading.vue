@@ -39,17 +39,18 @@
 <style lang="scss" module>
   .root {
     border-bottom: 0 solid rgba($colorHeather, .5);
-    padding-bottom: spacer(1);
     color: $colorPaleSky;
   }
 
   .type_h1 {
     border-bottom-width: 3px;
+    padding-bottom: spacer(1);
     margin-bottom: spacer(6);
   }
 
   .type_h2 {
     border-bottom-width: 2px;
+    padding-bottom: spacer(1);
     margin-bottom: spacer(5);
   }
 

@@ -1,7 +1,31 @@
-import { isUndefined, isBoolean, isArray } from '@/utils/inspect';
-import { generateHash, getSlot, propValidator } from '@/utils/helpers';
+import {
+  isUndefined,
+  isNil,
+  isBoolean,
+  isArray,
+  isPlainObject,
+} from '@/utils/inspect';
+import {
+  generateHash,
+  getSlot,
+  propValidator,
+  cloneArray,
+  cloneDeep,
+} from '@/utils/helpers';
+import { factoryInjectable } from '@/mixins/injectable';
 import UiIcon from '@/components/UiIcon';
 import styles from './UiCheckbox.scss';
+
+const injectable = factoryInjectable({
+  providerName: 'UiCheckboxGroup',
+  injectorName: 'UiCheckbox',
+  injectionData: [
+    { from: 'model', to: 'modelFromParent' },
+    { from: 'name', to: 'nameFromParent' },
+    { from: 'classes', to: 'classesFromParent', default: null },
+    { from: 'changeHandler', to: 'changeParent', default: () => false },
+  ],
+});
 
 const iconNameValidator = propValidator('iconName', [
   'check',
@@ -12,24 +36,9 @@ const iconNameValidator = propValidator('iconName', [
 export default {
   name: 'UiCheckbox',
 
-  inject: {
-    parentState: {
-      from: 'state',
-      default() {
-        return {};
-      },
-    },
-    classesFromParent: {
-      from: 'classes',
-      default: null,
-    },
-    changeParent: {
-      from: 'changeHandler',
-      default() {
-        return () => {};
-      },
-    },
-  },
+  mixins: [
+    injectable,
+  ],
 
   model: {
     prop: 'model',
@@ -38,11 +47,11 @@ export default {
 
   props: {
     model: {
-      type: [String, Number, Boolean],
+      type: [Boolean, Array, Object],
       default: undefined,
     },
     value: {
-      type: [String, Number, Boolean],
+      type: [Boolean, Number, String],
       default: undefined,
     },
     name: {
@@ -78,28 +87,34 @@ export default {
 
   data: () => ({
     uniqueId: null,
-    localModel: null,
+    state: null,
     focused: false,
   }),
 
   computed: {
-    isBooleanState() {
-      const { value } = this;
-      return isUndefined(value) || isBoolean(value);
-    },
-
-    isArrayState() {
-      return isArray(this.model) || isArray(this.parentModel);
-    },
-
-    parentModel() {
-      return this.parentState.model;
+    localModel() {
+      if (!isNil(this.model)) {
+        return this.model;
+      }
+      if (!isNil(this.modelFromParent)) {
+        return this.modelFromParent;
+      }
+      return undefined;
     },
 
     isChecked() {
-      return this.isBooleanState
-        ? this.localModel
-        : this.localModel === this.value;
+      const { state } = this;
+
+      if (isBoolean(state)) {
+        return state;
+      }
+      if (isArray(state)) {
+        return state.includes(this.value);
+      }
+      if (isPlainObject(state)) {
+        return state[this.value];
+      }
+      return false;
     },
 
     classesRoot() {
@@ -116,52 +131,67 @@ export default {
   },
 
   watch: {
-    checked: {
+    localModel: {
       handler(payload) {
-        console.log('[watch] checked:', typeof payload, payload, this.value);
-        if (isUndefined(payload)) return;
-        this.change(this.value);
+        this.setState(payload);
       },
       immediate: true,
-    },
-
-    model: {
-      handler(payload) {
-        console.log('[watch] model:', typeof payload, payload);
-        if (isUndefined(payload)) return;
-        this.change(payload);
-      },
-      immediate: true,
-    },
-
-    'parentState.model': {
-      handler(payload) {
-        console.log('[watch] parentState.model:', typeof payload, payload);
-        if (isUndefined(payload)) return;
-        this.change(payload);
-      },
-      immediate: true,
+      deep: true,
     },
   },
 
-  // beforeCreate() {
-  //   const { _uid: uid } = this;
-  //   console.log('[UiCheckbox]', 'uid:', uid, this);
-  // },
-
   mounted() {
-    this.uniqueId = this.id || `checkbox-${generateHash()}`;
+    this.init();
   },
 
   methods: {
+    init() {
+      this.uniqueId = this.id || `checkbox-${generateHash()}`;
+
+      if (isUndefined(this.localModel) && !isUndefined(this.checked)) {
+        this.setState(this.checked);
+      }
+    },
+
     change(payload) {
-      console.log('[change] payload:', typeof payload, payload);
+      const { localModel } = this;
+      let state = null;
 
-      if (this.localModel === payload) return;
+      if (isUndefined(localModel)) {
+        state = !this.state;
+      }
 
-      this.localModel = payload;
-      this.changeParent(payload);
-      this.$emit('change', payload);
+      if (isBoolean(localModel)) {
+        state = !localModel;
+      }
+
+      if (isArray(localModel)) {
+        const value = (this.value === +payload) ? +payload : payload;
+
+        state = cloneArray(localModel);
+
+        if (state.includes(value)) {
+          const index = state.findIndex((item) => item === value);
+          state.splice(index, 1);
+        } else {
+          state.push(value);
+        }
+      }
+
+      if (isPlainObject(localModel)) {
+        state = cloneDeep(localModel);
+        state[payload] = !state[payload];
+      }
+
+      if (isNil(state)) return;
+
+      this.setState(state);
+      this.$emit('change', state);
+      this.changeParent(state);
+    },
+
+    setState(payload) {
+      this.$set(this, 'state', payload);
     },
 
     handleFocus() {
@@ -181,22 +211,12 @@ export default {
     handleChange(payload) {
       if (this.readOnly || this.disabled) return;
 
-      const state = this.isBooleanState
-        ? !this.localModel
-        : payload;
-
-      console.log('[handleChange] payload:', payload);
-      console.log('[handleChange] state:', state);
-
-      this.change(state);
+      this.change(payload);
     },
 
     genRoot(childNodes = []) {
-      return this.$createElement('label', {
+      return this.$createElement('div', {
         class: this.classesRoot,
-        attrs: {
-          for: this.uniqueId,
-        },
       }, childNodes);
     },
 
@@ -212,7 +232,7 @@ export default {
         attrs: {
           id: this.uniqueId,
           type: 'checkbox',
-          name: this.name || this.parentState.name,
+          name: this.name || this.nameFromParent,
           readonly: this.readOnly,
         },
         on: {
@@ -224,8 +244,11 @@ export default {
     },
 
     genCheckbox(childNodes = []) {
-      return this.$createElement('div', {
+      return this.$createElement('label', {
         class: styles.checkbox,
+        attrs: {
+          for: this.uniqueId,
+        },
       }, childNodes);
     },
 
@@ -258,8 +281,11 @@ export default {
     },
 
     genLabel(childNodes = []) {
-      return this.$createElement('span', {
+      return this.$createElement('label', {
         class: styles.label,
+        attrs: {
+          for: this.uniqueId,
+        },
       }, childNodes);
     },
   },

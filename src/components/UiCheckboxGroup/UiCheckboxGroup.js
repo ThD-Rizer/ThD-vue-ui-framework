@@ -1,11 +1,19 @@
-import { isArray } from '@/utils/inspect';
-import {
-  generateHash,
-  // cloneArray,
-  getSlot,
-  propValidator,
-} from '@/utils/helpers';
+import { generateHash, getSlot, propValidator } from '@/utils/helpers';
+import { factoryProvidable } from '@/mixins/providable';
 import styles from './UiCheckboxGroup.scss';
+
+const providable = factoryProvidable({
+  providerName: 'UiCheckboxGroup',
+  injectorName: 'UiCheckbox',
+  reactiveData: [
+    { from: 'model', to: 'model' },
+    { from: 'localName', to: 'name' },
+  ],
+  staticData: [
+    { from: 'classesChild', to: 'classes' },
+    { from: 'handleChange', to: 'changeHandler' },
+  ],
+});
 
 const directionValidator = propValidator('direction', [
   'horizontal',
@@ -15,25 +23,9 @@ const directionValidator = propValidator('direction', [
 export default {
   name: 'UiCheckboxGroup',
 
-  provide() {
-    const vm = this;
-    const state = {
-      get model() {
-        return vm.model;
-      },
-      get name() {
-        return vm.localName;
-      },
-    };
-    const classes = this.classesChild;
-    const changeHandler = this.handleChange;
-
-    return {
-      state,
-      classes,
-      changeHandler,
-    };
-  },
+  mixins: [
+    providable,
+  ],
 
   model: {
     prop: 'model',
@@ -42,7 +34,7 @@ export default {
 
   props: {
     model: {
-      type: [String, Number, Boolean, Array],
+      type: [Array, Object],
       default: null,
     },
     name: {
@@ -77,24 +69,7 @@ export default {
 
   methods: {
     handleChange(payload) {
-      const isArrayModel = isArray(this.model);
-
-      console.log('[UiCheckboxGroup:handleChange] payload:', payload);
-      console.log('[UiCheckboxGroup:handleChange] isArrayModel:', isArrayModel);
-
-      // if (isArrayModel) {
-      //   const model = cloneArray(this.model);
-      //
-      //   if (this.model.includes(payload)) {
-      //     model.splice(model.indexOf(payload), 1);
-      //   } else {
-      //     model.push(payload);
-      //   }
-      //
-      //   this.$emit('change', model);
-      // } else {
-      //   this.$emit('change', payload);
-      // }
+      this.$emit('change', payload);
     },
 
     genRoot(childNodes = []) {

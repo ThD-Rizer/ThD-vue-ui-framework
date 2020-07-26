@@ -116,10 +116,10 @@
           color="dustyGray"
           class="mb-3"
         >
-          checkboxGroupValue: {{ checkboxGroupValue }}
+          checkboxGroupValue1: {{ checkboxGroupValue1 }}
         </UiText>
 
-        <UiButton @click="checkboxGroupValue = []">
+        <UiButton @click="clearCheckboxGroup1">
           Clear
         </UiButton>
       </div>
@@ -129,7 +129,7 @@
       </UiHeading>
 
       <UiCheckboxGroup
-        v-model="checkboxGroupValue"
+        v-model="checkboxGroupValue1"
         direction="horizontal"
         class="mb-4"
       >
@@ -142,11 +142,28 @@
         </UiCheckbox>
       </UiCheckboxGroup>
 
+      <div class="mb-6">
+        <UiText
+          :block="true"
+          color="dustyGray"
+          class="mb-3"
+        >
+          checkboxGroupValue2: {{ checkboxGroupValue2 }}
+        </UiText>
+
+        <UiButton @click="clearCheckboxGroup2">
+          Clear
+        </UiButton>
+      </div>
+
       <UiHeading type="h3">
         Vertical
       </UiHeading>
 
-      <UiCheckboxGroup direction="vertical">
+      <UiCheckboxGroup
+        v-model="checkboxGroupValue2"
+        direction="vertical"
+      >
         <UiCheckbox
           v-for="item in inputGroup"
           :key="item"
@@ -160,28 +177,31 @@
 </template>
 
 <script>
-  // const checkboxModel1 = [
-  //   1,
-  //   2,
-  // ];
-  // const checkboxModel2 = [
-  //   'val1',
-  //   'val2',
-  // ];
-  // const checkboxModel3 = {
-  //   val1: true,
-  //   val2: true,
-  // };
-  // const checkboxModel4 = false;
-  // const checkboxModel5 = 'yes';
-  // const checkboxModel6 = 0;
-
   export default {
     name: 'PageCheckboxes',
     data: () => ({
-      inputGroup: ['Yes', 'No', 'Maybe'],
+      inputGroup: ['Yes', 'No', 'Maybe', 4],
       checkboxValue: true,
-      checkboxGroupValue: [],
+      checkboxGroupValue1: [],
+      checkboxGroupValue2: {
+        Yes: false,
+        No: false,
+        Maybe: false,
+        4: false,
+      },
     }),
+    methods: {
+      clearCheckboxGroup1() {
+        this.checkboxGroupValue1 = [];
+      },
+      clearCheckboxGroup2() {
+        this.$set(this, 'checkboxGroupValue2', {
+          Yes: false,
+          No: false,
+          Maybe: false,
+          4: false,
+        });
+      },
+    },
   };
 </script>

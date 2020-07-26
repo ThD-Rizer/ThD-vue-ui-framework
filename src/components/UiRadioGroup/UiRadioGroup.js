@@ -1,5 +1,19 @@
 import { generateHash, getSlot, propValidator } from '@/utils/helpers';
+import { factoryProvidable } from '@/mixins/providable';
 import styles from './UiRadioGroup.scss';
+
+const providable = factoryProvidable({
+  providerName: 'UiRadioGroup',
+  injectorName: 'UiRadio',
+  reactiveData: [
+    { from: 'model', to: 'model' },
+    { from: 'localName', to: 'name' },
+  ],
+  staticData: [
+    { from: 'classesChild', to: 'classes' },
+    { from: 'handleChange', to: 'changeHandler' },
+  ],
+});
 
 const directionValidator = propValidator('direction', [
   'horizontal',
@@ -9,25 +23,9 @@ const directionValidator = propValidator('direction', [
 export default {
   name: 'UiRadioGroup',
 
-  provide() {
-    const vm = this;
-    const state = {
-      get model() {
-        return vm.model;
-      },
-      get name() {
-        return vm.localName;
-      },
-    };
-    const classes = this.classesChild;
-    const changeHandler = this.handleChange;
-
-    return {
-      state,
-      classes,
-      changeHandler,
-    };
-  },
+  mixins: [
+    providable,
+  ],
 
   model: {
     prop: 'model',
