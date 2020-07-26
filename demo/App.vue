@@ -48,7 +48,6 @@
 
   :global {
     body {
-      background-color: #f7fbff;
       font-family: 'Roboto', sans-serif;
       color: $colorMineShaft;
     }

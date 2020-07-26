@@ -17,7 +17,7 @@
 * Стили компонента `UiLink` в состоянии focus
 * Стили компонента `UiCheckbox` в состоянии focus
 * Миксины `providable` и `injectable`, работающие в паре
-* Утилита `isEmptyObject`
+* Утилиты `isEmptyObject` и `isEqual`
 
 ### Fixed
 

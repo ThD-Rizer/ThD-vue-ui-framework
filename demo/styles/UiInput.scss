@@ -4,7 +4,6 @@ $iconSize: 32px;
 .root {
   width: 100%;
 
-  &.isReadOnly,
   &.isDisabled {
     pointer-events: none;
   }
