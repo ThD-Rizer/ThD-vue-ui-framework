@@ -3,6 +3,7 @@ $themeColor: $colorEasternBlue;
 .root {
   &.isDisabled {
     pointer-events: none;
+    cursor: not-allowed;
   }
 }
 
@@ -16,6 +17,7 @@ $themeColor: $colorEasternBlue;
 
   width: 100%;
   min-height: 100px;
+  background-color: $colorWhite;
   border: 1px solid $themeColor;
   padding: 10px;
   line-height: rem(24px);

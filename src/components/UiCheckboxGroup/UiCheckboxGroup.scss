@@ -1,0 +1,24 @@
+.direction_horizontal {
+  //
+}
+
+.direction_vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox {
+  .direction_vertical & {
+    align-self: flex-start;
+  }
+
+  &:not(:last-child) {
+    .direction_horizontal & {
+      margin-right: spacer(5);
+    }
+
+    .direction_vertical & {
+      margin-bottom: spacer(2);
+    }
+  }
+}

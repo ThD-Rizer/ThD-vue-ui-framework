@@ -1,8 +1,8 @@
 .root {
   cursor: default !important;
 
-  @include focus {
-    @include focusOutline($colorHeather);
+  &.isFocused {
+    @include focusedOutline($colorHeather);
   }
 
   &.isDisabled {

@@ -4,6 +4,7 @@ const resolve = (...args) => path.resolve(__dirname, ...args);
 
 const aliases = {
   '@root': resolve(),
+  '@demo': resolve('demo'),
   '@': resolve('src'),
 };
 

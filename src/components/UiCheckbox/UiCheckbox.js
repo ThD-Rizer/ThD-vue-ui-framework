@@ -1,9 +1,31 @@
-import { generateHash, getSlot, propValidator } from '@/utils/helpers';
-import { factoryToggleable } from '@/mixins/toggleable';
+import {
+  isUndefined,
+  isNil,
+  isBoolean,
+  isArray,
+  isPlainObject,
+} from '@/utils/inspect';
+import {
+  generateHash,
+  getSlot,
+  propValidator,
+  cloneArray,
+  cloneDeep,
+} from '@/utils/helpers';
+import { factoryInjectable } from '@/mixins/injectable';
 import UiIcon from '@/components/UiIcon';
 import styles from './UiCheckbox.scss';
 
-const toggleable = factoryToggleable('model', 'change');
+const injectable = factoryInjectable({
+  providerName: 'UiCheckboxGroup',
+  injectorName: 'UiCheckbox',
+  injectionData: [
+    { from: 'model', to: 'modelFromParent' },
+    { from: 'name', to: 'nameFromParent' },
+    { from: 'classes', to: 'classesFromParent', default: null },
+    { from: 'changeHandler', to: 'changeParent', default: () => false },
+  ],
+});
 
 const iconNameValidator = propValidator('iconName', [
   'check',
@@ -13,16 +35,23 @@ const iconNameValidator = propValidator('iconName', [
 
 export default {
   name: 'UiCheckbox',
+
   mixins: [
-    toggleable,
+    injectable,
   ],
+
+  model: {
+    prop: 'model',
+    event: 'change',
+  },
+
   props: {
     model: {
-      type: Boolean,
+      type: [Boolean, Array, Object],
       default: undefined,
     },
     value: {
-      type: [String, Number],
+      type: [Boolean, Number, String],
       default: undefined,
     },
     name: {
@@ -35,7 +64,7 @@ export default {
     },
     checked: {
       type: Boolean,
-      default: false,
+      default: undefined,
     },
     readOnly: {
       type: Boolean,
@@ -58,12 +87,36 @@ export default {
 
   data: () => ({
     uniqueId: null,
+    state: null,
+    focused: false,
   }),
 
   computed: {
-    isChecked() {
-      return this.model;
+    localModel() {
+      if (!isNil(this.model)) {
+        return this.model;
+      }
+      if (!isNil(this.modelFromParent)) {
+        return this.modelFromParent;
+      }
+      return undefined;
     },
+
+    isChecked() {
+      const { state } = this;
+
+      if (isBoolean(state)) {
+        return state;
+      }
+      if (isArray(state)) {
+        return state.includes(this.value);
+      }
+      if (isPlainObject(state)) {
+        return state[this.value];
+      }
+      return false;
+    },
+
     classesRoot() {
       return {
         [styles.root]: true,
@@ -71,27 +124,102 @@ export default {
         [styles.isChecked]: this.isChecked,
         [styles.isReadOnly]: this.readOnly,
         [styles.isDisabled]: this.disabled,
+        [styles.isFocused]: this.focused,
+        ...this.classesFromParent,
       };
     },
   },
 
   watch: {
-    checked(newValue) {
-      if (newValue === this.state) return;
-      this.toggle();
+    localModel: {
+      handler(payload) {
+        this.setState(payload);
+      },
+      immediate: true,
+      deep: true,
     },
   },
 
   mounted() {
-    this.uniqueId = this.id || `checkbox-${generateHash()}`;
+    this.init();
   },
 
   methods: {
+    init() {
+      this.uniqueId = this.id || `checkbox-${generateHash()}`;
+
+      if (isUndefined(this.localModel) && !isUndefined(this.checked)) {
+        this.setState(this.checked);
+      }
+    },
+
+    change(payload) {
+      const { localModel } = this;
+      let state = null;
+
+      if (isUndefined(localModel)) {
+        state = !this.state;
+      }
+
+      if (isBoolean(localModel)) {
+        state = !localModel;
+      }
+
+      if (isArray(localModel)) {
+        const value = (this.value === +payload) ? +payload : payload;
+
+        state = cloneArray(localModel);
+
+        if (state.includes(value)) {
+          const index = state.findIndex((item) => item === value);
+          state.splice(index, 1);
+        } else {
+          state.push(value);
+        }
+      }
+
+      if (isPlainObject(localModel)) {
+        state = cloneDeep(localModel);
+        state[payload] = !state[payload];
+      }
+
+      if (isNil(state)) return;
+
+      this.setState(state);
+      this.$emit('change', state);
+      this.changeParent(state);
+    },
+
+    setState(payload) {
+      this.$set(this, 'state', payload);
+    },
+
+    handleFocus() {
+      if (this.readOnly || this.disabled) return;
+
+      this.focused = true;
+      this.$emit('focus');
+    },
+
+    handleBlur() {
+      if (this.readOnly || this.disabled) return;
+
+      this.focused = false;
+      this.$emit('blur');
+    },
+
+    handleChange(payload) {
+      if (this.readOnly || this.disabled) return;
+
+      this.change(payload);
+    },
+
     genRoot(childNodes = []) {
       return this.$createElement('div', {
         class: this.classesRoot,
       }, childNodes);
     },
+
     genInput() {
       return this.$createElement('input', {
         class: styles.input,
@@ -99,19 +227,22 @@ export default {
           value: this.value,
           required: this.required,
           checked: this.isChecked,
-          readonly: this.readOnly,
           disabled: this.disabled,
         },
         attrs: {
           id: this.uniqueId,
           type: 'checkbox',
-          name: this.name,
+          name: this.name || this.nameFromParent,
+          readonly: this.readOnly,
         },
         on: {
-          change: this.toggle,
+          focus: this.handleFocus,
+          blur: this.handleBlur,
+          change: (event) => this.handleChange(event.target.value),
         },
       });
     },
+
     genCheckbox(childNodes = []) {
       return this.$createElement('label', {
         class: styles.checkbox,
@@ -120,6 +251,7 @@ export default {
         },
       }, childNodes);
     },
+
     genMarkerIcon(name) {
       return this.$createElement(UiIcon, {
         class: [
@@ -129,14 +261,16 @@ export default {
         props: { name },
       });
     },
+
     genMarkerSquare() {
-      return this.$createElement('div', {
+      return this.$createElement('span', {
         class: [
           styles.marker,
           styles.marker_square,
         ],
       });
     },
+
     genMarker() {
       const { iconName } = this;
       if (iconName === 'square') {
@@ -145,6 +279,7 @@ export default {
 
       return this.genMarkerIcon(iconName);
     },
+
     genLabel(childNodes = []) {
       return this.$createElement('label', {
         class: styles.label,
@@ -154,6 +289,7 @@ export default {
       }, childNodes);
     },
   },
+
   render() {
     const defaultSlot = getSlot(this);
 

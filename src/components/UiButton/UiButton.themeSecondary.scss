@@ -1,20 +1,26 @@
+$colorTheme: $colorPaleSky;
+
 .root {
-  background-color: $colorPaleSky;
+  background-color: $colorTheme;
   color: $colorWhite;
 
   @include hover {
-    background-color: darken($colorPaleSky, 15%);
+    background-color: darken($colorTheme, 15%);
   }
 
-  @include focus {
-    @include focusOutline($colorPaleSky);
+  @include active {
+    background-color: darken($colorTheme, 20%);
+  }
+
+  &.isFocused {
+    @include focusedOutline($colorTheme);
   }
 
   &.isActive {
-    background-color: darken($colorPaleSky, 15%);
+    background-color: darken($colorTheme, 15%);
   }
 
   &.isDisabled {
-    background-color: lighten($colorPaleSky, 20%);
+    background-color: lighten($colorTheme, 20%);
   }
 }

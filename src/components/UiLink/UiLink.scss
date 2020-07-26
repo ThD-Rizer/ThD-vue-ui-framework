@@ -3,10 +3,11 @@
   text-decoration: none;
   transition: $transitionDefault;
   cursor: pointer;
+  outline: none;
 
   &.isDisabled {
     color: $colorDustyGray;
-    cursor: default;
+    cursor: not-allowed;
     pointer-events: none;
   }
 }
@@ -21,11 +22,19 @@
     }
   }
 
+  .isPseudo & {
+    border-bottom-style: dashed;
+  }
+
+  .isFocused & {
+    border-bottom-color: rgba($colorAzureRadiance, .3);
+  }
+
   .isActive & {
     border-bottom-color: transparent;
   }
 
-  .isPseudo & {
-    border-bottom-style: dashed;
+  .isActive.isFocused & {
+    border-bottom-color: rgba($colorAzureRadiance, .15);
   }
 }

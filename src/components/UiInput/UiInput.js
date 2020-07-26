@@ -20,9 +20,11 @@ const textAlignValidator = propValidator('textAlign', [
 
 export default {
   name: 'UiInput',
+
   mixins: [
     stylable,
   ],
+
   model: {
     prop: 'value',
     event: 'input',
@@ -87,8 +89,8 @@ export default {
 
   data: () => ({
     uniqueId: null,
-    focused: false,
     localValue: null,
+    focused: false,
   }),
 
   computed: {
@@ -107,10 +109,14 @@ export default {
   },
 
   mounted() {
-    this.uniqueId = this.id || `input-${generateHash()}`;
+    this.init();
   },
 
   methods: {
+    init() {
+      this.uniqueId = this.id || `input-${generateHash()}`;
+    },
+
     handleFocus(event) {
       if (this.disabled) return;
 
@@ -209,7 +215,6 @@ export default {
         domProps: {
           value: this.localValue,
           required: this.required,
-          readonly: this.readOnly,
           disabled: this.disabled,
         },
         attrs: {
@@ -217,6 +222,7 @@ export default {
           type: this.type,
           name: this.name,
           placeholder: this.placeholder,
+          readonly: this.readOnly,
         },
         on: {
           ...this.$listeners,

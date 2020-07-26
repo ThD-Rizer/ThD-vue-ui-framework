@@ -1,21 +1,27 @@
+$colorTheme: $colorAmber;
+
 .root {
-  background-color: $colorAmber;
+  background-color: $colorTheme;
   color: $colorMineShaft;
 
   @include hover {
-    background-color: darken($colorAmber, 15%);
+    background-color: darken($colorTheme, 10%);
   }
 
-  @include focus {
-    @include focusOutline($colorAmber);
+  @include active {
+    background-color: darken($colorTheme, 15%);
+  }
+
+  &.isFocused {
+    @include focusedOutline($colorTheme);
   }
 
   &.isActive {
-    background-color: darken($colorAmber, 15%);
+    background-color: darken($colorTheme, 10%);
   }
 
   &.isDisabled {
-    background-color: lighten($colorAmber, 20%);
+    background-color: lighten($colorTheme, 20%);
     color: $colorDustyGray;
   }
 }

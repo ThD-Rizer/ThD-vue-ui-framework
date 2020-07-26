@@ -217,7 +217,6 @@
   };
 </script>
 
-
 <style lang="scss" module>
   .col {
     background-color: rgba($colorEasternBlue, .5);

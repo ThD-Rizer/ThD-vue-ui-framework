@@ -59,14 +59,24 @@ $paddingYLarge: spacer(8);
     border-radius: 0;
   }
 
-  &.square_left {
+  &.square_top {
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
   &.square_right {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  &.square_bottom {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &.square_left {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   &.hasIcon {
@@ -76,6 +86,7 @@ $paddingYLarge: spacer(8);
 
   &.isDisabled {
     pointer-events: none;
+    cursor: not-allowed;
   }
 }
 
