@@ -1,20 +1,26 @@
+$colorTheme: $colorOuterSpace;
+
 .root {
-  background-color: $colorOuterSpace;
+  background-color: $colorTheme;
   color: $colorWhite;
 
   @include hover {
-    background-color: darken($colorOuterSpace, 15%);
+    background-color: darken($colorTheme, 20%);
   }
 
-  @include focus {
-    @include focusOutline($colorOuterSpace);
+  @include active {
+    background-color: darken($colorTheme, 25%);
+  }
+
+  &.isFocused {
+    @include focusedOutline($colorTheme);
   }
 
   &.isActive {
-    background-color: darken($colorOuterSpace, 15%);
+    background-color: darken($colorTheme, 25%);
   }
 
   &.isDisabled {
-    background-color: lighten($colorOuterSpace, 20%);
+    background-color: lighten($colorTheme, 20%);
   }
 }

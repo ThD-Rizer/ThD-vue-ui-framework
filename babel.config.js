@@ -5,4 +5,17 @@ module.exports = {
     '@babel/plugin-proposal-nullish-coalescing-operator',
     '@babel/plugin-proposal-optional-chaining',
   ],
+  env: {
+    test: {
+      presets: ['@vue/cli-plugin-babel/preset'],
+      plugins: [
+        ['module-resolver', {
+          root: ['./src'],
+          alias: {
+            '@': './src',
+          },
+        }],
+      ],
+    },
+  },
 };

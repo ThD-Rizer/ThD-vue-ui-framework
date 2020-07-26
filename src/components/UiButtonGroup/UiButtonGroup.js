@@ -1,15 +1,34 @@
-import { getSlot } from '@/utils/helpers';
+import { getSlot, propValidator } from '@/utils/helpers';
 import styles from './UiButtonGroup.scss';
+
+const directionValidator = propValidator('direction', [
+  'horizontal',
+  'vertical',
+]);
 
 export default {
   name: 'UiButtonGroup',
   props: {
-    // @TODO
+    direction: {
+      type: String,
+      default: 'horizontal',
+      ...directionValidator,
+    },
   },
+  computed: {
+    classesRoot() {
+      const { direction } = this;
+      return {
+        [styles.root]: true,
+        [styles[`direction_${direction}`]]: direction,
+      };
+    },
+  },
+
   methods: {
     genRoot(childNodes = []) {
       return this.$createElement('div', {
-        style: styles.root,
+        class: this.classesRoot,
       }, childNodes);
     },
 
@@ -18,19 +37,35 @@ export default {
 
       if (!options) return null;
 
+      const isHorizontal = this.direction === 'horizontal';
+      const isVertical = this.direction === 'vertical';
+
       const getProps = () => {
-        switch (index) {
-          case 0:
-            return { square: 'right' };
-          case list.length - 1:
-            return { square: 'left' };
-          default:
-            return { square: true };
+        let square = true;
+
+        if (isHorizontal && index === 0) {
+          square = 'right';
         }
+        if (isHorizontal && index === list.length - 1) {
+          square = 'left';
+        }
+        if (isVertical && index === 0) {
+          square = 'bottom';
+        }
+        if (isVertical && index === list.length - 1) {
+          square = 'top';
+        }
+
+        return { square };
       };
 
       return this.$createElement(options.tag, {
         ...node.data,
+        class: [
+          node.data?.class,
+          node.data?.staticClass,
+          styles.button,
+        ],
         props: {
           ...options.propsData,
           ...getProps(),
@@ -44,6 +79,8 @@ export default {
     const defaultSlot = getSlot(this) || [];
     const buttons = defaultSlot.map(this.genButton);
 
-    return this.genRoot(buttons);
+    return this.genRoot([
+      buttons,
+    ]);
   },
 };

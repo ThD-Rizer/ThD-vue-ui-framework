@@ -1,0 +1,79 @@
+$size: 24px;
+$themeColor: $colorEasternBlue;
+
+.root {
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+
+  &.isDisabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.input {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $size;
+  height: $size;
+  background-color: rgba($colorWhite, .75);
+  border: 1px solid $themeColor;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+
+  .isFocused & {
+    @include focusedOutline($themeColor);
+  }
+
+  .isReadOnly & {
+    background-color: rgba(lighten($colorHeather, 15%), .75);
+  }
+
+  .isDisabled & {
+    background-color: rgba(lighten($colorHeather, 15%), .75);
+    border-color: $colorHeather;
+  }
+}
+
+.marker {
+  display: block;
+  width: $size / 2;
+  height: $size / 2;
+  background-color: $themeColor;
+  border-radius: 50%;
+  opacity: 0;
+  transition-timing-function: $transitionDefaultTiming;
+  transition-duration: .2s;
+  transition-property: color, opacity, transform;
+  transform: scale3d(0.1, 0.1, 0.1);
+
+  .isChecked & {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+  .isDisabled & {
+    color: $colorHeather;
+  }
+}
+
+.label {
+  padding-left: spacer(3);
+
+  .isDisabled & {
+    color: $colorDustyGray;
+  }
+}

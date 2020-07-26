@@ -1,1 +1,20 @@
 .root {}
+
+.direction_horizontal {}
+
+.direction_vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  &:not(:last-child) {
+    .direction_horizontal & {
+      margin-right: 1px;
+    }
+
+    .direction_vertical & {
+      margin-bottom: 1px;
+    }
+  }
+}

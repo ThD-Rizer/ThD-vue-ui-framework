@@ -1,28 +1,15 @@
 import Vue from 'vue';
 import UI from '@/lib';
-import router from './router';
-import App from './App';
-import UiMain from './components/UiMain';
-import UiSection from './components/UiSection';
-import UiHeading from './components/UiHeading';
-import UiButtonStyles from './styles/UiButton.scss';
-import UiButtonThemeCoolStyles from './styles/UiButton.themeCool.scss';
-import UiInputStyles from './styles/UiInput.scss';
+import router from '@demo/router';
+import App from '@demo/App';
+import UiMain from '@demo/components/UiMain';
+import UiSection from '@demo/components/UiSection';
+import UiHeading from '@demo/components/UiHeading';
+// import configUiStyles from '@demo/configUiStyles';
 
 Vue.use(UI, {
   components: {
-    styles: {
-      UiButton: {
-        installedStyles: UiButtonStyles,
-        installedThemesStyles: {
-          cool: UiButtonThemeCoolStyles,
-        },
-      },
-      UiInput: {
-        installedStyles: UiInputStyles,
-        installedResetDefaultStyles: true,
-      },
-    },
+    // styles: configUiStyles,
   },
 });
 Vue.component(UiMain.name, UiMain);

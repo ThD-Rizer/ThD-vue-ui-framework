@@ -244,7 +244,7 @@
         Buttons group
       </UiHeading>
 
-      <UiButtonGroup>
+      <UiButtonGroup class="mb-4">
         <UiButton
           v-for="index in 3"
           :key="index"
@@ -252,16 +252,26 @@
           Button {{ index }}
         </UiButton>
       </UiButtonGroup>
-    </UiSection>
 
-    <UiSection>
-      <UiButtonGroup>
+      <UiButtonGroup
+        direction="horizontal"
+        class="mb-4"
+      >
         <UiButton
           v-for="index in 3"
           :key="index"
           :active="index === 2"
           size="small"
           theme="info"
+        >
+          Button {{ index }}
+        </UiButton>
+      </UiButtonGroup>
+
+      <UiButtonGroup direction="vertical">
+        <UiButton
+          v-for="index in 3"
+          :key="index"
         >
           Button {{ index }}
         </UiButton>

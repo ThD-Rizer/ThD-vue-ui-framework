@@ -3,19 +3,25 @@ $themeColor: $colorEasternBlue;
 
 .root {
   display: inline-flex;
+  user-select: none;
 
   &.isFluid {
     display: flex;
   }
 
-  &.isReadOnly,
   &.isDisabled {
+    cursor: not-allowed;
     pointer-events: none;
   }
 }
 
 .input {
-  @include visuallyHidden;
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .checkbox {
@@ -31,23 +37,28 @@ $themeColor: $colorEasternBlue;
   overflow: hidden;
   cursor: pointer;
 
+  .isFocused & {
+    @include focusedOutline($themeColor);
+  }
+
   .isReadOnly & {
-    background-color: rgba(lighten($colorHeather, 20%), .75);
+    background-color: rgba(lighten($colorHeather, 15%), .75);
   }
 
   .isDisabled & {
-    background-color: rgba(lighten($colorHeather, 20%), .75);
+    background-color: rgba(lighten($colorHeather, 15%), .75);
     border-color: $colorHeather;
   }
 }
 
 .marker {
+  display: block;
   color: $themeColor;
   opacity: 0;
   transition-timing-function: $transitionDefaultTiming;
   transition-duration: .2s;
   transition-property: color, opacity, transform;
-  transform: scale3d(0.1, 0.1, 0.1);
+  transform: scale3d(.1, .1, .1);
 
   .isChecked & {
     opacity: 1;
@@ -59,7 +70,9 @@ $themeColor: $colorEasternBlue;
   }
 }
 
-.marker_check {}
+.marker_check {
+  //
+}
 
 .marker_square {
   width: $size / 2;
@@ -67,10 +80,15 @@ $themeColor: $colorEasternBlue;
   background-color: currentColor;
 }
 
-.marker_cross {}
+.marker_cross {
+  //
+}
 
 .label {
   padding-left: spacer(3);
   cursor: pointer;
-  user-select: none;
+
+  .isDisabled & {
+    color: $colorDustyGray;
+  }
 }

@@ -25,11 +25,14 @@ module.exports = {
     requireModuleExtension: false,
     loaderOptions: {
       scss: {
-        prependData: () => (`
-          @import "@/styles/variables.scss";
-          @import "@/styles/helpers.scss";
-          @import "@/styles/mixins.scss";
-        `),
+        additionalData: (content) => {
+          const prepend = `
+            @import '~@/styles/variables.scss';
+            @import '~@/styles/helpers.scss';
+            @import '~@/styles/mixins.scss';
+          `;
+          return prepend + content;
+        },
       },
       css: {
         modules: {

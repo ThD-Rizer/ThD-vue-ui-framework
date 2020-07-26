@@ -17,6 +17,9 @@ export { default as UiButtonHamburger } from './UiButtonHamburger';
 export { default as UiInput } from './UiInput';
 export { default as UiTextarea } from './UiTextarea';
 export { default as UiCheckbox } from './UiCheckbox';
+export { default as UiCheckboxGroup } from './UiCheckboxGroup';
+export { default as UiRadio } from './UiRadio';
+export { default as UiRadioGroup } from './UiRadioGroup';
 // export { default as UiDatepicker } from './UiDatepicker';
 
 // Tables

@@ -76,7 +76,7 @@
   }
 }
 
-@mixin focusOutline($color: $colorMineShaft, $size: 3px) {
+@mixin focusedOutline($color: $colorMineShaft, $size: 3px) {
   box-shadow: 0 0 0 $size rgba($color, .2);
 }
 

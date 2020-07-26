@@ -49,7 +49,15 @@ const sizeValidator = propValidator('size', [
   'large',
 ]);
 const squareValidator = {
-  validator: (_) => isBoolean(_) || (isString(_) && ['left', 'right'].includes(_)),
+  validator: (_) => (
+    isBoolean(_)
+    || (isString(_) && [
+      'top',
+      'right',
+      'bottom',
+      'left',
+    ].includes(_))
+  ),
 };
 const contentAlignValidator = propValidator('contentAlign', [
   'left',

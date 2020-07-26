@@ -21,8 +21,8 @@
 
 <script>
   import packageJson from '@root/package.json';
-  import routes from './router/routes';
-  import UiHeader from './components/UiHeader';
+  import routes from '@demo/router/routes';
+  import UiHeader from '@demo/components/UiHeader';
 
   export default {
     name: 'DemoApplication',
