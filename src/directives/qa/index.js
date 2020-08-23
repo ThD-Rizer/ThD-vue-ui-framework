@@ -1,5 +1,5 @@
 import { QA_ATTRIBUTE_NAME } from '@/constants';
-import FrameworkError from '@/utils/errors';
+import BaseError from '@/utils/errors';
 
 export default {
   name: 'qa',
@@ -13,7 +13,7 @@ export default {
     const hasModifiers = !!Object.values(modifiers).length;
 
     if (!['string', 'number', 'boolean'].includes(typeof value) && !hasModifiers) {
-      throw new FrameworkError('Invalid value given for "qa" directive');
+      throw new BaseError('Invalid value given for "qa" directive');
     }
 
     if (!hasModifiers) {

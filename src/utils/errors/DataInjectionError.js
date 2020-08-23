@@ -1,9 +1,9 @@
-import FrameworkError from './FrameworkError';
+import BaseError from './BaseError';
 
 /**
  * Бросать, когда инъекция данных используется вне допустимого компонента
  */
-export default class DataInjectionError extends FrameworkError {
+export default class DataInjectionError extends BaseError {
   /**
    * @param {String} parent
    * @param {String} child

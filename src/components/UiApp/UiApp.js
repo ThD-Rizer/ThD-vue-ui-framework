@@ -1,4 +1,4 @@
-import FrameworkError from '@/utils/errors';
+import BaseError from '@/utils/errors';
 import { getSlot } from '@/utils/helpers';
 import { registrableProvide } from '@/mixins/registrable';
 
@@ -33,7 +33,7 @@ export default {
       const isValid = (container in this.$refs);
 
       if (!isValid) {
-        throw new FrameworkError(`Container "${container}" does not exists`);
+        throw new BaseError(`Container "${container}" does not exists`);
       }
 
       this.$refs[container].appendChild(el);

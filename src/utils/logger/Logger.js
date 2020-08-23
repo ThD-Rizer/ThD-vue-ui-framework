@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { isString, isPlainObject, isFunction } from '../inspect';
 import {
   DEFAULT_CONFIG,
@@ -18,7 +19,6 @@ export default class Logger {
    */
   constructor(config = {}) {
     if (config && !isPlainObject(config)) {
-      // eslint-disable-next-line no-console
       console.error(
         '[Logger:constructor]:',
         'The "config" property is invalid!\n',
@@ -30,7 +30,6 @@ export default class Logger {
     const { accessHandler, scope, prefix } = config;
 
     if (accessHandler && !isFunction(accessHandler)) {
-      // eslint-disable-next-line no-console
       console.error(
         '[Logger:constructor]:',
         'The "accessHandler" option is invalid!\n',
@@ -39,7 +38,6 @@ export default class Logger {
       return;
     }
     if (scope && !isString(scope)) {
-      // eslint-disable-next-line no-console
       console.error(
         '[Logger:constructor]:',
         'The "scope" option is invalid!\n',
@@ -48,7 +46,6 @@ export default class Logger {
       return;
     }
     if (prefix && !isString(prefix)) {
-      // eslint-disable-next-line no-console
       console.error(
         '[Logger:constructor]:',
         'The "prefix" option is invalid!\n',
@@ -96,7 +93,6 @@ export default class Logger {
     const method = METHODS_MAP[level];
     const styles = STYLES[level].join(' ');
 
-    // eslint-disable-next-line no-console
     console[method](`%c${prefix}`, styles, ...attrs);
   }
 
