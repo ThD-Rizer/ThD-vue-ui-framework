@@ -29,7 +29,20 @@ function install(Vue, component) {
 function injectInstalledOptions(component, options) {
   if (!isPlainObject(options) || isEmptyObject(options)) return;
 
-  const { styleOptions } = options;
+  const {
+    customIcons,
+    styleOptions,
+  } = options;
+
+  // Инъекция кастомных иконок в компонент `UiIcon`
+  if (
+    isPlainObject(customIcons)
+    && !isEmptyObject(customIcons)
+    && component.name === 'UiIcon'
+  ) {
+    // eslint-disable-next-line no-param-reassign
+    component.customIcons = customIcons;
+  }
 
   // Настройки кастомных стилей компонента
   if (isPlainObject(styleOptions) && !isEmptyObject(styleOptions)) {
