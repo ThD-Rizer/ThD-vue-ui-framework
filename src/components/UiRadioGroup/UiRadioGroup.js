@@ -1,4 +1,5 @@
-import { generateHash, getSlot, propValidator } from '@/utils/helpers';
+import { generateHash } from '@/utils';
+import { getSlot, propValidator } from '@/utils/helpers';
 import { factoryProvidable } from '@/mixins/providable';
 import styles from './UiRadioGroup.scss';
 

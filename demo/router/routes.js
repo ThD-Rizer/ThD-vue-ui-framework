@@ -1,4 +1,4 @@
-import { pascalToKebab } from '@/utils/helpers';
+import { pascalToKebab } from '@/utils';
 
 const page = (component) => ({
   path: `/${pascalToKebab(component)}`,

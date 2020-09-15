@@ -1,4 +1,9 @@
 import {
+  generateHash,
+  cloneArray,
+  cloneDeep,
+} from '@/utils';
+import {
   isUndefined,
   isNil,
   isBoolean,
@@ -6,11 +11,8 @@ import {
   isPlainObject,
 } from '@/utils/inspect';
 import {
-  generateHash,
   getSlot,
   propValidator,
-  cloneArray,
-  cloneDeep,
 } from '@/utils/helpers';
 import { factoryInjectable } from '@/mixins/injectable';
 import UiIcon from '@/components/UiIcon';

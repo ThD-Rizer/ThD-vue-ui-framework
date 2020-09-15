@@ -1,4 +1,4 @@
-import { generateHash } from '@/utils/helpers';
+import { generateHash } from '@/utils';
 import styles from './UiTextarea.scss';
 
 export default {

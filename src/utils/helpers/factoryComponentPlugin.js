@@ -1,6 +1,6 @@
-import { InvalidTypeError } from './errors';
-import { isNull, isBoolean, isPlainObject } from './inspect';
-import { pascalToKebab } from './helpers';
+import { InvalidTypeError } from '../errors';
+import { isNull, isBoolean, isPlainObject } from '../inspect';
+import { pascalToKebab } from '../index';
 
 const isEmptyObject = (object) => !Object.values(object).length;
 

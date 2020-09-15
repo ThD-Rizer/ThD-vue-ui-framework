@@ -1,6 +1,6 @@
+import { isEqual } from '@/utils';
 import { InvalidTypeError } from '@/utils/errors';
 import { isString, isPlainObject } from '@/utils/inspect';
-import { isEqual } from '@/utils/helpers';
 import mergeStyles from './mergeStyles';
 
 /**

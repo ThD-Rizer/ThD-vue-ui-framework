@@ -77,12 +77,42 @@
 
 <script>
   import { STATE_TYPES } from '@/components/UiSuspense';
+  import { Logger, LogModel } from '@/utils/logger';
+
+  const logger = new Logger({
+    scope: 'PageOther',
+  });
 
   export default {
     name: 'PageOther',
     data: () => ({
       suspenseState: null,
     }),
+    mounted() {
+      const model = new LogModel({
+        heading: 'methodName()',
+        message: 'Data is invalid!\nOh shit, fucking shit!',
+        data: {
+          id: 1,
+          value: 0.5,
+          name: 'Olo',
+          sex: null,
+          files: undefined,
+          date: {
+            x: 1,
+            y: 2,
+          },
+          props: [1, 2, 3],
+          check: false,
+          text: 'fa fi foooo',
+        },
+      });
+
+      logger.log(model);
+      logger.info(model);
+      logger.warn(model);
+      logger.error(model);
+    },
     methods: {
       switchSuspense() {
         switch (this.suspenseState) {

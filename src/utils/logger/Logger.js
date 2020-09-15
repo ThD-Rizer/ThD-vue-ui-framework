@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { isString, isPlainObject, isFunction } from '../inspect';
 import {
   DEFAULT_CONFIG,
@@ -5,20 +6,17 @@ import {
   METHODS_MAP,
   STYLES,
 } from './constants';
+import LogModel from './LogModel';
 
 export default class Logger {
   /**
-   * @TODO: заменить "console.error" на "throw" в проверках условий.
-   * Реализовать в виде Assert.
-   *
    * @param {Object} config
-   * @param {Function} config.accessHandler
-   * @param {String} config.scope
-   * @param {String} config.prefix
+   * @param {Function} config.accessHandler Обработчик с условием доступа
+   * @param {String} config.scope Область видимости экземпляра
+   * @param {String} config.prefix Полный префикс лога (значение начального тега)
    */
   constructor(config = {}) {
-    if (config && !isPlainObject(config)) {
-      // eslint-disable-next-line no-console
+    if (!isPlainObject(config)) {
       console.error(
         '[Logger:constructor]:',
         'The "config" property is invalid!\n',
@@ -30,7 +28,6 @@ export default class Logger {
     const { accessHandler, scope, prefix } = config;
 
     if (accessHandler && !isFunction(accessHandler)) {
-      // eslint-disable-next-line no-console
       console.error(
         '[Logger:constructor]:',
         'The "accessHandler" option is invalid!\n',
@@ -39,7 +36,6 @@ export default class Logger {
       return;
     }
     if (scope && !isString(scope)) {
-      // eslint-disable-next-line no-console
       console.error(
         '[Logger:constructor]:',
         'The "scope" option is invalid!\n',
@@ -48,7 +44,6 @@ export default class Logger {
       return;
     }
     if (prefix && !isString(prefix)) {
-      // eslint-disable-next-line no-console
       console.error(
         '[Logger:constructor]:',
         'The "prefix" option is invalid!\n',
@@ -79,28 +74,48 @@ export default class Logger {
     this.output(LEVELS.ERROR, ...attrs);
   }
 
+  /**
+   * @private
+   */
   output(level, ...attrs) {
     if (!this.hasAccess()) return;
 
-    const firstLetter = level.charAt(0).toLocaleUpperCase();
-    const prefixDefault = `${firstLetter}${level.substr(1)}`;
-    const { scope } = this.options;
+    const method = METHODS_MAP[level];
     let { prefix } = this.options;
 
     if (!prefix) {
-      prefix = `[${prefixDefault}`;
-      prefix += scope ? `:${scope}` : '';
-      prefix += ']:';
+      const prefixFirstLetter = level.charAt(0).toLocaleUpperCase();
+      const prefixDefault = `${prefixFirstLetter}${level.substr(1).toLocaleLowerCase()}`;
+      let { scope } = this.options;
+      scope = scope ? `:${scope}` : '';
+
+      prefix = `${prefixDefault}${scope}`;
     }
 
-    const method = METHODS_MAP[level];
-    const styles = STYLES[level].join(' ');
+    let template = '%c%s%c';
+    let substrings = [
+      STYLES.TAG[level],
+      prefix,
+      null,
+    ];
 
-    // eslint-disable-next-line no-console
-    console[method](`%c${prefix}`, styles, ...attrs);
+    [...attrs].forEach((argument) => {
+      const isLogModel = argument instanceof LogModel;
+
+      if (isLogModel) {
+        const data = argument.getOutputData(level);
+        template += ` ${data.template}`;
+        substrings = [
+          ...substrings,
+          ...data.substrings,
+        ];
+      }
+    });
+
+    console[method](template, ...substrings);
   }
 
   hasAccess() {
-    return this.options.accessHandler();
+    return this.options?.accessHandler();
   }
 }

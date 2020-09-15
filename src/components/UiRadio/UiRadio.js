@@ -1,4 +1,5 @@
-import { generateHash, getSlot } from '@/utils/helpers';
+import { generateHash } from '@/utils';
+import { getSlot } from '@/utils/helpers';
 import { factoryInjectable } from '@/mixins/injectable';
 import { isNil } from '../../utils/inspect';
 import styles from './UiRadio.scss';
