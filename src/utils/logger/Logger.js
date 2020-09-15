@@ -101,15 +101,14 @@ export default class Logger {
 
     [...attrs].forEach((argument) => {
       const isLogModel = argument instanceof LogModel;
+      const payload = (isLogModel)
+        ? argument.getOutputData(level).substrings
+        : [argument];
 
       if (isLogModel) {
-        const data = argument.getOutputData(level);
-        template += ` ${data.template}`;
-        substrings = [
-          ...substrings,
-          ...data.substrings,
-        ];
+        template += ` ${argument.getOutputData(level).template}`;
       }
+      substrings = [...substrings, ...payload];
     });
 
     console[method](template, ...substrings);
