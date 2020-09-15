@@ -1,14 +1,6 @@
-import { InvalidTypeError } from '../errors';
-import { isArray } from '../inspect';
+import { InvalidTypeError } from './errors';
+import { isArray } from './inspect';
 import randomInteger from './randomInteger';
-
-// const random = (min, max) => {
-//   let result = (max - min) + 1;
-//   result *= Math.random();
-//   result += min - 0.5;
-//
-//   return parseInt(Math.round(result), 10);
-// };
 
 /**
  * Получить случайный элемент массива

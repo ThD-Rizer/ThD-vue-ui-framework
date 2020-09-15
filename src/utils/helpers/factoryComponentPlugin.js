@@ -1,6 +1,6 @@
-import { InvalidTypeError } from './errors';
-import { isNull, isBoolean, isPlainObject } from './inspect';
-import { pascalToKebab } from './helpers';
+import { InvalidTypeError } from '../errors';
+import { isNull, isBoolean, isPlainObject } from '../inspect';
+import { pascalToKebab } from '../index';
 
 const isEmptyObject = (object) => !Object.values(object).length;
 
@@ -29,7 +29,20 @@ function install(Vue, component) {
 function injectInstalledOptions(component, options) {
   if (!isPlainObject(options) || isEmptyObject(options)) return;
 
-  const { styleOptions } = options;
+  const {
+    customIcons,
+    styleOptions,
+  } = options;
+
+  // Инъекция кастомных иконок в компонент `UiIcon`
+  if (
+    isPlainObject(customIcons)
+    && !isEmptyObject(customIcons)
+    && component.name === 'UiIcon'
+  ) {
+    // eslint-disable-next-line no-param-reassign
+    component.customIcons = customIcons;
+  }
 
   // Настройки кастомных стилей компонента
   if (isPlainObject(styleOptions) && !isEmptyObject(styleOptions)) {

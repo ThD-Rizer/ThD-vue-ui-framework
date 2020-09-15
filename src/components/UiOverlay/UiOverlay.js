@@ -1,5 +1,6 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodyScrollLock';
-import { scrollTo, getSlot } from '@/utils/helpers';
+import { scrollTo } from '@/utils';
+import { getSlot } from '@/utils/helpers';
 import { registrableInject } from '@/mixins/registrable';
 import { factoryToggleable } from '@/mixins/toggleable';
 import styles from './UiOverlay.scss';

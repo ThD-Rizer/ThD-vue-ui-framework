@@ -1,4 +1,5 @@
-import { generateHash, propValidator } from '@/utils/helpers';
+import { generateHash } from '@/utils';
+import { propValidator } from '@/utils/helpers';
 import { factoryStylable } from '@/mixins/stylable';
 import UiIcon from '@/components/UiIcon';
 import defaultStyles from './UiInput.scss';
