@@ -6,19 +6,17 @@ import {
   METHODS_MAP,
   STYLES,
 } from './constants';
+import LogModel from './LogModel';
 
 export default class Logger {
   /**
-   * @TODO: заменить "console.error" на "throw" в проверках условий.
-   * Реализовать в виде Assert.
-   *
    * @param {Object} config
-   * @param {Function} config.accessHandler
-   * @param {String} config.scope
-   * @param {String} config.prefix
+   * @param {Function} config.accessHandler Обработчик с условием доступа
+   * @param {String} config.scope Область видимости экземпляра
+   * @param {String} config.prefix Полный префикс лога (значение начального тега)
    */
   constructor(config = {}) {
-    if (config && !isPlainObject(config)) {
+    if (!isPlainObject(config)) {
       console.error(
         '[Logger:constructor]:',
         'The "config" property is invalid!\n',
@@ -76,27 +74,47 @@ export default class Logger {
     this.output(LEVELS.ERROR, ...attrs);
   }
 
+  /**
+   * @private
+   */
   output(level, ...attrs) {
     if (!this.hasAccess()) return;
 
-    const firstLetter = level.charAt(0).toLocaleUpperCase();
-    const prefixDefault = `${firstLetter}${level.substr(1)}`;
-    const { scope } = this.options;
+    const method = METHODS_MAP[level];
     let { prefix } = this.options;
 
     if (!prefix) {
-      prefix = `[${prefixDefault}`;
-      prefix += scope ? `:${scope}` : '';
-      prefix += ']:';
+      const prefixFirstLetter = level.charAt(0).toLocaleUpperCase();
+      const prefixDefault = `${prefixFirstLetter}${level.substr(1).toLocaleLowerCase()}`;
+      let { scope } = this.options;
+      scope = scope ? `:${scope}` : '';
+
+      prefix = `${prefixDefault}${scope}`;
     }
 
-    const method = METHODS_MAP[level];
-    const styles = STYLES[level].join(' ');
+    let template = '%c%s%c';
+    let substrings = [
+      STYLES.TAG[level],
+      prefix,
+      null,
+    ];
 
-    console[method](`%c${prefix}`, styles, ...attrs);
+    [...attrs].forEach((argument) => {
+      const isLogModel = argument instanceof LogModel;
+      const payload = (isLogModel)
+        ? argument.getOutputData(level).substrings
+        : [argument];
+
+      if (isLogModel) {
+        template += ` ${argument.getOutputData(level).template}`;
+      }
+      substrings = [...substrings, ...payload];
+    });
+
+    console[method](template, ...substrings);
   }
 
   hasAccess() {
-    return this.options.accessHandler();
+    return this.options?.accessHandler();
   }
 }

@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '../errors';
-import { isString } from '../inspect';
+import { InvalidTypeError } from './errors';
+import { isString } from './inspect';
 
 /**
  * Вырезание пробелов с правой стороны строки

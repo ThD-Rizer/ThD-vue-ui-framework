@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '../errors';
-import { isArray } from '../inspect';
+import { InvalidTypeError } from './errors';
+import { isArray } from './inspect';
 
 /**
  * Returns cloned array

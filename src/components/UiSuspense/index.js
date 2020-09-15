@@ -1,4 +1,4 @@
-import factoryComponentPlugin from '@/utils/factoryComponentPlugin';
+import { factoryComponentPlugin } from '@/utils/helpers';
 import { STATE_TYPES } from './constants';
 import UiSuspense from './UiSuspense';
 

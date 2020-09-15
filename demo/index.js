@@ -5,10 +5,12 @@ import App from '@demo/App';
 import UiMain from '@demo/components/UiMain';
 import UiSection from '@demo/components/UiSection';
 import UiHeading from '@demo/components/UiHeading';
+import icons from '@demo/configIcons';
 // import configUiStyles from '@demo/configUiStyles';
 
 Vue.use(UI, {
   components: {
+    icons,
     // styles: configUiStyles,
   },
 });

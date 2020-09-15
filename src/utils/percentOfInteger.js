@@ -1,5 +1,5 @@
-import { InvalidTypeError } from '../errors';
-import { isNumber } from '../inspect';
+import { InvalidTypeError } from './errors';
+import { isNumber } from './inspect';
 
 /**
  * Вычисление процента от числа

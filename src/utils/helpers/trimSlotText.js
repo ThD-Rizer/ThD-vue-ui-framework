@@ -1,7 +1,7 @@
 import { InvalidTypeError } from '../errors';
 import { isArray } from '../inspect';
-import trimLeft from './trimLeft';
-import trimRight from './trimRight';
+import trimLeft from '../trimLeft';
+import trimRight from '../trimRight';
 
 /**
  * Вырезание пробелов у крайних элементов слота, слева и справа соответственно
