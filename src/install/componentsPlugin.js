@@ -8,7 +8,7 @@ import * as components from '@/components';
  * @returns {{ styleOptions?: Object }}
  */
 function getComponentOptions(component, options) {
-  const customIcons = (options?.icons) ? { icons: options.icons } : null;
+  const customIcons = options?.icons;
   const styleOptions = options?.styles?.[component.name];
 
   return {

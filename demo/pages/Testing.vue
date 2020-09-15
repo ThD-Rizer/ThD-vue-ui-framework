@@ -2,6 +2,13 @@
   <UiMain>
     <UiRow>
       <UiCol>
+        <UiIcon name="arrow-left" />
+        custom icon
+      </UiCol>
+    </UiRow>
+
+    <UiRow class="mt-4">
+      <UiCol>
         <UiButton
           :theme="theme"
           :customStyles="customStyles"
