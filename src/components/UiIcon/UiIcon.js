@@ -3,7 +3,6 @@ import { propValidator } from '@/utils/helpers';
 import styles from './UiIcon.scss';
 
 const tagValidator = propValidator('tag', ['span', 'i']);
-const nameValidator = propValidator('name', Object.keys(icons || {}));
 
 export default {
   name: 'UiIcon',
@@ -16,7 +15,6 @@ export default {
     name: {
       type: String,
       required: true,
-      ...nameValidator,
     },
     colorDisabled: {
       type: Boolean,
@@ -24,8 +22,15 @@ export default {
     },
   },
   computed: {
+    icons() {
+      const customIcons = this.$options.customIcons || null;
+      return {
+        ...icons,
+        ...customIcons,
+      };
+    },
     icon() {
-      return icons?.[this.name];
+      return this.icons[this.name];
     },
     classesRoot() {
       return {

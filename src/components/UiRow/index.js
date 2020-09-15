@@ -1,4 +1,4 @@
-import factoryComponentPlugin from '@/utils/factoryComponentPlugin';
+import { factoryComponentPlugin } from '@/utils/helpers';
 import UiRow from './UiRow';
 
 export default factoryComponentPlugin(UiRow);
