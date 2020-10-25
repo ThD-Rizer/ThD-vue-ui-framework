@@ -34,6 +34,7 @@
      * [UiCheckboxGroup](./src/components/UiCheckboxGroup/README.md)
      * [UiRadio](./src/components/UiRadio/README.md)
      * [UiRadioGroup](./src/components/UiRadioGroup/README.md)
+     * [UiSelect](./src/components/UiSelect/README.md)
      * [UiDatepicker](./src/components/UiDatepicker/README.md)
    * Таблицы
      * @TODO

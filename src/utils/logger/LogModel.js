@@ -63,10 +63,14 @@ export default class LogModel {
 
   /**
    * Вставить сброс строки
+   * @param {Boolean} checkEmpty
    * @private
    */
-  setNewLine() {
-    this.template += this.template ? '\n' : '';
+  setNewLine(checkEmpty = false) {
+    if (checkEmpty) {
+      this.template += this.template ? '\n' : '';
+    }
+    this.template += '\n';
   }
 
   /**
@@ -188,14 +192,15 @@ export default class LogModel {
     }
 
     if (message) {
-      this.setNewLine();
+      this.setNewLine(true);
       this.setStartLine(level);
       this.setText(message);
     }
 
     if (data) {
+      this.setNewLine();
       Object.entries(data).forEach(([key, value]) => {
-        this.setNewLine();
+        this.setNewLine(true);
         this.setStartLine(level);
         this.setProperty(level, key, value);
       });

@@ -3,6 +3,8 @@ export { default as cloneArray } from './cloneArray';
 export { default as cloneDeep } from './cloneDeep';
 export { default as generateHash } from './generateHash';
 export { default as isEqual } from './isEqual';
+export { default as isEven } from './isEven';
+export { default as isOdd } from './isOdd';
 export { default as kebabToCamel } from './kebabToCamel';
 export { default as kebabToPascal } from './kebabToPascal';
 export { default as leadingZero } from './leadingZero';
