@@ -6,6 +6,12 @@
 
 ## v0.27.1
 
+### Fixed
+
+* Исправлено имя свойства `$angle` в scss миксине `backgroundLinearGradient`
+
+## v0.27.1
+
 ### Added
 
 * Поддержка кастомных иконок компонентом `UiIcon`
