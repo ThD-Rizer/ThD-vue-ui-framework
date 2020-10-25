@@ -111,9 +111,9 @@
   -webkit-text-fill-color: transparent;
 }
 
-@mixin backgroundLinearGradient($from, $to, $fallback: mix($from, $to), $angel: 90deg) {
+@mixin backgroundLinearGradient($from, $to, $fallback: mix($from, $to), $angle: 90deg) {
   background: $fallback;
-  background: linear-gradient($angel, $from 0%, $to 100%);
+  background: linear-gradient($angle, $from 0%, $to 100%);
 }
 
 @mixin borderX($left, $right: $left) {

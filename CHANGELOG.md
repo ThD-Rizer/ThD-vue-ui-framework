@@ -4,6 +4,12 @@
 
 ## Releases
 
+## v0.27.2
+
+### Fixed
+
+* Исправлено имя свойства `$angle` в scss миксине `backgroundLinearGradient`
+
 ## v0.27.1
 
 ### Added
