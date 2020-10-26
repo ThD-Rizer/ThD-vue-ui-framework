@@ -1,6 +1,8 @@
 import { InvalidTypeError } from '../errors';
 import { isString, isPlainObject } from '../inspect';
 
+const SEPARATOR = '-';
+
 /**
  * @param {Object} dictionary Словарь переменных
  * @param {String} mapKey Префикс переменной, на основании которого будет сформирована карта
@@ -15,7 +17,7 @@ export default function getScssVariablesMap(dictionary, mapKey) {
   }
 
   return Object.entries(dictionary).reduce((acc, [key, value]) => {
-    const regex = new RegExp(`^${mapKey}-`);
+    const regex = new RegExp(`^${mapKey}${SEPARATOR}`);
 
     if (!regex.test(key)) return acc;
 
