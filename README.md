@@ -1,4 +1,4 @@
-# @thd/vue-ui-framework (v0.27.2)
+# @thd/vue-ui-framework (v0.27.3)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
 
