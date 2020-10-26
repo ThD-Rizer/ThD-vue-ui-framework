@@ -1,6 +1,8 @@
 import { InvalidTypeError } from '../errors';
 import { isPlainObject } from '../inspect';
 
+const SEPARATOR = '-';
+
 /**
  * @param {Object} dictionary
  * @param {String} key
@@ -8,21 +10,24 @@ import { isPlainObject } from '../inspect';
  * @returns {Object}
  */
 function prepareDeepVariables(dictionary, key, value) {
-  const isDeepNesting = key.includes('-');
+  if (!key) return dictionary;
 
-  if (isDeepNesting) {
-    const [, groupKey, deepKey] = key.match(/(\w+)-([-\w]+)/);
-    const group = dictionary[groupKey] || {};
+  const isDeepNesting = key.includes(SEPARATOR);
 
+  if (!isDeepNesting) {
     return {
       ...dictionary,
-      [groupKey]: prepareDeepVariables(group, deepKey, value),
+      [key]: value,
     };
   }
 
+  const regex = new RegExp(`^(\\w+)${SEPARATOR}([${SEPARATOR}\\w]+)$`);
+  const [, groupKey, deepKey] = key.match(regex);
+  const group = dictionary[groupKey] || {};
+
   return {
     ...dictionary,
-    [key]: value,
+    [groupKey]: prepareDeepVariables(group, deepKey, value),
   };
 }
 

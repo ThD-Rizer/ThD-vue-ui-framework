@@ -7,6 +7,7 @@ import {
 import * as utils from '@/utils';
 import * as utilsInspect from '@/utils/inspect';
 import * as utilsLogger from '@/utils/logger';
+import * as utilsStyles from '@/utils/styles';
 import * as directives from '@/directives';
 import * as components from '@/components';
 
@@ -23,6 +24,7 @@ export { componentsPlugin };
 export { utils };
 export { utilsInspect };
 export { utilsLogger };
+export { utilsStyles };
 export { directives };
 export { components };
 
@@ -30,6 +32,7 @@ export { components };
 export * from '@/utils';
 export * from '@/utils/inspect';
 export * from '@/utils/logger';
+export * from '@/utils/styles';
 export * from '@/components';
 
 export default installPlugin;
