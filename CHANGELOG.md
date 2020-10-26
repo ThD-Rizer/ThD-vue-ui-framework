@@ -4,11 +4,20 @@
 
 ## Releases
 
+## v0.27.3
+
+### Fixed
+
+* Импорт scss переменных в утилиты `getScssVariable`, `getScssVariableByMap` и `getScssVariablesMap`
+ сделан относительным, для возможности использования данных утилит вне фреймворка.
+ Также в утилиты добавлен аргумент `dictionary` для возможности использования своих собственных
+ scss переменных
+
 ## v0.27.2
 
 ### Fixed
 
-* Исправлено имя свойства `$angle` в scss миксине `backgroundLinearGradient`
+* Имя свойства `$angle` в scss миксине `backgroundLinearGradient`
 
 ## v0.27.1
 
