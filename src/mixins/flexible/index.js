@@ -1,4 +1,4 @@
-import { BREAKPOINTS } from '@/constants/grid';
+import { BREAKPOINTS } from '@/constants';
 import { isBoolean } from '@/utils/inspect';
 import styles from '@/styles/flex.scss';
 

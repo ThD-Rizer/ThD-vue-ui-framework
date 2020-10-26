@@ -2,12 +2,10 @@
 :export {
   gridBreakpointFirst: unquote($gridBreakpointFirst);
   gridBreakpointLast: unquote($gridBreakpointLast);
-  //gridBreakpoints: $gridBreakpoints;
-  //gridMaxWidths: $gridMaxWidths;
 
   @each $breakpoint, $ranges in $gridBreakpoints {
     @each $range, $value in $ranges {
-      #{'grid-' + $breakpoint + '-' + $range}: $value;
+      #{'breakpoints-' + $breakpoint + '-' + $range}: $value;
     }
   }
 
