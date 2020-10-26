@@ -1,4 +1,4 @@
-# @thd/vue-ui-framework (v0.27.3)
+# @thd/vue-ui-framework (v0.27.4)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
 
@@ -45,7 +45,6 @@
      * [UiPreloader](./src/components/UiPreloader/README.md)
      * [UiSuspense](./src/components/UiSuspense/README.md)
 4. Дирекивы
-   * [QA](./src/directives/qa/README.md)
    * [ClickOutside](./src/directives/clickOutside/README.md)
 
 ## Установка
