@@ -135,10 +135,10 @@ export default class Logger {
 
     [...attrs].forEach((argument) => {
       const isLogModel = argument instanceof LogModel;
-      const newLine = isLogModelLast ? '\n' : null;
+      const newLine = isLogModelLast ? ['\n'] : [];
       const payload = (isLogModel)
         ? argument.getOutputData(level).substrings
-        : [newLine, argument];
+        : [...newLine, argument];
 
       if (isLogModel) {
         template += ` ${argument.getOutputData(level).template}`;
