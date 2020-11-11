@@ -1,5 +1,5 @@
 /**
- * @param {Object<VueInstance>} parent
+ * @param {Object<Vue>} parent
  * @param {String} slotName
  * @param {Object} scope
  * @returns {*}

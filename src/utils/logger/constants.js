@@ -27,15 +27,20 @@ export const METHODS_MAP = Object.freeze({
   [LEVELS.ERROR]: 'error',
 });
 
-const COLOR_WHITE = '#ffffff';
-const COLOR_BLACK = '#000000';
-const COLOR_SLATEGRAY = '#708090';
-const COLOR_CORNFLOWER_BLUE = '#5b92e5';
-const COLOR_DODGE_BLUE = '#52aeff';
-const COLOR_JAPANESE_LAUREL = '#00a000';
-const COLOR_MANDY = '#e4605e';
-const COLOR_ORANGE = '#ffa500';
-const COLOR_GOLD = '#ffd700';
+/**
+ * @type {Readonly<Object>}
+ */
+export const COLORS = Object.freeze({
+  WHITE: '#ffffff',
+  BLACK: '#000000',
+  SLATEGRAY: '#708090',
+  CORNFLOWER_BLUE: '#5b92e5',
+  DODGE_BLUE: '#52aeff',
+  JAPANESE_LAUREL: '#00a000',
+  MANDY: '#e4605e',
+  ORANGE: '#ffa500',
+  GOLD: '#ffd700',
+});
 
 const STYLES_TAG = [
   'border-radius: 3px;',
@@ -48,34 +53,34 @@ const STYLES_TAG = [
  */
 export const STYLES = Object.freeze({
   TEXT: {
-    [LEVELS.LOG]: `color: ${COLOR_SLATEGRAY};`,
-    [LEVELS.INFO]: `color: ${COLOR_CORNFLOWER_BLUE};`,
-    [LEVELS.WARN]: `color: ${COLOR_GOLD};`,
-    [LEVELS.ERROR]: `color: ${COLOR_MANDY};`,
-    BLUE: `color: ${COLOR_DODGE_BLUE};`,
-    GREEN: `color: ${COLOR_JAPANESE_LAUREL};`,
-    ORANGE: `color: ${COLOR_ORANGE};`,
+    [LEVELS.LOG]: `color: ${COLORS.SLATEGRAY};`,
+    [LEVELS.INFO]: `color: ${COLORS.CORNFLOWER_BLUE};`,
+    [LEVELS.WARN]: `color: ${COLORS.GOLD};`,
+    [LEVELS.ERROR]: `color: ${COLORS.MANDY};`,
+    BLUE: `color: ${COLORS.DODGE_BLUE};`,
+    GREEN: `color: ${COLORS.JAPANESE_LAUREL};`,
+    ORANGE: `color: ${COLORS.ORANGE};`,
   },
   TAG: {
     [LEVELS.LOG]: [
       ...STYLES_TAG,
-      `background: ${COLOR_SLATEGRAY};`,
-      `color: ${COLOR_WHITE};`,
+      `background: ${COLORS.SLATEGRAY};`,
+      `color: ${COLORS.WHITE};`,
     ].join(''),
     [LEVELS.INFO]: [
       ...STYLES_TAG,
-      `background: ${COLOR_CORNFLOWER_BLUE};`,
-      `color: ${COLOR_WHITE};`,
+      `background: ${COLORS.CORNFLOWER_BLUE};`,
+      `color: ${COLORS.WHITE};`,
     ].join(''),
     [LEVELS.WARN]: [
       ...STYLES_TAG,
-      `background: ${COLOR_GOLD};`,
-      `color: ${COLOR_BLACK};`,
+      `background: ${COLORS.GOLD};`,
+      `color: ${COLORS.BLACK};`,
     ].join(''),
     [LEVELS.ERROR]: [
       ...STYLES_TAG,
-      `background: ${COLOR_MANDY};`,
-      `color: ${COLOR_WHITE};`,
+      `background: ${COLORS.MANDY};`,
+      `color: ${COLORS.WHITE};`,
     ].join(''),
   },
 });

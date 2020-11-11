@@ -20,7 +20,7 @@ function UiFramework(plugins) {
 /**
  * Регистрация экземпляра компонента UiApp
  *
- * @param {Vue} app
+ * @param {Object<Vue>} app
  */
 UiFramework.prototype.setAppContainer = function setAppContainer(app) {
   this.$appContainer = app;
