@@ -5,6 +5,7 @@ export const DEFAULT_CONFIG = Object.freeze({
   accessHandler: () => true,
   scope: '',
   prefix: '',
+  showTime: true,
 });
 
 /**
@@ -31,7 +32,6 @@ export const METHODS_MAP = Object.freeze({
  * @type {Readonly<Object>}
  */
 export const COLORS = Object.freeze({
-  WHITE: '#ffffff',
   BLACK: '#000000',
   SLATEGRAY: '#708090',
   CORNFLOWER_BLUE: '#5b92e5',
@@ -40,6 +40,8 @@ export const COLORS = Object.freeze({
   MANDY: '#e4605e',
   ORANGE: '#ffa500',
   GOLD: '#ffd700',
+  POLAR: '#e9f6fa',
+  WHITE: '#ffffff',
 });
 
 const STYLES_TAG = [
@@ -81,6 +83,11 @@ export const STYLES = Object.freeze({
       ...STYLES_TAG,
       `background: ${COLORS.MANDY};`,
       `color: ${COLORS.WHITE};`,
+    ].join(''),
+    TIME: [
+      ...STYLES_TAG,
+      `background: ${COLORS.POLAR};`,
+      `color: ${COLORS.SLATEGRAY};`,
     ].join(''),
   },
 });

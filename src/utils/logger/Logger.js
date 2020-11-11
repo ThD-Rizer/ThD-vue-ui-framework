@@ -1,5 +1,11 @@
 /* eslint-disable no-console */
-import { isString, isPlainObject, isFunction } from '../inspect';
+import format from 'date-fns/format';
+import {
+  isBoolean,
+  isString,
+  isPlainObject,
+  isFunction,
+} from '../inspect';
 import {
   DEFAULT_CONFIG,
   LEVELS,
@@ -14,6 +20,7 @@ export default class Logger {
    * @param {Function} config.accessHandler Обработчик с условием доступа
    * @param {String} config.scope Область видимости экземпляра
    * @param {String} config.prefix Полный префикс лога (значение начального тега)
+   * @param {Boolean} config.showTime Флаг для отображения времени лога
    */
   constructor(config = {}) {
     if (!isPlainObject(config)) {
@@ -25,7 +32,12 @@ export default class Logger {
       return;
     }
 
-    const { accessHandler, scope, prefix } = config;
+    const {
+      accessHandler,
+      scope,
+      prefix,
+      showTime,
+    } = config;
 
     if (accessHandler && !isFunction(accessHandler)) {
       console.error(
@@ -48,6 +60,14 @@ export default class Logger {
         '[Logger:constructor]:',
         'The "prefix" option is invalid!\n',
         '| Given value:', prefix,
+      );
+      return;
+    }
+    if (showTime && !isBoolean(showTime)) {
+      console.error(
+        '[Logger:constructor]:',
+        'The "showTime" option is invalid!\n',
+        '| Given value:', showTime,
       );
       return;
     }
@@ -99,16 +119,32 @@ export default class Logger {
       null,
     ];
 
+    if (this.options.showTime) {
+      const timeNow = format(new Date(), 'HH:mm:ss.sss');
+
+      template += ' %c%s%c';
+      substrings = [
+        ...substrings,
+        STYLES.TAG.TIME,
+        timeNow,
+        null,
+      ];
+    }
+
+    let isLogModelLast = false;
+
     [...attrs].forEach((argument) => {
       const isLogModel = argument instanceof LogModel;
+      const newLine = isLogModelLast ? '\n' : null;
       const payload = (isLogModel)
         ? argument.getOutputData(level).substrings
-        : [argument];
+        : [newLine, argument];
 
       if (isLogModel) {
         template += ` ${argument.getOutputData(level).template}`;
       }
       substrings = [...substrings, ...payload];
+      isLogModelLast = isLogModel;
     });
 
     console[method](template, ...substrings);

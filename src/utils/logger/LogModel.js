@@ -12,6 +12,7 @@ import { STYLES } from './constants';
  *     date: dateValue,
  *     props,
  *   },
+ *   epilog: new Error(),
  * }));
  */
 export default class LogModel {
@@ -19,7 +20,8 @@ export default class LogModel {
    * @param {Object} config
    * @param {String} config.heading Заголовок после тега (например имя функции)
    * @param {String} config.message Описание (вторая строка лога)
-   * @param {Object} config.data Произвольные данные
+   * @param {Object} config.data Именованные свойства
+   * @param {*} config.epilog Произвольные данные
    */
   constructor(config = {}) {
     if (config && !isPlainObject(config)) {
@@ -138,19 +140,27 @@ export default class LogModel {
 
   /**
    * Вставить свойство объекта с ключом и значением по типу
-   * @param {String} level
-   * @param {String} key
-   * @param {*} value
+   * @param {Object} payload
+   * @param {String} payload.level
+   * @param {String} payload.key
+   * @param {*} payload.value
    * @private
    */
-  setProperty(level, key, value) {
-    this.setText(key);
-    this.template += ' %c=>%c ';
-    this.substrings.push(STYLES.TEXT[level]);
-    this.substrings.push(null);
+  setProperty({ level, key, value }) {
+    if (key) {
+      this.setText(key);
+      this.template += ' %c=>%c ';
+      this.substrings.push(STYLES.TEXT[level]);
+      this.substrings.push(null);
+    }
 
     if (value === null || value === undefined) {
       this.setBoolean(value);
+      return;
+    }
+
+    if (value instanceof Error) {
+      this.setText(value);
       return;
     }
 
@@ -178,7 +188,12 @@ export default class LogModel {
    * @private
    */
   format(level) {
-    const { heading, message, data } = this.config;
+    const {
+      heading,
+      message,
+      data,
+      epilog,
+    } = this.config;
 
     this.template = '';
     this.substrings = [];
@@ -197,8 +212,13 @@ export default class LogModel {
       Object.entries(data).forEach(([key, value]) => {
         this.setNewLine();
         this.setStartLine(level);
-        this.setProperty(level, key, value);
+        this.setProperty({ level, key, value });
       });
+    }
+
+    if (epilog) {
+      this.setNewLine();
+      this.setProperty({ value: epilog });
     }
   }
 
