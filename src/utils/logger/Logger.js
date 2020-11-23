@@ -16,17 +16,20 @@ import LogModel from './LogModel';
 
 export default class Logger {
   /**
-   * @param {Object} config
-   * @param {Function} config.accessHandler Обработчик с условием доступа
-   * @param {String} config.scope Область видимости экземпляра
-   * @param {String} config.prefix Полный префикс лога (значение начального тега)
-   * @param {Boolean} config.showTime Флаг для отображения времени лога
+   * @param {Object} [config]
+   * @param {Function} [config.accessHandler] Обработчик с условием доступа
+   * @param {String} [config.scope] Область видимости экземпляра
+   * @param {String} [config.prefix] Полный префикс лога (значение начального тега)
+   * @param {Boolean} [config.showTime] Флаг для отображения времени лога
    */
   constructor(config = {}) {
+    const error = (...args) => {
+      console.error('[Logger]: constructor()\n', ...args);
+    };
+
     if (!isPlainObject(config)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "config" property is invalid!\n',
+      error(
+        '| The "config" property is invalid!\n',
         '| Given value:', config,
       );
       return;
@@ -40,33 +43,29 @@ export default class Logger {
     } = config;
 
     if (accessHandler && !isFunction(accessHandler)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "accessHandler" option is invalid!\n',
+      error(
+        '| The "accessHandler" option is invalid!\n',
         '| Given value:', accessHandler,
       );
       return;
     }
     if (scope && !isString(scope)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "scope" option is invalid!\n',
+      error(
+        '| The "scope" option is invalid!\n',
         '| Given value:', scope,
       );
       return;
     }
     if (prefix && !isString(prefix)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "prefix" option is invalid!\n',
+      error(
+        '| The "prefix" option is invalid!\n',
         '| Given value:', prefix,
       );
       return;
     }
     if (showTime && !isBoolean(showTime)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "showTime" option is invalid!\n',
+      error(
+        '| The "showTime" option is invalid!\n',
         '| Given value:', showTime,
       );
       return;
@@ -78,26 +77,26 @@ export default class Logger {
     };
   }
 
-  log(...attrs) {
-    this.output(LEVELS.LOG, ...attrs);
+  log(...args) {
+    this.output(LEVELS.LOG, ...args);
   }
 
-  info(...attrs) {
-    this.output(LEVELS.INFO, ...attrs);
+  info(...args) {
+    this.output(LEVELS.INFO, ...args);
   }
 
-  warn(...attrs) {
-    this.output(LEVELS.WARN, ...attrs);
+  warn(...args) {
+    this.output(LEVELS.WARN, ...args);
   }
 
-  error(...attrs) {
-    this.output(LEVELS.ERROR, ...attrs);
+  error(...args) {
+    this.output(LEVELS.ERROR, ...args);
   }
 
   /**
    * @private
    */
-  output(level, ...attrs) {
+  output(level, ...args) {
     if (!this.hasAccess()) return;
 
     const method = METHODS_MAP[level];
@@ -133,7 +132,7 @@ export default class Logger {
 
     let isLogModelLast = false;
 
-    [...attrs].forEach((argument) => {
+    [...args].forEach((argument) => {
       const isLogModel = argument instanceof LogModel;
       const newLine = isLogModelLast ? ['\n'] : [];
       const payload = (isLogModel)

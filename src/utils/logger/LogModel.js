@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { isString, isPlainObject } from '@/utils/inspect';
+import { isInteger, isString, isPlainObject } from '@/utils/inspect';
 import { STYLES } from './constants';
 
 /**
@@ -18,16 +18,19 @@ import { STYLES } from './constants';
 export default class LogModel {
   /**
    * @param {Object} config
-   * @param {String} config.heading Заголовок после тега (например имя функции)
-   * @param {String} config.message Описание (вторая строка лога)
-   * @param {Object} config.data Именованные свойства
-   * @param {*} config.epilog Произвольные данные
+   * @param {String} [config.heading] Заголовок после тега (например имя функции)
+   * @param {String} [config.message] Описание (вторая строка лога)
+   * @param {Object} [config.data] Именованные свойства
+   * @param {*} [config.epilog] Произвольные данные
    */
-  constructor(config = {}) {
-    if (config && !isPlainObject(config)) {
-      console.error(
-        '[LogModel:constructor]:\n',
-        'The "config" property is invalid!\n',
+  constructor(config) {
+    const error = (...args) => {
+      console.error('[LogModel]: constructor()\n', ...args);
+    };
+
+    if (!isPlainObject(config)) {
+      error(
+        '| The "config" property is invalid!\n',
         '| Given value:', config,
       );
       return;
@@ -36,25 +39,22 @@ export default class LogModel {
     const { heading, message, data } = config;
 
     if (heading && !isString(heading)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "heading" option is invalid!\n',
+      error(
+        '| The "heading" option is invalid!\n',
         '| Given value:', heading,
       );
       return;
     }
     if (message && !isString(message)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "message" option is invalid!\n',
+      error(
+        '| The "message" option is invalid!\n',
         '| Given value:', message,
       );
       return;
     }
     if (data && !isPlainObject(data)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "data" option is invalid!\n',
+      error(
+        '| The "data" option is invalid!\n',
         '| Given value:', data,
       );
       return;
@@ -94,7 +94,7 @@ export default class LogModel {
 
   /**
    * Вставить булево значение выделенное цветом
-   * @param {Boolean | null} value
+   * @param {Boolean | null | undefined} value
    * @private
    */
   setBoolean(value) {
@@ -110,6 +110,31 @@ export default class LogModel {
    * @private
    */
   setNumber(value) {
+    if (isInteger(value)) {
+      this.setInteger(value);
+    } else {
+      this.setFloat(value);
+    }
+  }
+
+  /**
+   * Вставить целое число выделенное цветом
+   * @param {Number} value
+   * @private
+   */
+  setInteger(value) {
+    this.template += '%c%i%c';
+    this.substrings.push(STYLES.TEXT.BLUE);
+    this.substrings.push(value);
+    this.substrings.push(null);
+  }
+
+  /**
+   * Вставить дробное число выделенное цветом
+   * @param {Number} value
+   * @private
+   */
+  setFloat(value) {
     this.template += '%c%f%c';
     this.substrings.push(STYLES.TEXT.BLUE);
     this.substrings.push(value);

@@ -5,7 +5,7 @@ export const DEFAULT_CONFIG = Object.freeze({
   accessHandler: () => true,
   scope: '',
   prefix: '',
-  showTime: true,
+  showTime: false,
 });
 
 /**
