@@ -6,9 +6,13 @@
 
 ## v0.27.5
 
-### Todo
+### Added
 
-* Todo
+* Утилиты `freezeDeep`, `removeDomElement`, `isElement` и `isSymbol`
+
+### Changed
+
+* Утилиты `Logger`, `LogModel` и `prepareError`
 
 ## v0.27.4
 

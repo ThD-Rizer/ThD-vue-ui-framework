@@ -10,7 +10,11 @@ export default function prepareError(error) {
   const stack = isString(error.stack)
     ? error.stack
       .split('\n')
-      .map((element) => element.trim())
+      .map((element) => {
+        const str = element.trim();
+
+        return str === 'Error' ? str.replace('Error', '') : str;
+      })
       .filter(Boolean)
     : null;
 

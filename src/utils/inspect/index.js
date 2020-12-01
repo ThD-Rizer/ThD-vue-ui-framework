@@ -1,5 +1,6 @@
 export { default as isArray } from './isArray';
 export { default as isBoolean } from './isBoolean';
+export { default as isElement } from './isElement';
 export { default as isEmptyObject } from './isEmptyObject';
 export { default as isFunction } from './isFunction';
 export { default as isInteger } from './isInteger';
@@ -10,4 +11,5 @@ export { default as isNumber } from './isNumber';
 export { default as isObjectLike } from './isObjectLike';
 export { default as isPlainObject } from './isPlainObject';
 export { default as isString } from './isString';
+export { default as isSymbol } from './isSymbol';
 export { default as isUndefined } from './isUndefined';

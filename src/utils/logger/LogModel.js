@@ -1,250 +1,280 @@
 /* eslint-disable no-console */
-import { isInteger, isString, isPlainObject } from '@/utils/inspect';
+import {
+  isNil,
+  isInteger,
+  isArray,
+  isPlainObject,
+  isEmptyObject,
+} from '../inspect';
+import { cloneDeep } from '../index';
 import { STYLES } from './constants';
+import prepareError from './prepareError';
 
-/**
- * @example
- * logger.log(new LogModel({
- *   heading: 'methodName()',
- *   message: 'Data is invalid!',
- *   data: {
- *     name: nameValue,
- *     date: dateValue,
- *     props,
- *   },
- *   epilog: new Error(),
- * }));
- */
 export default class LogModel {
   /**
    * @param {Object} config
-   * @param {String} [config.heading] Заголовок после тега (например имя функции)
-   * @param {String} [config.message] Описание (вторая строка лога)
+   * @param {Array} [config.tags] Список тегов после тега области (первая строка лога)
+   * @param {Array} [config.messages] Список строк описания (вторая и далее строки лога)
    * @param {Object} [config.data] Именованные свойства
-   * @param {*} [config.epilog] Произвольные данные
+   * @param {*} [config.epilog] Произвольные данные (после всех вышеописанных данных)
    */
   constructor(config) {
+    this.props = {};
+    this.template = '';
+    this.substrings = [];
+
+    const isValid = LogModel.validateConfig(config);
+
+    if (isValid) {
+      this.props = cloneDeep(config);
+    }
+  }
+
+  /**
+   * @param {Object} config
+   * @returns {Boolean}
+   * @private
+   */
+  static validateConfig(config) {
     const error = (...args) => {
-      console.error('[LogModel]: constructor()\n', ...args);
+      console.error('[LogModel] validateConfig()\n', ...args);
     };
 
     if (!isPlainObject(config)) {
-      error(
-        '| The "config" property is invalid!\n',
-        '| Given value:', config,
-      );
-      return;
+      error('The "config" property is invalid!\n', '| Given value:', config);
+      return false;
     }
 
-    const { heading, message, data } = config;
+    const { tags, messages, data } = config;
 
-    if (heading && !isString(heading)) {
-      error(
-        '| The "heading" option is invalid!\n',
-        '| Given value:', heading,
-      );
-      return;
+    if (tags && !isArray(tags)) {
+      error('The "tags" option is invalid!\n', '| Given value:', tags);
+      return false;
     }
-    if (message && !isString(message)) {
-      error(
-        '| The "message" option is invalid!\n',
-        '| Given value:', message,
-      );
-      return;
+    if (messages && !isArray(messages)) {
+      error('The "messages" option is invalid!\n', '| Given value:', messages);
+      return false;
     }
     if (data && !isPlainObject(data)) {
-      error(
-        '| The "data" option is invalid!\n',
-        '| Given value:', data,
-      );
-      return;
+      error('The "data" option is invalid!\n', '| Given value:', data);
+      return false;
     }
 
-    this.config = config;
+    return true;
   }
 
   /**
-   * Вставить сброс строки
-   * @private
+   * Инъекция данных инстанса логгера
+   * @params {Array} tags
+   * @returns {Boolean}
    */
-  setNewLine() {
-    this.template += this.template ? '\n' : '';
+  injectLoggerData(tags) {
+    const [, str] = prepareError(new Error()).stack;
+    const [, filename] = str.match(/\/(\w+)\.(jsx?|tsx?|vue)/);
+    const isLoggerCaller = filename === 'Logger';
+
+    if (!isLoggerCaller) return false;
+
+    this.props.tags = this.props.tags ? [...tags, ...this.props.tags] : tags;
+
+    return true;
   }
 
   /**
-   * Вставить цветную вертикальную линию
+   * Подготовить переданные данные
    * @param {String} level
    * @private
    */
-  setStartLine(level) {
-    this.template += '%c| %c';
-    this.substrings.push(STYLES.TEXT[level]);
-    this.substrings.push(null);
-  }
+  prepareData(level) {
+    if (isEmptyObject(this.props)) return;
 
-  /**
-   * Вставить текст цвета текущей темы браузера
-   * @param {*} value
-   * @private
-   */
-  setText(value) {
-    this.template += '%s';
-    this.substrings.push(value);
-  }
+    const {
+      tags, messages, data, epilog,
+    } = this.props;
 
-  /**
-   * Вставить булево значение выделенное цветом
-   * @param {Boolean | null | undefined} value
-   * @private
-   */
-  setBoolean(value) {
-    this.template += '%c%s%c';
-    this.substrings.push(STYLES.TEXT.ORANGE);
-    this.substrings.push(value);
-    this.substrings.push(null);
-  }
+    this.template = '';
+    this.substrings = [];
 
-  /**
-   * Вставить число выделенное цветом
-   * @param {Number} value
-   * @private
-   */
-  setNumber(value) {
-    if (isInteger(value)) {
-      this.setInteger(value);
-    } else {
-      this.setFloat(value);
+    if (tags) {
+      tags.forEach((tag) => {
+        this.appendTag(level, tag);
+      });
+    }
+
+    if (messages) {
+      messages.forEach((message) => {
+        this.appendNewLine();
+        this.appendStartLine(level);
+        this.appendText(message);
+      });
+    }
+
+    if (data) {
+      Object.entries(data).forEach(([key, value]) => {
+        this.appendNewLine();
+        this.appendStartLine(level, '> ');
+        this.appendProperty({ level, key, value });
+      });
+    }
+
+    if (epilog) {
+      this.appendNewLine();
+      this.appendText(epilog);
     }
   }
 
   /**
-   * Вставить целое число выделенное цветом
-   * @param {Number} value
-   * @private
-   */
-  setInteger(value) {
-    this.template += '%c%i%c';
-    this.substrings.push(STYLES.TEXT.BLUE);
-    this.substrings.push(value);
-    this.substrings.push(null);
-  }
-
-  /**
-   * Вставить дробное число выделенное цветом
-   * @param {Number} value
-   * @private
-   */
-  setFloat(value) {
-    this.template += '%c%f%c';
-    this.substrings.push(STYLES.TEXT.BLUE);
-    this.substrings.push(value);
-    this.substrings.push(null);
-  }
-
-  /**
-   * Вставить строку выделенное цветом
-   * @param {String} value
-   * @private
-   */
-  setString(value) {
-    this.template += '%c%s%c';
-    this.substrings.push(STYLES.TEXT.GREEN);
-    this.substrings.push(value);
-    this.substrings.push(null);
-  }
-
-  /**
-   * Вставить объект или массив
-   * @param {Object | Array} value
-   * @private
-   */
-  setObject(value) {
-    this.template += '%O';
-    this.substrings.push(value);
-  }
-
-  /**
-   * Вставить свойство объекта с ключом и значением по типу
+   * Добавить свойство объекта с ключом и значением по типу
    * @param {Object} payload
    * @param {String} payload.level
    * @param {String} payload.key
    * @param {*} payload.value
    * @private
    */
-  setProperty({ level, key, value }) {
+  appendProperty({ level, key, value }) {
     if (key) {
-      this.setText(key);
+      this.appendText(key);
       this.template += ' %c=>%c ';
       this.substrings.push(STYLES.TEXT[level]);
-      this.substrings.push(null);
+      this.substrings.push('');
     }
 
-    if (value === null || value === undefined) {
-      this.setBoolean(value);
+    if (isNil(value)) {
+      this.appendBoolean(value);
       return;
     }
 
     if (value instanceof Error) {
-      this.setText(value);
+      this.appendText(value);
       return;
     }
 
     switch (typeof value) {
       case 'boolean':
-        this.setBoolean(value);
+        this.appendBoolean(value);
         break;
       case 'number':
-        this.setNumber(value);
+        this.appendNumber(value);
         break;
       case 'string':
-        this.setString(value);
+        this.appendString(value);
+        break;
+      case 'symbol':
+        this.appendSymbol(value);
         break;
       case 'object':
-        this.setObject(value);
+        this.appendObject(value);
         break;
       default:
-        this.setText(value);
+        this.appendText(value);
     }
   }
 
   /**
-   * Форматировать переданные данные
-   * @param {String} level
+   * Добавить сброс строки
    * @private
    */
-  format(level) {
-    const {
-      heading,
-      message,
-      data,
-      epilog,
-    } = this.config;
+  appendNewLine() {
+    this.template += '\n';
+  }
 
-    this.template = '';
-    this.substrings = [];
+  /**
+   * Добавить цветную вертикальную линию
+   * @param {String} level
+   * @param {String} [suffix]
+   * @private
+   */
+  appendStartLine(level, suffix = '') {
+    this.template += `%c| ${suffix}%c`;
+    this.substrings.push(STYLES.TEXT[level]);
+    this.substrings.push('');
+  }
 
-    if (heading) {
-      this.setText(heading);
+  /**
+   * Добавить тэг
+   * @param {String} level
+   * @param {*} value
+   * @private
+   */
+  appendTag(level, value) {
+    if (this.template) {
+      this.template += '%c>';
+      this.substrings.push(STYLES.TAG_SEPARATOR[level]);
     }
+    this.template += '%c%s%c';
+    this.substrings.push(STYLES.TAG[level]);
+    this.substrings.push(value);
+    this.substrings.push('');
+  }
 
-    if (message) {
-      this.setNewLine();
-      this.setStartLine(level);
-      this.setText(message);
-    }
+  /**
+   * Добавить текст цвета текущей темы браузера
+   * @param {*} value
+   * @private
+   */
+  appendText(value) {
+    this.template += '%s';
+    this.substrings.push(value);
+  }
 
-    if (data) {
-      Object.entries(data).forEach(([key, value]) => {
-        this.setNewLine();
-        this.setStartLine(level);
-        this.setProperty({ level, key, value });
-      });
-    }
+  /**
+   * Добавить булево значение выделенное цветом
+   * @param {Boolean | null | undefined} value
+   * @private
+   */
+  appendBoolean(value) {
+    this.template += '%c%s%c';
+    this.substrings.push(STYLES.TEXT.BOOLEAN);
+    this.substrings.push(value);
+    this.substrings.push('');
+  }
 
-    if (epilog) {
-      this.setNewLine();
-      this.setProperty({ value: epilog });
-    }
+  /**
+   * Добавить число выделенное цветом
+   * @param {Number} value
+   * @private
+   */
+  appendNumber(value) {
+    const substitution = isInteger(value) ? '%i' : '%f';
+
+    this.template += `%c${substitution}%c`;
+    this.substrings.push(STYLES.TEXT.NUMBER);
+    this.substrings.push(value);
+    this.substrings.push('');
+  }
+
+  /**
+   * Добавить строку выделенное цветом
+   * @param {String} value
+   * @private
+   */
+  appendString(value) {
+    this.template += '%c%s%c';
+    this.substrings.push(STYLES.TEXT.STRING);
+    this.substrings.push(value);
+    this.substrings.push('');
+  }
+
+  /**
+   * Добавить символ
+   * @param {Symbol} value
+   * @private
+   */
+  appendSymbol(value) {
+    this.template += '%c%s%c';
+    this.substrings.push(STYLES.TEXT.SYMBOL);
+    this.substrings.push(value.toString());
+    this.substrings.push('');
+  }
+
+  /**
+   * Добавить объект или массив
+   * @param {Object | Array} value
+   * @private
+   */
+  appendObject(value) {
+    this.template += '%O';
+    this.substrings.push(value);
   }
 
   /**
@@ -253,7 +283,7 @@ export default class LogModel {
    * @returns {Object}
    */
   getOutputData(level) {
-    this.format(level);
+    this.prepareData(level);
 
     return {
       template: this.template,
