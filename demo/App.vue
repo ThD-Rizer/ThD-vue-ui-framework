@@ -20,9 +20,19 @@
 </template>
 
 <script>
+  import { Logger } from '@/utils/logger';
   import packageJson from '@root/package.json';
   import routes from '@demo/router/routes';
   import UiHeader from '@demo/components/UiHeader';
+
+  const logger = new Logger({
+    scope: 'demo',
+  });
+
+  logger.log('test log');
+  logger.info('test info');
+  logger.warn('test warn');
+  logger.error('test error');
 
   export default {
     name: 'DemoApplication',

@@ -177,6 +177,8 @@ export default class Logger {
 
     if (logModel) {
       logModel.injectLoggerData(tags);
+    } else {
+      argsData.unshift(new LogModel({ tags }));
     }
 
     const { template, substrings } = Logger.prepareData(level, argsData);
