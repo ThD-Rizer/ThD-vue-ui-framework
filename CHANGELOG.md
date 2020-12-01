@@ -8,11 +8,11 @@
 
 ### Added
 
-* Утилиты `freezeDeep`, `removeDomElement`, `isElement` и `isSymbol`
+* Утилиты `prepareError`, `freezeDeep`, `removeDomElement`, `isInteger`, `isElement` и `isSymbol`
 
 ### Changed
 
-* Утилиты `Logger`, `LogModel` и `prepareError`
+* Утилиты `Logger` и `LogModel`
 
 ## v0.27.4
 
