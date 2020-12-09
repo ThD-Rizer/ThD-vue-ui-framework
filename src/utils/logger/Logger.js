@@ -6,7 +6,7 @@ import {
   isFunction,
 } from '../inspect';
 import { DEFAULT_CONFIG, LEVELS } from './constants';
-import LogModel from './LogModel';
+import { LogModel } from './index';
 
 export default class Logger {
   /**
@@ -113,10 +113,11 @@ export default class Logger {
   /**
    * @param {String} level
    * @param {Array} args
+   * @param {Boolean} [firstLogModelInjected = false]
    * @returns {Object}
    * @private
    */
-  static prepareData(level, args) {
+  static prepareData(level, args, firstLogModelInjected = false) {
     let templateOutput = '';
     let substringsOutput = [];
     let isLogModelLast = false;
@@ -140,12 +141,13 @@ export default class Logger {
         if (!template) return;
 
         setOutputData(template, substrings);
-        isLogModelLast = isLogModel;
       } else {
-        const newLine = isLogModelLast ? ['\n'] : [];
+        const newLine = isLogModelLast && !firstLogModelInjected ? ['\n'] : [];
         const payload = [...newLine, argument];
         setOutputData('', payload);
       }
+
+      isLogModelLast = isLogModel;
     });
 
     return {
@@ -174,14 +176,16 @@ export default class Logger {
     const tagScope = `${level}${scope}`;
     const tags = [tagScope, ...(this.options.tags || [])];
     const logModel = Logger.getModelFromArgs(argsData);
+    let firstLogModelInjected = false;
 
     if (logModel) {
-      logModel.injectLoggerData(tags);
+      logModel.injectLoggerData(this, tags);
     } else {
       argsData.unshift(new LogModel({ tags }));
+      firstLogModelInjected = true;
     }
 
-    const { template, substrings } = Logger.prepareData(level, argsData);
+    const { template, substrings } = Logger.prepareData(level, argsData, firstLogModelInjected);
 
     console[level](template, ...substrings);
   }

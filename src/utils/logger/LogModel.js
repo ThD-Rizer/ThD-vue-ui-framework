@@ -8,7 +8,7 @@ import {
 } from '../inspect';
 import { cloneDeep } from '../index';
 import { STYLES } from './constants';
-import prepareError from './prepareError';
+import { Logger } from './index';
 
 export default class LogModel {
   /**
@@ -65,15 +65,14 @@ export default class LogModel {
 
   /**
    * Инъекция данных инстанса логгера
+   * @params {*} context
    * @params {Array} tags
    * @returns {Boolean}
    */
-  injectLoggerData(tags) {
-    const [, str] = prepareError(new Error()).stack;
-    const [, filename] = str.match(/\/(\w+)\.(jsx?|tsx?|vue)/);
-    const isLoggerCaller = filename === 'Logger';
+  injectLoggerData(context, tags) {
+    const isLogger = context instanceof Logger;
 
-    if (!isLoggerCaller) return false;
+    if (!isLogger) return false;
 
     this.props.tags = this.props.tags ? [...tags, ...this.props.tags] : tags;
 
