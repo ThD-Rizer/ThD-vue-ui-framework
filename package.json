@@ -19,8 +19,11 @@
     "build:publish": "yarn lint && yarn build && yarn publish"
   },
   "dependencies": {
+    "axios": "0.21.0",
     "body-scroll-lock": "3.0.3",
     "date-fns": "2.16.1",
+    "file-saver": "2.0.5",
+    "jszip": "3.5.0",
     "lodash.clonedeep": "4.5.0",
     "lodash.isequal": "4.5.0",
     "lodash.padstart": "4.6.1",

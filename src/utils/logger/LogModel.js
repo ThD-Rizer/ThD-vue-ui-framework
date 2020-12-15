@@ -8,7 +8,7 @@ import {
 } from '../inspect';
 import { cloneDeep } from '../index';
 import { STYLES } from './constants';
-import { Logger } from './index';
+import isLoggerInstance from './isLoggerInstance';
 
 export default class LogModel {
   /**
@@ -70,9 +70,7 @@ export default class LogModel {
    * @returns {Boolean}
    */
   injectLoggerData(context, tags) {
-    const isLogger = context instanceof Logger;
-
-    if (!isLogger) return false;
+    if (!isLoggerInstance(context)) return false;
 
     this.props.tags = this.props.tags ? [...tags, ...this.props.tags] : tags;
 
