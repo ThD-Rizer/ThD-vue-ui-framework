@@ -2,7 +2,7 @@ import axios from 'axios';
 
 /**
  * @param {String} url
- * @param {Boolean} withCredentials
+ * @param {Boolean} [withCredentials]
  * @returns {Promise<Object | null>}
  */
 export default async function downloadFileToBrowser(url, withCredentials = false) {
