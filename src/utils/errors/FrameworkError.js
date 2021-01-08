@@ -1,9 +1,9 @@
 import { isArray } from '../inspect';
 
-const ERROR_PREFIX = 'UI Framework';
+const ERROR_PREFIX = '[UI Framework] ';
 
 /**
- * Ошибка
+ * Базовая ошибка
  */
 export default class FrameworkError extends Error {
   /**
@@ -12,7 +12,7 @@ export default class FrameworkError extends Error {
   constructor(messages) {
     const message = isArray(messages) ? messages.join('. ') : messages;
 
-    super(`[${ERROR_PREFIX}] ${message}`);
+    super(`${ERROR_PREFIX}${message}`);
     this.name = this.constructor.name;
   }
 }

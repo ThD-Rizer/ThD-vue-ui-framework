@@ -10,7 +10,7 @@ export default class InvalidTypeError extends FrameworkError {
    * @param {String} type
    */
   constructor(value, name, type) {
-    const message = `Invalid type for argument "${name}", expected "${type}" got "${typeof value}"`;
+    const message = `Invalid type for argument "${name}", expected "${type}", got "${typeof value}"`;
 
     super(message);
   }
