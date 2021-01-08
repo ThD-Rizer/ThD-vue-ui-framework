@@ -1,19 +1,21 @@
-import axios from 'axios';
-
 /**
  * @param {String} url
  * @param {Boolean} [withCredentials]
  * @returns {Promise<Object | null>}
  */
 export default async function downloadFileToBrowser(url, withCredentials = false) {
-  const response = await axios.request({
-    method: 'get',
-    url,
-    withCredentials,
-    responseType: 'blob',
+  const credentials = withCredentials ? 'include' : 'same-origin';
+  const response = await fetch(url, {
+    method: 'GET',
+    credentials,
   });
-  const { data, headers } = response;
-  const matches = headers['Content-Disposition']?.match(/filename="(.+)"$/);
+
+  if (!response) return null;
+
+  const contentDispositionHeader = response.headers.get('Content-Disposition');
+  const data = response.blob();
+
+  const matches = contentDispositionHeader?.match(/filename="(.+)"$/);
   const fileName = matches?.[1] || null;
 
   if (!data) return null;
