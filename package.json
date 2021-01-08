@@ -9,7 +9,8 @@
     "lint:js": "vue-cli-service lint",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
-    "test:unit": "jest --watchAll",
+    "test:unit1": "jest --watchAll",
+    "test:unit": "jest",
     "build:icons": "node builders/icons/index.js",
     "build:demo": "vue-cli-service build --dest dist-demo ./demo/index.js",
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js && rimraf ./dist/demo.html",
@@ -18,7 +19,6 @@
     "build:publish": "yarn lint && yarn build && yarn publish"
   },
   "dependencies": {
-    "axios": "0.21.0",
     "body-scroll-lock": "3.0.3",
     "date-fns": "2.16.1",
     "file-saver": "2.0.5",

@@ -10,6 +10,12 @@
 
 * Компонент `UiSelect`
 
+## v0.27.6
+
+### Changed
+
+* Зависимость `axios` в утилите `downloadFileToBrowser` заменена на нативный `fetch`
+
 ## v0.27.5
 
 ### Added
