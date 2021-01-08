@@ -1,6 +1,6 @@
 {
   "name": "@thd/vue-ui-framework",
-  "version": "0.27.5",
+  "version": "0.27.6",
   "description": "UI framework for Vue.js",
   "author": "ThD.Rizer <thd.rizer@gmail.com>",
   "license": "UNLICENSED",
@@ -19,7 +19,6 @@
     "build:publish": "yarn lint && yarn build && yarn publish"
   },
   "dependencies": {
-    "axios": "0.21.0",
     "body-scroll-lock": "3.0.3",
     "date-fns": "2.16.1",
     "file-saver": "2.0.5",
