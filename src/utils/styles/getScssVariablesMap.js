@@ -1,23 +1,31 @@
-import variables from '@/styles/export.scss';
+import { InvalidTypeError } from '../errors';
+import { isString, isPlainObject } from '../inspect';
+
+const SEPARATOR = '-';
 
 /**
+ * @param {Object} dictionary Словарь переменных
  * @param {String} mapKey Префикс переменной, на основании которого будет сформирована карта
  * @returns {Object}
  */
-export default function getScssVariablesMap(mapKey) {
-  return Object.entries(variables).reduce(
-    (acc, [key, value]) => {
-      const regex = new RegExp(`^${mapKey}-`);
+export default function getScssVariablesMap(dictionary, mapKey) {
+  if (!isPlainObject(dictionary)) {
+    throw new InvalidTypeError(dictionary, 'dictionary', 'Object');
+  }
+  if (!isString(mapKey)) {
+    throw new InvalidTypeError(mapKey, 'mapKey', 'String');
+  }
 
-      if (!regex.test(key)) return acc;
+  return Object.entries(dictionary).reduce((acc, [key, value]) => {
+    const regex = new RegExp(`^${mapKey}${SEPARATOR}`);
 
-      const variableKey = key.replace(regex, '');
+    if (!regex.test(key)) return acc;
 
-      return {
-        ...acc,
-        [variableKey]: value,
-      };
-    },
-    {},
-  );
+    const variableKey = key.replace(regex, '');
+
+    return {
+      ...acc,
+      [variableKey]: value,
+    };
+  }, {});
 }

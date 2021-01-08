@@ -46,7 +46,6 @@
      * [UiPreloader](./src/components/UiPreloader/README.md)
      * [UiSuspense](./src/components/UiSuspense/README.md)
 4. Дирекивы
-   * [QA](./src/directives/qa/README.md)
    * [ClickOutside](./src/directives/clickOutside/README.md)
 
 ## Установка

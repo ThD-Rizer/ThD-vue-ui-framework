@@ -1,8 +1,11 @@
 import { InvalidTypeError } from '../errors';
-import { isNull, isBoolean, isPlainObject } from '../inspect';
+import {
+  isNull,
+  isBoolean,
+  isPlainObject,
+  isEmptyObject,
+} from '../inspect';
 import { pascalToKebab } from '../index';
-
-const isEmptyObject = (object) => !Object.values(object).length;
 
 /**
  * @param {Object<Vue>} Vue

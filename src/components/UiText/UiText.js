@@ -1,4 +1,4 @@
-import { COLORS } from '@/constants/styles';
+import { COLORS } from '@/constants';
 import { propValidator, getSlot, trimSlotText } from '@/utils/helpers';
 import { factoryStylable } from '@/mixins/stylable';
 import defaultStyles from './UiText.scss';

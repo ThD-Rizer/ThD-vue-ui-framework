@@ -1,17 +1,19 @@
+@import './variables.scss';
+
+$groupSeparator: '-';
+
 // Экспорт scss переменных для использования в js скриптах
 :export {
   gridBreakpointFirst: unquote($gridBreakpointFirst);
   gridBreakpointLast: unquote($gridBreakpointLast);
-  //gridBreakpoints: $gridBreakpoints;
-  //gridMaxWidths: $gridMaxWidths;
 
   @each $breakpoint, $ranges in $gridBreakpoints {
     @each $range, $value in $ranges {
-      #{'grid-' + $breakpoint + '-' + $range}: $value;
+      #{'breakpoints' + $groupSeparator + $breakpoint + $groupSeparator + $range}: $value;
     }
   }
 
   @each $key, $value in $colors {
-    #{'colors-' + $key}: $value;
+    #{'colors' + $groupSeparator + $key}: $value;
   }
 }

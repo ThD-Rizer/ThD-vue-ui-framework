@@ -10,11 +10,51 @@
 
 * Компонент `UiSelect`
 
+## v0.27.5
+
+### Added
+
+* Утилиты `archiveFilesToZip`, `downloadFile`, `downloadFileToBrowser`, `freezeDeep`
+  и `removeDomElement`
+* Утилиты инспекции `isElement`, `isInteger` и `isSymbol`
+* Утилита логгера `prepareError`
+
+### Changed
+
+* Удален импорт пакета `normalize.scss` в глобальном файле стилей.
+  Теперь его необходимо устанавливать непосредственно в проект
+* Утилиты `Logger` и `LogModel`
+
+## v0.27.4
+
+### Added
+
+* Утилита `createScssVariablesDictionary`, создающая многоуровневый словарь из экспортированных
+  scss переменных, с учетом бесконечной вложенности
+* Экспорт `styles` утилит в билд библиотеки
+
+### Changed
+
+* Утилиты `getScssVariable`, `getScssVariableByMap` и `getScssVariablesMap` обзавелись валидаторами
+  аргументов и избавились от зависимости `styles/export.scss`.
+  Теперь аргумент `dictionary` идет первый по счету и является обязательным
+* Экспортируемые (`styles/export.scss`) scss переменные `grid-*` переименованы в `breakpoints-*`
+* Удалена директива `qa`
+
+## v0.27.3
+
+### Fixed
+
+* Импорт scss переменных в утилиты `getScssVariable`, `getScssVariableByMap` и `getScssVariablesMap`
+  сделан относительным, для возможности использования данных утилит вне фреймворка.
+  Также в утилиты добавлен аргумент `dictionary` для возможности использования своих собственных
+  scss переменных
+
 ## v0.27.2
 
 ### Fixed
 
-* Исправлено имя свойства `$angle` в scss миксине `backgroundLinearGradient`
+* Имя свойства `$angle` в scss миксине `backgroundLinearGradient`
 
 ## v0.27.1
 
@@ -49,8 +89,8 @@
 * Обновлены до последних версий все npm модули проекта
 * Стили компонента `UiButton` в состояниях focus и active
 * Компонент `UiCheckbox` теперь имеет поддержку передачу в модели данных массива и объекта
- для работы с группой элементов.
- Также добавлена поддержка проброса модели данных из компонента `UiCheckboxGroup`
+  для работы с группой элементов.
+  Также добавлена поддержка проброса модели данных из компонента `UiCheckboxGroup`
 
 ## v0.26.4
 
@@ -65,7 +105,7 @@
 ### Changed
 
 * Входящее свойство `resetDefaultStyles` кастомных installed стилей при инициализации фреймворка
- заменено на `installedResetDefaultStyles`
+  заменено на `installedResetDefaultStyles`
 * Отключена обязательность входящий опций миксина `stylable`
 
 ### Fixed

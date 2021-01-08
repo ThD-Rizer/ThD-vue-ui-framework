@@ -1,119 +1,200 @@
 /* eslint-disable no-console */
-import { isString, isPlainObject, isFunction } from '../inspect';
 import {
-  DEFAULT_CONFIG,
-  LEVELS,
-  METHODS_MAP,
-  STYLES,
-} from './constants';
+  isString,
+  isArray,
+  isPlainObject,
+  isFunction,
+} from '../inspect';
+import { DEFAULT_CONFIG, LEVELS } from './constants';
 import LogModel from './LogModel';
 
 export default class Logger {
   /**
-   * @param {Object} config
-   * @param {Function} config.accessHandler Обработчик с условием доступа
-   * @param {String} config.scope Область видимости экземпляра
-   * @param {String} config.prefix Полный префикс лога (значение начального тега)
+   * @param {Object} [config]
+   * @param {String} [config.scope] Область применения
+   * @param {Array} [config.tags] Список тегов после тега области (первая строка лога)
+   * @param {Function} [config.accessHandler] Обработчик с условием доступа
    */
   constructor(config = {}) {
-    if (!isPlainObject(config)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "config" property is invalid!\n',
-        '| Given value:', config,
-      );
-      return;
+    this.isLoggerInstance = true;
+    this.options = { ...DEFAULT_CONFIG };
+
+    const isValid = Logger.validateConfig(config);
+
+    if (isValid) {
+      this.options = { ...this.options, ...config };
     }
-
-    const { accessHandler, scope, prefix } = config;
-
-    if (accessHandler && !isFunction(accessHandler)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "accessHandler" option is invalid!\n',
-        '| Given value:', accessHandler,
-      );
-      return;
-    }
-    if (scope && !isString(scope)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "scope" option is invalid!\n',
-        '| Given value:', scope,
-      );
-      return;
-    }
-    if (prefix && !isString(prefix)) {
-      console.error(
-        '[Logger:constructor]:',
-        'The "prefix" option is invalid!\n',
-        '| Given value:', prefix,
-      );
-      return;
-    }
-
-    this.options = {
-      ...DEFAULT_CONFIG,
-      ...config,
-    };
-  }
-
-  log(...attrs) {
-    this.output(LEVELS.LOG, ...attrs);
-  }
-
-  info(...attrs) {
-    this.output(LEVELS.INFO, ...attrs);
-  }
-
-  warn(...attrs) {
-    this.output(LEVELS.WARN, ...attrs);
-  }
-
-  error(...attrs) {
-    this.output(LEVELS.ERROR, ...attrs);
   }
 
   /**
+   * @param {Object} config
+   * @returns {Boolean}
    * @private
    */
-  output(level, ...attrs) {
-    if (!this.hasAccess()) return;
+  static validateConfig(config) {
+    const error = (...args) => {
+      console.error('[Logger] validateConfig()\n', ...args);
+    };
 
-    const method = METHODS_MAP[level];
-    let { prefix } = this.options;
-
-    if (!prefix) {
-      const prefixFirstLetter = level.charAt(0).toLocaleUpperCase();
-      const prefixDefault = `${prefixFirstLetter}${level.substr(1).toLocaleLowerCase()}`;
-      let { scope } = this.options;
-      scope = scope ? `:${scope}` : '';
-
-      prefix = `${prefixDefault}${scope}`;
+    if (!isPlainObject(config)) {
+      error('The "config" property is invalid!\n', '| Given value:', config);
+      return false;
     }
 
-    let template = '%c%s%c';
-    let substrings = [
-      STYLES.TAG[level],
-      prefix,
-      null,
-    ];
+    const { scope, tags, accessHandler } = config;
 
-    [...attrs].forEach((argument) => {
-      const isLogModel = argument instanceof LogModel;
-      const payload = (isLogModel)
-        ? argument.getOutputData(level).substrings
-        : [argument];
+    if (scope && !isString(scope)) {
+      error('The "scope" option is invalid!\n', '| Given value:', scope);
+      return false;
+    }
+    if (tags && !isArray(tags)) {
+      error('The "tags" option is invalid!\n', '| Given value:', tags);
+      return false;
+    }
+    if (accessHandler && !isFunction(accessHandler)) {
+      error('The "accessHandler" option is invalid!\n', '| Given value:', accessHandler);
+      return false;
+    }
 
-      if (isLogModel) {
-        template += ` ${argument.getOutputData(level).template}`;
-      }
-      substrings = [...substrings, ...payload];
-    });
-
-    console[method](template, ...substrings);
+    return true;
   }
 
+  /**
+   * @param {...*} args
+   * @returns {void}
+   */
+  log(...args) {
+    this.output(LEVELS.LOG, ...args);
+  }
+
+  /**
+   * @param {...*} args
+   * @returns {void}
+   */
+  info(...args) {
+    this.output(LEVELS.INFO, ...args);
+  }
+
+  /**
+   * @param {...*} args
+   * @returns {void}
+   */
+  warn(...args) {
+    this.output(LEVELS.WARN, ...args);
+  }
+
+  /**
+   * @param {...*} args
+   * @returns {void}
+   */
+  error(...args) {
+    this.output(LEVELS.ERROR, ...args);
+  }
+
+  /**
+   * @param {Array} args
+   * @returns {Boolean}
+   * @private
+   */
+  static checkModelOnlyOne(args) {
+    const models = args.filter((argument) => argument instanceof LogModel);
+
+    return models.length <= 1;
+  }
+
+  /**
+   * @param {Array} args
+   * @returns {LogModel | null}
+   * @private
+   */
+  static getModelFromArgs(args) {
+    return args.find((argument) => argument instanceof LogModel) || null;
+  }
+
+  /**
+   * @param {String} level
+   * @param {Array} args
+   * @param {Boolean} [firstLogModelInjected = false]
+   * @returns {Object}
+   * @private
+   */
+  static prepareData(level, args, firstLogModelInjected = false) {
+    let templateOutput = '';
+    let substringsOutput = [];
+    let isLogModelLast = false;
+
+    /**
+     * @param {String} template
+     * @param {Array} substrings
+     * @returns {void}
+     */
+    const setOutputData = (template, substrings) => {
+      templateOutput += template;
+      substringsOutput = [...substringsOutput, ...substrings];
+    };
+
+    args.forEach((argument) => {
+      const isLogModel = argument instanceof LogModel;
+
+      if (isLogModel) {
+        const { template, substrings } = argument.getOutputData(level);
+
+        if (!template) return;
+
+        setOutputData(template, substrings);
+      } else {
+        const newLine = isLogModelLast && !firstLogModelInjected ? ['\n'] : [];
+        const payload = [...newLine, argument];
+        setOutputData('', payload);
+      }
+
+      isLogModelLast = isLogModel;
+    });
+
+    return {
+      template: templateOutput,
+      substrings: substringsOutput,
+    };
+  }
+
+  /**
+   * @param {String} level
+   * @param {...*} args
+   * @returns {void}
+   * @private
+   */
+  output(level, ...args) {
+    if (!this.hasAccess()) return;
+
+    const argsData = [...args];
+
+    if (!Logger.checkModelOnlyOne(argsData)) {
+      console.error('[Logger] output()\n', '| Only one "LogModel" can be transferred');
+      return;
+    }
+
+    const scope = this.options.scope ? `:${this.options.scope}` : '';
+    const tagScope = `${level}${scope}`;
+    const tags = [tagScope, ...(this.options.tags || [])];
+    const logModel = Logger.getModelFromArgs(argsData);
+    let firstLogModelInjected = false;
+
+    if (logModel) {
+      logModel.injectLoggerData(this, tags);
+    } else {
+      argsData.unshift(new LogModel({ tags }));
+      firstLogModelInjected = true;
+    }
+
+    const { template, substrings } = Logger.prepareData(level, argsData, firstLogModelInjected);
+
+    console[level](template, ...substrings);
+  }
+
+  /**
+   * @returns {Boolean}
+   * @private
+   */
   hasAccess() {
     return this.options?.accessHandler();
   }

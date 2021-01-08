@@ -1,4 +1,4 @@
-import { BREAKPOINTS } from '@/constants/grid';
+import { BREAKPOINTS } from '@/constants';
 import { propValidator, parseBreakpoints, getSlot } from '@/utils/helpers';
 import styles from './UiCol.scss';
 
