@@ -6,7 +6,7 @@ import {
   isFunction,
 } from '../inspect';
 import { DEFAULT_CONFIG, LEVELS } from './constants';
-import { LogModel } from './index';
+import LogModel from './LogModel';
 
 export default class Logger {
   /**
@@ -16,6 +16,7 @@ export default class Logger {
    * @param {Function} [config.accessHandler] Обработчик с условием доступа
    */
   constructor(config = {}) {
+    this.isLoggerInstance = true;
     this.options = { ...DEFAULT_CONFIG };
 
     const isValid = Logger.validateConfig(config);
