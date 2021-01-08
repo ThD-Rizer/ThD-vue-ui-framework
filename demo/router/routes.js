@@ -25,6 +25,7 @@ export default [
   page('Modals'),
   page('Icons'),
   page('Other'),
+  page('Logger'),
   page('Testing'),
   {
     path: '*',

@@ -4,6 +4,21 @@
 
 ## Releases
 
+## v0.27.5
+
+### Added
+
+* Утилиты `archiveFilesToZip`, `downloadFile`, `downloadFileToBrowser`, `freezeDeep`
+  и `removeDomElement`
+* Утилиты инспекции `isElement`, `isInteger` и `isSymbol`
+* Утилита логгера `prepareError`
+
+### Changed
+
+* Удален импорт пакета `normalize.scss` в глобальном файле стилей.
+  Теперь его необходимо устанавливать непосредственно в проект
+* Утилиты `Logger` и `LogModel`
+
 ## v0.27.4
 
 ### Added

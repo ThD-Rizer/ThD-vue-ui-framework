@@ -1,28 +1,55 @@
-const path = require('path');
 const fs = require('fs');
 
-const inputPath = '../../src/icons';
-const outputFile = `${inputPath}/index.js`;
-const inputFileExt = '.svg';
-const resolve = (...args) => path.resolve(__dirname, ...args);
-let result = '';
+const ICONS_APP_PATH = 'src/icons/';
 
-const generateIcons = (icon) => {
-  const iconName = icon.replace(inputFileExt, '');
-  const content = fs.readFileSync(resolve(`${inputPath}/${icon}`))
-    .toString()
+const INPUT_FILE_EXT = '.svg';
+const OUTPUT_FILENAME = 'index.js';
+
+/**
+ * @param {String} inputPath
+ * @param {String} fileName
+ * @returns {String}
+ */
+function convertFileToString(inputPath, fileName) {
+  const content = fs.readFileSync(`${inputPath}/${fileName}`);
+
+  return content.toString();
+}
+
+/**
+ * @param {String} content
+ * @returns {String}
+ */
+function prepareIcon(content) {
+  return content
     .split(/[\r\n]/)
     .map((row) => row.trim())
     .join('')
     .replace(/\s{2,}/g, '');
+}
 
-  result += `  '${iconName}': '${content}',\n`;
-};
+/**
+ * @param {String} inputPath
+ * @param {String} outputPath
+ * @returns {void}
+ */
+function build(inputPath, outputPath) {
+  const outputFile = outputPath + OUTPUT_FILENAME;
+  let result = '';
 
-fs.readdirSync(resolve(inputPath))
-  .filter((file) => file.endsWith(inputFileExt))
-  .forEach(generateIcons);
+  fs.readdirSync(inputPath)
+    .filter((fileName) => fileName.endsWith(INPUT_FILE_EXT))
+    .forEach((fileName) => {
+      const iconName = fileName.replace(INPUT_FILE_EXT, '');
+      let content = convertFileToString(inputPath, fileName);
 
-result = `/* eslint-disable */\n\nexport default {\n${result}};\n`;
+      content = prepareIcon(content);
+      result += `  '${iconName}': '${content}',\n`;
+    });
 
-fs.writeFileSync(resolve(outputFile), result);
+  result = `/* eslint-disable */\n\nexport default {\n${result}};\n`;
+
+  fs.writeFileSync(outputFile, result);
+}
+
+build(ICONS_APP_PATH, ICONS_APP_PATH);
