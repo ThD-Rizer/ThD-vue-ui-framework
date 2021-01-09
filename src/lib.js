@@ -28,7 +28,7 @@ export { utilsStyles };
 export { directives };
 export { components };
 
-// Components
+// All
 export * from '@/utils';
 export * from '@/utils/inspect';
 export * from '@/utils/logger';
