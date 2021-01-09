@@ -4,6 +4,12 @@
 
 ## Releases
 
+## v0.27.8
+
+### Added
+
+* Утилиты `isEven` и `isOdd`
+
 ## v0.27.7
 
 ### Added
