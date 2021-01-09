@@ -4,6 +4,12 @@
 
 ## Releases
 
+## v0.27.7
+
+### Added
+
+* Утилита `swapArrayElements`
+
 ## v0.27.6
 
 ### Changed
