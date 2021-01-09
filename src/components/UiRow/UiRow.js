@@ -12,7 +12,7 @@ const tagValidator = propValidator('tag', [
   'section',
 ]);
 const gutterValidator = {
-  validator: (_) => !isNaN(parseInt(_, 10)) && _ >= 0 && _ <= 4,
+  validator: (propValue) => !isNaN(parseInt(propValue, 10)) && propValue >= 0 && propValue <= 4,
 };
 
 export default {
