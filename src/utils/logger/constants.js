@@ -1,26 +1,30 @@
-/**
- * @type {Readonly<Object>}
- */
-export const DEFAULT_CONFIG = Object.freeze({
-  scope: '',
-  tags: [],
-  accessHandler: () => true,
-});
+import { freezeDeep } from '../index';
 
 /**
  * @type {Readonly<Object>}
  */
-export const LEVELS = Object.freeze({
+export const DEFAULT_CONFIG = {
+  scope: '',
+  tags: [],
+  accessHandler: () => true,
+};
+Object.freeze(DEFAULT_CONFIG);
+
+/**
+ * @type {Readonly<Object>}
+ */
+export const LEVELS = {
   LOG: 'log',
   INFO: 'info',
   WARN: 'warn',
   ERROR: 'error',
-});
+};
+Object.freeze(LEVELS);
 
 /**
  * @type {Readonly<Object>}
  */
-export const COLORS = Object.freeze({
+export const COLORS = {
   MINE_SHAFT: '#202020',
   SLATEGRAY: '#878e96',
   SULU: '#b0f365',
@@ -32,7 +36,8 @@ export const COLORS = Object.freeze({
   ORANGE: '#ffa500',
   GOLD: '#ffd700',
   WHITE: '#ffffff',
-});
+};
+Object.freeze(COLORS);
 
 const STYLES_TAG = [
   'border-radius: 3px;',
@@ -43,7 +48,7 @@ const STYLES_TAG_SEPARATOR = [
   'font-size: 10px;',
 ];
 
-const TEXT = Object.freeze({
+const TEXT = {
   [LEVELS.LOG]: `color: ${COLORS.SULU};`,
   [LEVELS.INFO]: `color: ${COLORS.CORNFLOWER_BLUE};`,
   [LEVELS.WARN]: `color: ${COLORS.GOLD};`,
@@ -52,9 +57,9 @@ const TEXT = Object.freeze({
   STRING: `color: ${COLORS.JAPANESE_LAUREL};`,
   NUMBER: `color: ${COLORS.DODGE_BLUE};`,
   SYMBOL: `color: ${COLORS.PORTAGE};`,
-});
+};
 
-const TAG = Object.freeze({
+const TAG = {
   [LEVELS.LOG]: [
     ...STYLES_TAG,
     `background: ${COLORS.SULU};`,
@@ -75,9 +80,9 @@ const TAG = Object.freeze({
     `background: ${COLORS.MANDY};`,
     `color: ${COLORS.WHITE};`,
   ].join(''),
-});
+};
 
-const TAG_SEPARATOR = Object.freeze({
+const TAG_SEPARATOR = {
   [LEVELS.LOG]: [
     ...STYLES_TAG_SEPARATOR,
     TEXT[LEVELS.LOG],
@@ -94,13 +99,14 @@ const TAG_SEPARATOR = Object.freeze({
     ...STYLES_TAG_SEPARATOR,
     TEXT[LEVELS.ERROR],
   ].join(''),
-});
+};
 
 /**
  * @type {Readonly<Object>}
  */
-export const STYLES = Object.freeze({
+export const STYLES = {
   TEXT,
   TAG,
   TAG_SEPARATOR,
-});
+};
+freezeDeep(STYLES);

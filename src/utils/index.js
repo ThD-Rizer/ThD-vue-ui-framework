@@ -19,6 +19,7 @@ export { default as percentOfInteger } from './percentOfInteger';
 export { default as randomArrayElement } from './randomArrayElement';
 export { default as randomInteger } from './randomInteger';
 export { default as removeDomElement } from './removeDomElement';
+export { default as reverseArray } from './reverseArray';
 export { default as scrollTo } from './scrollTo';
 export { default as shuffle } from './shuffle';
 export { default as swapArrayElements } from './swapArrayElements';
