@@ -2,16 +2,19 @@ import { createScssVariablesDictionary } from '@/utils/styles';
 import variables from '@/styles/export.scss';
 
 /**
- * @type {Object}
+ * @type {Readonly<Object>}
  */
-export const STYLE_VARIABLES = Object.freeze(createScssVariablesDictionary(variables));
+export const STYLE_VARIABLES = createScssVariablesDictionary(variables);
+Object.freeze(STYLE_VARIABLES);
 
 /**
  * @type {Readonly<Object>}
  */
-export const BREAKPOINTS = Object.freeze(STYLE_VARIABLES.breakpoints);
+export const BREAKPOINTS = STYLE_VARIABLES.breakpoints;
+Object.freeze(BREAKPOINTS);
 
 /**
  * @type {Readonly<Object>}
  */
-export const COLORS = Object.freeze(STYLE_VARIABLES.colors);
+export const COLORS = STYLE_VARIABLES.colors;
+Object.freeze(COLORS);

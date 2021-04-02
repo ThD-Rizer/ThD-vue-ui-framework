@@ -24,7 +24,7 @@ const propsFlexPositions = flexPositions.reduce((acc, position) => {
     [position]: {
       type: [Boolean, String],
       default: false,
-      validator: (_) => isBoolean(_) || breakpoints.includes(_),
+      validator: (propValue) => isBoolean(propValue) || breakpoints.includes(propValue),
     },
   };
 }, {});

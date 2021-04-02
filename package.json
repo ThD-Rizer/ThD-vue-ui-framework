@@ -16,7 +16,7 @@
     "build:lib": "vue-cli-service build --target lib --name ui ./src/lib.js && rimraf ./dist/demo.html",
     "build": "yarn build:icons && yarn build:lib",
     "build:report": "vue-cli-service build --target lib ./src/lib.js --report",
-    "build:publish": "yarn lint && yarn build && yarn publish"
+    "build:publish": "yarn lint && yarn test:unit && yarn build && yarn publish"
   },
   "dependencies": {
     "body-scroll-lock": "3.0.3",
