@@ -2,30 +2,33 @@
 
 Все заметные изменения в этом проекте будут документированы в этом файле
 
-## Releases
+## Релизы
 
 ## v0.28.0
 
-### Added
+### Добавлено
 
-* Компонент `UiSelect`
+* Утилиты для работы с датой `isValidDate`, `formatDate`, `convertDateToObject`, `convertObjectToDate` и `resetDateTimes`
+* Утилита `formatBytes`
+* Утилита `swapArrayElements`
+* Компонент `UiSelect` (только заготовка)
 
 ## v0.27.6
 
-### Changed
+### Изменено
 
 * Зависимость `axios` в утилите `downloadFileToBrowser` заменена на нативный `fetch`
 
 ## v0.27.5
 
-### Added
+### Добавлено
 
 * Утилиты `archiveFilesToZip`, `downloadFile`, `downloadFileToBrowser`, `freezeDeep`
   и `removeDomElement`
 * Утилиты инспекции `isElement`, `isInteger` и `isSymbol`
 * Утилита логгера `prepareError`
 
-### Changed
+### Изменено
 
 * Удален импорт пакета `normalize.scss` в глобальном файле стилей.
   Теперь его необходимо устанавливать непосредственно в проект
@@ -33,13 +36,13 @@
 
 ## v0.27.4
 
-### Added
+### Добавлено
 
 * Утилита `createScssVariablesDictionary`, создающая многоуровневый словарь из экспортированных
   scss переменных, с учетом бесконечной вложенности
 * Экспорт `styles` утилит в билд библиотеки
 
-### Changed
+### Изменено
 
 * Утилиты `getScssVariable`, `getScssVariableByMap` и `getScssVariablesMap` обзавелись валидаторами
   аргументов и избавились от зависимости `styles/export.scss`.
@@ -49,7 +52,7 @@
 
 ## v0.27.3
 
-### Fixed
+### Исправлено
 
 * Импорт scss переменных в утилиты `getScssVariable`, `getScssVariableByMap` и `getScssVariablesMap`
   сделан относительным, для возможности использования данных утилит вне фреймворка.
@@ -58,13 +61,13 @@
 
 ## v0.27.2
 
-### Fixed
+### Исправлено
 
 * Имя свойства `$angle` в scss миксине `backgroundLinearGradient`
 
 ## v0.27.1
 
-### Added
+### Добавлено
 
 * Поддержка кастомных иконок компонентом `UiIcon`
 * Утилита логгера `LogModel`
@@ -72,7 +75,7 @@
 
 ## v0.27.0
 
-### Added
+### Добавлено
 
 * Компонент `UiCheckboxGroup`
 * Компонент `UiRadio`
@@ -85,12 +88,12 @@
 * Миксины `providable` и `injectable`, работающие в паре
 * Утилиты `isEmptyObject` и `isEqual`
 
-### Fixed
+### Исправлено
 
 * Отсутствие установленных классов на дочерних кнопках компонента `UiButtonGroup`
 * Устранена возможность менять значение у компонента `UiInput` в состоянии readonly
 
-### Changed
+### Изменено
 
 * Обновлены до последних версий все npm модули проекта
 * Стили компонента `UiButton` в состояниях focus и active
@@ -100,7 +103,7 @@
 
 ## v0.26.4
 
-### Added
+### Добавлено
 
 * Компоненты `UiInput`, `UiLink` и `UiText` получили поддержку темизации
 * Scss переменные со всеми вариантами начертания шрифта в `typography.scss`
@@ -108,38 +111,38 @@
 * В компонент `UiInput` добавлены свойства `iconAfter` и `textAlign`
 * В компонент `UiInput` добавлен блок обертка `wrapper` для иконок, инпута и кнопки "очистить"
 
-### Changed
+### Изменено
 
 * Входящее свойство `resetDefaultStyles` кастомных installed стилей при инициализации фреймворка
   заменено на `installedResetDefaultStyles`
 * Отключена обязательность входящий опций миксина `stylable`
 
-### Fixed
+### Исправлено
 
 * Пропадание текста при потере фокуса компонента `UiInput`, если отсутствует модель
 
 ## v0.26.3
 
-### Added
+### Добавлено
 
 * Пакет `stylelint` для проверки стилей
 * Переменные для стилей `font-weight` в `typography.scss`
 
 ## v0.26.2
 
-### Changed
+### Изменено
 
 * Удалена валидация свойства `theme` на основе коллекции имен в js миксине `stylable`
 
 ## v0.26.1
 
-### Added
+### Добавлено
 
 * Scss миксин `fontFace`
 
 ## v0.26.0
 
-### Added
+### Добавлено
 
 * Компонент `UiCheckbox`
 * Хэлпер для получения слотов `getSlot`
@@ -148,7 +151,7 @@
 * Хэш ссылки на заголовки в компоненте `UiMarkdownViewer`
 * Иконки `check` и `cross-thin`
 
-### Changed
+### Изменено
 
 * Замена методов `genDefaultSlot` на хэлпер `getSlot` в компонентах `UiApp`, `UiButton`,
   `UiButtonGroup`, `UiCol`, `UiContainer`, `UiDatepicker`, `UiDrawer`, `UiLink`, `UiOverlay`,
@@ -156,27 +159,27 @@
 * Удален сайд-эффект с передачей свойств в дочерние компоненты компонента `UiButtonGroup`
 * Код иконки `cross` заменен на жирную версию
 
-### Fixed
+### Исправлено
 
 * Передача `value` и флагов `required`, `disabled` в компоненте `UiInput`
 * Стили положения `label` в компоненте `UiInput`
 
 ## v0.25.2
 
-### Fixed
+### Исправлено
 
 * Обработчики событий в компоненте `UiButton`
 
 ## v0.25.1
 
-### Fixed
+### Исправлено
 
 * Обработчики событий в компоненте `UiButton`
 * Заблокирована обработка событий компонента `UiLink` в состоянии disabled
 
 ## v0.25.0
 
-### Added
+### Добавлено
 
 * Зависимости `vue-markdown`, `raw-loader`
 * Компонент [UiMarkdownViewer](./src/components/UiMarkdownViewer/README.md)
@@ -185,43 +188,43 @@
 
 ## v0.24.0
 
-### Added
+### Добавлено
 
 * Компонент [UiButtonHamburger](./src/components/UiButtonHamburger/README.md)
 
-### Changed
+### Изменено
 
 * Логика метода `toggle` в js миксине `toggleable`
 
-### Fixed
+### Исправлено
 
 * Исключен рендер пустых строк в компоненте `UiButtonGroup`
 
 ## v0.23.4
 
-### Changed
+### Изменено
 
 * Удален debug в компоненте `UiButtonGroup`
 
-### Fixed
+### Исправлено
 
 * `UiButtonGroup` исправлено поведение методов `genDefaultSlot` и `genButton`
 
 ## v0.23.3
 
-### Fixed
+### Исправлено
 
 * Удалены стили `text-align` у flex утилит
 
 ## v0.23.2
 
-### Fixed
+### Исправлено
 
 * Добавлен импорт `flex` утилит в главный файл `utils.scss`
 
 ## v0.23.1
 
-### Changed
+### Изменено
 
 * В компоненте `UiLink` удалено значение по умолчанию у свойств `activeClass` и `exactActiveClass`
 * Добавлен debug в метод `genButton` компонента `UiButtonGroup`

@@ -2,6 +2,10 @@ import { generateHash } from '@/utils';
 import { getSlot } from '@/utils/helpers';
 import styles from './UiSelect.scss';
 
+/**
+ * @TODO: Доработать!
+ */
+
 export default {
   name: 'UiSelect',
 

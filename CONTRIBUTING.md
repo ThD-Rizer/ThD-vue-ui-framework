@@ -39,8 +39,8 @@ $ npm run dev
     3. Обновить версию пакета в файле `package.json`
 3. Создайте запрос на слияние в ветке `master` с именем "Release `v0.${minor}.${patch}`" (например: `Release v0.42.0`)
     1. Не забудьте выбрать `squash commits` и `delete source branch`
-    2. Ждите лайков от сопровождающих: ThD.Rizer
-    3. Произведите слияние
+    2. Ждите лайков от сопровождающих: ThD.Rizer
+    3. Произведите слияние
 5. Создайте тег git в ветке `master` с именем `v0.${minor}.${patch}` и добавьте примечания к выпуску из [CHANGELOG](./CHANGELOG.md)
 6. Сделайте `git checkout master && git pull` в вашем терминале
 7. Если на вашей машине не установлена переменная окружения `VERDACCIO_REGISTRY` или `VERDACCIO_EMAIL`, добавьте их
