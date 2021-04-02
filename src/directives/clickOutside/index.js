@@ -1,11 +1,11 @@
-import FrameworkError from '@/utils/errors';
+import BaseError from '@/utils/errors';
 
 /**
  * @returns {HTMLBodyElement}
  */
 function container() {
   if (!document) {
-    throw new FrameworkError('Can\'t execute this code on server side');
+    throw new BaseError('Can\'t execute this code on server side');
   }
 
   return document.querySelector('body');

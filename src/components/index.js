@@ -20,6 +20,7 @@ export { default as UiCheckbox } from './UiCheckbox';
 export { default as UiCheckboxGroup } from './UiCheckboxGroup';
 export { default as UiRadio } from './UiRadio';
 export { default as UiRadioGroup } from './UiRadioGroup';
+export { default as UiSelect } from './UiSelect';
 // export { default as UiDatepicker } from './UiDatepicker';
 
 // Tables

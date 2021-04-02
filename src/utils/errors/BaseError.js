@@ -2,10 +2,7 @@ import { isArray } from '../inspect';
 
 const ERROR_PREFIX = '[UI Framework] ';
 
-/**
- * Базовая ошибка
- */
-export default class FrameworkError extends Error {
+export default class BaseError extends Error {
   /**
    * @param {String | String[]} messages
    */

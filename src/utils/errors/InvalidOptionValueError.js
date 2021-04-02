@@ -1,9 +1,9 @@
-import FrameworkError from './FrameworkError';
+import BaseError from './BaseError';
 
 /**
  * Ошибка неверного значения параметра
  */
-export default class InvalidOptionValueError extends FrameworkError {
+export default class InvalidOptionValueError extends BaseError {
   /**
    * @param {String} option
    * @param {String[]} [allowedValues]
