@@ -1,9 +1,9 @@
-import FrameworkError from './FrameworkError';
+import BaseError from './BaseError';
 
 /**
  * Бросать, когда дочерний компонент используется не внутри провайдера
  */
-export default class ComponentInjectionError extends FrameworkError {
+export default class ComponentInjectionError extends BaseError {
   /**
    * @param {String} parent
    * @param {String} child

@@ -1,8 +1,8 @@
-# @thd/vue-ui-framework (v0.27.8)
+# @thd/vue-ui-framework (v0.28.0)
 
 Библиотека с компонентами пользовательского интерфейса для Vue.js/Nuxt.js.
 
-## Демо стэнд
+## Демо
 
 [vue-ui-framework.thd-dev.ru](http://vue-ui-framework.thd-dev.ru/)
 
@@ -34,6 +34,7 @@
      * [UiCheckboxGroup](./src/components/UiCheckboxGroup/README.md)
      * [UiRadio](./src/components/UiRadio/README.md)
      * [UiRadioGroup](./src/components/UiRadioGroup/README.md)
+     * [UiSelect](./src/components/UiSelect/README.md)
      * [UiDatepicker](./src/components/UiDatepicker/README.md)
    * Таблицы
      * @TODO
@@ -47,7 +48,9 @@
 4. Дирекивы
    * [ClickOutside](./src/directives/clickOutside/README.md)
 
-## Установка
+## Подключение на проект
+
+### Установка
 
 #### Yarn или npm
 
@@ -92,7 +95,7 @@ $ yarn add @thd/vue-ui-framework
 $ npm i @thd/vue-ui-framework
 ```
 
-## Использование
+### Использование
 
 Прежде всего вам необходимо включить CSS-пакет фреймворка. Вы можете импортировать его во входной файл вашего приложения следующим образом:
 

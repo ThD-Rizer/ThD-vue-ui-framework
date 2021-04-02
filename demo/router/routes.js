@@ -21,6 +21,7 @@ export default [
   page('Inputs'),
   page('Checkboxes'),
   page('RadioButtons'),
+  page('Selects'),
   // page('Tables'),
   page('Modals'),
   page('Icons'),

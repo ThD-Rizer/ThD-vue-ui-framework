@@ -4,6 +4,7 @@ export { default as cloneArray } from './cloneArray';
 export { default as cloneDeep } from './cloneDeep';
 export { default as downloadFile } from './downloadFile';
 export { default as downloadFileToBrowser } from './downloadFileToBrowser';
+export { default as formatBytes } from './formatBytes';
 export { default as freezeDeep } from './freezeDeep';
 export { default as generateHash } from './generateHash';
 export { default as isEqual } from './isEqual';

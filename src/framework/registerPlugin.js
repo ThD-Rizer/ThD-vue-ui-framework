@@ -1,4 +1,4 @@
-import FrameworkError from '@/utils/errors';
+import BaseError from '@/utils/errors';
 
 /**
  * Регистрация нового плагина фреймворка
@@ -12,7 +12,7 @@ export default function registerPlugin(instance, name, plugin) {
   const pluginName = name.startsWith('$') ? name : `$${name}`;
 
   if (pluginName in instance) {
-    throw new FrameworkError(
+    throw new BaseError(
       `Plugin with name "${pluginName}" has registered in Framework instance already`,
     );
   }
