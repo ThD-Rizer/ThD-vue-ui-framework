@@ -4,6 +4,12 @@
 
 ## Релизы
 
+## v0.xx.x
+
+### Добавлено
+
+* Компоненты `UiTable`, `UiTableColumn`, `UiTableRow` и `UiTableCell`
+
 ## v0.28.0
 
 ### Добавлено

@@ -37,7 +37,10 @@
      * [UiSelect](./src/components/UiSelect/README.md)
      * [UiDatepicker](./src/components/UiDatepicker/README.md)
    * Таблицы
-     * @TODO
+     * [UiTable](./src/components/UiTable/README.md)
+     * [UiTableColumn](./src/components/UiTableColumn/README.md)
+     * [UiTableRow](./src/components/UiTableRow/README.md)
+     * [UiTableCell](./src/components/UiTableCell/README.md)
    * Прочее
      * [UiApp](./src/components/UiApp/README.md)
      * [UiDrawer](./src/components/UiDrawer/README.md)

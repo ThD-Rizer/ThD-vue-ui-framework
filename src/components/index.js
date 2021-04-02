@@ -24,9 +24,10 @@ export { default as UiSelect } from './UiSelect';
 // export { default as UiDatepicker } from './UiDatepicker';
 
 // Tables
-/**
- * @TODO: реализовать
- */
+export { default as UiTable } from './UiTable';
+export { default as UiTableColumn } from './UiTableColumn';
+export { default as UiTableRow } from './UiTableRow';
+export { default as UiTableCell } from './UiTableCell';
 
 // Other
 export { default as UiApp } from './UiApp';

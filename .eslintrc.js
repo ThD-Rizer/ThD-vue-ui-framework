@@ -23,7 +23,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'max-len': ['error',
       {
-        code: 100,
+        code: 120,
         tabWidth: 2,
         comments: Infinity,
         ignoreRegExpLiterals: true,
@@ -50,7 +50,7 @@ module.exports = {
       rules: {
         'max-len': 'off',
         'vue/max-len': ['error', {
-          code: 100,
+          code: 120,
           tabWidth: 2,
           comments: Infinity,
           ignoreUrls: true,

@@ -1,6 +1,10 @@
 <template>
   <UiMain>
-    Tables
+    <UiTable />
+    <UiTable
+      :columns="[]"
+      :rows="[]"
+    />
   </UiMain>
 </template>
 

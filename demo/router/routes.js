@@ -22,7 +22,7 @@ export default [
   page('Checkboxes'),
   page('RadioButtons'),
   page('Selects'),
-  // page('Tables'),
+  page('Tables'),
   page('Modals'),
   page('Icons'),
   page('Other'),

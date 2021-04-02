@@ -14,6 +14,7 @@ export { default as kebabToCamel } from './kebabToCamel';
 export { default as kebabToPascal } from './kebabToPascal';
 export { default as leadingZero } from './leadingZero';
 export { default as makeCounter } from './makeCounter';
+export { default as orderBy } from './orderBy';
 export { default as padStart } from './padStart';
 export { default as pascalToKebab } from './pascalToKebab';
 export { default as percentOfInteger } from './percentOfInteger';
