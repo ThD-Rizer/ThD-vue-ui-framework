@@ -4,12 +4,12 @@ export default {
     cols: {
       type: [String, Number],
       default: null,
-      validator: v => !Number.isNaN(parseInt(v, 10)) && v > 0,
+      validator: (v) => !Number.isNaN(parseInt(v, 10)) && v > 0,
     },
     rows: {
       type: [String, Number],
       default: null,
-      validator: v => !Number.isNaN(parseInt(v, 10)) && v > 0,
+      validator: (v) => !Number.isNaN(parseInt(v, 10)) && v > 0,
     },
   },
   methods: {
@@ -27,7 +27,7 @@ export default {
           rowspan: this.rows,
         },
         on: {
-          click: e => this.clickHandler(e),
+          click: (e) => this.clickHandler(e),
         },
       },
       this.$slots.default,

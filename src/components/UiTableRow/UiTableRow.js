@@ -34,7 +34,7 @@ export default {
           '-expanded': this.expanded,
         },
         on: {
-          click: e => this.clickHandler(e),
+          click: (e) => this.clickHandler(e),
         },
       },
       this.$slots.default,

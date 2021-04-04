@@ -37,7 +37,20 @@ export default {
       this.$emit('click', e);
 
       if (this.sortable) {
-        const v = this.direction === null ? 'desc' : this.direction === 'desc' ? 'asc' : null;
+        let v = null;
+
+        switch (this.direction) {
+          case null:
+            v = 'desc';
+            break;
+          case 'desc':
+            v = 'asc';
+            break;
+          case 'asc':
+          default:
+            v = null;
+            break;
+        }
 
         this.$emit('toggle', v);
       }
