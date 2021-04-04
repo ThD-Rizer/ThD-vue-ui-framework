@@ -1,4 +1,4 @@
-import uiIcon from '../uiIcon';
+import UiIcon from '../UiIcon/UiIcon';
 
 export default {
   name: 'ui-table-column',
@@ -9,7 +9,7 @@ export default {
     align: {
       type: String,
       default: null,
-      validator: v => ['left', 'right', 'center', null].includes(v),
+      validator: (v) => ['left', 'right', 'center', null].includes(v),
     },
     /**
      * Shows sort icon and make column sortable
@@ -24,7 +24,7 @@ export default {
     direction: {
       type: String,
       default: null,
-      validator: v => ['asc', 'desc'].includes(v),
+      validator: (v) => ['asc', 'desc'].includes(v),
     },
   },
   methods: {
@@ -57,7 +57,7 @@ export default {
             '-sortable': this.sortable,
           },
           on: {
-            click: e => this.clickHandler(e),
+            click: (e) => this.clickHandler(e),
           },
         },
         content,
@@ -100,7 +100,7 @@ export default {
         return null;
       }
 
-      return this.$createElement(uiIcon, {
+      return this.$createElement(UiIcon, {
         staticClass: 'table-col__icon',
         class: {
           '-asc': this.direction === 'asc',
