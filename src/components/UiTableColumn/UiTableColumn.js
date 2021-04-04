@@ -1,7 +1,7 @@
 import UiIcon from '../UiIcon/UiIcon';
 
 export default {
-  name: 'ui-table-column',
+  name: 'UiTableColumn',
   props: {
     /**
      * Content alignment inside wrapper

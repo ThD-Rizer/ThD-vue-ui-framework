@@ -1,5 +1,5 @@
 export default {
-  name: 'ui-table-cell',
+  name: 'UiTableCell',
   props: {
     cols: {
       type: [String, Number],

@@ -1,7 +1,7 @@
 import { orderBy } from '@/utils';
-import uiTableColumn from '@/components/UiTableColumn';
-import uiTableRow from '@/components/UiTableRow';
-import uiTableCell from '@/components/UiTableCell';
+import UiTableColumn from '@/components/UiTableColumn';
+import UiTableRow from '@/components/UiTableRow';
+import UiTableCell from '@/components/UiTableCell';
 
 /**
  * @type {{ column: string, indexedColumn: (function(*): string), row: string, indexedRow: (function(*): string) }}
@@ -18,7 +18,7 @@ const defaultSlots = {
 };
 
 export default {
-  name: 'ui-table',
+  name: 'UiTable',
   model: {
     prop: 'sort',
     event: 'change',
@@ -339,7 +339,7 @@ export default {
       const { class: classes = null, style: styles = null, ...props } = col;
 
       return this.$createElement(
-        uiTableColumn,
+        UiTableColumn,
         {
           class: classes,
           style: styles,
@@ -434,7 +434,7 @@ export default {
       }
 
       return this.$createElement(
-        uiTableRow,
+        UiTableRow,
         {
           key: related ? relatedIndex : index,
           props: {
@@ -474,7 +474,7 @@ export default {
       const content = this.getSlotContent(key, `${key}-${index}`) || this.getContent(value);
 
       return this.$createElement(
-        uiTableCell,
+        UiTableCell,
         {
           key,
           on: {

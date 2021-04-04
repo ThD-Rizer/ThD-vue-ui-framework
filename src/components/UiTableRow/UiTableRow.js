@@ -1,5 +1,5 @@
 export default {
-  name: 'ui-table-row',
+  name: 'UiTableRow',
   props: {
     expandable: {
       type: Boolean,
