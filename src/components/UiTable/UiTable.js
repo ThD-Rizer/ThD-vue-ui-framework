@@ -1,7 +1,9 @@
 import { orderBy } from '@/utils';
-import UiTableColumn from '@/components/UiTableColumn';
-import UiTableRow from '@/components/UiTableRow';
-import UiTableCell from '@/components/UiTableCell';
+import UiTableColumn from '@/components/UiTableColumn/UiTableColumn';
+import UiTableRow from '@/components/UiTableRow/UiTableRow';
+import UiTableCell from '@/components/UiTableCell/UiTableCell';
+
+import styles from './UiTable.scss';
 
 /**
  * @type {{ column: string, indexedColumn: (function(*): string), row: string, indexedRow: (function(*): string) }}
@@ -19,10 +21,12 @@ const defaultSlots = {
 
 export default {
   name: 'UiTable',
+
   model: {
     prop: 'sort',
     event: 'change',
   },
+
   props: {
     /**
      * Sort options. Uses for v-model.
@@ -30,7 +34,6 @@ export default {
     sort: {
       type: Object,
       default: null,
-      // eslint-disable-next-line max-len
       validator: (v) => v === null || (typeof v.column === 'string' && ['asc', 'desc'].includes(v.direction)),
     },
     /**
@@ -76,6 +79,7 @@ export default {
       default: false,
     },
   },
+
   data: () => ({
     /**
      * Current sort column
@@ -105,6 +109,7 @@ export default {
       right: false,
     },
   }),
+
   computed: {
     /**
      * All columns' keys
@@ -156,6 +161,7 @@ export default {
         .filter((v) => v !== null);
     },
   },
+
   watch: {
     sort: {
       immediate: true,
@@ -166,6 +172,7 @@ export default {
       },
     },
   },
+
   methods: {
     /**
      * Width resize handler
@@ -226,7 +233,6 @@ export default {
      * @return {function(props: *): VNode[] | VNode[] | undefined}
      */
     getSlotContent(key, indexedKey) {
-      // eslint-disable-next-line max-len
       return this.$scopedSlots[indexedKey] || this.$slots[indexedKey] || this.$scopedSlots[key] || this.$slots[key];
     },
     /**
@@ -245,18 +251,24 @@ export default {
      * @returns {VNode}
      */
     genWrapper(content = []) {
-      return this.$createElement('div', { staticClass: 'table' }, [
-        this.genLeftShadow(),
-        this.genRightShadow(),
-        this.$createElement(
-          'div',
-          {
-            ref: 'container',
-            staticClass: 'table__container',
-          },
-          [this.genTable(content)],
-        ),
-      ]);
+      return this.$createElement(
+        'div',
+        {
+          class: styles['ui-table'],
+        },
+        [
+          this.genLeftShadow(),
+          this.genRightShadow(),
+          this.$createElement(
+            'div',
+            {
+              ref: 'container',
+              class: 'table__container',
+            },
+            [this.genTable(content)],
+          ),
+        ],
+      );
     },
     /**
      * Generates shadow template
@@ -267,8 +279,8 @@ export default {
      */
     genShadow(show, type) {
       return this.$createElement('div', {
-        staticClass: 'table__shadow',
         class: {
+          table__shadow: true,
           [`-${type}`]: true,
           '-hidden': !show,
         },
@@ -314,7 +326,7 @@ export default {
         'thead',
         {
           ...options,
-          staticClass: 'table__head',
+          class: 'table__head',
         },
         [this.$createElement('tr', this.genColumns())],
       );
@@ -334,15 +346,18 @@ export default {
      * @returns {VNode}
      */
     genColumn(col) {
-      // eslint-disable-next-line max-len
-      const content = this.getSlotContent(this.slots.column, this.slots.indexedColumn(col.key, col)) || this.getContent(col.title);
-      const { class: classes = null, style: styles = null, ...props } = col;
+      const { class: classes = null, style, ...props } = col;
+      let content = this.getSlotContent(this.slots.column, this.slots.indexedColumn(col.key, col));
+
+      if (!content) {
+        content = this.getContent(col.title);
+      }
 
       return this.$createElement(
         UiTableColumn,
         {
           class: classes,
-          style: styles,
+          style,
           props: {
             ...props,
             direction: this.columnsDirection[col.key],
@@ -366,8 +381,6 @@ export default {
     /**
      * Generates rows templates
      *
-     * @todo refactoring
-     *
      * @param {Array<Object>} rows
      * @returns {Array<Array<VNode>>}
      */
@@ -378,7 +391,6 @@ export default {
 
         return [
           this.genRow(row, index, { expandable }),
-          // eslint-disable-next-line max-len
           ...(expandable && this.expandedRow === index ? this.genRelatedRows(row[this.relatedRows], row, index) : []),
         ];
       });
@@ -416,13 +428,17 @@ export default {
      * @param {{ related?: boolean, expandable?: boolean, parent?: Object, parentIndex?: number | null }} options
      * @returns {VNode}
      */
-    // eslint-disable-next-line
-    genRow(row, index, { related = false, expandable = false, parent = null, parentIndex = null }) {
+    genRow(row, index, options) {
+      const {
+        related = false,
+        expandable = false,
+        parent = null,
+        parentIndex = null,
+      } = options;
       const relatedIndex = related ? `${parentIndex}-${index}` : null;
       const indexedSlot = related ? this.slots.indexedRelatedRow(relatedIndex) : this.slots.indexedRow(index);
       const slot = related ? this.slots.relatedRow : this.slots.row;
 
-      // eslint-disable-next-line max-len
       let content = this.$scopedSlots[indexedSlot]
         || this.$slots[indexedSlot]
         || this.$scopedSlots[slot]
@@ -470,7 +486,6 @@ export default {
      */
     genCell(key, row, index) {
       const value = row[key];
-      // eslint-disable-next-line max-len
       const content = this.getSlotContent(key, `${key}-${index}`) || this.getContent(value);
 
       return this.$createElement(
@@ -492,14 +507,17 @@ export default {
     genFoot() {
       const content = this.$slots.foot;
 
-      if (!content) {
-        return null;
-      }
+      if (!content) return null;
 
       return this.$createElement('tfoot', content);
     },
   },
+
   render() {
-    return this.genWrapper([this.genHead(), this.genBody(), this.genFoot()]);
+    return this.genWrapper([
+      this.genHead(),
+      this.genBody(),
+      this.genFoot(),
+    ]);
   },
 };
