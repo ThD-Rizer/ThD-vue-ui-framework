@@ -15,7 +15,7 @@ export default class LogModel {
    * @param {Array} [config.tags] Список тегов после тега области (первая строка лога)
    * @param {Array} [config.messages] Список строк описания (вторая и далее строки лога)
    * @param {Object} [config.data] Именованные свойства
-   * @param {*} [config.epilog] Произвольные данные (после всех вышеописанных данных)
+   * @param {*} [config.epilogue] Произвольные данные (после всех вышеописанных данных)
    */
   constructor(config) {
     this.props = {};
@@ -85,7 +85,7 @@ export default class LogModel {
     if (isEmptyObject(this.props)) return;
 
     const {
-      tags, messages, data, epilog,
+      tags, messages, data, epilogue,
     } = this.props;
 
     this.template = '';
@@ -113,9 +113,9 @@ export default class LogModel {
       });
     }
 
-    if (epilog) {
+    if (epilogue) {
       this.appendNewLine();
-      this.appendText(epilog);
+      this.appendText(epilogue);
     }
   }
 
