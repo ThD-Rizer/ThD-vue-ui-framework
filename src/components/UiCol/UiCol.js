@@ -8,7 +8,7 @@ const tagValidator = propValidator('tag', [
 ]);
 
 /**
- * @type {String[]}
+ * @type {string[]}
  */
 const breakpoints = Object.keys(BREAKPOINTS);
 

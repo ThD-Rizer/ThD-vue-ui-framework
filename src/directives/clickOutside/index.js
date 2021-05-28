@@ -13,9 +13,9 @@ function container() {
 
 /**
  * @param {HTMLElement} element
- * @param {Number} x
- * @param {Number} y
- * @returns {Boolean}
+ * @param {number} x
+ * @param {number} y
+ * @returns {boolean}
  */
 function clickedInElement(element, x, y) {
   const rect = element.getBoundingClientRect();
@@ -26,7 +26,7 @@ function clickedInElement(element, x, y) {
 /**
  * @param {Event} event
  * @param {Array} elements
- * @returns {Boolean}
+ * @returns {boolean}
  */
 function clickedInElements(event, elements) {
   const { clientX: x, clientY: y } = event;

@@ -11,9 +11,9 @@ import LogModel from './LogModel';
 export default class Logger {
   /**
    * @param {Object} [config]
-   * @param {String} [config.scope] Область применения
+   * @param {string} [config.scope] Область применения
    * @param {Array} [config.tags] Список тегов после тега области (первая строка лога)
-   * @param {Function} [config.accessHandler] Обработчик с условием доступа
+   * @param {function} [config.accessHandler] Обработчик с условием доступа
    */
   constructor(config = {}) {
     this.isLoggerInstance = true;
@@ -28,7 +28,7 @@ export default class Logger {
 
   /**
    * @param {Object} config
-   * @returns {Boolean}
+   * @returns {boolean}
    * @private
    */
   static validateConfig(config) {
@@ -93,7 +93,7 @@ export default class Logger {
 
   /**
    * @param {Array} args
-   * @returns {Boolean}
+   * @returns {boolean}
    * @private
    */
   static checkModelOnlyOne(args) {
@@ -104,7 +104,7 @@ export default class Logger {
 
   /**
    * @param {Array} args
-   * @returns {LogModel | null}
+   * @returns {?LogModel}
    * @private
    */
   static getModelFromArgs(args) {
@@ -112,9 +112,9 @@ export default class Logger {
   }
 
   /**
-   * @param {String} level
+   * @param {string} level
    * @param {Array} args
-   * @param {Boolean} [firstLogModelInjected = false]
+   * @param {boolean} [firstLogModelInjected = false]
    * @returns {Object}
    * @private
    */
@@ -124,7 +124,7 @@ export default class Logger {
     let isLogModelLast = false;
 
     /**
-     * @param {String} template
+     * @param {string} template
      * @param {Array} substrings
      * @returns {void}
      */
@@ -158,7 +158,7 @@ export default class Logger {
   }
 
   /**
-   * @param {String} level
+   * @param {string} level
    * @param {...*} args
    * @returns {void}
    * @private
@@ -192,7 +192,7 @@ export default class Logger {
   }
 
   /**
-   * @returns {Boolean}
+   * @returns {boolean}
    * @private
    */
   hasAccess() {

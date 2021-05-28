@@ -6,16 +6,16 @@ import { isString, isArray } from '../inspect';
  *
  * @see original function https://habr.com/ru/post/280928/
  *
- * @param {String | String[]} strings
+ * @param {string | string[]} strings
  * @param {*} expressions
- * @returns {String}
+ * @returns {string}
  */
 export default function loggerClearTemplate(strings, ...expressions) {
   const isValidBase = (isString(strings) || isArray(strings));
   const isValidArray = (isArray(strings) && strings.length && strings.every(isString));
 
   if (!isValidBase || !isValidArray) {
-    throw new InvalidTypeError(strings, 'strings', 'String | String[]');
+    throw new InvalidTypeError(strings, 'strings', 'string | string[]');
   }
 
   const match = strings[0].match(/\n+( *)/);

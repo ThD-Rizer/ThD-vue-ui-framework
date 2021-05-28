@@ -1,6 +1,6 @@
 /**
- * @param {Object<Vue>} context
- * @param {String} slotName
+ * @param {Object} context VueOptions
+ * @param {string} slotName
  * @param {Object} scope
  * @returns {*}
  */

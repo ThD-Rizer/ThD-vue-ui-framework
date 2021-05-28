@@ -1,8 +1,8 @@
 import FileSaver from 'file-saver';
 
 /**
- * @param {Blob | File | String} data
- * @param {String} fileName
+ * @param {Blob | File | string} data
+ * @param {string} fileName
  * @returns {void}
  */
 export default function downloadFile(data, fileName = null) {

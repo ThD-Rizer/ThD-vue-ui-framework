@@ -5,8 +5,8 @@ import BaseError from './BaseError';
  */
 export default class InvalidOptionValueError extends BaseError {
   /**
-   * @param {String} option
-   * @param {String[]} [allowedValues]
+   * @param {string} option
+   * @param {string[]} [allowedValues]
    */
   constructor(option, allowedValues = []) {
     const messages = [`Invalid value given for option "${option}"`];

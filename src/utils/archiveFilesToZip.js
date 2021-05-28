@@ -1,7 +1,7 @@
 import JSZip from 'jszip';
 
 /**
- * @param {Array<Object>} resources
+ * @param {Array.<Object>} resources
  * @returns {Promise<Blob>} zip archive
  */
 export default async function archiveFilesToZip(resources) {

@@ -2,7 +2,7 @@ import isDate from './isDate';
 
 /**
  * @param {Date} date
- * @returns {Object | null} где `month` имеет человеческий формат (от 1 до 12)
+ * @returns {?Object} где `month` имеет человеческий формат (от 1 до 12)
  */
 export default function convertDateToObject(date) {
   if (!isDate(date)) return null;

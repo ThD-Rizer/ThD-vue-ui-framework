@@ -10,8 +10,8 @@ const routeValidator = {
   /**
    * Validate route property value
    *
-   * @param {String | { name: String, path: String }} value
-   * @returns {Boolean}
+   * @param {string | { name: string, path: string }} value
+   * @returns {boolean}
    */
   validator: (value) => {
     if (
@@ -35,7 +35,7 @@ const targetValidator = propValidator('target', ['_blank', '_self', '_parent', '
 /**
  * Default mount tag
  *
- * @type {String}
+ * @type {string}
  */
 const defaultTag = 'a';
 

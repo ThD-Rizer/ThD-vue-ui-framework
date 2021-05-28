@@ -5,8 +5,8 @@ import BaseError from './BaseError';
  */
 export default class DataInjectionError extends BaseError {
   /**
-   * @param {String} parent
-   * @param {String} child
+   * @param {string} parent
+   * @param {string} child
    */
   constructor(parent, child) {
     const message = `The injection from "${parent}" must be used inside of "${child}" component`;

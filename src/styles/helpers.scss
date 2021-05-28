@@ -30,8 +30,8 @@
 }
 
 // Capitalize string
-// @param {String} $str `lorem ipsum`
-// @returns {String} `Lorem ipsum`
+// @param {string} $str `lorem ipsum`
+// @returns {string} `Lorem ipsum`
 @function capitalize($str) {
   @return to-upper-case(str-slice($str, 1, 1)) + str-slice($str, 2);
 }

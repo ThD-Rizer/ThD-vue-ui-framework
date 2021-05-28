@@ -31,7 +31,7 @@ export default class LogModel {
 
   /**
    * @param {Object} config
-   * @returns {Boolean}
+   * @returns {boolean}
    * @private
    */
   static validateConfig(config) {
@@ -66,7 +66,7 @@ export default class LogModel {
    * Инъекция данных инстанса логгера
    * @params {*} context
    * @params {Array} tags
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   injectLoggerData(context, tags) {
     if (!context?.isLoggerInstance) return false;
@@ -78,7 +78,7 @@ export default class LogModel {
 
   /**
    * Подготовить переданные данные
-   * @param {String} level
+   * @param {string} level
    * @private
    */
   prepareData(level) {
@@ -122,8 +122,8 @@ export default class LogModel {
   /**
    * Добавить свойство объекта с ключом и значением по типу
    * @param {Object} payload
-   * @param {String} payload.level
-   * @param {String} payload.key
+   * @param {string} payload.level
+   * @param {string} payload.key
    * @param {*} payload.value
    * @private
    */
@@ -176,8 +176,8 @@ export default class LogModel {
 
   /**
    * Добавить цветную вертикальную линию
-   * @param {String} level
-   * @param {String} [suffix]
+   * @param {string} level
+   * @param {string} [suffix]
    * @private
    */
   appendStartLine(level, suffix = '') {
@@ -188,7 +188,7 @@ export default class LogModel {
 
   /**
    * Добавить тэг
-   * @param {String} level
+   * @param {string} level
    * @param {*} value
    * @private
    */
@@ -215,7 +215,7 @@ export default class LogModel {
 
   /**
    * Добавить булево значение выделенное цветом
-   * @param {Boolean | null | undefined} value
+   * @param {boolean | null | undefined} value
    * @private
    */
   appendBoolean(value) {
@@ -227,7 +227,7 @@ export default class LogModel {
 
   /**
    * Добавить число выделенное цветом
-   * @param {Number} value
+   * @param {number} value
    * @private
    */
   appendNumber(value) {
@@ -241,7 +241,7 @@ export default class LogModel {
 
   /**
    * Добавить строку выделенное цветом
-   * @param {String} value
+   * @param {string} value
    * @private
    */
   appendString(value) {
@@ -275,7 +275,7 @@ export default class LogModel {
 
   /**
    * Вернуть отформатированные данные
-   * @param {String} level Уровень лога
+   * @param {string} level Уровень лога
    * @returns {Object}
    */
   getOutputData(level) {

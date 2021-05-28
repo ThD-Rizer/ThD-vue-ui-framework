@@ -4,16 +4,16 @@ import { isNumber } from './inspect';
 /**
  * Вычисление процента от числа
  *
- * @param {Number} percent
- * @param {Number} value
- * @returns {Number}
+ * @param {number} percent
+ * @param {number} value
+ * @returns {number}
  */
 export default function percentOfInteger(percent, value) {
   if (!isNumber(percent)) {
-    throw new InvalidTypeError(percent, 'percent', 'Number');
+    throw new InvalidTypeError(percent, 'percent', 'number');
   }
   if (!isNumber(value)) {
-    throw new InvalidTypeError(value, 'value', 'Number');
+    throw new InvalidTypeError(value, 'value', 'number');
   }
 
   return (value * percent) / 100;

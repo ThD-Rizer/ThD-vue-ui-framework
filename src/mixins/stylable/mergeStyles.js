@@ -3,9 +3,9 @@ import { isString, isArray } from '@/utils/inspect';
 /**
  * Производит слияние стилей
  *
- * @param {Object<String>} left
- * @param {Object<String | String[]>} [right]
- * @returns {Object<String>}
+ * @param {Object.<string, string>} left
+ * @param {Object.<string, string | string[]>} [right]
+ * @returns {Object.<string, string>}
  */
 export default function mergeStyles(left, right = null) {
   if (!right) return left;

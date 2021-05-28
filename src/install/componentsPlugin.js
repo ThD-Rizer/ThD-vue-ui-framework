@@ -3,7 +3,7 @@ import * as components from '@/components';
 /**
  * Вернуть подготовленные настройки компонента, переданные при его инсталляции
  *
- * @param {String} componentName
+ * @param {string} componentName
  * @param {Object} options
  * @returns {{ styleOptions?: Object }}
  */

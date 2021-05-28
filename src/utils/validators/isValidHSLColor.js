@@ -5,12 +5,12 @@ const hslCommaColor = /^(hsl)a?\(\s*((\+|-)?([0-9]+(\.[0-9]+)?(e(\+|-)?[0-9]+)?|
 const hslSpaceColor = /^(hsl)a?\(\s*((\+|-)?([0-9]+(\.[0-9]+)?(e(\+|-)?[0-9]+)?|\.[0-9]+(e(\+|-)?[0-9]+)?))(deg|grad|rad|turn|\s)(\s*(\+|-)?([0-9]+(\.[0-9]+)?(e(\+|-)?[0-9]+)?|\.[0-9]+(e(\+|-)?[0-9]+)?)%){2}\s*(\/\s*((\+|-)?([0-9]+(\.[0-9]+)?(e(\+|-)?[0-9]+)?|\.[0-9]+(e(\+|-)?[0-9]+)?)%?)\s*)?\)$/i;
 
 /**
- * @param {String} str
- * @returns {Boolean}
+ * @param {string} str
+ * @returns {boolean}
  */
 export default function isValidHSLColor(str) {
   if (!isString(str)) {
-    throw new InvalidTypeError(str, 'str', 'String');
+    throw new InvalidTypeError(str, 'str', 'string');
   }
 
   return hslCommaColor.test(str) || hslSpaceColor.test(str);

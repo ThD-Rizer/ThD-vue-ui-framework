@@ -4,11 +4,11 @@ const LOCALES = {
 };
 
 /**
- * @param {Number} bytes
+ * @param {number} bytes
  * @param {Object} [options]
- * @param {Number} [options.decimals]
- * @param {String} [options.locale]
- * @returns {String}
+ * @param {number} [options.decimals]
+ * @param {string} [options.locale]
+ * @returns {string}
  * @see https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
  */
 export default function formatBytes(bytes, options = {}) {

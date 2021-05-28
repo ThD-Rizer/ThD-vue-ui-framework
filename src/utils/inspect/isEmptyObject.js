@@ -2,7 +2,7 @@ import isPlainObject from './isPlainObject';
 
 /**
  * @param {Object} value
- * @returns {Boolean}
+ * @returns {boolean}
  */
 export default function isEmptyObject(value) {
   if (!isPlainObject(value)) return false;

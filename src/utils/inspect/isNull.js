@@ -2,7 +2,7 @@
  * Checks if `value` is `null`.
  *
  * @param {*} value The value to check.
- * @returns {Boolean} Returns `true` if `value` is `null`, else `false`.
+ * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
  * @example
  *
  * isNull(null);

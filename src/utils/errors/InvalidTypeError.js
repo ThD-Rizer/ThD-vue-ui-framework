@@ -6,11 +6,11 @@ import BaseError from './BaseError';
 export default class InvalidTypeError extends BaseError {
   /**
    * @param {*} value
-   * @param {String} name
-   * @param {String} type
+   * @param {string} name
+   * @param {string} type
    *
    * @example
-   * throw new InvalidTypeError(str, 'str', 'String');
+   * throw new InvalidTypeError(str, 'str', 'string');
    */
   constructor(value, name, type) {
     const message = `Invalid type for argument "${name}", expected "${type}", got "${typeof value}"`;
