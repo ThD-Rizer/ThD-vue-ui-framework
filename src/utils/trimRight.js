@@ -7,7 +7,7 @@ import { isString } from './inspect';
  * @param {string} str
  * @returns {string}
  */
-export default function trimLeft(str) {
+export default function trimRight(str) {
   if (!isString(str)) {
     throw new InvalidTypeError(str, 'str', 'string');
   }
