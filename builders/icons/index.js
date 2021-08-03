@@ -6,9 +6,9 @@ const INPUT_FILE_EXT = '.svg';
 const OUTPUT_FILENAME = 'index.js';
 
 /**
- * @param {String} inputPath
- * @param {String} fileName
- * @returns {String}
+ * @param {string} inputPath
+ * @param {string} fileName
+ * @returns {string}
  */
 function convertFileToString(inputPath, fileName) {
   const content = fs.readFileSync(`${inputPath}/${fileName}`);
@@ -17,8 +17,8 @@ function convertFileToString(inputPath, fileName) {
 }
 
 /**
- * @param {String} content
- * @returns {String}
+ * @param {string} content
+ * @returns {string}
  */
 function prepareIcon(content) {
   return content
@@ -29,8 +29,8 @@ function prepareIcon(content) {
 }
 
 /**
- * @param {String} inputPath
- * @param {String} outputPath
+ * @param {string} inputPath
+ * @param {string} outputPath
  * @returns {void}
  */
 function build(inputPath, outputPath) {

@@ -16,7 +16,7 @@ const DEFAULT_OPTIONS = {
    */
   themesStyles: null,
   /**
-   * @type {String}
+   * @type {string}
    */
   defaultTheme: null,
 };
@@ -42,7 +42,7 @@ export const factoryStylable = (options = null) => {
     throw new InvalidTypeError(themesStyles, 'themesStyles', 'Object');
   }
   if (defaultTheme && !isString(defaultTheme)) {
-    throw new InvalidTypeError(defaultTheme, 'defaultTheme', 'String');
+    throw new InvalidTypeError(defaultTheme, 'defaultTheme', 'string');
   }
 
   return {
@@ -59,7 +59,7 @@ export const factoryStylable = (options = null) => {
       /**
        * Кастомные стили
        *
-       * @property {String | String[]}
+       * @property {string | string[]}
        * @example
        * {
        *   root: 'className1',
@@ -87,7 +87,7 @@ export const factoryStylable = (options = null) => {
        * @type {Object}
        * @property {Object} installedStyles Кастомные стили
        * @property {Object} installedThemesStyles Кастомные темы
-       * @property {Boolean} installedResetDefaultStyles Флаг сброса стандартных стилей
+       * @property {boolean} installedResetDefaultStyles Флаг сброса стандартных стилей
        */
       installedOptions: {
         installedStyles: null,
@@ -135,7 +135,7 @@ export const factoryStylable = (options = null) => {
 
       /**
        * @param {Object} customStyles
-       * @param {Boolean} resetDefaultStyles
+       * @param {boolean} resetDefaultStyles
        */
       setStyles(customStyles, resetDefaultStyles) {
         const { theme } = this;

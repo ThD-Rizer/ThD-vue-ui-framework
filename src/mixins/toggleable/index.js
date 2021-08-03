@@ -3,8 +3,8 @@ import { isBoolean } from '@/utils/inspect';
 /**
  * Фабрика миксина для переключаемых компонентов
  *
- * @param {String} prop
- * @param {String} event
+ * @param {string} prop
+ * @param {string} event
  * @returns {Object}
  */
 export const factoryToggleable = (prop = 'opened', event = 'toggle') => ({

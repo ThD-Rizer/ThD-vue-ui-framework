@@ -3,7 +3,7 @@
  * and has a `typeof` result of "object".
  *
  * @param {*} value The value to check.
- * @returns {Boolean} Returns `true` if `value` is object-like, else `false`.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
  * @example
  *
  * isObjectLike({})
@@ -12,7 +12,7 @@
  * isObjectLike([1, 2, 3])
  * // => true
  *
- * isObjectLike(Function)
+ * isObjectLike(function)
  * // => false
  *
  * isObjectLike(null)

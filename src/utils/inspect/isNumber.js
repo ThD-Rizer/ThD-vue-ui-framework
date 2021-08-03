@@ -2,13 +2,13 @@ import getTag from './getTag';
 import isObjectLike from './isObjectLike';
 
 /**
- * Checks if `value` is classified as a `Number` primitive or object.
+ * Checks if `value` is classified as a `number` primitive or object.
  *
  * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are
  * classified as numbers, use the `Number.isFinite` method.
  *
  * @param {*} value The value to check.
- * @returns {Boolean} Returns `true` if `value` is a number, else `false`.
+ * @returns {boolean} Returns `true` if `value` is a number, else `false`.
  * @see isInteger, toInteger, toNumber
  * @example
  *

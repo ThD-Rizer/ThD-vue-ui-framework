@@ -4,7 +4,7 @@ import BaseError from '@/utils/errors';
  * Регистрация нового плагина фреймворка
  *
  * @param {UiFramework} instance
- * @param {String} name Название плагина
+ * @param {string} name Название плагина
  * @param {Class<UiFramework>} plugin
  * @returns {void}
  */

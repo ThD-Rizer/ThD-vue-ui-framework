@@ -4,24 +4,24 @@ import { isNumber } from './inspect';
 /**
  * Counter factory
  *
- * @param {Number} value
+ * @param {number} value
  * @returns {Object}
  */
 export default function makeCounter(value = 0) {
   if (!isNumber(value)) {
-    throw new InvalidTypeError(value, 'value', 'Number');
+    throw new InvalidTypeError(value, 'value', 'number');
   }
 
   let count = value;
 
   return {
     /**
-     * @param {Number} step
-     * @returns {Number}
+     * @param {number} step
+     * @returns {number}
      */
     increase(step = 1) {
       if (!isNumber(step)) {
-        throw new InvalidTypeError(step, 'step', 'Number');
+        throw new InvalidTypeError(step, 'step', 'number');
       }
 
       count += step;
@@ -30,12 +30,12 @@ export default function makeCounter(value = 0) {
     },
 
     /**
-     * @param {Number} step
-     * @returns {Number}
+     * @param {number} step
+     * @returns {number}
      */
     decrease(step = 1) {
       if (!isNumber(step)) {
-        throw new InvalidTypeError(step, 'step', 'Number');
+        throw new InvalidTypeError(step, 'step', 'number');
       }
 
       count -= step;
@@ -44,12 +44,12 @@ export default function makeCounter(value = 0) {
     },
 
     /**
-     * @param {Number} newValue
-     * @returns {Number}
+     * @param {number} newValue
+     * @returns {number}
      */
     reset(newValue = value) {
       if (!isNumber(newValue)) {
-        throw new InvalidTypeError(newValue, 'newValue', 'Number');
+        throw new InvalidTypeError(newValue, 'newValue', 'number');
       }
 
       count = newValue;
@@ -58,7 +58,7 @@ export default function makeCounter(value = 0) {
     },
 
     /**
-     * @returns {Number}
+     * @returns {number}
      */
     value() {
       return count;

@@ -4,7 +4,7 @@ const ERROR_PREFIX = '[UI Framework] ';
 
 export default class BaseError extends Error {
   /**
-   * @param {String | String[]} messages
+   * @param {string | string[]} messages
    */
   constructor(messages) {
     const message = isArray(messages) ? messages.join('. ') : messages;

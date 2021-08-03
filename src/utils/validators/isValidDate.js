@@ -2,7 +2,7 @@ import { isNaN } from '../inspect';
 
 /**
  * @param {*} value
- * @returns {Boolean}
+ * @returns {boolean}
  */
 export default function isValidDate(value) {
   return (

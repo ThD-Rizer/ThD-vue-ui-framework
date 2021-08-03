@@ -4,12 +4,12 @@ import { isString } from './inspect';
 /**
  * Format string from `kebab-case` to `camelCase`
  *
- * @param {String} str
- * @returns {String}
+ * @param {string} str
+ * @returns {string}
  */
 export default function kebabToCamel(str) {
   if (!isString(str)) {
-    throw new InvalidTypeError(str, 'str', 'String');
+    throw new InvalidTypeError(str, 'str', 'string');
   }
 
   const chars = str.split('-');

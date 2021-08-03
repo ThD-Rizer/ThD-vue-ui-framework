@@ -5,7 +5,7 @@ const SEPARATOR = '-';
 
 /**
  * @param {Object} dictionary Словарь переменных
- * @param {String} mapKey Префикс переменной, на основании которого будет сформирована карта
+ * @param {string} mapKey Префикс переменной, на основании которого будет сформирована карта
  * @returns {Object}
  */
 export default function getScssVariablesMap(dictionary, mapKey) {
@@ -13,7 +13,7 @@ export default function getScssVariablesMap(dictionary, mapKey) {
     throw new InvalidTypeError(dictionary, 'dictionary', 'Object');
   }
   if (!isString(mapKey)) {
-    throw new InvalidTypeError(mapKey, 'mapKey', 'String');
+    throw new InvalidTypeError(mapKey, 'mapKey', 'string');
   }
 
   return Object.entries(dictionary).reduce((acc, [key, value]) => {

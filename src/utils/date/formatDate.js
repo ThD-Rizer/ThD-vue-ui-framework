@@ -6,11 +6,11 @@ const LOCALES = {
 };
 
 /**
- * @param {Date | Number} date
- * @param {String} format
+ * @param {Date | number} date
+ * @param {string} format
  * @param {Object} options
- * @param {String} options.locale
- * @returns {String}
+ * @param {string} options.locale
+ * @returns {string}
  */
 export default function formatDate(date, format, options = {}) {
   const optionsCloned = { ...options };

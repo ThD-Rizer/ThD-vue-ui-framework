@@ -32,7 +32,7 @@ logger.log(new LogModel({
     age: 42,
     date: new Date(),
   },
-  epilog: new Error(),
+  epilogue: new Error(),
 }));
 
 logger.error(new LogModel({

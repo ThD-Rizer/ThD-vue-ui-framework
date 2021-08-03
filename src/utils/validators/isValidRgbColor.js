@@ -7,13 +7,13 @@ const rgbColorPercent = /^rgb\((([0-9]%|[1-9][0-9]%|100%),\s?){2}([0-9]%|[1-9][0
 const rgbaColorPercent = /^rgba\((([0-9]%|[1-9][0-9]%|100%),\s?){3}(0?\.\d|1(\.0)?|0(\.0)?)\)/;
 
 /**
- * @param {String} str
- * @param {Boolean} includePercentValues
- * @returns {Boolean}
+ * @param {string} str
+ * @param {boolean} includePercentValues
+ * @returns {boolean}
  */
 export default function isValidRgbColor(str, includePercentValues = true) {
   if (!isString(str)) {
-    throw new InvalidTypeError(str, 'str', 'String');
+    throw new InvalidTypeError(str, 'str', 'string');
   }
 
   const isValid = rgbColor.test(str) || rgbaColor.test(str);

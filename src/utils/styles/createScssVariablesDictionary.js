@@ -5,7 +5,7 @@ const SEPARATOR = '-';
 
 /**
  * @param {Object} dictionary
- * @param {String} key
+ * @param {string} key
  * @param {*} value
  * @returns {Object}
  */

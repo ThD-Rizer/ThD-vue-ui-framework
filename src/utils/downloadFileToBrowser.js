@@ -1,7 +1,7 @@
 /**
- * @param {String} url
- * @param {Boolean} [withCredentials]
- * @returns {Promise<Object | null>}
+ * @param {string} url
+ * @param {boolean} [withCredentials]
+ * @returns {Promise<?Object>}
  */
 export default async function downloadFileToBrowser(url, withCredentials = false) {
   const credentials = withCredentials ? 'include' : 'same-origin';

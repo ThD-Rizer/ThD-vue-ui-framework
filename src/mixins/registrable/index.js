@@ -3,12 +3,12 @@ import { ComponentInjectionError } from '@/utils/errors';
 /**
  * Фабрика инъекции
  *
- * @param {String} namespace
- * @param {String} [child]
- * @param {String} [parent]
+ * @param {string} namespace
+ * @param {string} [child]
+ * @param {string} [parent]
  * @returns {{ inject: Object }}
  */
-export const registrableInject = (namespace, child, parent) => {
+export const registrableInject = (namespace, child = undefined, parent = undefined) => {
   let implementation = null;
 
   if (child && parent) {
@@ -33,8 +33,8 @@ export const registrableInject = (namespace, child, parent) => {
 
 /**
  * Фабрика провайдера
- * @param {String} namespace
- * @returns {{ methods: Object, provide: Function }}
+ * @param {string} namespace
+ * @returns {{ methods: Object, provide: function }}
  */
 export const registrableProvide = (namespace) => ({
   methods: {

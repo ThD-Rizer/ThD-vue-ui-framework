@@ -7,12 +7,12 @@ import isValidRgbColor from './isValidRgbColor';
 const safeColor = /^[a-z]{3,}$/i;
 
 /**
- * @param {String} str
- * @returns {Boolean}
+ * @param {string} str
+ * @returns {boolean}
  */
 export default function isValidCssColor(str) {
   if (!isString(str)) {
-    throw new InvalidTypeError(str, 'str', 'String');
+    throw new InvalidTypeError(str, 'str', 'string');
   }
 
   return (

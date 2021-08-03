@@ -8,7 +8,7 @@ import {
 import { pascalToKebab } from '../index';
 
 /**
- * @param {Object<Vue>} Vue
+ * @param {Object} Vue VueOptions
  * @param {Object} component
  * @returns {void}
  */

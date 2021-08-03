@@ -1,8 +1,8 @@
 import { isUndefined, isNull, isString } from '../inspect';
 
 /**
- * @param {String | Object | null | undefined} breakpoints
- * @returns {Object<String, Number | Boolean>}
+ * @param {string | Object | null | undefined} breakpoints
+ * @returns {Object.<string, number | boolean>}
  */
 export default function parseBreakpoints(breakpoints) {
   if (isUndefined(breakpoints) || isNull(breakpoints)) {

@@ -4,8 +4,8 @@ import cloneDeep from './cloneDeep';
 
 /**
  * @param {Array} arr
- * @param {Number} indexLeft
- * @param {Number} indexRight
+ * @param {number} indexLeft
+ * @param {number} indexRight
  * @returns {Array}
  */
 export default function swapArrayElements(arr, indexLeft, indexRight) {
@@ -13,10 +13,10 @@ export default function swapArrayElements(arr, indexLeft, indexRight) {
     throw new InvalidTypeError(arr, 'arr', 'Array');
   }
   if (!isNumber(indexLeft)) {
-    throw new InvalidTypeError(indexLeft, 'indexLeft', 'Number');
+    throw new InvalidTypeError(indexLeft, 'indexLeft', 'number');
   }
   if (!isNumber(indexRight)) {
-    throw new InvalidTypeError(indexRight, 'indexRight', 'Number');
+    throw new InvalidTypeError(indexRight, 'indexRight', 'number');
   }
 
   const arrCloned = cloneDeep(arr);

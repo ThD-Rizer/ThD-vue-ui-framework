@@ -4,12 +4,12 @@ import { isNumber } from './inspect';
 /**
  * Generate random hash with given length
  *
- * @param {Number} length
- * @returns {String}
+ * @param {number} length
+ * @returns {string}
  */
 export default function generateHash(length = 8) {
   if (!isNumber(length)) {
-    throw new InvalidTypeError(length, 'length', 'Number');
+    throw new InvalidTypeError(length, 'length', 'number');
   }
 
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
